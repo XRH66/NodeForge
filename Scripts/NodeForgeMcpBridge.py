@@ -14,14 +14,14 @@ import uuid
 from pathlib import Path
 from jsonschema import Draft202012Validator
 from NodeForgeEditorTransport import Windows, strict_json, TransportError
-from RunProcessGuard import validate_isolated_project, process_identity, load_installation_binding
+from RunProcessGuard import validate_isolated_project, process_identity, load_installation_binding, state_directory, load_ai_installation, installation_user_directory, discover_editor_sessions, installation_path, installation_product
 
 ROOT = Path(__file__).resolve().parent.parent
 HOME = ROOT / 'Tools/NodeForgeMcp'
 REPORTS = ROOT / 'Reports/PluginControlStageTwo/McpDocs1'
 CONTROL_REPORTS = ROOT / 'Reports/PluginControlStageTwo'
 CLIENT_CONFIG = REPORTS / 'Client/Config.json'
-VERSION = '0.3.6'
+VERSION = '0.4.0'
 MAX_REPORT = 1048576
 MAX_SELECTED = 32768
 MAX_GRAPH = 65536
@@ -219,9 +219,13 @@ def export_payload(native,graph_schema=None):
 class Bridge:
     def __init__(self, config_path):
         self.config_path = Path(config_path)
-        config_data = safe_read(self.config_path, 65536, roots=(HOME, CONTROL_REPORTS))
+        config_data = safe_read(self.config_path, 65536, roots=(self.config_path.parent,))
         self.config = config = strict_json(config_data)
-        if (not isinstance(config, dict) or set(config) != PUBLIC_CONFIG_FIELDS
+        self.discovery = isinstance(config, dict) and config.get('format') == 'NodeForgeAiInstallation1'
+        self.contexts = {}
+        if self.discovery:
+            self.config = config = load_ai_installation(self.config_path, ROOT)
+        elif (not isinstance(config, dict) or set(config) != PUBLIC_CONFIG_FIELDS
                 or config['format'] != 'NodeForgeMcpConfig' or type(config['version']) is not int
                 or config['version'] != 1
                 or any(not isinstance(v, str) for k, v in config.items() if k != 'version')):
@@ -241,31 +245,44 @@ class Bridge:
                 or self.manifest['bundleId'] != self.bundle_id or self.manifest['bridgeVersion'] != VERSION
                 or self.manifest['binarySha256'] != config['binarySha256']):
             raise BridgeError('NFMCP_VERSION', 'environmentBlocked')
-        self.project, self.stage, self.binary = validate_isolated_project(config['project'], config['pluginDirectory'], ROOT)
-        # The public usage manifest describes distributable product metadata.
-        # The selected project AND actual stage are admitted by the private
-        # binding + product InstallationManifest, not by a developer report path.
-        if (self.manifest.get('installationSchemaVersion') != 1
-                or sha(safe_read(self.binary, 64 * MAX_REPORT, roots=(self.stage,))) != config['binarySha256']):
-            raise BridgeError('NFMCP_STAGE', 'environmentBlocked')
-        for path, expected in self.manifest['cliFiles'].items():
-            safe_read(ROOT / path, MAX_REPORT, expected, (ROOT / 'Scripts',))
-        self.report_root, self.run_root = Path(config['reportRoot']), Path(config['bridgeRunRoot'])
-        self.public_path = Path(config['sessionPublic'])
-        report_namespace = ROOT / self.manifest['reportNamespace']
-        if not report_namespace.resolve().is_relative_to(CONTROL_REPORTS):
-            raise BridgeError('NFMCP_RELEASE_REPORT_SCOPE', 'environmentBlocked')
-        # Preserve the operator's already configured launcher across finite releases.
-        # This admits one exact non-secret config, never its sibling reports.
-        if (not Path(config_path).resolve().is_relative_to(HOME)
-                and not Path(config_path).resolve().is_relative_to(report_namespace)
-                and Path(config_path).resolve() != CLIENT_CONFIG.resolve()):
-            raise BridgeError('NFMCP_CONFIG_RELEASE_SCOPE', 'environmentBlocked')
-        if (not self.report_root.is_absolute() or not self.run_root.is_absolute()
-                or not self.report_root.resolve().is_relative_to(report_namespace)
-                or not self.run_root.resolve().is_relative_to(report_namespace)
-                or self.public_path != self.report_root / 'SessionPublic.json'):
-            raise BridgeError('NFMCP_REPORT_ROOT', 'environmentBlocked')
+        if self.discovery:
+            self.state_root = installation_user_directory(ROOT)
+            self.control_reports = self.state_root
+            self.project = None
+            _, self.engine, self.stage, self.binary, _ = installation_product(ROOT, config['engineRoot'])
+            self.report_root = self.state_root / 'Runs'
+            self.run_root = self.report_root / uuid.uuid4().hex
+            self.public_path = None
+            for path, expected in self.manifest['cliFiles'].items():
+                safe_read(ROOT / path, MAX_REPORT, expected, (ROOT / 'Scripts',))
+        else:
+            self.project, self.stage, self.binary = validate_isolated_project(config['project'], config['pluginDirectory'], ROOT)
+            self.state_root = state_directory(self.project)
+            self.control_reports = self.state_root / 'Reports/PluginControlStageTwo'
+            # The public usage manifest describes distributable product metadata.
+            # The selected project AND actual stage are admitted by the private
+            # binding + product InstallationManifest, not by a developer report path.
+            if (self.manifest.get('installationSchemaVersion') != 1
+                    or sha(safe_read(self.binary, 64 * MAX_REPORT, roots=(self.stage,))) != config['binarySha256']):
+                raise BridgeError('NFMCP_STAGE', 'environmentBlocked')
+            for path, expected in self.manifest['cliFiles'].items():
+                safe_read(ROOT / path, MAX_REPORT, expected, (ROOT / 'Scripts',))
+            self.report_root, self.run_root = Path(config['reportRoot']), Path(config['bridgeRunRoot'])
+            self.public_path = Path(config['sessionPublic'])
+            report_namespace = self.state_root / self.manifest['reportNamespace']
+            if not report_namespace.resolve().is_relative_to(self.control_reports):
+                raise BridgeError('NFMCP_RELEASE_REPORT_SCOPE', 'environmentBlocked')
+            # Preserve the operator's already configured launcher across finite releases.
+            # This admits one exact non-secret config, never its sibling reports.
+            if (not Path(config_path).resolve().is_relative_to(HOME)
+                    and not Path(config_path).resolve().is_relative_to(report_namespace)
+                    and Path(config_path).resolve() != CLIENT_CONFIG.resolve()):
+                raise BridgeError('NFMCP_CONFIG_RELEASE_SCOPE', 'environmentBlocked')
+            if (not self.report_root.is_absolute() or not self.run_root.is_absolute()
+                    or not self.report_root.resolve().is_relative_to(report_namespace)
+                    or not self.run_root.resolve().is_relative_to(report_namespace)
+                    or self.public_path != self.report_root / 'SessionPublic.json'):
+                raise BridgeError('NFMCP_REPORT_ROOT', 'environmentBlocked')
         Windows().no_reparse(self.run_root)
         self.run_root.mkdir(parents=True, exist_ok=True)
         self.lease_path = self.run_root / 'Bridge.lock'
@@ -289,7 +306,9 @@ class Bridge:
             raise BridgeError('NFMCP_RUNTIME_BINDING', 'environmentBlocked')
 
     def configuration_changed(self):
-        current = strict_json(safe_read(self.config_path, 65536, roots=(HOME, CONTROL_REPORTS)))
+        if self.discovery:
+            return load_ai_installation(self.config_path, ROOT) != self.config
+        current = strict_json(safe_read(self.config_path, 65536, roots=(HOME, self.control_reports)))
         if (not isinstance(current, dict) or set(current) != PUBLIC_CONFIG_FIELDS
                 or current.get('format') != 'NodeForgeMcpConfig' or type(current.get('version')) is not int
                 or current['version'] != 1 or any(not isinstance(v, str) for k, v in current.items() if k != 'version')):
@@ -304,6 +323,17 @@ class Bridge:
         Called only by the existing SDK server with zero in-flight requests.
         Pending work and a live old editor keep their exact owner and records.
         """
+        if self.discovery:
+            if any(context.has_unresolved() for context in self.contexts.values()):
+                raise BridgeError('NFMCP_REBIND_UNRESOLVED', 'environmentBlocked')
+            candidate = application_factory(self) if application_factory else type(self)(self.config_path)
+            for context in self.contexts.values(): context.close()
+            self.contexts.clear()
+            return candidate, {'oldBundleId':self.bundle_id, 'newBundleId':candidate.bundle_id,
+                'oldHandleInvalidated':True, 'newConnectionRequired':True,
+                'toolsChanged':self.contract['tools'] != candidate.contract['tools'],
+                'applicationCodeReloaded':application_factory is not None,
+                'loadedRuntimeFiles':candidate.loaded_runtime_files}
         if not self.connection_lock.acquire(blocking=False):
             raise BridgeError('NFMCP_REBIND_BUSY', 'environmentBlocked')
         try:
@@ -318,6 +348,7 @@ class Bridge:
             self.connection_lock.release()
 
     def has_unresolved(self):
+        if self.discovery: return any(context.has_unresolved() for context in self.contexts.values())
         if self.pending_cli or self.unknown:
             return True
         for path in (self.run_root / 'Calls').glob('*.json'):
@@ -328,6 +359,9 @@ class Bridge:
 
     def retained_query(self, name, params):
         """Only a recorded old call/report may bypass a pending config rebind."""
+        if self.discovery:
+            context = self.contexts.get(params.get('handle'))
+            return bool(context and context.retained_query(name, params))
         if not self.identity or not self.handle or params.get('handle') != self.handle:
             return False
         if name == 'nodeforge_calls_get':
@@ -361,19 +395,19 @@ class Bridge:
             if (terminal['state'] == 'unknown' or terminal['state'] == 'running'
                     and terminal.get('createdTicks') == old_public['processStart']):
                 raise BridgeError('NFMCP_REBIND_EDITOR_ACTIVE', 'environmentBlocked')
-            private = ROOT / 'Reports/PluginControlSessions' / old_public['controlSessionId'] / 'Session.json'
+            private = self.state_root / 'Reports/PluginControlSessions' / old_public['controlSessionId'] / 'Session.json'
             if Path(old_public['sessionFile']).resolve() != private.resolve() or private.exists():
                 raise BridgeError('NFMCP_REBIND_SESSION_NOT_CLOSED', 'environmentBlocked')
         if self.owns_lease and (not self.lease_path.exists() or strict_json(
                 safe_read(self.lease_path, 65536, roots=(self.run_root,))) != self.lease):
             raise BridgeError('NFMCP_LEASE_CHANGED', 'environmentBlocked')
-        config_data = safe_read(self.config_path, 65536, roots=(HOME, CONTROL_REPORTS))
+        config_data = safe_read(self.config_path, 65536, roots=(HOME, self.control_reports))
         candidate = candidate or type(self)(self.config_path)
         if (candidate.project != self.project or candidate.contract['editorApiVersion'] != self.contract['editorApiVersion']
                 or candidate.contract['profile'] != self.contract['profile']):
             raise BridgeError('NFMCP_REBIND_INCOMPATIBLE', 'environmentBlocked')
         # Recheck the publication and loaded runtime before releasing this owner.
-        safe_read(self.config_path, 65536, sha(config_data), (HOME, CONTROL_REPORTS))
+        safe_read(self.config_path, 65536, sha(config_data), (HOME, self.control_reports))
         safe_read(HOME / 'ToolContract.json', MAX_REPORT, candidate.config['toolContractSha256'], (HOME,))
         safe_read(candidate.manifest_path, MAX_REPORT, candidate.config['docsManifestSha256'], (ROOT / 'Docs/Versions',))
         if any(sha(safe_read(ROOT / path, MAX_REPORT)) != digest
@@ -431,7 +465,7 @@ class Bridge:
             raise BridgeError('NFMCP_LEASE_CHANGED', 'environmentBlocked')
         # Constructor and loader validated the complete approved generation;
         # check it again before transferring the live state.
-        config_data = safe_read(self.config_path, 65536, roots=(HOME, CONTROL_REPORTS))
+        config_data = safe_read(self.config_path, 65536, roots=(HOME, self.control_reports))
         if strict_json(config_data) != self.config:
             raise BridgeError('NFMCP_CONFIG_CHANGED', 'environmentBlocked')
         safe_read(HOME / 'ToolContract.json', MAX_REPORT, self.config['toolContractSha256'])
@@ -449,7 +483,7 @@ class Bridge:
             'ueStarted': False, 'processTerminated': False, 'externalLeaseRemoved': False}
         path = self.run_root / 'Rebindings' / ('Rebind' + uuid.uuid4().hex + '.json')
         write_new(path, receipt)
-        safe_read(self.config_path, 65536, sha(config_data), (HOME, CONTROL_REPORTS))
+        safe_read(self.config_path, 65536, sha(config_data), (HOME, self.control_reports))
         self.identity = copy.deepcopy(old.identity); self.handle = old.handle
         self.lease = copy.deepcopy(old.lease); self.owns_lease = old.owns_lease
         self.calls = copy.deepcopy(old.calls); self.reports = copy.deepcopy(old.reports)
@@ -460,10 +494,16 @@ class Bridge:
         return receipt
 
     def _documents(self):
+        if self.discovery:
+            current = load_ai_installation(self.config_path, ROOT)
+            if current != self.config:
+                raise BridgeError('NFMCP_CONFIG_RELOAD_REQUIRED', 'environmentBlocked')
+            safe_read(self.manifest_path, MAX_REPORT, current['docsManifestSha256'], (ROOT / 'Docs/Versions',))
+            return self.manifest, current['docsManifestSha256']
         # Only the operator's fixed config can authorize a new docs fingerprint.
         # Session, executable and operation changes still require a new connection.
         with self.metadata_lock:
-            config_data = safe_read(self.config_path, 65536, roots=(HOME, CONTROL_REPORTS))
+            config_data = safe_read(self.config_path, 65536, roots=(HOME, self.control_reports))
             current = strict_json(config_data)
             if (not isinstance(current, dict) or set(current) != PUBLIC_CONFIG_FIELDS
                     or any(type(current[key]) is not type(value) or current[key] != value
@@ -549,13 +589,16 @@ class Bridge:
                         raise BridgeError('NFMCP_DOCUMENT_UNAVAILABLE', 'environmentBlocked')
                     page_ids.add(row['pageId'])
                 # A publishing race must not commit a partly observed config/package.
-                safe_read(self.config_path, 65536, sha(config_data), (HOME, CONTROL_REPORTS))
+                safe_read(self.config_path, 65536, sha(config_data), (HOME, self.control_reports))
                 safe_read(self.manifest_path, MAX_REPORT, current['docsManifestSha256'], (ROOT / 'Docs/Versions',))
                 self.manifest = manifest
                 self.config = current
             return self.manifest, self.config['docsManifestSha256']
 
     def close(self):
+        if self.discovery:
+            for context in self.contexts.values(): context.close()
+            return
         # A live timed-out CLI or unclosed business retains its lease/checkpoint.
         if not self.connection_lock.acquire(blocking=False): return
         try:
@@ -677,6 +720,10 @@ class Bridge:
         else:
             self._documents()
         current = self._public()
+        observation = process_identity(current['pid'])
+        if (observation.get('state') != 'running' or observation.get('createdTicks') != current['processStart']
+                or not Path(current['sessionFile']).is_file()):
+            raise BridgeError('NFMCP_SESSION_CLOSED', 'environmentBlocked')
         if current != self.identity:
             self.handle = None; self.reports.clear()
             raise BridgeError('NFMCP_SESSION_CHANGED', 'environmentBlocked')
@@ -727,6 +774,29 @@ class Bridge:
                     'operation': operation, 'run': str(run), 'controlSessionId': identity['controlSessionId'],
                     'errors': [{'code': 'NFMCP_CLI_UNCONFIRMED'}]}
         finally: self.connections.release()
+
+    def select_connection(self, params):
+        self._documents()
+        if not self.config['enabled']: return result('notConnected', reason='aiDisabled', candidates=[])
+        candidates, rejected = discover_editor_sessions(ROOT, self.engine)
+        visible = [{k:v for k,v in row.items() if k != 'config'} for row in candidates]
+        selected = candidates
+        if 'project' in params:
+            project = installation_path(params['project']).as_posix()
+            selected = [row for row in selected if row['project'].casefold() == project.casefold()]
+        if 'controlSessionId' in params:
+            selected = [row for row in selected if row['controlSessionId'] == params['controlSessionId']]
+        if not selected: return result('notConnected', candidates=visible, rejectedCandidates=rejected,
+            reason='selectedSessionUnavailable' if params else 'noActiveEditor')
+        if len(selected) != 1: return result('selectionRequired', candidates=visible,
+            selectionFields=['project','controlSessionId'], rejectedCandidates=rejected)
+        row = selected[0]
+        with self.connection_lock:
+            context = next((c for c in self.contexts.values() if c.config_path == Path(row['config'])), None)
+            context = context or type(self)(row['config'])
+            connected = context.connect()
+            if connected['status'] == 'connected': self.contexts[connected['handle']] = context
+            return connected
 
     def connect(self):
         if not self.connection_lock.acquire(blocking=False):
@@ -873,7 +943,7 @@ class Bridge:
                             raise BridgeError('NFMCP_COPY_APPLIED_BINDING', 'unknown')
                         # Existing product writes prepared text here; it is not a new arbitrary-file tool.
                         prepared = strict_json(safe_read(Path(preparation['preparedInputPath']), MAX_GRAPH,
-                            preparation['preparedInputDigest'], (ROOT / 'Reports/PreparedCopies',)))
+                            preparation['preparedInputDigest'], (self.state_root / 'Reports/PreparedCopies',)))
                         original = strict_json(safe_read(Path(payload['inputSnapshot']), MAX_GRAPH,
                             payload['inputDigest'], (self.report_root,)))
                         prepared_identity,original_identity=graph_identity(prepared),graph_identity(original)
@@ -998,8 +1068,22 @@ class Bridge:
             strict_json(encoded(params))
             if retained_recovery and not self.retained_query(name, params):
                 raise BridgeError('NFMCP_RETAINED_QUERY_UNAVAILABLE', 'environmentBlocked')
+            if self.discovery and (tool['operation'] is not None or name == 'nodeforge_report_read'):
+                context = self.contexts.get(params.get('handle'))
+                if context is None: raise BridgeError('NFMCP_HANDLE', 'environmentBlocked')
+                self.unknown = set().union(*(c.unknown for c in self.contexts.values()))
+                if tool['operation'] not in (None, 'calls.get') and tool.get('nativeDefinition', {}).get('dispatch') == 'gameThread':
+                    if any(c.has_unresolved() for c in self.contexts.values()):
+                        raise BridgeError('NFMCP_UNRESOLVED_CALL', 'unknown')
+                value = context.call(name, params, retained_recovery=retained_recovery)
+                return value
+            if name == 'nodeforge_connect' and self.discovery: return self.select_connection(params)
             if tool['operation'] is not None: return self.business(tool, params, retained_recovery)
-            if name == 'nodeforge_connect': return self.connect()
+            if name == 'nodeforge_connect':
+                if ('project' in params and installation_path(params['project']) != self.project
+                        or 'controlSessionId' in params and params['controlSessionId'] != self._public()['controlSessionId']):
+                    raise BridgeError('NFMCP_SELECTED_SESSION_MISMATCH', 'environmentBlocked')
+                return self.connect()
             documents, documents_sha = ((self.manifest, self.config['docsManifestSha256'])
                 if retained_recovery else self._documents())
             if name == 'nodeforge_docs_index':

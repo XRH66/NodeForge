@@ -23,15 +23,16 @@ namespace
 bool AdmitInputPath(const FString& Requested, FString& Path, FString& Error)
 {
     const FString Root = NodeForgePrototype::WorkspaceDirectory();
+    const FString StateRoot = NodeForgeInstallation::StateDirectory();
     if (Root.IsEmpty() || Requested.IsEmpty() || FPaths::IsRelative(Requested))
     { Error = TEXT("inputPathRejected"); return false; }
     Path = FPaths::ConvertRelativePathToFull(Requested);
     FPaths::NormalizeFilename(Path); FPaths::CollapseRelativeDirectories(Path);
-    if (FPaths::IsUnderDirectory(Path, Root / TEXT("Reports/PluginControlSessions")))
+    if (StateRoot.IsEmpty() || FPaths::IsUnderDirectory(Path, StateRoot / TEXT("Reports/PluginControlSessions")))
     { Error = TEXT("inputPathRejected"); return false; }
     if (!FPaths::IsUnderDirectory(Path, Root / TEXT("Examples"))
         && !FPaths::IsUnderDirectory(Path, Root / TEXT("Tests"))
-        && !FPaths::IsUnderDirectory(Path, Root / TEXT("Reports")))
+        && !FPaths::IsUnderDirectory(Path, StateRoot / TEXT("Reports")))
     { Error = TEXT("inputPathRejected"); return false; }
     // Deny junctions/symlinks in the entire admitted path, including its parents.
     FString Parent = Path;
@@ -228,7 +229,7 @@ TSharedRef<FJsonObject> FNodeForgeEditorControlService::ExecuteGraphCall(const F
         bool SessionValid = Session.Len() == 32;
         for (TCHAR C : Session) SessionValid &= (C >= '0' && C <= '9') || (C >= 'a' && C <= 'f');
         if (!SessionValid || !NodeForgeEditorControl::IsCallId(CallId)
-            || !FPaths::IsUnderDirectory(ReportDirectory, NodeForgePrototype::WorkspaceDirectory() / TEXT("Reports/PluginControlStageTwo"))
+            || !FPaths::IsUnderDirectory(ReportDirectory, NodeForgeInstallation::StateDirectory() / TEXT("Reports/PluginControlStageTwo"))
             || IFileManager::Get().FileExists(*NativePath) || IFileManager::Get().FileExists(*SidecarPath)
             || !AdmitInputPath(Snapshot, Admitted, Error) || !SaveDraftSnapshotAt(Snapshot, Hash, Error))
         { Reason = TEXT("snapshotRejected"); Current.ResultText = TEXT("本次程序调用未执行：草稿或安全快照路径无法核实。"); }
@@ -501,7 +502,7 @@ int32 FNodeForgeEditorControlService::ExecuteReadAt(const FString& Method,
     const FString Mode=ReadMode(Method,Arguments);FString Admitted,NativeReport;
     if(Mode.IsEmpty() || !NodeForgeControlOperations::Find(Method,NodeForgeControlOperations::EHost::ActiveEditor)
         || !AdmitInputPath(Snapshot,Admitted,Error) || !AdmitInputPath(ReportPath,NativeReport,Error)
-        || !FPaths::IsUnderDirectory(NativeReport,NodeForgePrototype::WorkspaceDirectory()/TEXT("Reports"))
+        || !FPaths::IsUnderDirectory(NativeReport,NodeForgeInstallation::StateDirectory()/TEXT("Reports"))
         || IFileManager::Get().FileExists(*NativeReport) || IFileManager::Get().FileExists(*Admitted))
     {Error=TEXT("queryArgumentsRejected");return 2;}
     FString Saved,ReadError;
@@ -587,8 +588,8 @@ int32 FNodeForgeEditorControlService::QueryFromUI(const FString& Method, const T
     check(IsInGameThread()); FNodeForgeEditorBusinessScope Lease(*this); if (!Lease) return 2;
     const FString Unique = FGuid::NewGuid().ToString(EGuidFormats::Digits);
     FString Hash, Error;
-    return QuerySnapshot(Method, Arguments, NodeForgePrototype::WorkspaceDirectory() / TEXT("Reports/UiInputs") / (Unique + TEXT(".json")),
-        NodeForgePrototype::WorkspaceDirectory() / TEXT("Reports/UiRules") / (Unique + TEXT(".json")), Hash, Error);
+    return QuerySnapshot(Method, Arguments, NodeForgeInstallation::StateDirectory() / TEXT("Reports/UiInputs") / (Unique + TEXT(".json")),
+        NodeForgeInstallation::StateDirectory() / TEXT("Reports/UiRules") / (Unique + TEXT(".json")), Hash, Error);
 }
 
 TSharedRef<FJsonObject> FNodeForgeEditorControlService::ExecuteQueryCall(const FString& Method,
@@ -608,7 +609,7 @@ TSharedRef<FJsonObject> FNodeForgeEditorControlService::ExecuteQueryCall(const F
         bool SessionValid = Session.Len() == 32;
         for (TCHAR C : Session) SessionValid &= (C >= '0' && C <= '9') || (C >= 'a' && C <= 'f');
         if (!SessionValid || !NodeForgeEditorControl::IsCallId(CallId)
-            || !FPaths::IsUnderDirectory(ReportDirectory, NodeForgePrototype::WorkspaceDirectory() / TEXT("Reports/PluginControlStageTwo"))
+            || !FPaths::IsUnderDirectory(ReportDirectory, NodeForgeInstallation::StateDirectory() / TEXT("Reports/PluginControlStageTwo"))
             || IFileManager::Get().FileExists(*NativePath) || IFileManager::Get().FileExists(*SidecarPath)
             || !AdmitInputPath(Snapshot, Admitted, Reason)) Reason = TEXT("querySnapshotRejected");
         else
@@ -694,7 +695,7 @@ TSharedRef<FJsonObject> FNodeForgeEditorControlService::GetState() const
 bool FNodeForgeEditorControlService::SaveDraftSnapshot(FString& Path, FString& Hash, FString& Error) const
 {
     check(IsInGameThread());
-    Path = NodeForgePrototype::WorkspaceDirectory() / TEXT("Reports/UiInputs")
+    Path = NodeForgeInstallation::StateDirectory() / TEXT("Reports/UiInputs")
         / (FGuid::NewGuid().ToString(EGuidFormats::Digits) + TEXT(".json"));
     return SaveDraftSnapshotAt(Path, Hash, Error);
 }
@@ -751,7 +752,7 @@ int32 FNodeForgeEditorControlService::PreflightFromUI()
         FString Input,Hash,Error;
         if(!SaveDraftSnapshot(Input,Hash,Error)){Current.ResultText=TEXT("生成前检查未执行：")+Error;return 2;}
         const FString Unique=FGuid::NewGuid().ToString(EGuidFormats::Digits);
-        Current.LastReportPath=NodeForgePrototype::WorkspaceDirectory()/TEXT("Reports/UiPreflights")/(Unique+TEXT(".json"));
+        Current.LastReportPath=NodeForgeInstallation::StateDirectory()/TEXT("Reports/UiPreflights")/(Unique+TEXT(".json"));
         auto Context=MakeShared<FJsonObject>();Context->SetStringField(TEXT("inputMethod"),TEXT("draft"));
         Context->SetObjectField(TEXT("uiInput"),Current.Input.Provenance(Input,Hash));
         return PreflightSnapshot(Input, Current.LastReportPath, Context);
@@ -805,7 +806,7 @@ int32 FNodeForgeEditorControlService::PrepareSnapshot(const FString& Input, cons
         && NodeForgePrototype::TextSha256(OriginalText) == Digest
         && Preparation->TryGetStringField(TEXT("sourceInputDigest"), SourceDigest) && SourceDigest == Digest
         && Preparation->TryGetStringField(TEXT("preparedInputPath"), Path)
-        && FPaths::IsUnderDirectory(FPaths::ConvertRelativePathToFull(Path), NodeForgePrototype::WorkspaceDirectory() / TEXT("Reports/PreparedCopies"))
+        && FPaths::IsUnderDirectory(FPaths::ConvertRelativePathToFull(Path), NodeForgeInstallation::StateDirectory() / TEXT("Reports/PreparedCopies"))
         && AdmitInputPath(Path, Admitted, Error)
         && Preparation->TryGetStringField(TEXT("preparedInputDigest"), ExpectedHash)
         && ReadAdmittedInput(Admitted, Text, ActualHash, Error) && ActualHash == ExpectedHash
@@ -861,7 +862,7 @@ int32 FNodeForgeEditorControlService::PrepareCopyFromUI()
     check(IsInGameThread()); FNodeForgeEditorBusinessScope Guard(*this); if (!Guard) return 2; ResetResult(true);
     FString Input, Hash, Error;
     if (!SaveDraftSnapshot(Input, Hash, Error)) { Current.ResultText = TEXT("未准备副本：") + Error; return 2; }
-    const FString Report = NodeForgePrototype::WorkspaceDirectory() / TEXT("Reports/UiCopyPreparations") / (FGuid::NewGuid().ToString(EGuidFormats::Digits) + TEXT(".json"));
+    const FString Report = NodeForgeInstallation::StateDirectory() / TEXT("Reports/UiCopyPreparations") / (FGuid::NewGuid().ToString(EGuidFormats::Digits) + TEXT(".json"));
     auto Context = MakeShared<FJsonObject>(); Context->SetStringField(TEXT("inputMethod"), TEXT("draft"));
     Context->SetObjectField(TEXT("uiInput"), Current.Input.Provenance(Input, Hash)); TSharedPtr<FJsonObject> Preparation;
     return PrepareSnapshot(Input, Report, Context, Current.Input.Revision(), Preparation);
@@ -872,7 +873,7 @@ int32 FNodeForgeEditorControlService::PreviewFromUI()
     if (!Current.Input.Draft().ExportOrigin) { Current.ResultText = TEXT("预览未执行：当前草稿没有可靠导出来源。"); return 2; }
     FString Input, Hash, Error;
     if (!SaveDraftSnapshot(Input, Hash, Error)) { Current.ResultText = TEXT("预览未执行：") + Error; return 2; }
-    const FString Report = NodeForgePrototype::WorkspaceDirectory() / TEXT("Reports/UiPreviews") / (FGuid::NewGuid().ToString(EGuidFormats::Digits) + TEXT(".json"));
+    const FString Report = NodeForgeInstallation::StateDirectory() / TEXT("Reports/UiPreviews") / (FGuid::NewGuid().ToString(EGuidFormats::Digits) + TEXT(".json"));
     auto Context = MakeShared<FJsonObject>(); Context->SetStringField(TEXT("inputMethod"), TEXT("draft"));
     Context->SetObjectField(TEXT("uiInput"), Current.Input.Provenance(Input, Hash));
     return PreviewSnapshot(Input, Report, Context);
@@ -903,7 +904,7 @@ int32 FNodeForgeEditorControlService::ImportSnapshot(const FString& InputPath,co
         {Current.ResultText=TEXT("未开始生成：输入快照缺失或已改变。");return 2;}
         const FString UniqueName = FString::Printf(TEXT("%s-%s.json"),
             *FDateTime::UtcNow().ToString(TEXT("%Y%m%d-%H%M%S")), *FGuid::NewGuid().ToString(EGuidFormats::Digits));
-        Current.LastReportPath = OutputReport.IsEmpty() ? FPaths::Combine(NodeForgePrototype::WorkspaceDirectory(), TEXT("Reports/UiImports"), UniqueName) : OutputReport;
+        Current.LastReportPath = OutputReport.IsEmpty() ? FPaths::Combine(NodeForgeInstallation::StateDirectory(), TEXT("Reports/UiImports"), UniqueName) : OutputReport;
 
         if(BeforeExecute) BeforeExecute();
         TSharedPtr<FJsonObject> Context = ContextOverride;

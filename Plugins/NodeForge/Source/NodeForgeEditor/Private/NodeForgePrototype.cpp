@@ -889,7 +889,7 @@ int32 Execute(const FString& Mode,const FString& InputPath,const FString& Report
         const FString PreviewConflict=ConflictReason();
         if(!PreviewConflict.IsEmpty())return Finish(1,TEXT("rejected"),PreviewConflict);
         FString PreviousPath=FPaths::ConvertRelativePathToFull(PreviousReport);FPaths::CollapseRelativeDirectories(PreviousPath);
-        const FString ReportRoot=FPaths::ConvertRelativePathToFull(WorkspaceDirectory()/TEXT("Reports"))+TEXT("/");
+        const FString ReportRoot=FPaths::ConvertRelativePathToFull(NodeForgeInstallation::StateDirectory()/TEXT("Reports"))+TEXT("/");
         const int64 PreviousSize=IFileManager::Get().FileSize(*PreviousPath);
         if(!PreviousPath.StartsWith(ReportRoot,ESearchCase::IgnoreCase) || PreviousSize<1 || PreviousSize>1048576)
             return Finish(1,TEXT("rejected"),TEXT("Preview requires a bounded previous actual graph export report under Reports"));
@@ -996,7 +996,7 @@ int32 Execute(const FString& Mode,const FString& InputPath,const FString& Report
         FString PreparedText;
         if(!FJsonSerializer::Serialize(Prepared.ToSharedRef(),TJsonWriterFactory<>::Create(&PreparedText)) || FTCHARToUTF8(*PreparedText).Length()>65536)
             return Finish(1,TEXT("rejected"),TEXT("准备的副本输入超过64 KiB；原输入保持，未截断或生成。"));
-        const FString PreparedPath=WorkspaceDirectory()/TEXT("Reports/PreparedCopies")/(NewId+TEXT(".json"));
+        const FString PreparedPath=NodeForgeInstallation::StateDirectory()/TEXT("Reports/PreparedCopies")/(NewId+TEXT(".json"));
         if(!WriteJson(Prepared.ToSharedRef(),PreparedPath))return Finish(1,TEXT("rejected"),TEXT("无法保存副本输入记录；原输入保持，未生成资产。"));
         if(!FileDigest(InputPath).Equals(Request.DigestValue,ESearchCase::CaseSensitive))
             return Finish(1,TEXT("rejected"),TEXT("准备期间源输入发生变化；派生记录保留检查，未生成资产。"));

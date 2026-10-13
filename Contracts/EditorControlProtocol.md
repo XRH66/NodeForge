@@ -1,12 +1,14 @@
 # 编辑器控制协议
 
-本协议用于操作已经运行的 UE 编辑器。适用 NodeForge v0.1.0，宿主为 `activeEditor`，`editorApiVersion="1.0"`、`profile="nodeforge.editor.v1"`，消息使用 JSON-RPC 2.0。
+本协议用于操作已经运行的 UE 编辑器。适用 NodeForge v0.2.0，宿主为 `activeEditor`，`editorApiVersion="1.0"`、`profile="nodeforge.editor.v1"`，消息使用 JSON-RPC 2.0。
 
 建议通过[AI 安装工具](../Docs/AiInstallation.md)准备连接，或调用 [NodeForgeControl.py](../Scripts/NodeForgeControl.py)。独立命令行生成与保存检查见[CLI 协议](ControlProtocol.md)。
 
 ## 建立连接
 
-插件默认不开放控制通道。安装工具生成注册信息，专用编辑器启动时使用 `-NFControlEnable -NFControlRegistration=<注册文件绝对路径> -NoLiveCoding`。
+仅普通插件不开放控制通道。AI 一次明确启用后，正常启动、安装绑定就绪时由同一原生入口创建本工程新注册和通道；面板连接/停止调用同一入口。工程状态在 `Saved/NodeForge`，发现索引在当前用户 `NodeForge`，凭据仍只在原受保护私有会话内。程序目录不保存运行记录。每次会话独立，不需要日常启动参数。
+
+原高级准备器仍可生成显式注册并使用 `-NFControlEnable -NFControlRegistration=<注册文件绝对路径> -NoLiveCoding`，其身份和未知结果保障不变。日常 AI 通道启用时仅本编辑器会话禁用 Live Coding；重新启用或加载补丁会停止通道，不放宽 DLL 身份。
 
 注册对象恰含四个字符串字段：`project/pluginDirectory/binarySha256/reportDirectory`。它与工程的安装绑定共同指定工程、插件、DLL 和新报告目录。已存在 `SessionPublic.json` 的报告目录不能再次启用；新会话需要新目录。
 
@@ -16,7 +18,7 @@ CLI 显式提供 `--session-file --project --plugin-directory --run-directory`�
 
 ## 可用方法
 
-精确参数类型、范围和条件见 [Operations.json](../Docs/Versions/v0.1.0/Operations.json)。额外或大小写不符的字段会被拒绝。
+精确参数类型、范围和条件见 [Operations.json](../Docs/Versions/v0.2.0/Operations.json)。额外或大小写不符的字段会被拒绝。
 
 | 方法 | arguments | expectedDraftRevision | 结果类型 |
 | --- | --- | --- | --- |

@@ -59,6 +59,8 @@ public:
             RunningProbe = FParse::Param(FCommandLine::Get(), TEXT("NFEditorControlRunningStopChecks"));
             Service = NodeForgePanel::GetProductService();
             GuiGenerate = FParse::Param(FCommandLine::Get(), TEXT("NFEditorControlGuiGenerateChecks"));
+            if (GuiGenerate && FParse::Value(FCommandLine::Get(), TEXT("NFEditorControlGuiCaseCount="), GraphCaseCount)
+                && !Row(TEXT("ExplicitGuiCaseCountBounded"), GraphCaseCount == 1 || GraphCaseCount == 2)) return Finish();
             BusinessUi = FParse::Param(FCommandLine::Get(), TEXT("NFEditorControlBusinessUiChecks"));
             AuxUi = FParse::Param(FCommandLine::Get(), TEXT("NFEditorControlAuxUiChecks"));
             QueryUi = FParse::Param(FCommandLine::Get(), TEXT("NFEditorControlQueryUiChecks"));
@@ -121,7 +123,7 @@ public:
         if (QueryUi && QueryCase < 2 && !IFileManager::Get().FileExists(*DonePath)) return ObserveQueryUi();
         if (AuxUi && AuxCase < 10 && !IFileManager::Get().FileExists(*DonePath)) return ObserveAuxUi();
         if (BusinessUi && BusinessCase < 10 && !IFileManager::Get().FileExists(*DonePath)) return ObserveBusinessUi();
-        if (GraphUi && !BusinessUi && !AuxUi && !QueryUi && GraphCase < 2 && !(GuiGenerate ? ObserveGuiGenerate() : ObserveGraphUi())) return false;
+        if (GraphUi && !BusinessUi && !AuxUi && !QueryUi && GraphCase < GraphCaseCount && !(GuiGenerate ? ObserveGuiGenerate() : ObserveGraphUi())) return false;
         if (IFileManager::Get().FileExists(*DonePath))
         {
             FString Text; TSharedPtr<FJsonObject> Done;
@@ -131,7 +133,7 @@ public:
             if (QueryUi) Row(TEXT("BothQueryUiProofsAndBoundariesCompleted"), QueryCase == 2 && QueryBoundaryDone);
             else if (AuxUi) Row(TEXT("AllFixedAuxUiProofsCompleted"), AuxCase == 10);
             else if (BusinessUi) Row(TEXT("AllFixedBusinessUiProofsCompleted"), BusinessCase == 10);
-            else if (GraphUi) Row(TEXT("BothGraphProductionUiProofsCompleted"), GraphCase == 2);
+            else if (GraphUi) Row(TEXT("RequestedGraphProductionUiProofsCompleted"), GraphCase == GraphCaseCount);
             if (QueuedProbe || RunningProbe)
                 Row(TEXT("RealDispatchStopProbeFinishedOnceWithExpectedDraft"), ProbeCount == 1
                     && Service->State().Input.Revision() == (RunningProbe ? 1 : 0)
@@ -899,7 +901,7 @@ private:
     TSharedPtr<FJsonObject> AuxObservation;
     TUniquePtr<FNodeForgeEditorBusinessScope> AuxBusinessScope;
     TWeakObjectPtr<UObject> AuxOpenedAsset;
-    int32 GraphCase = 0, BusinessCase = 0; double GraphMarkedAt = 0; TSharedPtr<FJsonObject> BusinessBefore;
+    int32 GraphCase = 0, GraphCaseCount = 2, BusinessCase = 0; double GraphMarkedAt = 0; TSharedPtr<FJsonObject> BusinessBefore;
     bool DriverOwned = false, GuiClickStarted = false, GuiClickCompleted = false, GuiPublished = false;
     double GuiObservedAt = 0, GuiCompletedAt = 0; FString GuiPreviousReport;
     TSharedPtr<IAsyncAutomationDriver, ESPMode::ThreadSafe> Driver;
@@ -915,7 +917,8 @@ bool FNodeForgeEditorControlIdentityTest::RunTest(const FString& Parameters)
 {
     FString Output;
     if (IsRunningCommandlet() || !FParse::Value(FCommandLine::Get(), TEXT("NFEditorControlReport="), Output)
-        || !FPaths::IsUnderDirectory(FPaths::ConvertRelativePathToFull(Output), NodeForgePrototype::WorkspaceDirectory() / TEXT("Reports/PluginControlStageTwo"))
+        || !(FPaths::IsUnderDirectory(FPaths::ConvertRelativePathToFull(Output), NodeForgePrototype::WorkspaceDirectory() / TEXT("Reports/PluginControlStageTwo"))
+            || FPaths::IsUnderDirectory(FPaths::ConvertRelativePathToFull(Output), FPaths::ProjectSavedDir() / TEXT("NodeForge/Reports/PluginControlStageTwo")))
         || IFileManager::Get().FileExists(*Output)) { AddError(TEXT("Fresh owned editor control report required")); return false; }
     ADD_LATENT_AUTOMATION_COMMAND(FNodeForgeChannelIdentityCommand(this, Output)); return true;
 }

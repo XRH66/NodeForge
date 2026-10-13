@@ -10,6 +10,7 @@ from pathlib import Path
 
 from RunProcessGuard import (LiveProcessPending, observed_module, process_identity,
                              run_guarded, validate_isolated_project, load_installation_binding)
+from RunProcessGuard import state_directory, installation_path
 
 ROOT = Path(__file__).resolve().parent.parent
 API = '1.0'
@@ -152,8 +153,9 @@ def summary_base(operation, run):
 
 
 def execute(args, summary):
-    run = scoped_path(args.run_directory, ROOT / 'Reports', 'run-directory')
+    run = scoped_path(args.run_directory, state_directory(args.project) / 'Reports', 'run-directory')
     summary['run'] = str(run)
+    summary['project'] = str(installation_path(args.project))
     if run.exists():
         raise ControlError('NFCLI_RUN_EXISTS', 'Existing run protected; use status to inspect it', 'run-directory')
     try:
@@ -184,7 +186,7 @@ def execute(args, summary):
     native_params = {}
     if args.action != 'describe':
         if args.description_file:
-            description_path = scoped_path(args.description_file, ROOT / 'Reports', 'description-file')
+            description_path = scoped_path(args.description_file, state_directory(project) / 'Reports', 'description-file')
         else:
             describe_run = run / 'Describe'; describe_run.mkdir()
             _, code, _, description_path = native_call('operations.describe', {}, project, binary, describe_run, args.timeout_seconds)
@@ -206,7 +208,10 @@ def execute(args, summary):
             argument = field.get('nativeArgument')
             if argument not in ('NFInput', 'NFPrevious'):
                 raise ControlError('NFCLI_DESCRIPTION', 'Unsupported host file binding in description', field['name'], 3)
-            path = scoped_path(value, ROOT if argument == 'NFInput' else ROOT / 'Reports', field['name'])
+            path = installation_path(value)
+            scopes = (ROOT / 'Examples', ROOT / 'Tests', state_directory(project) / 'Reports') if argument == 'NFInput' else (state_directory(project) / 'Reports',)
+            if not any(path.is_relative_to(scope) for scope in scopes):
+                raise ControlError('NFCLI_FILE_SCOPE', 'Selected project state or installed example required', field['name'])
             limit = 65536 if argument == 'NFInput' else REPORT_LIMIT
             if not path.is_file() or not 0 < path.stat().st_size <= limit:
                 raise ControlError('NFCLI_FILE', 'Existing bounded file required: ' + str(path), field['name'])
@@ -239,10 +244,12 @@ def execute(args, summary):
 
 
 def status(args):
-    run = scoped_path(args.run_directory, ROOT / 'Reports', 'run-directory')
+    run = installation_path(args.run_directory)
     prior = read_json(run / 'Summary.json')
     if not isinstance(prior, dict):
         raise ControlError('NFCLI_STATUS_EVIDENCE', 'Saved summary root is not an object; outcome unknown', 'run-directory', 5)
+    if not run.is_relative_to(ROOT / 'Reports') and not run.is_relative_to(state_directory(prior.get('project', '')) / 'Reports'):
+        raise ControlError('NFCLI_STATUS_SCOPE', 'Original selected project report required', 'run-directory', 5)
     result = {**prior, 'statusQuery': True}
     if (run / 'NativeExit.json').is_file():
         ended = read_json(run / 'NativeExit.json'); started = read_json(run / 'NativeStarted.json')

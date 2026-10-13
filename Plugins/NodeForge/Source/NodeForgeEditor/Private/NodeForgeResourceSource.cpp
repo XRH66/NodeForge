@@ -296,8 +296,8 @@ bool ReadExportOrigin(const FString& Requested, const FString& ReportSha256, con
     check(IsInGameThread()); Origin.Reset();
     FString Path = FPaths::ConvertRelativePathToFull(Requested); FPaths::NormalizeFilename(Path);
     if (Requested.IsEmpty() || FPaths::IsRelative(Requested) || !FPaths::CollapseRelativeDirectories(Path)
-        || !FPaths::IsUnderDirectory(Path, NodeForgePrototype::WorkspaceDirectory() / TEXT("Reports"))
-        || FPaths::IsUnderDirectory(Path, NodeForgePrototype::WorkspaceDirectory() / TEXT("Reports/PluginControlSessions")))
+        || !FPaths::IsUnderDirectory(Path, NodeForgeInstallation::StateDirectory() / TEXT("Reports"))
+        || FPaths::IsUnderDirectory(Path, NodeForgeInstallation::StateDirectory() / TEXT("Reports/PluginControlSessions")))
     { Error = TEXT("exportReportPathRejected"); return false; }
     FString Parent = Path;
     while (!Parent.IsEmpty())

@@ -2,6 +2,15 @@
 
 记录每个发布版本的用户可见功能和变化。
 
+## [0.2.0] - 2026-10-14
+
+- 同包支持官方 UE 5.3.2 的引擎 Marketplace、直接 Plugins 与工程级安装。
+- AI 环境补装到同一位置，客户端一次配置，之后正常打开工程连接。
+- 按用户、工程和会话隔离；唯一/明确工程连接，多候选需选择，关闭重开拒绝旧句柄。
+- 状态移到工程或用户目录，日常无需写引擎；保留原资产、来源和未知写入保障。
+
+[下载 v0.2.0](https://github.com/XRH66/NodeForge/releases/tag/v0.2.0) · [安装](Docs/Installation.md) · [AI 接入](Docs/AiInstallation.md)
+
 ## [0.1.0] - 2026-10-13
 
 NodeForge 的首个可用版本。通过 JSON 创建可编辑的 Unreal Engine 材质和 Actor 蓝图，并提供可选的 AI 接入。

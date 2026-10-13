@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -31,7 +32,11 @@ def ref(root, path):
     return {'path': path.relative_to(root).as_posix(), 'bytes': path.stat().st_size, 'sha256': sha(path)}
 
 
-def assemble(out, embed, plugin, plugin_asset_id):
+def assemble(out, embed, plugin, plugin_asset_id, version=VERSION):
+    if not re.fullmatch(r'\d+\.\d+\.\d+', version):
+        raise ValueError('Release version required')
+    docs = 'Docs/Versions/v' + version
+    release = ROOT / 'Releases' / version
     if out.exists():
         raise ValueError('New output directory required; existing candidates are preserved')
     if sha(embed) != EMBED_SHA:
@@ -86,8 +91,8 @@ def assemble(out, embed, plugin, plugin_asset_id):
         shutil.copyfile(ROOT / 'Tools/NodeForgeMcp' / name, out / 'Tools/NodeForgeMcp' / name)
     (out / 'Metadata').mkdir()
     shutil.copyfile(ROOT / 'Metadata/Operations.json', out / 'Metadata/Operations.json')
-    source = load(ROOT / DOCS / 'Manifest.json')
-    new_root = out / DOCS
+    source = load(ROOT / docs / 'Manifest.json')
+    new_root = out / docs
     new_root.mkdir(parents=True)
     pages = []
     for page in source['pages']:
@@ -96,20 +101,20 @@ def assemble(out, embed, plugin, plugin_asset_id):
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(original, destination)
         pages.append({**page, **ref(out, destination)})
-    contract = load(ROOT / 'Releases/0.1.0/ToolContract.json')
+    contract = load(release / 'ToolContract.json')
     save(out / 'Tools/NodeForgeMcp/ToolContract.json', contract)
     artifacts = []
     for name in ['Catalog.json', 'Operations.json', 'GraphRequestSchema.json']:
-        shutil.copyfile(ROOT / DOCS / name, new_root / name)
+        shutil.copyfile(ROOT / docs / name, new_root / name)
         artifacts.append(ref(out, new_root / name))
-    installation = load(ROOT / 'Releases/0.1.0/InstallationManifest.json')
+    installation = load(release / 'InstallationManifest.json')
     with zipfile.ZipFile(plugin) as ordinary:
         if json.loads(ordinary.read('NodeForge/InstallationManifest.json')) != installation:
             raise ValueError('Plugin installation metadata does not match this release')
     manifest = {key: source[key] for key in ['format', 'engine', 'adapter', 'graphProtocolVersion',
         'acceptedGraphVersions', 'counts', 'catalogDigest', 'readerEntrypoints']}
-    manifest.update(bundleId=contract['bundleId'], buildId=VERSION, aiVersion=VERSION,
-        bridgeVersion='0.3.6', binarySha256=installation['binarySha256'], editorApiVersion='1.0',
+    manifest.update(bundleId=contract['bundleId'], buildId=version, aiVersion=version,
+        bridgeVersion=contract['bridgeVersion'], binarySha256=installation['binarySha256'], editorApiVersion='1.0',
         profile='nodeforge.editor.v1', installationSchemaVersion=1, stage='.',
         reportNamespace='Reports/PluginControlStageTwo/NodeForge', publicationStatus='released',
         fullUsagePackageComplete=True, validationOnly=False, pages=pages, artifacts=artifacts,
@@ -128,22 +133,23 @@ def assemble(out, embed, plugin, plugin_asset_id):
         'files': [ref(out, p) for p in sorted(runtime.rglob('*')) if p.is_file()]}
     save(out / 'Tools/NodeForgeMcp/RuntimeManifest.json', runtime_manifest)
     (out / 'AiReadme.md').write_text(
-        '# NodeForge AI 接入 v0.1.0\n\n'
+        '# NodeForge AI 接入 v' + version + '\n\n'
         '适用于 Windows 64 位、官方 Unreal Engine 5.3.2。包内已包含 Python，'
         '无需单独安装运行环境。\n\n'
-        '先保存并关闭目标 UE 工程，再按照[安装指南]('
-        'Docs/Versions/v0.1.0/User/AiInstallation.md)运行 '
-        '`Scripts/InstallNodeForgeAi.ps1`，指定工程和客户端配置文件。'
+        '先保存并关闭使用插件的 UE 编辑器，再按照[安装指南]('
+        + docs + '/User/AiInstallation.md)运行 '
+        '`Scripts/InstallNodeForgeAi.ps1`，指定引擎目录和客户端配置文件。'
         '尚未安装插件时，工具会下载同版插件；已有插件时可以补装 AI 部分。\n\n'
-        '[用户手册](Docs/Versions/v0.1.0/User/Readme.md) · '
-        '[AI 调用流程](Docs/Versions/v0.1.0/Ai/QuickStart.md)\n',
+        '配置一次后正常打开工程即可连接，无需每次重跑安装工具。\n\n'
+        '[用户手册](' + docs + '/User/Readme.md) · '
+        '[AI 调用流程](' + docs + '/Ai/QuickStart.md)\n',
         encoding='utf-8', newline='\n')
-    addon = {'format': 'NodeForgeAiAddon1', 'aiVersion': VERSION, 'buildId': VERSION,
+    addon = {'format': 'NodeForgeAiAddon1', 'aiVersion': version, 'buildId': version,
         'binarySha256': installation['binarySha256'], 'installationManifest': installation,
-        'engineVersion': '5.3.2', 'platform': 'Windows x64', 'bridgeVersion': '0.3.6', 'sdkVersion': '2.3.0',
+        'engineVersion': '5.3.2', 'platform': 'Windows x64', 'bridgeVersion': contract['bridgeVersion'], 'sdkVersion': '2.3.0',
         'docsBundle': contract['bundleId'], 'sharedCoreIncluded': False, 'fixedRuntimeIncluded': True,
         'pluginAsset': {'name': plugin.name, 'sha256': sha(plugin),
-            'url': 'https://github.com/XRH66/NodeForge/releases/download/v' + VERSION + '/' + plugin.name,
+            'url': 'https://github.com/XRH66/NodeForge/releases/download/v' + version + '/' + plugin.name,
             'apiUrl': 'https://api.github.com/repos/XRH66/NodeForge/releases/assets/' + str(plugin_asset_id)},
         'files': [ref(out, p) for p in sorted(out.rglob('*')) if p.is_file()]}
     save(out / 'AiPackageManifest.json', addon)
@@ -152,7 +158,7 @@ def assemble(out, embed, plugin, plugin_asset_id):
         for p in sorted(out.rglob('*')):
             if p.is_file():
                 z.write(p, p.relative_to(out).as_posix())
-    return {'status': 'assembled', 'aiVersion': VERSION, 'zip': str(archive), 'sha256': sha(archive),
+    return {'status': 'assembled', 'aiVersion': version, 'zip': str(archive), 'sha256': sha(archive),
         'bytes': archive.stat().st_size, 'fileCount': len(addon['files']) + 1}
 
 
@@ -162,5 +168,6 @@ if __name__ == '__main__':
     parser.add_argument('--embed', required=True)
     parser.add_argument('--plugin-zip', required=True)
     parser.add_argument('--plugin-asset-id', required=True, type=int)
+    parser.add_argument('--version', default=VERSION)
     args = parser.parse_args()
-    print(json.dumps(assemble(Path(args.out).resolve(), Path(args.embed).resolve(), Path(args.plugin_zip).resolve(), args.plugin_asset_id)))
+    print(json.dumps(assemble(Path(args.out).resolve(), Path(args.embed).resolve(), Path(args.plugin_zip).resolve(), args.plugin_asset_id, args.version)))

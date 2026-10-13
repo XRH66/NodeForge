@@ -14,6 +14,7 @@ from pathlib import Path
 from RunProcessGuard import (DEFAULT_READ_ROOTS, installation_json, installation_path,
                             installation_product, load_installation_binding, validate_read_roots,
                             observed_module, process_identity)
+from RunProcessGuard import installation_layout, state_directory
 
 
 def sha(data):
@@ -121,11 +122,12 @@ def editor_preparation(args):
     if not manifest_path.is_relative_to(root / 'Docs/Versions'):
         raise ValueError('Approved product-relative version documentation required')
     manifest = installation_json(manifest_path, 1048576)
-    namespace = installation_path(root / manifest['reportNamespace'])
+    state_root = state_directory(project)
+    namespace = installation_path(state_root / manifest['reportNamespace'])
     if (manifest.get('installationSchemaVersion') != 1 or manifest.get('bundleId') != contract['bundleId']
             or manifest.get('bridgeVersion') != contract['bridgeVersion']
             or manifest.get('binarySha256') != product['binarySha256']
-            or not namespace.is_relative_to(root / 'Reports/PluginControlStageTwo')):
+            or not namespace.is_relative_to(state_root / 'Reports/PluginControlStageTwo')):
         raise ValueError('Prepare requires one complete product/bridge/docs/stage identity')
     requested = installation_path(args.report_directory) if args.report_directory else namespace / (
         'Editor' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'))
@@ -187,7 +189,8 @@ def owned_editor(args):
     if not args.report_directory:
         raise ValueError('Exact current registration report directory required')
     out = installation_path(args.report_directory)
-    if not out.is_relative_to(root / 'Reports/PluginControlStageTwo'):
+    state_root = state_directory(project)
+    if not out.is_relative_to(state_root / 'Reports/PluginControlStageTwo'):
         raise ValueError('Original private editor registration required')
     preparation = installation_json(out / 'PreparationReceipt.json')
     public = installation_json(out / 'SessionPublic.json')
@@ -199,7 +202,7 @@ def owned_editor(args):
                                 'binarySha256': product['binarySha256'], 'reportDirectory': out.as_posix()}
             or installation_path(public['project']) != project or installation_path(public['module']) != binary
             or public['binarySha256'] != product['binarySha256'] or installation_path(public['reportRoot']) != out
-            or installation_path(public['sessionFile']) != root / 'Reports/PluginControlSessions' / public['controlSessionId'] / 'Session.json'
+            or installation_path(public['sessionFile']) != state_root / 'Reports/PluginControlSessions' / public['controlSessionId'] / 'Session.json'
             or type(public['pid']) is not int or public['pid'] <= 0):
         raise ValueError('Current preparation/registration/selected project/module identity conflict')
     for item in preparation['completedWrites']:
@@ -304,7 +307,8 @@ def prepare(args):
         current = load_installation_binding(project, plugin, root)
         return {'status': 'passed', 'action': 'check', 'project': str(project),
                 'pluginDirectory': str(plugin), 'binarySha256': current['binarySha256'], 'changed': False}
-    out = report_directory(root, args.report_directory)
+    state_root = state_directory(project)
+    out = report_directory(state_root, args.report_directory)
     receipt_path = out / 'Receipt.json'
     binding_path = project.parent / 'Config/NodeForgeInstallation.json'
     receipt = {'format': 'NodeForgeInstallationReceipt', 'version': 1, 'action': args.action,
@@ -317,7 +321,7 @@ def prepare(args):
             if not args.receipt:
                 raise ValueError('Exact original bind receipt required for rollback')
             original_path = installation_path(args.receipt)
-            if not original_path.is_relative_to(root / 'Reports'):
+            if not any(original_path.is_relative_to(scope / 'Reports') for scope in (root, state_root)):
                 raise ValueError('Original receipt must belong to this explicit installation')
             original = installation_json(original_path, 262144)
             if (original.get('format') != 'NodeForgeInstallationReceipt' or original.get('version') != 1
@@ -360,8 +364,10 @@ def prepare(args):
             if not isinstance(entries, list) or any(not isinstance(entry, dict) for entry in entries):
                 raise ValueError('Project plugin references must be objects')
             nodeforge = [entry for entry in entries if entry.get('Name') == 'NodeForge']
-            copied = plugin == installation_path(project.parent / 'Plugins/NodeForge')
-            if len(nodeforge) > 1 or (not copied and (project.parent / 'Plugins/NodeForge/NodeForge.uplugin').exists()):
+            copied = installation_layout(project, engine, plugin) != 'externalStage'
+            locations = (project.parent / 'Plugins/NodeForge', engine / 'Engine/Plugins/NodeForge',
+                         engine / 'Engine/Plugins/Marketplace/NodeForge')
+            if len(nodeforge) > 1 or any(location.resolve() != plugin and (location / 'NodeForge.uplugin').exists() for location in locations):
                 raise ValueError('Ambiguous NodeForge installation rejected')
             directories = descriptor.get('AdditionalPluginDirectories', [])
             if not isinstance(directories, list) or not all(isinstance(value, str) for value in directories):

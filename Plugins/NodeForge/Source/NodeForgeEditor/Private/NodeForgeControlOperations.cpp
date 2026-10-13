@@ -75,7 +75,7 @@ int32 Reject(const FString& Operation, const FString& ReportPath, const TCHAR* C
     FString Text;
     FJsonSerializer::Serialize(Report, TJsonWriterFactory<TCHAR, TCondensedJsonPrintPolicy<TCHAR>>::Create(&Text));
     UE_LOG(LogTemp, Display, TEXT("NFCONTROL_RESULT=%s"), *Text);
-    const FString Workspace = NodeForgePrototype::WorkspaceDirectory();
+    const FString Workspace = NodeForgeInstallation::StateDirectory();
     if (!ReportPath.IsEmpty() && !Workspace.IsEmpty() && Under(ReportPath, Workspace / TEXT("Reports")))
         NodeForgePrototype::WriteJson(Report, FullPath(ReportPath));
     return Environment ? 3 : 2;
@@ -306,14 +306,17 @@ int32 Execute(const FString& Params)
     NodeForgeInstallation::FBinding Binding; FString BindingError;
     if (!NodeForgeInstallation::Read(Binding,BindingError))
         return Reject(Name, FString(), TEXT("NFCTRL_ENVIRONMENT"), TEXT("project/stage"), BindingError, true);
-    const FString Workspace = Binding.InstallationRoot;
+    const FString Workspace = NodeForgeInstallation::StateDirectory(Binding);
+    if (Workspace.IsEmpty()) return Reject(Name, FString(), TEXT("NFCTRL_ENVIRONMENT"), TEXT("stateRoot"), TEXT("Writable project state path rejected"), true);
     if (!Under(ReportPath, Workspace / TEXT("Reports")))
         return Reject(Name, ReportPath, TEXT("NFCTRL_REPORT_PATH"), TEXT("reportPath"), TEXT("Report must be an exclusive new file inside workspace Reports"), true);
     if (IFileManager::Get().FileExists(*FullPath(ReportPath)))
         return Reject(Name, FString(), TEXT("NFCTRL_REPORT_EXISTS"), TEXT("reportPath"), TEXT("Existing report protected; inspect prior run instead of overwriting"));
     if (Selected->InputRequired && InputPath.IsEmpty())
         return Reject(Name, ReportPath, TEXT("NFCTRL_MISSING_INPUT"), TEXT("inputPath"), TEXT("This operation requires NFInput"));
-    if (!InputPath.IsEmpty() && !Under(InputPath, Workspace))
+    if (!InputPath.IsEmpty() && !Under(InputPath, Workspace / TEXT("Reports"))
+        && !Under(InputPath, Binding.InstallationRoot / TEXT("Examples"))
+        && !Under(InputPath, Binding.InstallationRoot / TEXT("Tests")))
         return Reject(Name, ReportPath, TEXT("NFCTRL_INPUT_PATH"), TEXT("inputPath"), TEXT("Input must belong to this workspace"));
     if (Selected->PreviousRequired && Previous.IsEmpty())
         return Reject(Name, ReportPath, TEXT("NFCTRL_MISSING_PREVIOUS"), TEXT("generationReport"), TEXT("Verify requires the original generation report"));

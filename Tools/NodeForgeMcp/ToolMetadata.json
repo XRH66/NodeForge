@@ -2,9 +2,11 @@
   "format": "NodeForgeToolMetadata1",
   "defaultAiExposure": "deny",
   "definitionSource": "Plugins/NodeForge/Source/NodeForgeEditor/Private/NodeForgeControlOperations.cpp",
-  "instructions": "NodeForge把受控JSON转换为可编辑UE资产。先调用nodeforge_docs_index，再用nodeforge_docs_read读取Readme、AiQuickStart和FeatureMap，确认bundle/Build/桥/DLL/目录身份。资料无需UE；业务需要操作者显式准备并注册当前专用编辑器，再connect。只开放契约中的工具，不支持全部UE节点、循环、数组或生产写入。调用完成和资产最终核验不同；waitingPersistence需原CLI新PID Verify。pending/unknown立即停写，查询原calls.get，不换ID重发。开发原理/源码/扩展/发布见DeveloperReadme。",
+  "instructions": "NodeForge把受控JSON转换为可编辑UE资产。先调用nodeforge_docs_index，再用nodeforge_docs_read读取Readme、AiQuickStart和FeatureMap，确认bundle/Build/桥/DLL/目录身份。AI一次接入后正常打开已启用插件的工程，再connect；唯一会话自动选择，多个需project/controlSessionId，零会话返回未连接，资料无需UE。只开放契约中的工具，不支持全部UE节点、循环、数组或生产写入。调用完成和资产最终核验不同；waitingPersistence需原CLI新PID Verify。pending/unknown立即停写，查询原calls.get，不换ID重发。开发原理/源码/扩展/发布见DeveloperReadme。",
   "fields": {
-    "handle": "connect返回的当前桥会话opaque handle；不得复用历史值。",
+    "handle": "connect返回的当前工程/原生会话opaque handle；关闭重开必须重新connect，旧句柄不能转到其他工程。",
+    "project": "connect的可选准确uproject绝对路径；目标已知时明确提供，唯一合格会话可省略。",
+    "controlSessionId": "connect的可选当前32位小写hex会话ID；多候选中选择准确实例，不猜历史值。",
     "arguments": "精确操作参数；无参数也必须传空对象。",
     "callId": "首次提交前保存的新调用ID，ASCII字母数字和连字符1–64；查询/恢复用原ID。",
     "expectedDraftRevision": "draft.get返回的当前uint64十进制字符串；busy/staleRevision停下查询，不自动改修订重试。",
@@ -168,10 +170,10 @@
     },
     "nodeforge_connect": {
       "operation": null,
-      "purpose": "绑定操作者已注册的当前专用编辑器，取得opaque handle。",
-      "preconditions": "先读AiPreparation；准确Config/当前SessionPublic和DLL，必须有UE活动会话。资料读取不需要它。",
-      "effects": "建立业务lease和身份，不启动UE、不抢占现有连接、不生成资产。",
-      "success": "status=connected及handle；environmentBlocked请定位准备/占用，不自动清锁。",
+      "purpose": "选择正常打开的准确工程会话，取得opaque handle。",
+      "preconditions": "先读AiPreparation；同用户一次AI接入并在UE启用插件。目标明确时传project；唯一自动选择，多候选需明确工程/实例。",
+      "effects": "返回连接身份或候选，不启动UE、不抢占现有连接、不生成资产；各handle保留自己的工程和会话。",
+      "success": "connected含handle与准确identity；零会话notConnected，多个selectionRequired含candidates。关闭重开后重新connect；environmentBlocked定位身份/占用，不清锁。",
       "guides": [
         "AiPreparation",
         "AiQuickStart"

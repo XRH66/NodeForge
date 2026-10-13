@@ -14,6 +14,7 @@
 #include "Misc/ScopeLock.h"
 #include "Interfaces/IPluginManager.h"
 #include "Modules/ModuleManager.h"
+#include "ILiveCodingModule.h"
 #include "Serialization/JsonSerializer.h"
 #include "Serialization/JsonWriter.h"
 #include "Windows/WindowsHWrapper.h"
@@ -344,7 +345,7 @@ struct FNodeForgeEditorControlChannel::FImpl
     std::atomic<uint32> ManagementReplies{0};
     FHandle StopEvent{CreateEventW(nullptr, 1, 0, nullptr)};
     TArray<TUniquePtr<FWorker>> Workers;
-    FString Session, Credential, PipeName, SessionDirectory, PublicDirectory, DescriptorPath;
+    FString Session, Credential, PipeName, SessionDirectory, PublicDirectory, DescriptorPath, DiscoveryPath;
     TSharedPtr<FJsonObject> Identity, Description, SecurityEvidence;
     FCriticalSection CacheLock; FString StateCache, DraftCache, IdentityCache, DescriptionCache;
     uint8 EnabledFeatures = static_cast<uint8>(NodeForgeControlOperations::EEditorFeature::Read)
@@ -442,14 +443,58 @@ bool FNodeForgeEditorControlChannel::Start(FString& Error)
     NodeForgeInstallation::FBinding Binding;
     if(!NodeForgeInstallation::Read(Binding,Error)) return false;
     Error = TEXT("controlEnvironmentRejected"); FString RegistrationPath;
-    const FString Root = Binding.InstallationRoot, Project = Full(FPaths::GetProjectFilePath());
+    const FString Root = NodeForgeInstallation::StateDirectory(Binding), Project = Full(FPaths::GetProjectFilePath());
+    if (Root.IsEmpty()) return false;
     const auto Plugin = IPluginManager::Get().FindPlugin(TEXT("NodeForge"));
-    if (!Impl->Gate || IsRunningCommandlet() || !FParse::Param(FCommandLine::Get(), TEXT("NFControlEnable"))
+    if (!Impl->Gate || IsRunningCommandlet()
         || FEngineVersion::Current().GetMajor() != 5 || FEngineVersion::Current().GetMinor() != 3 || FEngineVersion::Current().GetPatch() != 2
-        || !FParse::Param(FCommandLine::Get(), TEXT("NoLiveCoding"))
-        || !FParse::Value(FCommandLine::Get(), TEXT("NFControlRegistration="), RegistrationPath)
-        || !SafePath(RegistrationPath, Root / TEXT("Reports/PluginControlStageTwo"))
         || !Plugin) return false;
+    // Command-line and ordinary startup enter the same channel. The opt-in is
+    // per user/installation; fresh project/session records are made here.
+    TSharedPtr<FJsonObject> Ai; FString UserDirectory;
+    const bool Automatic = !FParse::Param(FCommandLine::Get(), TEXT("NFControlEnable"));
+    if (Automatic)
+    {
+        if (!NodeForgeInstallation::AiConfiguration(Binding, Ai, UserDirectory, Error)) return false;
+        TSharedPtr<FJsonObject> Contract, Docs;
+        if (!ReadObject(Binding.InstallationRoot / TEXT("Tools/NodeForgeMcp/ToolContract.json"), Contract, 1048576)) return false;
+        const FString DocsPath = Full(Binding.InstallationRoot / Contract->GetStringField(TEXT("docsManifest")));
+        if (!SafePath(DocsPath, Binding.InstallationRoot / TEXT("Docs/Versions"))
+            || NodeForgePrototype::FileSha256(DocsPath) != Ai->GetStringField(TEXT("docsManifestSha256"))
+            || !ReadObject(DocsPath, Docs, 1048576)) return false;
+        const FString Namespace = Full(Root / Docs->GetStringField(TEXT("reportNamespace")));
+        if (!SafePath(Namespace, Root / TEXT("Reports/PluginControlStageTwo"))) return false;
+        const FString Out = Namespace / (TEXT("Editor") + FGuid::NewGuid().ToString(EGuidFormats::Digits));
+        RegistrationPath = Out / TEXT("Registration.json");
+        auto Registration = MakeShared<FJsonObject>(); Registration->SetStringField(TEXT("project"), Project);
+        Registration->SetStringField(TEXT("pluginDirectory"), Binding.PluginDirectory);
+        Registration->SetStringField(TEXT("binarySha256"), Binding.BinarySha256); Registration->SetStringField(TEXT("reportDirectory"), Out);
+        auto Config = MakeShared<FJsonObject>(); Config->SetStringField(TEXT("format"), TEXT("NodeForgeMcpConfig")); Config->SetNumberField(TEXT("version"), 1);
+        for (const TCHAR* Key : {TEXT("bundleId"), TEXT("binarySha256"), TEXT("toolContractSha256"), TEXT("docsManifestSha256")})
+            Config->SetStringField(Key, Ai->GetStringField(Key));
+        Config->SetStringField(TEXT("project"), Project); Config->SetStringField(TEXT("pluginDirectory"), Binding.PluginDirectory);
+        Config->SetStringField(TEXT("sessionPublic"), Out / TEXT("SessionPublic.json")); Config->SetStringField(TEXT("reportRoot"), Out);
+        Config->SetStringField(TEXT("bridgeRunRoot"), Out / TEXT("Bridge"));
+        if (!SafePath(RegistrationPath, Root / TEXT("Reports/PluginControlStageTwo"))
+            || !NodeForgePrototype::WriteJson(Registration, RegistrationPath) || !NodeForgePrototype::WriteJson(Config, Out / TEXT("Config.json"))) return false;
+        auto Receipt = MakeShared<FJsonObject>(); Receipt->SetStringField(TEXT("format"), TEXT("NodeForgeEditorPreparationReceipt")); Receipt->SetNumberField(TEXT("version"), 1);
+        Receipt->SetStringField(TEXT("status"), TEXT("passed")); Receipt->SetBoolField(TEXT("requiresReview"), false);
+        Receipt->SetStringField(TEXT("bindingSha256"), NodeForgePrototype::FileSha256(FPaths::GetPath(Project) / TEXT("Config/NodeForgeInstallation.json")));
+        Receipt->SetStringField(TEXT("binarySha256"), Binding.BinarySha256); Receipt->SetStringField(TEXT("origin"), TEXT("normalEditorStartup"));
+        TArray<TSharedPtr<FJsonValue>> Written;
+        for (const FString& Path : {RegistrationPath, Out / TEXT("Config.json")})
+        { auto Row = MakeShared<FJsonObject>(); Row->SetStringField(TEXT("path"), Path); Row->SetStringField(TEXT("sha256"), NodeForgePrototype::FileSha256(Path)); Written.Add(MakeShared<FJsonValueObject>(Row)); }
+        Receipt->SetArrayField(TEXT("completedWrites"), Written);
+        if (!NodeForgePrototype::WriteJson(Receipt, Out / TEXT("PreparationReceipt.json"))) return false;
+    }
+    else if (!FParse::Value(FCommandLine::Get(), TEXT("NFControlRegistration="), RegistrationPath)) return false;
+    if (!SafePath(RegistrationPath, Root / TEXT("Reports/PluginControlStageTwo"))) return false;
+    // No user-supplied -NoLiveCoding is needed. Preserve immutable DLL identity
+    // by disabling patches for this explicitly AI-enabled session and monitoring it.
+    ILiveCodingModule& LiveCoding = FModuleManager::LoadModuleChecked<ILiveCodingModule>(TEXT("LiveCoding"));
+    if (LiveCoding.IsCompiling()) { Error = TEXT("controlLiveCodingBusy"); return false; }
+    LiveCoding.EnableForSession(false);
+    if (LiveCoding.IsEnabledForSession()) { Error = TEXT("controlLiveCodingEnabled"); return false; }
     TSharedPtr<FJsonObject> Registration;
     if (!ReadObject(RegistrationPath, Registration, MaxDescriptorBytes) || Registration->Values.Num() != 4
         || !Registration->HasTypedField<EJson::String>(TEXT("project")) || !Registration->HasTypedField<EJson::String>(TEXT("pluginDirectory"))
@@ -502,6 +547,12 @@ bool FNodeForgeEditorControlChannel::Start(FString& Error)
     TSharedPtr<FJsonObject> Readback; if (!ReadObject(Impl->DescriptorPath, Readback, MaxDescriptorBytes) || JsonText(Readback.ToSharedRef()) != JsonText(Descriptor)) return false;
     if (!NodeForgePrototype::WriteJson(Identity.ToSharedRef(), Impl->PublicDirectory / TEXT("SessionPublic.json"))
         || !NodeForgePrototype::WriteJson(Impl->SecurityEvidence.ToSharedRef(), Impl->PublicDirectory / TEXT("Security.json"))) return false;
+    if (Automatic)
+    {
+        Impl->DiscoveryPath = UserDirectory / TEXT("Sessions") / (Impl->Session + TEXT(".json"));
+        if (!SafePath(Impl->DiscoveryPath, UserDirectory / TEXT("Sessions"))
+            || !NodeForgePrototype::WriteJson(Identity.ToSharedRef(), Impl->DiscoveryPath)) return false;
+    }
     Error.Empty(); return true;
 }
 void FNodeForgeEditorControlChannel::SetBusinessGate(const TSharedRef<FNodeForgeEditorBusinessGate>& Gate)
@@ -509,6 +560,8 @@ void FNodeForgeEditorControlChannel::SetBusinessGate(const TSharedRef<FNodeForge
 void FNodeForgeEditorControlChannel::Drain(FNodeForgeEditorControlService& Service)
 {
     check(IsInGameThread()); NodeForgeEditorControl::FRequest Request; FString Hash;
+    const auto* LiveCoding = FModuleManager::GetModulePtr<ILiveCodingModule>(TEXT("LiveCoding"));
+    if (LiveCoding && (LiveCoding->IsCompiling() || LiveCoding->IsEnabledForSession())) RequestStop();
     if (Impl->bDraining) return;
     TGuardValue<bool> Draining(Impl->bDraining, true);
 #if WITH_DEV_AUTOMATION_TESTS
@@ -597,6 +650,13 @@ bool FNodeForgeEditorControlChannel::Stop()
     Receipt->SetBoolField(TEXT("descriptorDeleted"), Deleted); Receipt->SetBoolField(TEXT("ioCompletionUnknownObserved"), Impl->bIoCompletionUnknown.load()); Receipt->SetArrayField(TEXT("workers"), Workers);
     Receipt->SetBoolField(TEXT("transportHandlesReleased"), true);
     Impl->bStopped = (!Impl->bStarted || NodeForgePrototype::WriteJson(Receipt, Impl->PublicDirectory / TEXT("StopReceipt.json"))) && Deleted;
+    if (Impl->bStopped && !Impl->DiscoveryPath.IsEmpty() && IFileManager::Get().FileExists(*Impl->DiscoveryPath))
+    {
+        TSharedPtr<FJsonObject> Own;
+        if (!NodeForgeControlWindows::ReadObject(Impl->DiscoveryPath, Own, NodeForgeEditorControl::MaxDescriptorBytes)
+            || Own->GetStringField(TEXT("controlSessionId")) != Impl->Session || !DeleteFileW(*Impl->DiscoveryPath))
+            Impl->bStopped = false;
+    }
     return Impl->bStopped;
 }
 void FNodeForgeEditorControlChannel::RequestStop()

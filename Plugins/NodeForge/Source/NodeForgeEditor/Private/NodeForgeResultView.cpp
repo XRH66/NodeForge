@@ -1,5 +1,6 @@
 // Project-owned presentation glue; uses UE JSON and the existing result contract.
 #include "NodeForgeResultView.h"
+#include "NodeForgeInstallation.h"
 #include "NodeForgePrototype.h"
 #include "NodeForgeGraphDiff.h"
 #include "Dom/JsonValue.h"
@@ -236,7 +237,7 @@ bool Read(const FString& Path,FString& OriginalJson,FString& Description)
 {
     OriginalJson.Empty();Description.Empty();
     FString Full=FPaths::ConvertRelativePathToFull(Path);FPaths::NormalizeFilename(Full);
-    const FString Reports=FPaths::ConvertRelativePathToFull(NodeForgePrototype::WorkspaceDirectory()/TEXT("Reports"));
+    const FString Reports=FPaths::ConvertRelativePathToFull(NodeForgeInstallation::StateDirectory()/TEXT("Reports"));
     if(!FPaths::CollapseRelativeDirectories(Full) || !FPaths::IsUnderDirectory(Full,Reports) ||
         !FPaths::GetExtension(Full).Equals(TEXT("json"),ESearchCase::IgnoreCase))
     {Description=TEXT("结果报告必须位于本项目 Reports 内。" );return false;}

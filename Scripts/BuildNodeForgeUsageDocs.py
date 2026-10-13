@@ -137,6 +137,11 @@ def build_tool_contract(base, operations, metadata, bundle_id, bridge_version, m
         for field in ('purpose','preconditions','effects','success','guides'):
             if not help_row.get(field): raise ValueError('Incomplete help: '+name+'/'+field)
         row = copy.deepcopy(original)
+        if name == 'nodeforge_connect':
+            row['inputSchema']['properties'].update(project={'type':'string','minLength':1,
+                'description':'Optional exact uproject; unique qualified session auto-selects if omitted'},
+                controlSessionId={'type':'string','pattern':'^[0-9a-f]{32}$',
+                'description':'Select one exact instance when multiple sessions are present'})
         if operation in ('graphs.export','resources.inspect'):
             row['nativeDefinition']=copy.deepcopy(native[operation])
             row['inputSchema']['properties']['arguments']=copy.deepcopy(native[operation]['argumentsSchema'])
@@ -168,6 +173,10 @@ def build_tool_contract(base, operations, metadata, bundle_id, bridge_version, m
         if name in variants:
             state, properties, required = variants[name]; schema['properties'].update(properties)
             schema['allOf']=[{'if':{'properties':{'status':{'const':state}}},'then':{'required':required}}]
+            if name=='nodeforge_connect':
+                schema['properties']['candidates']={'type':'array','items':{'type':'object','additionalProperties':True}}
+                schema['allOf'].append({'if':{'properties':{'status':{'enum':['notConnected','selectionRequired']}}},
+                    'then':{'required':['candidates']}})
             if name=='nodeforge_report_read':
                 schema['allOf'].append({'if':{'required':['status','pointer'],'properties':{'status':{'const':'passed'},'pointer':{'const':'/exportedRequest'}}},
                     'then':{'required':['text','payloadSha256','sourceRef']}})
@@ -1238,11 +1247,84 @@ def publish_release(input_path, resume_render=False):
     print(json.dumps({'bundleId':release['bundleId'],'pages':len(pages),'nodes':len(node_records),'candidate':str(output),'ueStarted':False}))
     return manifest
 
+def publish_installation_edition(input_path):
+    """Reuse frozen public knowledge for one bounded installation release.
+
+    Unchanged node pages retain their IDs and content, not a new qualification.
+    Current installation guides are explicit inputs; old manifests are immutable.
+    """
+    import copy
+    cfg=load(Path(input_path))
+    if cfg.get('format')!='NodeForgeInstallationDocumentationEdition1':raise ValueError('Exact edition input required')
+    version=cfg['version']
+    if not re.fullmatch(r'\d+\.\d+\.\d+',version):raise ValueError('Release version required')
+    base_path=(ROOT/cfg['baseManifest']).resolve();base=load(base_path);old=base_path.parent
+    output=(ROOT/cfg['output']).resolve()
+    if output!=ROOT/'Docs/Versions'/('v'+version) or output.exists():raise ValueError('Fresh exact version output required')
+    if digest(base_path)!=cfg['baseManifestSha256']:raise ValueError('Frozen base changed')
+    stage=(ROOT/cfg['stage']).resolve();installation=load(ROOT/'Releases'/version/'InstallationManifest.json')
+    if digest(stage/'Binaries/Win64/UnrealEditor-NodeForgeEditor.dll')!=installation['binarySha256']:raise ValueError('Tested core mismatch')
+    cat=load(stage/'Metadata/Catalog.json');ops=load(ROOT/'Metadata/Operations.json')
+    metadata=load(ROOT/'Tools/NodeForgeMcp/ToolMetadata.json')
+    contract=build_tool_contract(load(ROOT/cfg['baseToolContract']),ops,metadata,'NodeForge-'+version,
+        declared_bridge_version(ROOT/'Scripts/NodeForgeMcpBridge.py'),(output/'Manifest.json').relative_to(ROOT).as_posix())
+    contract['graphRequestSchema']=graph_request_schema(cat)
+    contract.update(operationsSnapshot='Metadata/Operations.json',operationsSnapshotSha256=digest(ROOT/'Metadata/Operations.json'))
+    from jsonschema import Draft202012Validator
+    Draft202012Validator.check_schema(contract['graphRequestSchema'])
+    old_version=base['aiVersion'];pages=[];prepared=[]
+    for row in base['pages']:
+        source=(ROOT/row['path']).resolve()
+        if not source.is_relative_to(old) or digest(source)!=row['sha256']:raise ValueError('Frozen page changed: '+row['pageId'])
+        override=cfg.get('guideOverrides',{}).get(row['pageId'])
+        if override:
+            source=(ROOT/override).resolve()
+            if not source.is_relative_to(ROOT/'Docs') or not source.is_file():raise ValueError('Invalid public guide input')
+        text=source.read_text('utf-8').replace('v'+old_version,'v'+version).replace('NodeForge-'+old_version,'NodeForge-'+version).replace('NodeForge-AI-'+old_version,'NodeForge-AI-'+version)
+        text=text.replace('桥0.3.6','桥0.4.0')
+        if row['pageId']=='VersionReadme':
+            text=text.replace('这是 NodeForge 的第一个可用版本，','本版增加引擎级共享安装和 AI 一次接入，')
+        if row['pageId']=='DeveloperVersionRelease':
+            text=text.replace('v'+version+' 是第一个可用版本。','v0.1.0 是首个可用版本；本版增加引擎级安装与 AI 一次接入。')
+        destination=output/(ROOT/row['path']).relative_to(old)
+        # Canonical repository guides become same-version local links.
+        text=text.replace('(Versions/v'+version+'/', '(../')
+        if row['pageId']=='UserGettingStarted':
+            text=text.replace('(Installation.md)','(PluginInstallation.md)')
+        prepared.append((destination,text,{**row,'title':re.search(r'^#\s+(.+)$',text,re.M)[1]}))
+    api_intro='# MCP 工具与返回 schema\n\n有 handle 的工具使用 connected 返回的本工程/本会话句柄。pending/unknown 时查询原 callId，停止依赖写入。\n\n'
+    for number in range(1,5):
+        page_id='AiApiTools'+str(number)
+        body=api_intro+''.join('## '+t['name']+'\n\n'+t['description']+'\n\n输入schema：\n\n'+fence(t['inputSchema'])+'\n原结果schema：\n\n'+fence(t['outputSchema'])+'\n' for t in contract['tools'][(number-1)*5:number*5])
+        prepared=[(p,body,{**r,'title':'MCP 工具与返回 schema'}) if r['pageId']==page_id else (p,t,r) for p,t,r in prepared]
+    output.mkdir(parents=True)
+    for destination,text,row in prepared:
+        save(destination,text);pages.append({**row,**ref(destination)})
+    for name,value in [('Catalog.json',cat),('Operations.json',ops),('GraphRequestSchema.json',contract['graphRequestSchema']),('ToolContract.json',contract)]:save(output/name,dump(value))
+    save(ROOT/'Releases'/version/'ToolContract.json',dump(contract))
+    manifest=copy.deepcopy(base)
+    cli_names=['NodeForgeControl.py','NodeForgeEditorTransport.py','RunProcessGuard.py','PrepareNodeForgeInstallation.py']
+    manifest.update(bundleId=contract['bundleId'],buildId=version,aiVersion=version,bridgeVersion=contract['bridgeVersion'],
+        binarySha256=installation['binarySha256'],stage='.',reportNamespace='Reports/PluginControlStageTwo/NodeForge',
+        publicationStatus='candidate',pages=pages,counts={k:len(cat['catalog'][k]['nodes']) for k in ('material','blueprint')},
+        catalogDigest=cat['catalogDigest'],cliFiles={'Scripts/'+n:digest(ROOT/'Scripts'/n) for n in cli_names},
+        artifacts=[ref(output/n) for n in ['Catalog.json','Operations.json','GraphRequestSchema.json','ToolContract.json']],
+        bindings=[ref(ROOT/'Scripts'/n) for n in ['NodeForgeMcp.py','NodeForgeMcpBridge.py','NodeForgeAiInstall.py','NodeForgeAiCheck.py','NodeForgeAiLaunch.py']]
+            +[ref(ROOT/'Tools/NodeForgeMcp'/n) for n in ['DependencyManifest.json','Requirements.lock','ThirdPartyNotices.md']])
+    save(output/'Manifest.json',dump(manifest))
+    receipt={'status':'candidateRequiresReview','pages':len(pages),'tools':len(contract['tools']),
+        'generator':ref(Path(__file__).resolve()),'input':ref(Path(input_path).resolve()),'manifest':ref(output/'Manifest.json'),
+        'qualification':'Unchanged node knowledge reused; new installation/lifecycle evidence in E0-E4; no new node qualification'}
+    save(ROOT/cfg['receipt'],dump(receipt));print(dump({k:receipt[k] for k in ['status','pages','tools']}))
+    return manifest
+
 if __name__ == '__main__':
     import argparse
     parser=argparse.ArgumentParser(description='Existing NodeForge documentation publisher; exact finite release input required')
     parser.add_argument('--release-input')
+    parser.add_argument('--edition-input',help='Exact bounded installation edition of existing public knowledge')
     parser.add_argument('--resume-render',action='store_true',help='Only resume the exact unfinished candidate after preserved diagnosis; no manifest may exist')
     args=parser.parse_args()
-    if args.release_input:publish_release(args.release_input,args.resume_render)
+    if args.edition_input:publish_installation_edition(args.edition_input)
+    elif args.release_input:publish_release(args.release_input,args.resume_render)
     else:main() # historical path retains its immutable/frozen guard

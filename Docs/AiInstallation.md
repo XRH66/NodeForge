@@ -1,78 +1,73 @@
 # 连接 AI
 
-AI 接入让支持 MCP 的客户端调用 NodeForge，例如查询节点规则、读取工程资源和生成蓝图或材质。MCP 是 AI 客户端连接外部工具的一种方式。
+AI 接入让支持 MCP 的客户端查询 NodeForge 规则、读取资源和生成资产。适用于 **NodeForge v0.2.0、官方 UE 5.3.2、Windows 64 位**。接入包自带 Python 和固定依赖，无需另装运行环境。
 
-本指南适用于 **NodeForge v0.1.0、Windows 64 位、官方 UE 5.3.2**。AI 接入包已包含 Python 和连接服务，无需单独安装运行环境。
+**配置一次，之后正常打开工程即可使用。** 不需要每次运行安装工具、填写启动参数或重新下载环境。
 
-## 1. 准备好工程和客户端
+## 1. 下载接入包
 
-保存并关闭准备安装的 UE 工程。记下工程的 `.uproject` 文件位置，以及你使用的 AI 客户端。
+从 [v0.2.0 Release](https://github.com/XRH66/NodeForge/releases/tag/v0.2.0) 下载 **NodeForge-AI-0.2.0-Windows.zip**，解压到临时文件夹。已装同版普通插件可以补装；尚未安装时，工具可取得同版普通包并安装到引擎目录。
 
-用于安装的 AI 需要能下载文件、运行本机程序和写入客户端配置。仅支持 MCP、但没有本机操作权限的聊天窗口，无法自行完成安装。
+仓库目前为私有，需要有访问权的 GitHub 账号。下载显示 404 时先检查登录权限。也可下载同页的普通插件 ZIP，安装时用 `-PluginZip` 指定本地文件。
 
-## 2. 把安装任务交给 AI
+## 2. 配置引擎和客户端
 
-将下面这段话复制给有本机操作权限的 AI，把工程路径和客户端名称换成自己的：
+关闭使用这套插件的 UE 编辑器，再把以下任务交给具有本机操作权限的 AI。只需提供**引擎目录和客户端名称**，无需预先指定工程：
 
 ```text
-请帮我安装 NodeForge v0.1.0，并连接到我使用的 AI 客户端。
-
-安装指南：https://github.com/XRH66/NodeForge/blob/main/Docs/AiInstallation.md
-下载页面：https://github.com/XRH66/NodeForge/releases/tag/v0.1.0
-工程路径：填写我的 .uproject 文件绝对路径
-AI 客户端：填写客户端名称
-
-请先阅读安装指南，再使用接入包中的 InstallNodeForgeAi.ps1 完成安装、
-配置和连接检查。保留客户端的其他配置，完成后告诉我连接是否成功。
+请安装 NodeForge v0.2.0 并接入我的 AI 客户端。
+指南：https://github.com/XRH66/NodeForge/blob/v0.2.0/Docs/AiInstallation.md
+下载：https://github.com/XRH66/NodeForge/releases/tag/v0.2.0
+引擎：填写官方 UE 5.3.2 安装目录
+客户端：填写客户端名称
+请使用包内安装工具和运行环境，找到客户端实际读取的配置文件，
+保留其他配置，检查工具与文档是否可读取，并告诉我结果和安装收据位置。
 ```
 
-已经安装普通插件的用户只需补装 AI 部分。尚未安装时，安装工具会下载同版插件。
-
-如果 AI 无法直接下载，可以先下载 [插件 ZIP](https://github.com/XRH66/NodeForge/releases/download/v0.1.0/NodeForge-0.1.0-UE5.3.2-Windows.zip) 和 [AI 接入 ZIP](https://github.com/XRH66/NodeForge/releases/download/v0.1.0/NodeForge-AI-0.1.0-Windows.zip)，再把这两个文件的本机位置告诉它。
-
-GitHub 仓库目前为私有：下载前需要登录有仓库访问权的账号。看到 404 时，先确认账号权限，再从 [v0.1.0 Release](https://github.com/XRH66/NodeForge/releases/tag/v0.1.0) 查看附件。
-
-## 3. 确认连接
-
-安装工具会启动 UE 并检查连接。返回 `connected` 表示它已经连接到指定工程，能够读取插件状态。
-
-客户端可能需要刷新工具列表或重启后才会加载新配置。加载后，可以先让 AI **读取 NodeForge 的使用说明并查询当前工程状态**，确认能调用工具，再开始生成资产。
-
-## 安装工具的用法
-
-以下内容供执行安装的 AI 或需要手动配置的用户阅读。
-
-1. 从同一 Release 读取 `ReleaseManifest.json`，核对版本、平台和下载文件的 SHA256。
-2. 将 AI ZIP 解压到工程插件目录之外，例如单独的下载文件夹。
-3. 确认目标工程已关闭，并找到客户端实际使用的 MCP 配置文件。
-4. 在解压目录运行：
+需要手动执行时，在解压目录运行：
 
 ```powershell
 & .\Scripts\InstallNodeForgeAi.ps1 `
-  -Project '工程的 .uproject 文件绝对路径' `
-  -ClientConfig '客户端配置文件绝对路径' `
-  -ClientFormat 'codex-toml' `
-  -Connect
+  -EngineRoot '官方 UE 5.3.2 安装目录' `
+  -ClientConfig '客户端实际配置文件绝对路径' `
+  -ClientFormat 'codex-toml'
 ```
+
+Codex TOML 使用 `codex-toml`；采用 `mcpServers` JSON 的客户端使用 `mcp-json`。工具将配套文件放入同一插件位置，客户端指向那里稳定的启动入口；临时解压目录不作为日常启动位置。
+
+安装完成不自动打开 UE。没有工程运行时，能读取工具和文档就是正常结果。客户端可能需要刷新工具列表或重启才能载入新配置；安装工具无法代替客户端自身刷新。
+
+## 3. 正常打开工程
+
+在 UE 中启用 NodeForge，首次从 **窗口 → NodeForge** 确认工程信息。已接入 AI 的安装会为当前工程建立独立会话；普通插件单独安装不会开放 AI 通道。
+
+先让 AI **读取 NodeForge 使用说明，再连接并查询当前工程状态**：
+
+| 当前情况 | 结果 |
+| --- | --- |
+| 一个合格工程正在运行 | 自动连接，返回实际工程与会话身份 |
+| 多个合格工程正在运行 | 返回候选；明确选择工程后连接 |
+| 没有合格工程 | 返回 `notConnected`，仍可读取文档；等待正常打开工程 |
+| 工程关闭后重新打开 | 重新连接取得新句柄；旧句柄失效，不会转到另一个工程 |
+
+日常无需再运行安装工具，也不需要 `NFControl` 或 `NoLiveCoding` 启动参数。**停止本工程 AI** 只停止当前工程通道；需要时可在面板点 **连接 AI**。正常关闭编辑器会结束本会话。连接期间模块身份必须稳定，重新启用 Live Coding 或加载补丁会停止通道。
+
+## 高级选项与恢复
 
 | 参数 | 用途 |
 | --- | --- |
-| `-Project` | 指定 `.uproject` 文件；也可指定仅包含一个 `.uproject` 的工程目录 |
-| `-ClientConfig` | 客户端实际读取的配置文件 |
-| `-ClientFormat` | Codex 使用 `codex-toml`；使用 `mcpServers` JSON 配置的客户端选择 `mcp-json` |
-| `-Connect` | 安装后启动 UE，检查连接与工程状态 |
-| `-PluginZip` | 使用已经下载到本机的同版插件 ZIP |
-| `-EngineRoot` | 工具无法自动识别引擎时，指定 UE 5.3.2 安装目录 |
-| `-ServerName` | 默认是 `nodeforge`；客户端已有不同的同名配置时，可指定另一个名称 |
+| `-EngineRoot` | 官方 UE 5.3.2 安装目录，必需 |
+| `-ClientConfig` | 客户端实际配置文件 |
+| `-ClientFormat` | `codex-toml` 或 `mcp-json` |
+| `-PluginZip` | 已下载的同版普通 ZIP |
+| `-PluginDirectory` | 指定已有合法安装，例如引擎直接 `Plugins/NodeForge` |
+| `-Project` | 工程级安装的高级输入；指定 `.uproject` 或唯一工程目录 |
+| `-ServerName` | 默认 `nodeforge`；需要并存时可使用不同名称 |
 
-工具保留客户端的其他配置。结果中包含工程位置、安装目录、客户端设置和安装记录的位置。请使用安装记录提供的启动与停止命令管理这次连接；关闭编辑器后，再次运行安装入口会准备新的连接。
+安装引擎目录可能需要写入权限；日常 UE 和 MCP 不要求管理员。引擎插件与工程插件不能同时存在同名副本，工具不会擅自删除旧副本。
 
-配置写入成功后，仍需确认客户端已加载它。当前支持上表中的两种配置格式；其他格式需要客户端提供相应配置方法。
+同版重复安装会保持核心和客户端配置。可识别旧版 NodeForge 条目可迁移，未知同名条目会拒绝覆盖。旧版升级步骤见[兼容与迁移](Versions/v0.2.0/Version/CompatibilityAndMigration.md)。
 
-## 安装失败时
+失败时先读结果中的 `receipt`，确认已完成步骤和当前文件。部分写入可用包内 Python 调用 `Scripts/NodeForgeAiInstall.py --resume-receipt <原收据>` 并提供原安装参数；已完成的同版 AI 文件更新使用 `--upgrade-receipt <原完成收据>`。这些入口检查实际字节，不用于覆盖不同核心或未知文件。不要删除锁、改目标盲重试或清除历史收据。
 
-- **工程正在运行：** 保存并关闭目标工程后再安装。
-- **插件版本不匹配：** 核对是否使用本页同一版本的两个下载包。
-- **客户端已有同名配置：** 确认原配置用途；需要保留时，使用另一个 `-ServerName`。
-- **下载需要登录：** 可使用本地 ZIP；自动下载私有附件时，工具也支持进程环境变量 `NODEFORGE_GITHUB_TOKEN`。
-- **安装中途失败：** 先查看结果中的 `receipt` 安装记录，确认已执行的步骤和错误原因，再处理。不要直接删除工程。
+自动下载私有附件可使用进程环境变量 `NODEFORGE_GITHUB_TOKEN`；不要把令牌写入指南、客户端参数或公开报告。

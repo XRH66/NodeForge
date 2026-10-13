@@ -2,10 +2,12 @@
 #include "NodeForgePrototype.h"
 #include "NodeForgePanel.h"
 #include "NodeForgeInstallationPanel.h"
+#include "NodeForgeInstallation.h"
 #include "NodeForgeResultView.h"
 #include "NodeForgePanelState.h"
 #include "NodeForgeEditorControlService.h"
 #include "NodeForgeEditorControlChannel.h"
+#include "ILiveCodingModule.h"
 #include "Containers/Ticker.h"
 #include "Misc/CommandLine.h"
 #include "ContentBrowserModule.h"
@@ -76,6 +78,21 @@ public:
                      .Font(FAppStyle::GetFontStyle("HeadingExtraSmall"))]
                     + SVerticalBox::Slot().AutoHeight().Padding(0,2,0,0)
                     [SNew(STextBlock).Text(FText::FromString(TEXT("把构图数据变成可编辑的蓝图与材质"))).ColorAndOpacity(Muted).AutoWrapText(true)]
+                    + SVerticalBox::Slot().AutoHeight().Padding(0,4,0,0)
+                    [SNew(SHorizontalBox)
+                        + SHorizontalBox::Slot().AutoWidth().Padding(0,0,8,0)
+                        [SNew(SButton).Tag(TEXT("NodeForge.AiStart"))
+                            .Text(FText::FromString(TEXT("连接 AI")))
+                            .ToolTipText(FText::FromString(TEXT("需要先完成一次 AI 配套安装；只启动当前工程的同一控制通道。")))
+                            .OnClicked_Lambda([this]() { NodeForgeInstallation::OnReady().Broadcast();
+                                State().ResultNotice = ProductChannel.IsValid() ? TEXT("AI 已连接当前工程。") : TEXT("AI 通道未启动，请检查一次安装是否完成及当前安装身份。");
+                                return FReply::Handled(); })]
+                        + SHorizontalBox::Slot().AutoWidth()
+                        [SNew(SButton).Tag(TEXT("NodeForge.AiStop"))
+                            .Text(FText::FromString(TEXT("停止本工程 AI")))
+                            .IsEnabled_Lambda([]() { return ProductChannel.IsValid(); })
+                            .OnClicked_Lambda([]() { if (const auto Channel = ProductChannel.Pin()) Channel->RequestStop(); return FReply::Handled(); })]
+                    ]
                     + SVerticalBox::Slot().AutoHeight().Padding(0,2,0,0)
                     [SNew(STextBlock).Text_Lambda([]()
                     {
@@ -325,7 +342,7 @@ private:
     }
     FString Workspace() const
     {
-        return NodeForgePrototype::WorkspaceDirectory();
+        return NodeForgeInstallation::StateDirectory();
     }
     bool HasReport() const
     {
@@ -554,38 +571,54 @@ public:
                         [NodeForgePanel::Create()];
                 })).SetDisplayName(FText::FromString(TEXT("NodeForge"))).SetMenuType(ETabSpawnerMenuType::Hidden);
             UToolMenus::RegisterStartupCallback(FSimpleMulticastDelegate::FDelegate::CreateRaw(this, &FNodeForgeEditorModule::RegisterMenus));
-            if (FParse::Param(FCommandLine::Get(), TEXT("NFControlEnable")))
-            {
-                ControlChannel = MakeShared<FNodeForgeEditorControlChannel>();
-                ControlChannel->SetBusinessGate(SharedService->BusinessGate());
-                ControlChannel->Publish(SharedService->GetState(), SharedService->GetDraft());
-                FString Error;
-                if (ControlChannel->Start(Error))
-                {
-                    ProductChannel = ControlChannel;
-                    ControlReportRoot = ControlChannel->PublicIdentity()->GetStringField(TEXT("reportRoot"));
-                    ControlTicker = FTSTicker::GetCoreTicker().AddTicker(TEXT("NodeForgeControlCache"), 0.0f, [this](float)
-                    {
-                        ControlChannel->Drain(*SharedService);
-                        ControlChannel->Publish(SharedService->GetState(), SharedService->GetDraft());
-                        if (ControlChannel->HasStopRequest() && ControlChannel->Stop())
-                        {
-                            ProductChannel.Reset(); ControlTicker.Reset();
-                            auto Released = MakeShared<FJsonObject>(); Released->SetStringField(TEXT("state"), TEXT("disabled"));
-                            Released->SetBoolField(TEXT("tickerSelfRemovalRequested"), true); Released->SetBoolField(TEXT("productChannelDetached"), !ProductChannel.IsValid());
-                            Released->SetBoolField(TEXT("productServiceRetained"), SharedService.IsValid());
-                            NodeForgePrototype::WriteJson(Released, ControlReportRoot / TEXT("ControlDisabled.json"));
-                            return false; // FTSTicker removes this delegate after its callback returns.
-                        }
-                        return true;
-                    });
-                }
-                else { UE_LOG(LogTemp, Error, TEXT("NodeForge control start rejected: %s"), *Error); ControlChannel.Reset(); }
-            }
+            InstallationReady = NodeForgeInstallation::OnReady().AddRaw(this, &FNodeForgeEditorModule::StartControlIfEnabled);
+            StartControlIfEnabled();
         }
+    }
+    void StartControlIfEnabled()
+    {
+        if (ControlChannel || IsRunningCommandlet()) return;
+        if (!FParse::Param(FCommandLine::Get(), TEXT("NFControlEnable")))
+        {
+            NodeForgeInstallation::FBinding Binding; FString Error, UserDirectory; TSharedPtr<FJsonObject> Ai;
+            if (!NodeForgeInstallation::Read(Binding, Error)
+                || !NodeForgeInstallation::AiConfiguration(Binding, Ai, UserDirectory, Error)) return;
+        }
+        ControlChannel = MakeShared<FNodeForgeEditorControlChannel>();
+        ControlChannel->SetBusinessGate(SharedService->BusinessGate());
+        ControlChannel->Publish(SharedService->GetState(), SharedService->GetDraft());
+        FString Error;
+        if (ControlChannel->Start(Error))
+        {
+            if (!LiveCodingPatch.IsValid())
+                LiveCodingPatch = FModuleManager::GetModuleChecked<ILiveCodingModule>(TEXT("LiveCoding"))
+                    .GetOnPatchCompleteDelegate().AddLambda([this]() { if (ControlChannel) ControlChannel->RequestStop(); });
+            ProductChannel = ControlChannel;
+            ControlReportRoot = ControlChannel->PublicIdentity()->GetStringField(TEXT("reportRoot"));
+            ControlTicker = FTSTicker::GetCoreTicker().AddTicker(TEXT("NodeForgeControlCache"), 0.0f, [this](float)
+            {
+                ControlChannel->Drain(*SharedService);
+                ControlChannel->Publish(SharedService->GetState(), SharedService->GetDraft());
+                if (ControlChannel->HasStopRequest() && ControlChannel->Stop())
+                {
+                    ProductChannel.Reset(); ControlTicker.Reset();
+                    auto Released = MakeShared<FJsonObject>(); Released->SetStringField(TEXT("state"), TEXT("disabled"));
+                    Released->SetBoolField(TEXT("tickerSelfRemovalRequested"), true); Released->SetBoolField(TEXT("productChannelDetached"), !ProductChannel.IsValid());
+                    Released->SetBoolField(TEXT("productServiceRetained"), SharedService.IsValid());
+                    NodeForgePrototype::WriteJson(Released, ControlReportRoot / TEXT("ControlDisabled.json"));
+                    ControlChannel.Reset();
+                    return false; // FTSTicker removes this delegate after its callback returns.
+                }
+                return true;
+            });
+        }
+        else { UE_LOG(LogTemp, Error, TEXT("NodeForge control start rejected: %s"), *Error); ControlChannel.Reset(); }
     }
     virtual void ShutdownModule() override
     {
+        NodeForgeInstallation::OnReady().Remove(InstallationReady);
+        if (const auto LiveCoding = FModuleManager::GetModulePtr<ILiveCodingModule>(TEXT("LiveCoding")))
+            LiveCoding->GetOnPatchCompleteDelegate().Remove(LiveCodingPatch);
         if (ControlTicker.IsValid()) { FTSTicker::RemoveTicker(ControlTicker); ControlTicker.Reset(); }
         bool ControlStopped = true;
         if (ControlChannel) { ControlChannel->RequestStop(); ControlChannel->Drain(*SharedService); ControlStopped = ControlChannel->Stop(); ControlChannel.Reset(); }
@@ -610,6 +643,8 @@ public:
 
 private:
     virtual bool SupportsDynamicReloading() override { return false; }
+    FDelegateHandle InstallationReady;
+    FDelegateHandle LiveCodingPatch;
     TSharedPtr<FNodeForgeEditorControlChannel> ControlChannel;
     FTSTicker::FDelegateHandle ControlTicker;
     FString ControlReportRoot;

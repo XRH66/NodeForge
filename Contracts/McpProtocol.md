@@ -1,13 +1,13 @@
 # MCP 接口
 
-NodeForge 的 AI 接入通过本地 stdio MCP 服务调用插件。v0.1.0 的 AI 接入包包含固定 Python 环境、MCP SDK 和连接工具；安装步骤见[连接 AI](../Docs/AiInstallation.md)。
+NodeForge 的 AI 接入通过本地 stdio MCP 服务调用插件。v0.2.0 的 AI 接入包包含固定 Python 环境、MCP SDK 和连接工具；一次安装后正常打开已启用插件的工程连接，步骤见[连接 AI](../Docs/AiInstallation.md)。
 
-服务提供 20 个工具，其中 16 个对应编辑器业务操作，另外 4 个用于连接、文档和报告读取。精确参数与返回结构见[ToolContract.json](../Releases/0.1.0/ToolContract.json)，逐个工具的说明见[API 参考](../Docs/Versions/v0.1.0/Ai/ApiReference.md)。
+服务提供 20 个工具，其中 16 个对应编辑器业务操作，另外 4 个用于连接、文档和报告读取。精确参数与返回结构见[ToolContract.json](../Releases/0.2.0/ToolContract.json)，逐个工具的说明见[API 参考](../Docs/Versions/v0.2.0/Ai/ApiReference.md)。
 
 ## 工具与调用顺序
 
 1. 使用 `nodeforge_docs_index` 和 `nodeforge_docs_read` 阅读本版本说明。
-2. 调用 `nodeforge_connect {}`，取得当前连接的 `handle`。
+2. 调用 `nodeforge_connect {}`。唯一合格会话返回 `connected` 与 `handle`；零候选为 `notConnected`；多候选为 `selectionRequired`，按候选显式传 `project` 或 `controlSessionId`，不取第一个工程。
 3. 读取 `nodeforge_editor_getState` 和 `nodeforge_draft_get`。
 4. 查询规则或资源，载入完整 JSON，使用返回的最新草稿修订进行预检。
 5. 确认目标后生成，通过 `nodeforge_calls_get` 查询原调用，用 `nodeforge_report_read` 查看报告。
@@ -30,11 +30,11 @@ NodeForge 的 AI 接入通过本地 stdio MCP 服务调用插件。v0.1.0 的 AI
 
 stdio 标准输出只传输 MCP 消息，诊断写入标准错误。SDK 负责协议协商和消息封装。Python、SDK 与依赖的版本和 SHA 随 AI 包固定，见[依赖锁](../Tools/NodeForgeMcp/Requirements.lock)及[依赖清单](../Tools/NodeForgeMcp/DependencyManifest.json)。
 
-安装工具生成 `NodeForgeMcpConfig` version 1，包含 `bundleId/project/pluginDirectory/binarySha256/sessionPublic/reportRoot/bridgeRunRoot/toolContractSha256/docsManifestSha256` 等精确绑定，路径均为绝对路径。配置不包含会话凭据。AI 业务参数不能任意指定工程、PID、私有凭据文件或脚本。
+日常安装生成当前用户的 `NodeForgeAiInstallation1` version 1，绑定安装位置、引擎、DLL、资料与明确启用状态。客户端固定指向该安装的自带环境和 `NodeForgeAiLaunch.py`。服务沿原 Bridge 发现准确编辑器，选定后生成各工程/会话原 `NodeForgeMcpConfig` version 1 上下文，包含原精确会话、报告根和文件 SHA，不复制凭据到发现索引。旧显式准备配置保留为高级入口。只有 connect 的目标选择可传明确工程；业务仍使用返回句柄，不接受任意 PID、私有文件或脚本。
 
-连接服务本身不启动或停止 UE，也不执行独立 Verify；这些由安装及命令行工具完成。没有连接时仍可读文档，业务工具明确返回未连接。
+连接服务本身不启动或停止 UE，也不执行独立 Verify；安装器也不自动启动工程。日常正常打开或关闭 UE，高级自动化和保存核验使用原 CLI。没有连接时仍可读文档，业务工具明确返回未连接。
 
-connect 通过安全客户端核对公开会话、PID、创建时间、管道、模块、SHA 和操作定义，返回随机 handle 与无秘密身份。handle 只是连接引用，不代替这些身份检查。不同会话会使旧 handle 和报告编号失效，服务不会自动重连并重放业务。
+connect 通过安全客户端核对公开会话、PID、创建时间、管道、模块、SHA 和操作定义，返回随机 handle 与无秘密身份。handle 固定工程/会话，不代替身份检查；分别连接 A/B 不覆盖另一上下文。关闭重开需新 connect，旧 handle 不改指另一工程或新会话，服务不重放业务。已知上下文的 pending/unknown 会阻止新的依赖写入，原调用保持原归属与查询路径。
 
 多个客户端可以读取同一份文档和工具列表，但业务连接受排他锁约束。已有业务所有者时返回 `NFMCP_BUSY`，文档工具仍可用。不能删除锁文件来绕过正在运行或尚未查清结果的调用。
 

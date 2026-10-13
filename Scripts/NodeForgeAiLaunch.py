@@ -1,13 +1,11 @@
-"""Client's stable stdio entry; every editor generation gets an explicit preparation."""
+"""Stable installation entry; the existing bridge discovers exact editor generations."""
 import sys
 from pathlib import Path
-from RunProcessGuard import installation_json, installation_path
+from RunProcessGuard import installation_user_directory, load_ai_installation
 
 root = Path(__file__).resolve().parents[1]
-state = installation_json(root / 'Tools/NodeForgeMcp/ClientState.json')
-config = installation_path(state['config'])
-if not config.is_relative_to(root / 'Reports/PluginControlStageTwo'):
-    raise ValueError('Client configuration outside the installed product')
+config = installation_user_directory(root) / 'Installation.json'
+load_ai_installation(config, root)
 from NodeForgeMcp import main
 sys.argv = [str(root / 'Scripts/NodeForgeMcp.py'), '--config', str(config)]
 raise SystemExit(main())

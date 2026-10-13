@@ -7,7 +7,7 @@ import math
 import struct
 import time
 from pathlib import Path
-from RunProcessGuard import observed_module, process_identity, validate_isolated_project
+from RunProcessGuard import observed_module, process_identity, validate_isolated_project, state_directory
 
 MAX_FRAME = 524288
 MAX_DESCRIPTOR = 65536
@@ -217,11 +217,18 @@ class Windows:
             return strict_json(data.raw),evidence
         finally:self.k.CloseHandle(handle)
 
-    def bounded_public_file(self,path,limit):
+    def bounded_public_file(self,path,limit,require_user_owner=False):
         self.no_reparse(path)
-        handle=self.k.CreateFileW(str(path),0x100081,1,None,3,0x00200000,None)
+        handle=self.k.CreateFileW(str(path),0x100081 | (0x20000 if require_user_owner else 0),1,None,3,0x00200000,None)
         if handle==INVALID:raise TransportError('NFEDITOR_FILE_OPEN',5)
         try:
+            if require_user_owner:
+                owner=ctypes.c_void_p();descriptor=ctypes.c_void_p()
+                if self.a.GetSecurityInfo(handle,1,1,ctypes.byref(owner),None,None,None,ctypes.byref(descriptor)):
+                    raise TransportError('NFEDITOR_FILE_OWNER')
+                try:
+                    if not owner.value or self.sid_text(owner)!=self.user: raise TransportError('NFEDITOR_FILE_OWNER')
+                finally:self.k.LocalFree(descriptor)
             final=ctypes.create_unicode_buffer(32768);n=self.k.GetFinalPathNameByHandleW(handle,final,len(final),0)
             if not n or n>=len(final) or Path(final.value.removeprefix('\\\\?\\')).resolve()!=path.resolve():raise TransportError('NFEDITOR_FILE_PATH',2)
             size=ctypes.c_int64()
@@ -237,8 +244,9 @@ PENDING_IO=[]
 class Session:
     def __init__(self,args,root,digest,engine_processes,process_uses_project):
         self.deadline=time.monotonic()+args.timeout_seconds;self.win=Windows();self.handle=None;self.evidence={}
+        state_root=state_directory(args.project)
         path=Path(args.session_file);self.win.no_reparse(path)
-        if not path.resolve().is_relative_to(root/'Reports/PluginControlSessions') or path.name!='Session.json':raise TransportError('NFEDITOR_SESSION_PATH',2)
+        if not path.resolve().is_relative_to(state_root/'Reports/PluginControlSessions') or path.name!='Session.json':raise TransportError('NFEDITOR_SESSION_PATH',2)
         data,acl=self.win.descriptor(path)
         expected={'editorApiVersion','profile','controlSessionId','pid','processStart','project','module','binarySha256','engine','pipe','sessionFile','reportRoot','limits','credential'}
         if not isinstance(data,dict) or set(data)!=expected or data['profile']!=PROFILE or data['editorApiVersion']!=API:raise TransportError('NFEDITOR_DESCRIPTOR_FIELDS',2)
@@ -246,7 +254,7 @@ class Session:
         session=data['controlSessionId'];pid=data['pid']
         if not isinstance(session,str) or len(session)!=32 or any(c not in '0123456789abcdef' for c in session) or type(pid)!=int or not 1<=pid<=0xffffffff:
             raise TransportError('NFEDITOR_IDENTITY',2)
-        if path.resolve()!=root/'Reports/PluginControlSessions'/session/'Session.json' or Path(data['sessionFile']).resolve()!=path.resolve():raise TransportError('NFEDITOR_SESSION_PATH',2)
+        if path.resolve()!=state_root/'Reports/PluginControlSessions'/session/'Session.json' or Path(data['sessionFile']).resolve()!=path.resolve():raise TransportError('NFEDITOR_SESSION_PATH',2)
         if Path(data['project']).resolve()!=project or Path(data['module']).resolve()!=binary or data['binarySha256']!=digest(binary):raise TransportError('NFEDITOR_IDENTITY',3)
         if data['pipe']!='\\\\.\\pipe\\NodeForge-'+str(pid)+'-'+session:raise TransportError('NFEDITOR_PIPE_IDENTITY',3)
         identity=process_identity(pid);module=observed_module(pid,binary.name)
@@ -336,8 +344,9 @@ class Session:
 def execute(args,summary,root,digest,write_new,engine_processes,process_uses_project):
     if not math.isfinite(args.timeout_seconds) or args.timeout_seconds<=0:raise TransportError('NFEDITOR_TIMEOUT',2)
     out=Path(args.run_directory)
-    if not out.is_absolute() or not out.resolve().is_relative_to(root/'Reports') or out.exists():raise TransportError('NFEDITOR_RUN_DIRECTORY',2)
-    out.mkdir(parents=True);summary.update(run=str(out),_publish=True,host='activeEditor',editorApiVersion=API,profile=PROFILE)
+    state_root=state_directory(args.project)
+    if not out.is_absolute() or not out.resolve().is_relative_to(state_root/'Reports') or out.exists():raise TransportError('NFEDITOR_RUN_DIRECTORY',2)
+    out.mkdir(parents=True);summary.update(run=str(out),project=str(Path(args.project).resolve()),_publish=True,host='activeEditor',editorApiVersion=API,profile=PROFILE)
     session=None
     try:
         session=Session(args,root,digest,engine_processes,process_uses_project)
@@ -354,7 +363,7 @@ def execute(args,summary,root,digest,write_new,engine_processes,process_uses_pro
             arguments={'callId':args.call_id} if args.action=='editor-status' else {}
             if getattr(args,'arguments_file',None):
                 path=Path(args.arguments_file);session.win.no_reparse(path)
-                if not any(path.resolve().is_relative_to(root/name) for name in ('Examples','Tests','Reports')) or path.resolve().is_relative_to(root/'Reports/PluginControlSessions') or not path.is_file() or not 0<path.stat().st_size<=MAX_FRAME:
+                if not any(path.resolve().is_relative_to(scope) for scope in (root/'Examples',root/'Tests',state_root/'Reports')) or path.resolve().is_relative_to(state_root/'Reports/PluginControlSessions') or not path.is_file() or not 0<path.stat().st_size<=MAX_FRAME:
                     raise TransportError('NFEDITOR_ARGUMENTS_PATH',2)
                 arguments=strict_json(session.win.bounded_public_file(path,MAX_FRAME))
             validate_arguments(arguments,definitions[0]['argumentsSchema'])

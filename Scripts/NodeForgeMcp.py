@@ -22,7 +22,7 @@ def load_application(old):
     for path in ('Tools/NodeForgeMcp/DependencyManifest.json', 'Tools/NodeForgeMcp/Requirements.lock'):
         if digest(read(root / path, initial_bridge.MAX_REPORT)) != old.loaded_runtime_files[path]:
             raise BridgeError('NFMCP_SDK_RESTART_REQUIRED', 'environmentBlocked')
-    config_bytes = read(old.config_path, 65536)
+    config_bytes = read(old.config_path, 65536, roots=(home, old.control_reports))
     config = parse(config_bytes)
     contract_path = home / 'ToolContract.json'
     contract = parse(read(contract_path, initial_bridge.MAX_REPORT, config['toolContractSha256'], (home,)))
@@ -61,7 +61,7 @@ def load_application(old):
         if candidate.loaded_runtime_files[path] != digest(data):
             raise BridgeError('NFMCP_FILE_SHA', 'environmentBlocked')
         read(root / path, initial_bridge.MAX_REPORT, digest(data))
-    read(old.config_path, 65536, digest(config_bytes))
+    read(old.config_path, 65536, digest(config_bytes), (home, old.control_reports))
     candidate.application = app
     return candidate
 
@@ -115,7 +115,7 @@ class ServerRuntime:
                 initial_bridge.MAX_REPORT)) != digest for path, digest in self.bridge.loaded_runtime_files.items())
             if self.bridge.configuration_changed() or code_changed:
                 retained = self.bridge.retained_query(name, params or {})
-                if code_changed or not retained:
+                if code_changed and not self.bridge.discovery or not retained:
                     if self.inflight:
                         raise BridgeError('NFMCP_REBIND_BUSY', 'environmentBlocked')
                     from functools import partial

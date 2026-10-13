@@ -46,8 +46,10 @@ public:
             NodeForgeInstallation::FBinding Previous; Previous.Project = TEXT("stale");
             if (!Row(TEXT("MissingBindingClearsPriorIdentity"), !NodeForgeInstallation::Read(Previous, Error) && Previous.Project.IsEmpty())) return Finish();
             NodeForgeInstallation::FBinding Preview;
+            FString ExpectedPlugin;
+            FParse::Value(FCommandLine::Get(), TEXT("NFInstallationExpectedPlugin="), ExpectedPlugin);
             if (!Row(TEXT("CurrentIdentityDetectedWithoutConfig"), NodeForgeInstallation::InspectCurrent(Preview, Error)
-                && FPaths::IsSamePath(Preview.PluginDirectory, FPaths::ProjectDir() / TEXT("Plugins/NodeForge"))
+                && FPaths::IsSamePath(Preview.PluginDirectory, ExpectedPlugin)
                 && !FPaths::FileExists(FPaths::ProjectDir() / TEXT("Config/NodeForgeInstallation.json")))) return Finish();
             Phase = 1; Changed = FPlatformTime::Seconds(); return false;
         }
@@ -144,15 +146,43 @@ private:
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FInstallationUiTest, "NodeForge.InstallationFirstUse", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FInstallationUiTest::RunTest(const FString&)
 {
-    FString Output;
+    FString Output, ExpectedPlugin;
     const FString Project = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir());
     if (IsRunningCommandlet() || !FSlateApplication::IsInitialized()
         || !FParse::Param(FCommandLine::Get(), TEXT("NFInstallationUiChecks"))
-        || FPaths::GetBaseFilename(FPaths::GetProjectFilePath()) != TEXT("NFCInstall")
+        || !FParse::Value(FCommandLine::Get(), TEXT("NFInstallationExpectedPlugin="), ExpectedPlugin)
+        || FPaths::IsRelative(ExpectedPlugin)
         || !FParse::Value(FCommandLine::Get(), TEXT("NFReport="), Output)
         || !FPaths::IsUnderDirectory(FPaths::ConvertRelativePathToFull(Output), Project / TEXT("Saved/NodeForge/InstallationChecks"))
         || FPaths::FileExists(Output))
-    { AddError(TEXT("Explicit fresh owned NFCInstall Editor and new bounded report required")); return false; }
+    { AddError(TEXT("Explicit fresh owned Editor, expected actual plugin and new bounded report required")); return false; }
     ADD_LATENT_AUTOMATION_COMMAND(FInstallationUiCommand(this, Output)); return true;
+}
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FInstallationReopenTest, "NodeForge.InstallationReopen", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FInstallationReopenTest::RunTest(const FString&)
+{
+    FString Output, ExpectedPlugin;
+    if (IsRunningCommandlet() || !FSlateApplication::IsInitialized()
+        || !FParse::Param(FCommandLine::Get(), TEXT("NFInstallationUiChecks"))
+        || !FParse::Value(FCommandLine::Get(), TEXT("NFInstallationExpectedPlugin="), ExpectedPlugin)
+        || !FParse::Value(FCommandLine::Get(), TEXT("NFReport="), Output)
+        || !FPaths::IsUnderDirectory(FPaths::ConvertRelativePathToFull(Output), FPaths::ProjectDir() / TEXT("Saved/NodeForge/InstallationChecks"))
+        || FPaths::FileExists(Output)) { AddError(TEXT("Explicit owned installation check required")); return false; }
+    const FString Config = FPaths::ProjectDir() / TEXT("Config/NodeForgeInstallation.json");
+    const FString Before = NodeForgePrototype::FileSha256(Config);
+    NodeForgeInstallation::FBinding Binding; FString Error, Catalog;
+    const auto Tab = FGlobalTabmanager::Get()->TryInvokeTab(FName(TEXT("NodeForge")));
+    const bool Passed = TestTrue(TEXT("NewEditorOriginalBindingAccepted"), NodeForgeInstallation::Read(Binding, Error)
+        && FPaths::IsSamePath(Binding.PluginDirectory, ExpectedPlugin) && NodeForgeInstallation::CatalogIdentity(Catalog, Error))
+        && TestTrue(TEXT("NewEditorRealTabSkipsSetup"), Tab.IsValid()
+            && NodeForgePanel::FindTaggedForChecks(Tab->GetContent(), TEXT("NodeForge.Input")).IsValid()
+            && !NodeForgePanel::FindTaggedForChecks(Tab->GetContent(), TEXT("NodeForge.InstallationConfirm")).IsValid())
+        && TestTrue(TEXT("NewEditorBindingUnchanged"), Before.Len() == 64 && NodeForgePrototype::FileSha256(Config) == Before);
+    auto Report = MakeShared<FJsonObject>(); Report->SetStringField(TEXT("status"), Passed ? TEXT("passed") : TEXT("failed"));
+    Report->SetNumberField(TEXT("pid"), FPlatformProcess::GetCurrentProcessId());
+    Report->SetStringField(TEXT("pluginDirectory"), Binding.PluginDirectory); Report->SetStringField(TEXT("binarySha256"), Binding.BinarySha256);
+    Report->SetStringField(TEXT("bindingSha256"), Before);
+    const bool Written = TestTrue(TEXT("FreshReopenReport"), NodeForgePrototype::WriteJson(Report, Output));
+    FPlatformMisc::RequestExitWithStatus(false, Passed && Written ? 0 : 1); return Passed && Written;
 }
 #endif

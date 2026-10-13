@@ -11,10 +11,10 @@
 点击 **载入 JSON 文件**，选择：
 
 ```text
-你的工程/Plugins/NodeForge/Examples/FirstMaterial.json
+UE_5.3/Engine/Plugins/Marketplace/NodeForge/Examples/FirstMaterial.json
 ```
 
-这个示例描述了一个带颜色和粗糙度参数的材质，目标位置是：
+工程级安装时，示例位于该工程的 `Plugins/NodeForge/Examples`。这个示例描述了一个带颜色和粗糙度参数的材质，目标位置是：
 
 ```text
 Content/NodeForgeTests/Examples/First/MFirst
@@ -47,4 +47,4 @@ JSON 是节点图的文字描述，其中包含节点类型、参数和连线。
 | 输入检查失败 | 点击“打开完整报告”，根据错误提示修改 JSON，再检查一次 |
 | 找不到示例文件 | 确认安装的是 Release 中的插件 ZIP，示例位于插件的 Examples 文件夹 |
 
-继续了解 [手动操作](Versions/v0.1.0/User/ManualWorkflows.md)、[界面按钮](Versions/v0.1.0/User/InterfaceGuide.md) 和 [支持范围](Versions/v0.1.0/Reference/FeatureMap.md)。
+继续了解 [手动操作](Versions/v0.2.0/User/ManualWorkflows.md)、[界面按钮](Versions/v0.2.0/User/InterfaceGuide.md) 和 [支持范围](Versions/v0.2.0/Reference/FeatureMap.md)。

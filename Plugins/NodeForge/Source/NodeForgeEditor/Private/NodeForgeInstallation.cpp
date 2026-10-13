@@ -13,9 +13,13 @@
 #include "HAL/FileManager.h"
 #include "Serialization/JsonSerializer.h"
 #include "Windows/WindowsHWrapper.h"
+#include "Windows/AllowWindowsPlatformTypes.h"
+#include <aclapi.h>
+#include "Windows/HideWindowsPlatformTypes.h"
 
 namespace NodeForgeInstallation
 {
+FSimpleMulticastDelegate& OnReady() { static FSimpleMulticastDelegate Ready; return Ready; }
 namespace
 {
 bool Fail(FString& Error, const TCHAR* Reason) { Error = Reason; return false; }
@@ -84,13 +88,17 @@ static bool ValidateLocal(const TSharedPtr<FJsonObject>& Local, const FString& D
     double Schema = 0;
     FString Layout;
     const bool ProjectPlugin = FPaths::IsSamePath(Binding.PluginDirectory, FPaths::GetPath(SelectedProject) / TEXT("Plugins/NodeForge"));
+    const bool EnginePlugin = FPaths::IsSamePath(Binding.PluginDirectory, Binding.EngineRoot / TEXT("Engine/Plugins/NodeForge"))
+        || FPaths::IsSamePath(Binding.PluginDirectory, Binding.EngineRoot / TEXT("Engine/Plugins/Marketplace/NodeForge"));
+    const bool InstalledPlugin = ProjectPlugin || EnginePlugin;
     if (!Object(Binding.InstallationRoot / TEXT("InstallationManifest.json"), Manifest, ManifestDigest, Error)
         || !String(Manifest, TEXT("product"), Product, Error) || Product != TEXT("NodeForge")
         || !String(Manifest, TEXT("buildId"), BuildId, Error)
         || !Manifest->TryGetNumberField(TEXT("installationSchemaVersion"), Schema) || Schema != 1
         || !String(Manifest, TEXT("pluginDirectory"), Relative, Error) || !FPaths::IsRelative(Relative)
-        || !(ProjectPlugin
-            ? (Relative == TEXT(".") && Manifest->TryGetStringField(TEXT("installLayout"), Layout) && Layout == TEXT("projectPlugin")
+        || !(InstalledPlugin
+            ? (Relative == TEXT(".") && Manifest->TryGetStringField(TEXT("installLayout"), Layout)
+                && (Layout == TEXT("portablePlugin") || (ProjectPlugin && Layout == TEXT("projectPlugin")))
                 && FPaths::IsSamePath(Binding.InstallationRoot, Binding.PluginDirectory))
             : (Absolute(Binding.InstallationRoot / Relative, Ignored, Error) && FPaths::IsUnderDirectory(Ignored, Binding.InstallationRoot)
                 && FPaths::IsSamePath(Ignored, Binding.PluginDirectory)))
@@ -115,7 +123,7 @@ static bool ValidateLocal(const TSharedPtr<FJsonObject>& Local, const FString& D
     int32 References = 0, Selections = 0;
     if (!Descriptor->TryGetArrayField(TEXT("Plugins"), Enabled)
         || (Descriptor->HasField(TEXT("AdditionalPluginDirectories")) && !Descriptor->TryGetArrayField(TEXT("AdditionalPluginDirectories"), Directories))
-        || (!ProjectPlugin && !Directories))
+        || (!InstalledPlugin && !Directories))
         return Fail(Error, TEXT("installationProjectReferenceMissing"));
     for (const auto& Value : *Enabled)
     {
@@ -133,9 +141,12 @@ static bool ValidateLocal(const TSharedPtr<FJsonObject>& Local, const FString& D
         if (!Value->TryGetString(Directory)) return Fail(Error, TEXT("installationProjectDirectoriesRejected"));
         if (FPaths::IsSamePath(FPaths::ConvertRelativePathToFull(FPaths::GetPath(SelectedProject), Directory), FPaths::GetPath(Binding.PluginDirectory))) ++Selections;
     }
-    if (References != 1 || Selections != (ProjectPlugin ? 0 : 1)
+    if (References != 1 || Selections != (InstalledPlugin ? 0 : 1)
         || (!ProjectPlugin && FPaths::FileExists(FPaths::GetPath(SelectedProject) / TEXT("Plugins/NodeForge/NodeForge.uplugin")))
-        || FPaths::FileExists(Binding.EngineRoot / TEXT("Engine/Plugins/NodeForge/NodeForge.uplugin")))
+        || (!FPaths::IsSamePath(Binding.PluginDirectory, Binding.EngineRoot / TEXT("Engine/Plugins/NodeForge"))
+            && FPaths::FileExists(Binding.EngineRoot / TEXT("Engine/Plugins/NodeForge/NodeForge.uplugin")))
+        || (!FPaths::IsSamePath(Binding.PluginDirectory, Binding.EngineRoot / TEXT("Engine/Plugins/Marketplace/NodeForge"))
+            && FPaths::FileExists(Binding.EngineRoot / TEXT("Engine/Plugins/Marketplace/NodeForge/NodeForge.uplugin"))))
         return Fail(Error, TEXT("installationProjectAmbiguous"));
     for (const auto& Value : *Roots)
     {
@@ -179,11 +190,57 @@ bool Read(FBinding& Binding, FString& Error)
         || !Object(FPaths::GetPath(Project) / TEXT("Config/NodeForgeInstallation.json"), Local, Digest, Error)) return false;
     return ValidateLocal(Local, Digest, Binding, Error);
 }
+FString StateDirectory(const FBinding& Binding)
+{
+    FString Path, Error;
+    return Absolute(FPaths::GetPath(Binding.Project) / TEXT("Saved/NodeForge"), Path, Error) ? Path : FString();
+}
+FString StateDirectory()
+{
+    FBinding Binding; FString Error;
+    return Read(Binding, Error) ? StateDirectory(Binding) : FString();
+}
 bool CatalogIdentity(FString& CatalogDigest, FString& Error)
 {
     CatalogDigest.Empty();
     FBinding Binding;
     return Read(Binding, Error) && CatalogForBinding(Binding, CatalogDigest, Error);
+}
+bool AiConfiguration(const FBinding& Binding, TSharedPtr<FJsonObject>& Configuration,
+                     FString& UserDirectory, FString& Error)
+{
+    FString LocalAppData, Path, Digest;
+    if (!Absolute(FPlatformMisc::GetEnvironmentVariable(TEXT("USERPROFILE")), LocalAppData, Error)
+        || !Absolute(LocalAppData / TEXT("NodeForge/Installations") /
+            NodeForgePrototype::TextSha256(Binding.PluginDirectory.ToLower()), UserDirectory, Error)
+        || !Absolute(UserDirectory / TEXT("Installation.json"), Path, Error)) return false;
+    // A persistent opt-in belongs to the Windows user, not one logon generation.
+    PSID Owner = nullptr; PSECURITY_DESCRIPTOR Security = nullptr; HANDLE Token = nullptr;
+    bool Owned = false;
+    if (GetNamedSecurityInfoW(*Path, SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION, &Owner, nullptr, nullptr, nullptr, &Security) == ERROR_SUCCESS
+        && OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &Token))
+    {
+        DWORD Size = 0; GetTokenInformation(Token, TokenUser, nullptr, 0, &Size);
+        TArray<uint8> Bytes; Bytes.SetNumUninitialized(Size);
+        if (Size && GetTokenInformation(Token, TokenUser, Bytes.GetData(), Size, &Size))
+            Owned = EqualSid(Owner, reinterpret_cast<TOKEN_USER*>(Bytes.GetData())->User.Sid) != 0;
+    }
+    if (Token) CloseHandle(Token); if (Security) LocalFree(Security);
+    if (!Owned || !Object(Path, Configuration, Digest, Error) || Configuration->Values.Num() != 9)
+        return Fail(Error, TEXT("aiInstallationNotEnabled"));
+    for (const TCHAR* Key : {TEXT("format"), TEXT("pluginDirectory"), TEXT("engineRoot"), TEXT("binarySha256"),
+                            TEXT("bundleId"), TEXT("toolContractSha256"), TEXT("docsManifestSha256")})
+        if (!Configuration->HasTypedField<EJson::String>(Key)) return Fail(Error, TEXT("aiInstallationInvalid"));
+    if (!Configuration->HasTypedField<EJson::Number>(TEXT("version"))
+        || Configuration->GetStringField(TEXT("format")) != TEXT("NodeForgeAiInstallation1")
+        || Configuration->GetNumberField(TEXT("version")) != 1
+        || !Configuration->HasTypedField<EJson::Boolean>(TEXT("enabled")) || !Configuration->GetBoolField(TEXT("enabled"))
+        || Configuration->GetStringField(TEXT("pluginDirectory")) != Binding.PluginDirectory
+        || Configuration->GetStringField(TEXT("engineRoot")) != Binding.EngineRoot
+        || Configuration->GetStringField(TEXT("binarySha256")) != Binding.BinarySha256
+        || Configuration->GetStringField(TEXT("toolContractSha256")) != NodeForgePrototype::FileSha256(Binding.InstallationRoot / TEXT("Tools/NodeForgeMcp/ToolContract.json")))
+        return Fail(Error, TEXT("aiInstallationNotEnabled"));
+    return true;
 }
 static TSharedRef<FJsonObject> BindingObject(const FBinding& Binding)
 {
@@ -231,7 +288,9 @@ bool ConfirmCurrent(FString& ReceiptPath, FString& Error)
     TArray<uint8> ProjectBytes;
     if (!FFileHelper::LoadFileToArray(ProjectBytes, *Binding.Project) || ProjectBytes.Num() > 65536) return Fail(Error, TEXT("installationProjectReadFailed"));
     const FString ProjectSha = NodeForgePrototype::FileSha256(Binding.Project);
-    const FString ReportRoot = Binding.InstallationRoot / TEXT("Reports/Installations") / FGuid::NewGuid().ToString(EGuidFormats::Digits);
+    const FString StateRoot = StateDirectory(Binding);
+    if (StateRoot.IsEmpty()) return Fail(Error, TEXT("installationStatePathRejected"));
+    const FString ReportRoot = StateRoot / TEXT("Reports/Installations") / FGuid::NewGuid().ToString(EGuidFormats::Digits);
     if (!Absolute(ReportRoot, Canonical, Error)) return false;
     auto Receipt = MakeShared<FJsonObject>();
     Receipt->SetStringField(TEXT("format"), TEXT("NodeForgeInstallationReceipt")); Receipt->SetNumberField(TEXT("version"), 1);
@@ -266,6 +325,7 @@ bool ConfirmCurrent(FString& ReceiptPath, FString& Error)
     if (Written) Receipt->SetArrayField(TEXT("completedWrites"), {MakeShared<FJsonValueString>(Config)});
     if (!NodeForgePrototype::WriteJson(Receipt, ReceiptPath)) return Fail(Error, TEXT("installationReceiptCompletionUnknown"));
     if (!Valid && Error.IsEmpty()) Error = TEXT("installationBindingWriteRejected");
+    if (Valid) OnReady().Broadcast();
     return Valid;
 }
 }

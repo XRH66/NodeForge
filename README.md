@@ -10,13 +10,13 @@
 </p>
 <h3 align="center">Unreal Engine 蓝图与材质生成插件</h3>
 <p align="center">把 JSON 节点描述变成可编辑的 UE 资产，也可以让 AI 帮你完成。</p>
-<p align="center"><strong>v0.1.0 · Unreal Engine 5.3.2 · Windows 64 位</strong></p>
+<p align="center"><strong>v0.2.0 · Unreal Engine 5.3.2 · Windows 64 位</strong></p>
 <p align="center">
-  <a href="https://github.com/XRH66/NodeForge/releases/tag/v0.1.0">下载 v0.1.0</a> ·
+  <a href="https://github.com/XRH66/NodeForge/releases/tag/v0.2.0">下载 v0.2.0</a> ·
   <a href="Docs/Installation.md">安装</a> ·
   <a href="Docs/GettingStarted.md">开始使用</a> ·
   <a href="Docs/AiInstallation.md">连接 AI</a> ·
-  <a href="Docs/Versions/v0.1.0/User/Readme.md">用户手册</a> ·
+  <a href="Docs/Versions/v0.2.0/User/Readme.md">用户手册</a> ·
   <a href="CHANGELOG.md">更新日志</a>
 </p>
 
@@ -31,18 +31,18 @@ NodeForge 可以把 JSON 中描述的节点和连线生成为 UE 蓝图或材质
 
 ## 下载安装
 
-**v0.1.0 · Windows 64 位 · 官方 Unreal Engine 5.3.2**
+**v0.2.0 · Windows 64 位 · 官方 Unreal Engine 5.3.2**
 
 | 你想怎样使用 | 下载 | 下一步 |
 | --- | --- | --- |
-| 在 UE 中使用插件 | [插件 ZIP](https://github.com/XRH66/NodeForge/releases/download/v0.1.0/NodeForge-0.1.0-UE5.3.2-Windows.zip) | [安装插件](Docs/Installation.md) |
-| 让 AI 安装并连接插件 | [AI 接入 ZIP](https://github.com/XRH66/NodeForge/releases/download/v0.1.0/NodeForge-AI-0.1.0-Windows.zip) | [连接 AI](Docs/AiInstallation.md) |
+| 在 UE 中使用插件 | [插件 ZIP](https://github.com/XRH66/NodeForge/releases/download/v0.2.0/NodeForge-0.1.0-UE5.3.2-Windows.zip) | [安装插件](Docs/Installation.md) |
+| 让 AI 安装并连接插件 | [AI 接入 ZIP](https://github.com/XRH66/NodeForge/releases/download/v0.2.0/NodeForge-AI-0.1.0-Windows.zip) | [连接 AI](Docs/AiInstallation.md) |
 
 普通插件无需安装 Python。AI 包也已包含所需运行环境；如果已经安装插件，可以随后补装 AI 接入部分。请使用此处同一版本的两个包。
 
 ## 快速开始
 
-1. 解压插件 ZIP，把其中的 `NodeForge` 文件夹放进 UE 工程的 `Plugins` 文件夹。
+1. 解压插件 ZIP，把其中的 `NodeForge` 文件夹放进引擎的 `Engine/Plugins/Marketplace` 文件夹。
 2. 打开工程，启用插件，从 **窗口 → NodeForge** 打开面板，确认工程位置。
 3. 载入插件附带的材质示例，点击 **检查输入**，再点击 **生成新资产**。
 4. 点击 **打开资产**，查看生成的材质节点图。
@@ -51,9 +51,9 @@ NodeForge 可以把 JSON 中描述的节点和连线生成为 UE 蓝图或材质
 
 ## 使用范围
 
-首版支持材质和单个 EventGraph 的 Actor 蓝图，暂不支持任意 UE 节点、蓝图多图或新增组件。可在插件面板中查询支持的节点。
+当前支持材质和单个 EventGraph 的 Actor 蓝图，暂不支持任意 UE 节点、蓝图多图或新增组件。可在插件面板中查询支持的节点。
 
-插件创建新资产；需要调整已有内容时，通过新副本完成。当前生成目录为 `Content/NodeForgeTests`。更多操作见 [使用手册](Docs/Versions/v0.1.0/User/Readme.md)。
+插件创建新资产；需要调整已有内容时，通过新副本完成。当前生成目录为 `Content/NodeForgeTests`。更多操作见 [使用手册](Docs/Versions/v0.2.0/User/Readme.md)。
 
 ## 问题反馈
 

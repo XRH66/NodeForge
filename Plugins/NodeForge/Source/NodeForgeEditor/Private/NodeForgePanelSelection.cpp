@@ -2,6 +2,7 @@
 #include "NodeForgePanel.h"
 #include "NodeForgeEditorControlService.h"
 #include "NodeForgePrototype.h"
+#include "NodeForgeInstallation.h"
 #include "AssetRegistry/AssetData.h"
 #include "Materials/Material.h"
 #include "Materials/MaterialFunction.h"
@@ -15,7 +16,7 @@ bool FreshSelectionReport(const FString& Requested, const TCHAR* Suffix, FString
 {
     Report=FPaths::ConvertRelativePathToFull(Requested);FPaths::NormalizeFilename(Report);
     if(!FPaths::CollapseRelativeDirectories(Report)
-        || !FPaths::IsUnderDirectory(Report,NodeForgePrototype::WorkspaceDirectory()/TEXT("Reports"))
+        || !FPaths::IsUnderDirectory(Report,NodeForgeInstallation::StateDirectory()/TEXT("Reports"))
         || FPaths::GetExtension(Report)!=TEXT("json"))
     {Error=TEXT("需要Reports内的新JSON报告路径。");return false;}
     Input=FPaths::GetPath(Report)/(FPaths::GetBaseFilename(Report)+Suffix);

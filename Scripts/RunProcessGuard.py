@@ -2,6 +2,7 @@
 import json
 import hashlib
 import math
+import os
 import subprocess
 import time
 from datetime import datetime, timezone
@@ -12,6 +13,86 @@ INSTALLATION_FIELDS = {'format', 'version', 'installationRoot', 'project',
                        'pluginDirectory', 'binarySha256', 'engineRoot', 'readRoots'}
 DEFAULT_READ_ROOTS = ['/Game/NodeForgeTests', '/Engine/EngineResources',
                       '/Engine/Functions/Engine_MaterialFunctions02']
+
+AI_INSTALLATION_FIELDS = {'format', 'version', 'enabled', 'pluginDirectory', 'engineRoot',
+                          'binarySha256', 'bundleId', 'toolContractSha256', 'docsManifestSha256'}
+
+
+def installation_user_directory(plugin):
+    """One user's durable installation identity; never a project or secret override."""
+    plugin = installation_path(plugin)
+    identity = hashlib.sha256(plugin.as_posix().lower().encode('utf-8')).hexdigest()
+    # Profile-level state is shared by packaged MCP clients and unpackaged UE.
+    # MSIX redirects newly created AppData files into a client-private cache.
+    return installation_path(Path(os.environ['USERPROFILE']) / 'NodeForge/Installations' / identity)
+
+
+def read_ai_installation(path, plugin):
+    path, plugin = installation_path(path), installation_path(plugin)
+    if path != installation_user_directory(plugin) / 'Installation.json':
+        raise ValueError('aiInstallationScope: use this user and exact installed plugin')
+    from NodeForgeEditorTransport import Windows, strict_json
+    value = strict_json(Windows().bounded_public_file(path, 65536, require_user_owner=True))
+    if (set(value) != AI_INSTALLATION_FIELDS or value['format'] != 'NodeForgeAiInstallation1'
+            or type(value['version']) is not int or value['version'] != 1
+            or type(value['enabled']) is not bool or installation_path(value['pluginDirectory']) != plugin):
+        raise ValueError('aiInstallationInvalid')
+    return value
+
+
+def load_ai_installation(path, plugin):
+    value = read_ai_installation(path, plugin)
+    _, _, _, _, product = installation_product(plugin, value['engineRoot'])
+    if value['binarySha256'] != product['binarySha256']:
+        raise ValueError('aiInstallationCoreChanged: reinstall matching addon after a recorded upgrade')
+    return value
+
+
+def discover_editor_sessions(plugin, engine):
+    """Bounded metadata discovery; public indexes never authorize a business call."""
+    plugin, engine = installation_path(plugin), installation_path(engine)
+    directory = installation_user_directory(plugin) / 'Sessions'
+    installation_path(directory)
+    candidates, rejected = [], []
+    if not directory.exists():
+        return candidates, rejected
+    entries = sorted(directory.glob('*.json'))
+    if len(entries) > 128:
+        raise ValueError('sessionDiscoveryLimit: inspect current installation index')
+    for path in entries:
+        try:
+            identity = installation_json(path)
+            session = identity.get('controlSessionId', '')
+            if len(session) != 32 or any(c not in '0123456789abcdef' for c in session) or path.name != session + '.json':
+                raise ValueError('sessionIndexIdentity')
+            observation = process_identity(identity['pid'])
+            if observation.get('state') in ('absent', 'exited') or (
+                    observation.get('state') == 'running' and observation.get('createdTicks') != identity['processStart']):
+                rejected.append({'session': session, 'code': 'sessionClosed'})
+                continue  # Preserve historical/unknown records; no lock or credential deletion.
+            if observation.get('state') != 'running':
+                raise ValueError('sessionProcessUnknown')
+            project = installation_path(identity['project'])
+            binding = load_installation_binding(project, plugin, plugin)
+            if installation_path(binding['engineRoot']) != engine:
+                raise ValueError('sessionEngineMismatch')
+            binary = plugin / 'Binaries/Win64/UnrealEditor-NodeForgeEditor.dll'
+            actual = observed_module(identity['pid'], binary.name)
+            state = state_directory(project)
+            report = installation_path(identity['reportRoot'])
+            if (not report.is_relative_to(state / 'Reports/PluginControlStageTwo')
+                    or installation_path(identity['module']) != binary or actual is None or actual.resolve() != binary
+                    or identity['binarySha256'] != binding['binarySha256']
+                    or installation_json(report / 'SessionPublic.json') != identity
+                    or installation_path(identity['sessionFile']) != state / 'Reports/PluginControlSessions' / session / 'Session.json'
+                    or not Path(identity['sessionFile']).is_file()):
+                raise ValueError('sessionIndexMismatch')
+            candidates.append({'project': project.as_posix(), 'controlSessionId': session,
+                'pid': identity['pid'], 'processStart': identity['processStart'],
+                'binarySha256': identity['binarySha256'], 'config': (report / 'Config.json').as_posix()})
+        except (ValueError, OSError, KeyError, TypeError) as error:
+            rejected.append({'index': path.name, 'code': str(error)[:160]})
+    return candidates, rejected
 
 
 def installation_path(value):
@@ -78,12 +159,12 @@ def installation_product(root, engine):
             or not isinstance(manifest['buildId'], str) or not manifest['buildId']):
         raise ValueError('NodeForge product installation manifest schema/identity required')
     relative = manifest['pluginDirectory']
-    project_layout = manifest.get('installLayout') == 'projectPlugin' and relative == '.'
-    if not project_layout and (not isinstance(relative, str) or Path(relative).is_absolute() or ':' in relative
+    copied_layout = manifest.get('installLayout') in ('projectPlugin', 'portablePlugin') and relative == '.'
+    if not copied_layout and (not isinstance(relative, str) or Path(relative).is_absolute() or ':' in relative
             or any(part in {'.', '..'} for part in relative.replace('\\', '/').split('/'))):
         raise ValueError('Product-relative plugin directory required')
-    plugin = root if project_layout else installation_path(root / relative)
-    if not plugin.is_relative_to(root) or (plugin == root and not project_layout) or plugin.name != 'NodeForge':
+    plugin = root if copied_layout else installation_path(root / relative)
+    if not plugin.is_relative_to(root) or (plugin == root and not copied_layout) or plugin.name != 'NodeForge':
         raise ValueError('Selected product-relative NodeForge stage required')
     binary = installation_path(plugin / 'Binaries/Win64/UnrealEditor-NodeForgeEditor.dll')
     modules = installation_path(plugin / 'Binaries/Win64/UnrealEditor.modules')
@@ -129,7 +210,12 @@ def load_installation_binding(project, plugin=None, root=None):
     if (len(nodeforge) != 1 or nodeforge[0].get('Enabled') is not True
             or not isinstance(directories, list) or not all(isinstance(value, str) for value in directories)):
         raise ValueError('Exactly one enabled NodeForge project reference required')
-    copied = actual_plugin == installation_path(project.parent / 'Plugins/NodeForge')
+    layout = installation_layout(project, engine, actual_plugin)
+    copied = layout != 'externalStage'
+    if layout.startswith('engine') and manifest.get('installLayout') != 'portablePlugin':
+        raise ValueError('Engine install requires a portablePlugin release')
+    if layout == 'externalStage' and manifest.get('pluginDirectory') == '.':
+        raise ValueError('Copied package must occupy an exact supported installation location')
     selections = 0
     for directory in directories:
         selected = installation_path(project.parent / directory)
@@ -137,10 +223,32 @@ def load_installation_binding(project, plugin=None, root=None):
             selections += 1
         elif (selected / 'NodeForge/NodeForge.uplugin').exists():
             raise ValueError('Duplicate NodeForge in another plugin directory')
-    if (selections != (0 if copied else 1) or (not copied and (project.parent / 'Plugins/NodeForge/NodeForge.uplugin').exists())
-            or (engine / 'Engine/Plugins/NodeForge/NodeForge.uplugin').exists()):
+    locations = (project.parent / 'Plugins/NodeForge', engine / 'Engine/Plugins/NodeForge',
+                 engine / 'Engine/Plugins/Marketplace/NodeForge')
+    if (selections != (0 if copied else 1)
+            or any(location.resolve() != actual_plugin and (location / 'NodeForge.uplugin').exists() for location in locations)):
         raise ValueError('Ambiguous NodeForge installation rejected')
     return config
+
+
+def installation_layout(project, engine, plugin):
+    """Classify exact supported locations; external stages still require explicit selection."""
+    plugin = installation_path(plugin)
+    for name, location in (
+            ('projectPlugin', Path(project).parent / 'Plugins/NodeForge'),
+            ('enginePlugin', Path(engine) / 'Engine/Plugins/NodeForge'),
+            ('engineMarketplace', Path(engine) / 'Engine/Plugins/Marketplace/NodeForge')):
+        if plugin == installation_path(location):
+            return name
+    return 'externalStage'
+
+
+def state_directory(project):
+    """Shared writable root, independent of the program installation location."""
+    project = installation_path(project)
+    if project.suffix != '.uproject' or not project.is_file():
+        raise ValueError('Explicit existing selected uproject required for state')
+    return installation_path(project.parent / 'Saved/NodeForge')
 
 
 def validate_isolated_project(project, plugin, root):
