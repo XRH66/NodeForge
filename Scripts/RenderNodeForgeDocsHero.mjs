@@ -9,20 +9,41 @@ const repositoryRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'
 const argumentsList=process.argv.slice(2);
 let job;
 if(argumentsList.length){
-  if(argumentsList.length!==2||argumentsList[0]!=='--bundle')throw Error('Usage: node Scripts/RenderNodeForgeDocsHero.mjs --bundle <candidate-directory>; or provide a render job on stdin');
-  const root=path.resolve(argumentsList[1]);
-  if(!root.startsWith(repositoryRoot+path.sep))throw Error('Candidate outside project');
-  const manifest=JSON.parse(fs.readFileSync(path.join(root,'Manifest.json'),'utf8'));
-  job={root,bundleId:manifest.bundleId,pages:manifest.pages.map(page=>{
+  if(![2,4].includes(argumentsList.length)||argumentsList[0]!=='--bundle'||(argumentsList.length===4&&argumentsList[2]!=='--output'))throw Error('Usage: node Scripts/RenderNodeForgeDocsHero.mjs --bundle <source-directory> [--output <new-candidate-directory>]; or provide a render job on stdin');
+  const sourceRoot=path.resolve(argumentsList[1]);
+  const root=argumentsList.length===4?path.resolve(argumentsList[3]):sourceRoot;
+  if(!sourceRoot.startsWith(repositoryRoot+path.sep)||!root.startsWith(repositoryRoot+path.sep))throw Error('Source and candidate must stay inside project');
+  const manifestPath=path.join(sourceRoot,'Manifest.json');
+  const manifest=JSON.parse(fs.readFileSync(manifestPath,'utf8'));
+  if(['frozen','released'].includes(manifest.publicationStatus)&&root===sourceRoot)throw Error('Published documentation is immutable during rendering; provide --output');
+  if(root!==sourceRoot){
+    if(root.startsWith(sourceRoot+path.sep)||sourceRoot.startsWith(root+path.sep))throw Error('Source and candidate must be separate directories');
+    if(fs.existsSync(root))throw Error('Output already exists; use a new candidate directory');
+  }
+  job={root,bundleId:manifest.bundleId,sourceBundle:path.relative(repositoryRoot,sourceRoot).split(path.sep).join('/'),sourceManifestSha256:crypto.createHash('sha256').update(fs.readFileSync(manifestPath)).digest('hex'),pages:manifest.pages.map(page=>{
     const source=path.resolve(repositoryRoot,page.path);
-    if(!source.startsWith(root+path.sep))throw Error('Source outside candidate');
+    if(!source.startsWith(sourceRoot+path.sep))throw Error('Source outside selected bundle');
     const text=fs.readFileSync(source,'utf8');
-    return {pageId:page.pageId,title:text.match(/^#\s+(.+)$/m)?.[1]||page.title,output:path.relative(root,source).split(path.sep).join('/'),text};
+    const bytes=fs.readFileSync(source);
+    if(bytes.length!==page.bytes||crypto.createHash('sha256').update(bytes).digest('hex')!==page.sha256)throw Error('Manifest content mismatch: '+page.path);
+    return {pageId:page.pageId,title:(text.match(/^#\s+(.+)$/m)?.[1]||page.title).trim(),source:page.path,output:path.relative(sourceRoot,source).split(path.sep).join('/'),text};
   })};
+  if(root!==sourceRoot){
+    fs.mkdirSync(root,{recursive:true});
+    fs.copyFileSync(manifestPath,path.join(root,'Manifest.json'));
+    for(const page of job.pages){const target=path.join(root,page.output);fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(path.join(repositoryRoot,page.source),target);}
+    for(const artifact of manifest.artifacts){
+      const source=path.resolve(repositoryRoot,artifact.path);
+      if(!source.startsWith(sourceRoot+path.sep))throw Error('Public artifact outside source bundle');
+      const bytes=fs.readFileSync(source);
+      if(bytes.length!==artifact.bytes||crypto.createHash('sha256').update(bytes).digest('hex')!==artifact.sha256)throw Error('Manifest artifact mismatch: '+artifact.path);
+      const target=path.join(root,path.relative(sourceRoot,source));fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(source,target);
+    }
+  }
 }else{job=JSON.parse(fs.readFileSync(0,'utf8'));}
 if(!path.resolve(job.root).startsWith(repositoryRoot+path.sep))throw Error('Render root outside project');
 const manifestPath=path.join(job.root,'Manifest.json');
-if(fs.existsSync(manifestPath)&&JSON.parse(fs.readFileSync(manifestPath,'utf8')).publicationStatus==='frozen')throw Error('Frozen documentation is immutable; create a new candidate');
+if(fs.existsSync(manifestPath)&&['frozen','released'].includes(JSON.parse(fs.readFileSync(manifestPath,'utf8')).publicationStatus)&&!job.sourceBundle)throw Error('Published documentation requires a separate source and candidate');
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let headings=[];
 marked.use({renderer:{
@@ -58,6 +79,7 @@ if(job.pages.some(page=>page.pageId==='UserReadme'))htmlFiles.push(path.join(job
 if(job.pages.some(page=>page.pageId==='Readme'))htmlFiles.push(path.join(job.root,'Index.html'));
 const themeDirectory=path.join(repositoryRoot,'Tools/NodeForgeDocs/HeroPreview');
 const layoutManifest={format:'NodeForgeDocsLayout1',themeVersion:theme.themeVersion,bundleId:job.bundleId,renderedAt:new Date().toISOString(),
+  sourceBundle:job.sourceBundle,sourceManifestSha256:job.sourceManifestSha256,pageMap:job.pages.map(page=>({pageId:page.pageId,source:page.source,markdown:page.output,html:page.output.replace(/\.md$/,'.html')})),
   scope:'Presentation only; not a release or business acceptance',browserVisualAcceptance:'notEstablishedByRenderer',
   sourceFiles:[fingerprint(fileURLToPath(import.meta.url)),...theme.sourceFiles.map(file=>fingerprint(path.join(themeDirectory,file)))],
   markdown:job.pages.map(page=>fingerprint(path.resolve(job.root,page.output))),htmlArtifacts:htmlFiles.map(fingerprint),

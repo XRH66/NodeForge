@@ -7,7 +7,7 @@ NodeForge v0.1.0 提供插件和可选的 AI 接入包。两者使用同一套�
 | 在 UE 面板中操作 | 插件 ZIP | 载入 JSON、检查输入、生成资产 |
 | 让 AI 操作插件 | 插件 ZIP 和 AI 接入 ZIP | 让支持 MCP 的 AI 客户端读取规则、查询资源和提交任务 |
 
-本版适用于 **Windows 64 位、官方 UE 5.3.2**。下载地址见 [v0.1.0 Release](https://github.com/XRH66/NodeForge/releases/tag/v0.1.0)。安装时选择插件或 AI 接入 ZIP；GitHub 自动生成的 `Source code` 是源码包。
+本版适用于 **Windows 64 位、官方 UE 5.3.2**。文件与校验值见 [下载页面](Download.md)；下载需要登录有仓库访问权的 GitHub 账号，备用入口为 [v0.1.0 Release](https://github.com/XRH66/NodeForge/releases/tag/v0.1.0)。安装时选择插件或 AI 接入 ZIP；GitHub 自动生成的 `Source code` 是源码包。
 
 ## 在 UE 中手动使用
 

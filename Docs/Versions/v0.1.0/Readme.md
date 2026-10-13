@@ -6,7 +6,7 @@ NodeForge 是 Unreal Engine 编辑器插件。你可以用 JSON 描述节点和�
 
 ## 从这里开始
 
-1. [安装插件](User/PluginInstallation.md)：下载插件，放入工程，在 UE 中启用。
+1. [下载插件与可选 AI 包](User/Download.md)，再[安装插件](User/PluginInstallation.md)：下载插件，放入工程，在 UE 中启用。
 2. [生成第一个材质](User/GettingStarted.md)：使用附带示例，完成一次检查和生成。
 3. [连接 AI](User/AiInstallation.md)：可选；安装接入包，让 AI 读取规则并操作插件。
 

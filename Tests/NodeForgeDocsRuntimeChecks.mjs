@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {buildTheme} from '../Tools/NodeForgeDocs/HeroPreview/BuildTheme.mjs';
+import './NodeForgeDocsThemeChecks.mjs';
 
 const source = new URL('../Tools/NodeForgeDocs/HeroPreview/', import.meta.url);
 const baseline = new URL('../Deliverables/NodeForgeDocsWebBuild136Mcp9R19VisualInstall/Site/Assets/NodeForgeDocs/', import.meta.url);
@@ -9,7 +10,6 @@ const read = (root, name) => fs.readFileSync(new URL(name, root), 'utf8').replac
 const old = read(baseline, 'Theme.js');
 const between = (start, end) => old.slice(old.indexOf(start), old.indexOf(end));
 const original = {
-  'ThemeController.js': between('  const root =', '  const icon =') + between('  const themeButtons', '  const toast =') + '  return {syncThemeLink};\n',
   'ArticleController.js': between('  const icon =', '  const themeButtons') + between('  const toast =', '  const tocLinks ='),
   'ReadingController.js': between('  const tocLinks =', '  const searchDialog ='),
   'NavigationController.js': old.slice(old.indexOf('  const searchDialog ='), old.lastIndexOf('})();'))
@@ -86,4 +86,4 @@ assert.ok(!resizeObservers[1].targets.has(child),'replaced search/content nodes 
 const highContrastBody=new Element();
 vm.runInNewContext(read(source,'Runtime/Scrollbars.js')+'\ninitializeScrollbars();',{...context,document:{...context.document,body:highContrastBody},matchMedia:()=>({matches:true})});
 assert.equal(highContrastBody.children.length,0,'high contrast keeps native scrollbars');
-console.log(JSON.stringify({passed:true,originalFeatureBodies:4,deterministicBuild:true,unchangedExistingCss:true,scrollbarEventChecks:true,browserVisualCheck:false}));
+console.log(JSON.stringify({passed:true,originalFeatureBodies:Object.keys(original).length,themeStateEventChecks:true,deterministicBuild:true,unchangedExistingCss:true,scrollbarEventChecks:true,browserVisualCheck:false}));

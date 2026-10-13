@@ -1,4 +1,4 @@
-# MCP 工具参考
+# MCP 工具参考：规则与连接
 
 本页适用于 NodeForge v0.1.0。调用顺序见 [快速开始](QuickStart.md)，状态解释见 [结果与恢复](ResultsAndRecovery.md)。下列 JSON Schema 保留接口的准确字段与约束。
 

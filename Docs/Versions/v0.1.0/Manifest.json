@@ -36,8 +36,8 @@
       "pageId": "Readme",
       "title": "NodeForge v0.1.0 使用文档",
       "path": "Docs/Versions/v0.1.0/Readme.md",
-      "sha256": "ebb6fcfd296cea47c7d47f86cf5638bb3ecefef286ee21891a6ce3420bab7f2e",
-      "bytes": 1847,
+      "sha256": "83b9b18cb6e4ca478e59db2f5ffd44d1358369d4f66e1292de82247a1f00e100",
+      "bytes": 1901,
       "kind": "guide",
       "topics": [
         "Readme"
@@ -47,8 +47,8 @@
       "pageId": "UserReadme",
       "title": "用户手册",
       "path": "Docs/Versions/v0.1.0/User/Readme.md",
-      "sha256": "a9c3fca443088386ee406d4e5e8434f19b2ffddfd75b9dcded218f9d3d3d3367",
-      "bytes": 954,
+      "sha256": "00c37b54a41173e998029f402c9daaef898f9be34660369291c8fda60ad5adc3",
+      "bytes": 1042,
       "kind": "guide",
       "topics": [
         "UserReadme"
@@ -133,7 +133,7 @@
     },
     {
       "pageId": "AiTaskRecipes",
-      "title": "按任务调用工具\r",
+      "title": "按任务调用工具",
       "path": "Docs/Versions/v0.1.0/Ai/TaskRecipes.md",
       "sha256": "03c89afba02df9b885647a1a8e00009c42101c42a02f9c9f5211bfee1458bd10",
       "bytes": 3368,
@@ -199,7 +199,7 @@
     },
     {
       "pageId": "DeveloperRecoveryAndHandoff",
-      "title": "故障记录与恢复\r",
+      "title": "故障记录与恢复",
       "path": "Docs/Versions/v0.1.0/Developer/RecoveryAndHandoff.md",
       "sha256": "66122ba26552adee87bb71ed5a5708656f815301f35211396fc6c70467e8992c",
       "bytes": 1344,
@@ -287,7 +287,7 @@
     },
     {
       "pageId": "AiAssetRead",
-      "title": "读取资源、导出图与生成副本\r",
+      "title": "读取资源、导出图与生成副本",
       "path": "Docs/Versions/v0.1.0/Ai/AssetRead.md",
       "sha256": "51a8193c620661e8df570289f09637cc6b0149c4b540d7ee36983c3bf7ca8111",
       "bytes": 7469,
@@ -301,10 +301,10 @@
     },
     {
       "pageId": "AiAssetReadExamples",
-      "title": "材质和蓝图的完整输入示例\r",
+      "title": "材质和蓝图的完整输入示例",
       "path": "Docs/Versions/v0.1.0/Ai/AssetReadExamples.md",
-      "sha256": "137b45e036611722dcf7b0e1a64dd93d0ea7f355a8a17dfba377b9d9b8451549",
-      "bytes": 4958,
+      "sha256": "26047f23bf949825e251ba1f0ba0daa9143e1f9a8fc37ff36b7a98a60681b8cc",
+      "bytes": 4898,
       "kind": "guide",
       "topics": [
         "AssetRead",
@@ -316,7 +316,7 @@
     },
     {
       "pageId": "AiCopyPreview",
-      "title": "编辑已有图并生成副本\r",
+      "title": "编辑已有图并生成副本",
       "path": "Docs/Versions/v0.1.0/Ai/CopyPreview.md",
       "sha256": "77ad85d9eed9e909abf68dfe7d75ae08183a433ab141dc3211265c6149bc173a",
       "bytes": 8239,
@@ -370,7 +370,7 @@
     },
     {
       "pageId": "AiNodeBulkExamples",
-      "title": "材质与蓝图的节点组合示例\r",
+      "title": "材质与蓝图的节点组合示例",
       "path": "Docs/Versions/v0.1.0/Ai/NodeBulkExamples.md",
       "sha256": "129ac6ffb09a411a52a0b2f4e04ef896b7f82c820475eff40088b5a8e78d3a85",
       "bytes": 20373,
@@ -384,7 +384,7 @@
     },
     {
       "pageId": "AiJsonArchitectureExamples",
-      "title": "材质、蓝图与实例的 JSON v3 示例\r",
+      "title": "材质、蓝图与实例的 JSON v3 示例",
       "path": "Docs/Versions/v0.1.0/Ai/JsonArchitectureExamples.md",
       "sha256": "b28278813178faf14e641eead14136a64041216d36c0f2924b015224b4632a01",
       "bytes": 25710,
@@ -399,7 +399,7 @@
     },
     {
       "pageId": "AiBlueprintTick",
-      "title": "让 Actor 持续沿 X 轴移动\r",
+      "title": "让 Actor 持续沿 X 轴移动",
       "path": "Docs/Versions/v0.1.0/Ai/BlueprintTick.md",
       "sha256": "7bc9506d457dce4b8eb2476f34090901173a5bb5091ca1d1643d2a105ad76f6c",
       "bytes": 5810,
@@ -415,7 +415,7 @@
     },
     {
       "pageId": "AiAssetSettings",
-      "title": "材质设置与蓝图变量属性\r",
+      "title": "材质设置与蓝图变量属性",
       "path": "Docs/Versions/v0.1.0/Ai/AssetSettings.md",
       "sha256": "3b461ab717a63bb6d16e4ff37c63f981230120d24a8d0d26495e17da19429b1e",
       "bytes": 12293,
@@ -433,8 +433,8 @@
       "pageId": "UserInstallation",
       "title": "选择安装方式",
       "path": "Docs/Versions/v0.1.0/User/Installation.md",
-      "sha256": "47b20ded4a9503ac456d69cdca015a26dc96a577d04f0e85eaa3a3d718ff33c6",
-      "bytes": 1845,
+      "sha256": "f22d7eb44758824e750ef89344a6c06f31e0b90bce81e3b62b66e77dfdb3eeea",
+      "bytes": 1953,
       "kind": "guide",
       "topics": [
         "UserInstallation"
@@ -444,8 +444,8 @@
       "pageId": "UserPluginInstallation",
       "title": "安装 NodeForge",
       "path": "Docs/Versions/v0.1.0/User/PluginInstallation.md",
-      "sha256": "83ca2611565fa87d70cd64350eb7cef5763bc384f4161e1914a3fe2438739cc3",
-      "bytes": 1918,
+      "sha256": "f49d45696a1be064f3b0a29291763dd4c911ac37dead9bd8d8cd3689bc285dbd",
+      "bytes": 2138,
       "kind": "guide",
       "topics": [
         "UserPluginInstallation"
@@ -455,8 +455,8 @@
       "pageId": "UserAiInstallation",
       "title": "连接 AI",
       "path": "Docs/Versions/v0.1.0/User/AiInstallation.md",
-      "sha256": "24a79b3a22c8c20f7a1cfdfdbd31162a8970c6f64274d734bc24cdec0dca4901",
-      "bytes": 4428,
+      "sha256": "966aa0a6f63e0c1ab2af0e84996e78455570fa16bd117a91a45933956860fbcd",
+      "bytes": 4648,
       "kind": "guide",
       "topics": [
         "UserAiInstallation"
@@ -464,7 +464,7 @@
     },
     {
       "pageId": "AiResources",
-      "title": "查找资源并在图中使用\r",
+      "title": "查找资源并在图中使用",
       "path": "Docs/Versions/v0.1.0/Ai/Resources.md",
       "sha256": "e82f938711304e2bb7aa575d45d97add0434b603a219931ee0898e47a61d0639",
       "bytes": 12936,
@@ -477,8 +477,8 @@
       "pageId": "GraphAuthoring",
       "title": "编写图形 JSON",
       "path": "Docs/Versions/v0.1.0/Reference/GraphAuthoring.md",
-      "sha256": "9b2c4891e9e70bbc5321b5a73fe22e55985d5f294887c9b68fa0e857cac8dcc6",
-      "bytes": 25820,
+      "sha256": "57e8b13dc60a820818c1f4939467ad0c0dd41dafb15c2ea34093a3610527cbf2",
+      "bytes": 25786,
       "kind": "guide",
       "topics": [
         "GraphAuthoring"
@@ -8196,10 +8196,10 @@
     },
     {
       "pageId": "AiApiTools1",
-      "title": "MCP 工具参考\r",
+      "title": "MCP 工具参考：状态与草稿",
       "path": "Docs/Versions/v0.1.0/Ai/AiApiTools1.md",
-      "sha256": "cd970d7b4eb1e2f991f4e5f6446d095efeb14731a6ad68f456fca6f300e0993a",
-      "bytes": 14099,
+      "sha256": "836311293a2b695027f648e1fad86ffb826b5681aa04bb54c397f42fdaca9115",
+      "bytes": 13973,
       "kind": "guide",
       "topics": [
         "ToolSchema"
@@ -8207,10 +8207,10 @@
     },
     {
       "pageId": "AiApiTools2",
-      "title": "MCP 工具参考\r",
+      "title": "MCP 工具参考：副本与生成",
       "path": "Docs/Versions/v0.1.0/Ai/AiApiTools2.md",
-      "sha256": "e728c419529df71efb5eb242cb061f9940e521235e6abb4fff9de8e323e82adf",
-      "bytes": 21282,
+      "sha256": "458401f1e6823f3c4f1689b506c84586295d451e146d4ec49da43f1e3e0f828a",
+      "bytes": 21300,
       "kind": "guide",
       "topics": [
         "ToolSchema"
@@ -8218,10 +8218,10 @@
     },
     {
       "pageId": "AiApiTools3",
-      "title": "MCP 工具参考\r",
+      "title": "MCP 工具参考：规则与连接",
       "path": "Docs/Versions/v0.1.0/Ai/AiApiTools3.md",
-      "sha256": "73b74f91e6152f3c3391fc8d3e32b372e9d1e8dc7f015baef4f3a649584d53e7",
-      "bytes": 13573,
+      "sha256": "5d3f75e20dfd5a7c8d9742add8a47b107f7df90d7a3c0c43b9da7d42c59ead26",
+      "bytes": 13591,
       "kind": "guide",
       "topics": [
         "ToolSchema"
@@ -8229,10 +8229,10 @@
     },
     {
       "pageId": "AiApiTools4",
-      "title": "MCP 工具参考\r",
+      "title": "MCP 工具参考：文档、报告与资源",
       "path": "Docs/Versions/v0.1.0/Ai/AiApiTools4.md",
-      "sha256": "6622db80130246456e9a593ab0ad182ceb10300324e10c10080c75824a50d031",
-      "bytes": 18070,
+      "sha256": "ee384e1d36780d1309c9e129e72e39d78d9b2b023180a5ac991e4bb146aab435",
+      "bytes": 18097,
       "kind": "guide",
       "topics": [
         "ToolSchema"
@@ -8287,13 +8287,25 @@
       "pageId": "SourcesAndLicenses",
       "title": "来源与第三方许可",
       "path": "Docs/Versions/v0.1.0/Reference/SourcesAndLicenses.md",
-      "sha256": "2fa355eda8360fc1a41091c969aed40bb26a07219b50304c8d2cc971316c9108",
-      "bytes": 1497,
+      "sha256": "f04e7f3bc280a1e8202f21bb3a022e0614c069eb80ac6ea1cc4bcfac5ba78728",
+      "bytes": 1532,
       "kind": "guide",
       "topics": [
         "Sources",
         "Licenses"
       ]
+    },
+    {
+      "pageId": "UserDownload",
+      "title": "下载 NodeForge",
+      "path": "Docs/Versions/v0.1.0/User/Download.md",
+      "kind": "guide",
+      "topics": [
+        "Download",
+        "Installation"
+      ],
+      "bytes": 2461,
+      "sha256": "7b2ecc4bcc5d50094e7522c64c07b955972c29dc45d612444c3bb86895fc8e5d"
     }
   ],
   "artifacts": [

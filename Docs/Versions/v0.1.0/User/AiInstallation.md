@@ -30,6 +30,8 @@ AI 客户端：填写客户端名称
 
 如果 AI 无法直接下载，可以先下载 [插件 ZIP](https://github.com/XRH66/NodeForge/releases/download/v0.1.0/NodeForge-0.1.0-UE5.3.2-Windows.zip) 和 [AI 接入 ZIP](https://github.com/XRH66/NodeForge/releases/download/v0.1.0/NodeForge-AI-0.1.0-Windows.zip)，再把这两个文件的本机位置告诉它。
 
+GitHub 仓库目前为私有：下载前需要登录有仓库访问权的账号。看到 404 时，先确认账号权限，再从 [v0.1.0 Release](https://github.com/XRH66/NodeForge/releases/tag/v0.1.0) 查看附件。
+
 ## 3. 确认连接
 
 安装工具会启动 UE 并检查连接。返回 `connected` 表示它已经连接到指定工程，能够读取插件状态。

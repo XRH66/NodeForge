@@ -54,14 +54,14 @@ export function createThemeRenderer(job){
     const group=page.output.split('/')[0],groupConfig=groups.get(group),label=groupConfig?.label||'文档中心';
     const link=(id,title,current=false,extra='')=>{const href=destination(id);return href?`<a href="${escape(href)}"${current?' class="current" aria-current="page"':''}${extra}>${escape(title)}</a>`:'';};
     const isHome=page.pageId==='Readme';
-    const nav=link('Readme','首页',isHome)+config.groups.filter(g=>g.topNav!==false).map(g=>link(g.home,g.shortLabel,group===g.id)).join('');
+    const nav=link('Readme','首页',isHome)+config.groups.filter(g=>g.topNav!==false).map(g=>link(g.home,g.shortLabel,group===g.id)).join('')+`<a href="${escape(config.projectUrl)}" target="_blank" rel="noopener noreferrer">GitHub</a>`;
     const menu=menuFor(group),sidebar=menu.map(([id,title])=>link(id,title,page.pageId===id)).join('');
     const currentIndex=menu.findIndex(([id])=>id===page.pageId);
     const tocHeadings=headings.filter(h=>h.depth===2||h.depth===3);
     const toc=tocHeadings.map(h=>`<a class="level${h.depth}" href="#${escape(h.id)}">${escape(h.title)}</a>`).join('');
     const landing=page.pageId==='Readme'||page.pageId.endsWith('Readme');
     const h1=html.match(/<h1\b[^>]*>[\s\S]*?<\/h1>/)?.[0]||`<h1>${escape(page.title)}</h1>`;
-    const body=html.replace(h1,'');
+    const body=html.replace(h1,'').replace(/<a href="([^"]+)">下载(插件| AI 接入包（可选）)<\/a>/g, '<a class="button-primary" href="$1">下载$2</a>');
     const minutes=Math.max(1,Math.round(page.text.replace(/\[[^\]]+\]\([^)]*\)/g,'').length/550));
     const shortVersion=job.bundleId.replace(/^NodeForge-/,'');
     const brand=`<a class="brand" href="${escape(destination('Readme')||destination(groupConfig?.home)||'#')}" aria-label="NodeForge 节点熔炉文档首页"><img class="brand-icon" src="${asset(config.brand.icon)}" width="34" height="34" alt=""><img class="brand-wordmark brand-dark" src="${asset(config.brand.dark)}" width="253" height="33" alt="NodeForge · 节点熔炉"><img class="brand-wordmark brand-light" src="${asset(config.brand.light)}" width="253" height="33" alt="NodeForge · 节点熔炉"></a>`;
@@ -72,7 +72,7 @@ export function createThemeRenderer(job){
     const docRoot=path.relative(base,root).split(path.sep).join('/')||'.';
     // The homepage cards already display these two README navigation sections.
     // Keep all other source sections, including version identity and delivery limits.
-    const homeBody=isHome?body.split(/(?=<h2\b)/).filter(section=>!/^<h2\b[^>]*>\s*(选择阅读入口|公共参考)\s*<\/h2>/.test(section)).join(''):body;
+    const homeBody=isHome?body.split(/(?=<h2\b)/).filter(section=>!/^<h2\b[^>]*>\s*(选择阅读入口|公共参考|从这里开始|按任务查阅)\s*<\/h2>/.test(section)).join(''):body;
     const homeMarkup=isHome?renderHome({config,asset,destination,icon,escape,body:homeBody,brand,link,edition:shortVersion}):null;
     const readingPresentation=isHome?null:readingLayers({config,icon,escape});
     const markup=`<!doctype html>

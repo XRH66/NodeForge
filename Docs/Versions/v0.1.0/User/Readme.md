@@ -4,6 +4,7 @@
 
 ## 安装与入门
 
+- [下载插件与 AI 包](Download.md)：两个安装包、支持环境与校验值。
 - [选择安装方式](Installation.md)：普通插件和 AI 接入包分别做什么。
 - [安装插件](PluginInstallation.md)：下载、复制到工程和首次启用。
 - [生成第一个材质](GettingStarted.md)：从附带示例开始。

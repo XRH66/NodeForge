@@ -161,6 +161,6 @@ P.text是原完整UTF-8文本，不能由P.value重新序列化后声称原paylo
 
 ## 检查结果
 
-复制已有资产时，使用本次导出的完整 text 和 sourceRef；下方示例 JSON 仅用于说明新建图的结构。生成报告为 waitingPersistence 时，按 [保存核验](Preparation.md)检查重开结果。
+生成后检查报告中的编译、保存和回读结果；`waitingPersistence` 表示尚未独立检查重开结果，按 [保存核验](Preparation.md)继续。
 
 [精确字段与来源](AssetRead.md) · [准备](Preparation.md) · [结果与恢复](ResultsAndRecovery.md)

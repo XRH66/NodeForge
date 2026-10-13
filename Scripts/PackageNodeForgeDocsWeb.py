@@ -1,5 +1,4 @@
-"""Export a frozen documentation bundle as a portable static website."""
-from html import escape
+"""Export declared documentation files as a portable static website."""
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit, urlunsplit
@@ -56,7 +55,7 @@ def main():
                 raise ValueError('Incomplete export provenance does not match the selected bundle')
     manifest = json.loads((bundle / 'Manifest.json').read_text(encoding='utf-8'))
     layout = json.loads((bundle / 'LayoutManifest.json').read_text(encoding='utf-8'))
-    review, attachments = None, {}
+    review = None
     if args.reviewed_candidate:
         review_path = (ROOT / args.reviewed_candidate).resolve()
         if not review_path.is_relative_to(ROOT / 'Reports'):
@@ -64,13 +63,13 @@ def main():
         review = json.loads(review_path.read_text(encoding='utf-8'))
         if review.get('canAdvance') is not True or review.get('manifestSha256') != digest(bundle / 'Manifest.json'):
             raise ValueError('Exact candidate static review required')
-        for row in review['publicAttachments']:
-            source, public = (ROOT / row['source']).resolve(), (ROOT / row['public']).resolve()
-            if not source.is_relative_to(ROOT / 'Contracts') or not public.is_relative_to(ROOT / 'Reports') or digest(public) != row['sha256'] or source in attachments:
-                raise ValueError('Unique reviewed public contract derivative required')
-            attachments[source] = public
-    if manifest['publicationStatus'] != 'frozen' and review is None:
-        raise ValueError('Select an explicitly frozen documentation bundle')
+    released_source = layout.get('sourceBundle')
+    if manifest['publicationStatus'] == 'released':
+        source_bundle = (ROOT / released_source).resolve() if released_source else bundle
+        if source_bundle == bundle or not source_bundle.is_relative_to(ROOT) or digest(source_bundle / 'Manifest.json') != layout.get('sourceManifestSha256'):
+            raise ValueError('Released input must be rendered into a separate candidate with exact source provenance')
+    elif manifest['publicationStatus'] != 'frozen' and review is None:
+        raise ValueError('Select a frozen bundle, a reviewed candidate, or a separately rendered released source')
     for section in ('markdown', 'htmlArtifacts', 'assets'):
         for item in layout[section]:
             if digest(ROOT / item['path']) != item['sha256']:
@@ -94,22 +93,23 @@ def main():
             return site / relative
         return site / 'Attachments' / source.relative_to(ROOT)
 
-    for source in bundle.rglob('*'):
-        if not source.is_file():
-            continue
-        if source.name == 'Generation.json':
-            continue  # Internal renderer input/report can contain private executable paths.
-        if source.parent == bundle and source.suffix == '.json':
-            copy_file(source, output / 'Provenance' / source.name)
-            if review is not None:
-                target = target_for(source)
-                mapped[source.resolve()] = target
-                copy_file(source, target)
-        else:
-            target = target_for(source)
-            mapped[source.resolve()] = target
-            copy_file(source, target)
-    for source in bundle.rglob('*.html'):
+    # Public files are declared inputs, never a recursive copy of the bundle.
+    public_sources = { (ROOT / item['path']).resolve() for section in ('markdown','htmlArtifacts','assets') for item in layout[section] }
+    for artifact in manifest['artifacts']:
+        original = (ROOT / artifact['path']).resolve()
+        source = bundle / original.relative_to(source_bundle) if manifest['publicationStatus'] == 'released' else original
+        if digest(source) != artifact['sha256']:
+            raise ValueError('Public artifact hash mismatch: ' + artifact['path'])
+        public_sources.add(source.resolve())
+    for source in sorted(public_sources):
+        if not source.is_relative_to(bundle) or not source.is_file():
+            raise ValueError('Declared public file outside rendered bundle: ' + str(source))
+        target = target_for(source)
+        mapped[source] = target
+        copy_file(source, target)
+    for name in ('Manifest.json','LayoutManifest.json'):
+        copy_file(bundle / name, output / 'Provenance' / name)
+    for source in sorted(p for p in public_sources if p.suffix == '.html'):
         for tag, key, href in Page(source.read_text(encoding='utf-8')).refs:
             url = urlsplit(href)
             if url.scheme or url.netloc or not url.path:
@@ -117,34 +117,14 @@ def main():
             destination = (source.parent / unquote(url.path)).resolve()
             if not destination.is_relative_to(bundle):
                 external.add(destination)
-    for source in sorted(external):
-        if not source.is_relative_to(ROOT) or not source.exists():
-            raise ValueError('Reference outside project or missing: ' + str(source))
-        if review is not None and source not in attachments:
-            raise ValueError('Candidate attachment has no reviewed public derivative: ' + str(source))
-        target = target_for(source)
-        mapped[source] = target
-        if source.is_dir():
-            files = sorted(source.glob('*.json'))
-            if not files or any(p.is_dir() for p in source.iterdir()):
-                raise ValueError('Directory reference requires a reviewed flat JSON evidence folder')
-            for file in files:
-                mapped[file.resolve()] = target / file.name
-                copy_file(file, target / file.name)
-            home = posixpath.relpath((site / 'index.html').as_posix(), target.as_posix())
-            links = ''.join('<li><a href="' + escape(p.name, quote=True) + '">' + escape(p.name) + '</a></li>' for p in files)
-            (target / 'index.html').write_text('<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>原始调用记录 · NodeForge</title><style>body{font:16px/1.8 system-ui,sans-serif;max-width:760px;margin:64px auto;padding:0 24px;background:#141414;color:#f1eee5}a{color:#e86e50}li{padding:5px 0}@media(prefers-color-scheme:light){body{background:#f8f6f0;color:#232522}}</style></head><body><a href="' + home + '">← 文档首页</a><h1>原始调用记录</h1><p>Build122 MCP P3 历史证据，保留原文件身份。下载后可查看完整 JSON；历史记录不表示当前运行状态。</p><ul>' + links + '</ul></body></html>\n', encoding='utf-8')
-        else:
-            if source.suffix not in ('.md', '.json'):
-                raise ValueError('Unreviewed attachment type: ' + str(source))
-            copy_file(attachments.get(source, source), target)
+    if external:
+        raise ValueError('Undeclared external attachment; replace with a public source link before export: ' + str(sorted(external)[0]))
 
     rewrites = []
-    document_sources = list(bundle.rglob('*.html')) + list(bundle.rglob('*.md'))
-    document_sources += [p for p in external if p.is_file() and p.suffix in ('.md', '.html')]
+    document_sources = sorted(p for p in public_sources if p.suffix in ('.html','.md'))
     for source in document_sources:
         target = mapped[source.resolve()]
-        source_text = attachments.get(source, source).read_text(encoding='utf-8')
+        source_text = source.read_text(encoding='utf-8')
         text = source_text
 
         def portable(href):
@@ -180,13 +160,13 @@ def main():
 
     instructions = f'''# NodeForge 文档网站发布包
 
-本包对应 {manifest['buildId']} / 桥{manifest['bridgeVersion']} / {manifest['bundleId']}。网页主题{layout['themeVersion']}沿既定设计保持；资料候选导出和最终交付验收分别记录。
+本包对应 NodeForge v{manifest['buildId']}。网页主题{layout['themeVersion']}沿既定设计保持；网站内容修订与产品发行版本分别记录。
 
 ## 发布
 
-将 `Site` 文件夹内的全部内容上传到静态网站的发布目录，默认首页为 `index.html`。上传后目录结构保持不变，首页、User、Ai、Developer、Reference、Version、Assets、Attachments 都必须一起上传。可以部署在域名根目录或子目录；链接使用相对路径。服务器使用 UTF-8，正确提供 HTML/CSS/JS/SVG/PNG/Markdown/JSON 文件类型，默认文档设为小写 `index.html`；无需单页应用路由回退。推荐使用 HTTPS，以便浏览器提供完整剪贴板能力。
+将 `Site` 文件夹内的全部内容上传到静态网站的发布目录，默认首页为 `index.html`。上传后目录结构保持不变，首页、User、Ai、Developer、Reference、Version、Assets 和三份公开 JSON 都必须一起上传。可以部署在域名根目录或子目录；链接使用相对路径。服务器使用 UTF-8，正确提供 HTML/CSS/JS/SVG/PNG/Markdown/JSON 文件类型，默认文档设为小写 `index.html`；无需单页应用路由回退。推荐使用 HTTPS，以便浏览器提供完整剪贴板能力。
 
-网站无需安装依赖、编译、数据库或后端。暗亮主题、连续蓝图、圆形主题切换、站内搜索和复制随原页面保留；站点没有外部脚本、样式或素材依赖。页面直接引用的允许附件在 Attachments；候选契约使用同规范内容的公开衍生稿，不带内部报告、真实配置或历史会话。源码定位说明区分交付包与维护库，不表示网站含完整UE源码或开发报告。
+网站无需安装依赖、编译、数据库或后端。暗亮主题、连续蓝图、圆形主题切换、Pico 滚动条、站内搜索和复制随原页面保留；站点没有外部脚本、样式或素材依赖。发布集合来自明确的页面、资源和公开 JSON 清单，不沿链接自动带入工程文件、报告或配置。只上传 Site；Source 和 Provenance 用于本地维护。
 
 ## 内容与后续更新
 

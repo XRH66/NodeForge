@@ -8,6 +8,8 @@
 
 Release 页的 `Source code` 是源码压缩包，安装时请选择上面的插件 ZIP。
 
+GitHub 仓库目前为私有：下载前需要登录有仓库访问权的账号。看到 404 时，先确认账号权限，再从 [v0.1.0 Release](https://github.com/XRH66/NodeForge/releases/tag/v0.1.0) 查看附件。
+
 ## 2. 放入工程
 
 关闭准备安装插件的 UE 工程，把整个 `NodeForge` 文件夹复制到工程的 `Plugins` 文件夹。如果没有 `Plugins`，新建一个。

@@ -2,6 +2,7 @@
   "themeVersion": "2.4.1-preview",
   "defaultTheme": "dark",
   "siteTitle": "NodeForge 文档",
+  "projectUrl": "https://github.com/XRH66/NodeForge",
   "brand": {
     "dark": "Brand/WordmarkDark.svg",
     "light": "Brand/WordmarkLight.svg",
@@ -18,6 +19,10 @@
         [
           "UserReadme",
           "阅读首页"
+        ],
+        [
+          "UserDownload",
+          "下载插件与 AI 包"
         ],
         [
           "UserInstallation",
@@ -156,7 +161,7 @@
       "menu": [
         [
           "VersionReadme",
-          "版本身份"
+          "版本概览"
         ],
         [
           "VersionReleaseNotes",
@@ -230,8 +235,8 @@
       "pageId": "UserGettingStarted"
     },
     "secondary": {
-      "label": "安装插件",
-      "pageId": "UserInstallation"
+      "label": "下载插件",
+      "pageId": "UserDownload"
     },
     "routes": [
       {
@@ -257,8 +262,8 @@
       },
       {
         "pageId": "VersionReadme",
-        "title": "版本与边界",
-        "description": "确认版本身份，查阅变更、兼容条件和已知限制，让每次使用有据可循。",
+        "title": "版本与限制",
+        "description": "查阅本版功能、环境要求和已知限制，确认它适合你的工程。",
         "action": "查看版本资料",
         "icon": "list"
       }
