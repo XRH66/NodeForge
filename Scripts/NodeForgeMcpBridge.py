@@ -11,9 +11,11 @@ import subprocess
 import sys
 import threading
 import uuid
+import time
+from types import SimpleNamespace
 from pathlib import Path
 from jsonschema import Draft202012Validator
-from NodeForgeEditorTransport import Windows, strict_json, TransportError
+from NodeForgeEditorTransport import Windows, Session, strict_json, TransportError
 from RunProcessGuard import validate_isolated_project, process_identity, load_installation_binding, state_directory, load_ai_installation, installation_user_directory, discover_editor_sessions, installation_path, installation_product
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -21,7 +23,7 @@ HOME = ROOT / 'Tools/NodeForgeMcp'
 REPORTS = ROOT / 'Reports/PluginControlStageTwo/McpDocs1'
 CONTROL_REPORTS = ROOT / 'Reports/PluginControlStageTwo'
 CLIENT_CONFIG = REPORTS / 'Client/Config.json'
-VERSION = '0.4.0'
+VERSION = '0.4.1'
 MAX_REPORT = 1048576
 MAX_SELECTED = 32768
 MAX_GRAPH = 65536
@@ -223,6 +225,9 @@ class Bridge:
         self.config = config = strict_json(config_data)
         self.discovery = isinstance(config, dict) and config.get('format') == 'NodeForgeAiInstallation1'
         self.contexts = {}
+        self.client_peer = None
+        self.client_disconnected = False
+        self.presence_discovery_state = None
         if self.discovery:
             self.config = config = load_ai_installation(self.config_path, ROOT)
         elif (not isinstance(config, dict) or set(config) != PUBLIC_CONFIG_FIELDS
@@ -596,6 +601,8 @@ class Bridge:
             return self.manifest, self.config['docsManifestSha256']
 
     def close(self):
+        if self.client_peer is not None:
+            self.client_peer.close(); self.client_peer = None
         if self.discovery:
             for context in self.contexts.values(): context.close()
             return
@@ -775,7 +782,40 @@ class Bridge:
                     'errors': [{'code': 'NFMCP_CLI_UNCONFIRMED'}]}
         finally: self.connections.release()
 
-    def select_connection(self, params):
+    def client_presence_tick(self, client):
+        """Authenticated original transport; cache-only presence, never UE business."""
+        from NodeForgeControl import engine_processes, process_uses_project, digest
+        if self.discovery:
+            # Codex alone is in scope for detection. Admission and unique-project
+            # selection reuse the original read-only connect; no auto UE business.
+            if client['name'] in ('codex','codex-mcp-client','Codex') and not self.has_unresolved():
+                candidates,rejected=discover_editor_sessions(ROOT,self.engine)
+                state=(len(candidates),tuple(sorted({r['code'] for r in rejected})))
+                if state != self.presence_discovery_state:
+                    print(json.dumps({'event':'NodeForgeClientPresenceDiscovery','candidateCount':state[0],'rejectedCodes':state[1]}),file=sys.stderr,flush=True)
+                    self.presence_discovery_state=state
+                if len(candidates)==1 and not any(c.identity is not None and c.identity['controlSessionId']==candidates[0]['controlSessionId'] for c in self.contexts.values()):
+                    self.select_connection({}, for_presence=True)
+            for context in tuple(self.contexts.values()): context.client_presence_tick(client)
+            return
+        if self.handle is None or self.identity is None or self.client_disconnected: return
+        started=time.monotonic()
+        try:
+            if self.client_peer is None:
+                args=SimpleNamespace(timeout_seconds=5,project=str(self.project),plugin_directory=str(self.stage),
+                    session_file=self.identity['sessionFile'],mcp_client=client)
+                self.client_peer=Session(args,ROOT,digest,engine_processes,process_uses_project)
+            self.client_peer.deadline=time.monotonic()+5
+            reply=self.client_peer.request('editor.getState',{},'Presence-'+uuid.uuid4().hex)
+            if 'error' in reply: raise TransportError('NFEDITOR_CLIENT_CLOSED',3)
+        except (TransportError,OSError,ValueError) as error:
+            print(json.dumps({'event':'NodeForgeClientPresenceFailure','code':getattr(error,'code',type(error).__name__),
+                'elapsedSeconds':round(time.monotonic()-started,3)}),file=sys.stderr,flush=True)
+            if self.client_peer is not None:self.client_peer.close();self.client_peer=None
+            self.client_disconnected=True
+            # Original handles/call ledgers remain available for calls.get/report recovery.
+
+    def select_connection(self, params, *, for_presence=False):
         self._documents()
         if not self.config['enabled']: return result('notConnected', reason='aiDisabled', candidates=[])
         candidates, rejected = discover_editor_sessions(ROOT, self.engine)
@@ -794,23 +834,27 @@ class Bridge:
         with self.connection_lock:
             context = next((c for c in self.contexts.values() if c.config_path == Path(row['config'])), None)
             context = context or type(self)(row['config'])
-            connected = context.connect()
+            connected = context.connect(for_presence=for_presence)
             if connected['status'] == 'connected': self.contexts[connected['handle']] = context
             return connected
 
-    def connect(self):
+    def connect(self, *, for_presence=False):
         if not self.connection_lock.acquire(blocking=False):
             raise BridgeError('NFMCP_BUSY', 'environmentBlocked')
         try:
-            return self._connect()
+            return self._connect(for_presence=for_presence)
         finally:
             self.connection_lock.release()
 
-    def _connect(self):
+    def _connect(self, *, for_presence=False):
         public = self._public()
         if self.identity is not None and public != self.identity:
             raise BridgeError('NFMCP_RECONNECT_REQUIRES_NEW_CONFIG_PROCESS', 'environmentBlocked')
-        self._claim_business_lease()
+        # Online observation uses exactly the same identity/operation admission,
+        # but does not own business. Only an explicit connect publishes a handle
+        # to the client and claims the original exclusive call-ledger lease.
+        if not for_presence:
+            self._claim_business_lease()
         summary = self._cli('editor-describe')
         if summary.get('cliExitCode') != 0: return self._project_result(summary)
         description = summary.get('response', {}).get('result', {})
@@ -818,6 +862,7 @@ class Bridge:
                 or any(description.get(key) != self.operations[key] for key in self.operations)):
             raise BridgeError('NFMCP_OPERATION_VERSION_MISMATCH', 'environmentBlocked')
         self.identity = public
+        self.client_disconnected = False
         if self.handle is None: self.handle = uuid.uuid4().hex
         for path in (self.run_root / 'Calls').glob('*.json'):
             row = strict_json(safe_read(path, MAX_REPORT, roots=(self.run_root,)))
@@ -1063,6 +1108,8 @@ class Bridge:
         try:
             if name not in self.tools: raise BridgeError('NFMCP_TOOL_UNAVAILABLE')
             tool = self.tools[name]
+            if self.client_disconnected and name not in ('nodeforge_connect','nodeforge_docs_index','nodeforge_docs_read','nodeforge_report_read') and tool['operation']!='calls.get':
+                return result('notConnected',reason='clientDisconnected',unresolvedCalls=sorted(self.unknown))
             Draft202012Validator(tool['inputSchema']).validate(params)
             if len(encoded(params)) > 524288: raise BridgeError('NFMCP_ARGUMENT_BYTES')
             strict_json(encoded(params))

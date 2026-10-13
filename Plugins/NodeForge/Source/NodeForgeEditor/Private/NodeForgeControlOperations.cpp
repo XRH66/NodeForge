@@ -200,7 +200,15 @@ TSharedRef<FJsonObject> ArgumentsSchema(const FOperationDefinition& Definition)
         for (const TCHAR* Name : {TEXT("editorApiVersion"), TEXT("profile"), TEXT("controlSessionId"),
             TEXT("expectedProject"), TEXT("expectedProcessStart"), TEXT("expectedBinarySha256"), TEXT("credential")})
             Parameter(Name, TEXT("string"));
-        Parameter(TEXT("expectedPid"), TEXT("integer")); break;
+        Parameter(TEXT("expectedPid"), TEXT("integer"));
+        Parameter(TEXT("clientId"), TEXT("string"), false);
+        Parameter(TEXT("clientName"), TEXT("string"), false);
+        Parameter(TEXT("clientVersion"), TEXT("string"), false);
+        Properties->GetObjectField(TEXT("clientId"))->SetStringField(TEXT("pattern"),TEXT("^[0-9a-f]{32}$"));
+        Properties->GetObjectField(TEXT("clientName"))->SetNumberField(TEXT("minLength"),1);
+        Properties->GetObjectField(TEXT("clientName"))->SetNumberField(TEXT("maxLength"),80);
+        Properties->GetObjectField(TEXT("clientVersion"))->SetNumberField(TEXT("maxLength"),80);
+        break;
     default: break;
     }
     Arguments->SetObjectField(TEXT("properties"), Properties); Arguments->SetArrayField(TEXT("required"), Required);

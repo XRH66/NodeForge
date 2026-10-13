@@ -164,6 +164,11 @@ bool FNodeForgeEditorControlProtocolTest::RunTest(const FString& Parameters)
     HelloArgs->SetNumberField(TEXT("expectedPid"), 1); HelloArgs->SetStringField(TEXT("expectedProcessStart"), TEXT("134000000000000000"));
     HelloArgs->SetStringField(TEXT("expectedBinarySha256"), FString::ChrN(64, 'b')); HelloArgs->SetStringField(TEXT("credential"), FString::ChrN(64, 'c')); Hello->SetObjectField(TEXT("params"), HelloArgs);
     Row(TEXT("HelloSchemaAcceptedWithoutCredentialFingerprint"), ParseRequest(JsonBytes(Hello), Read, Request, Error) && Fingerprint(Request).IsEmpty());
+    HelloArgs->SetStringField(TEXT("clientId"),FString::ChrN(32,'d'));HelloArgs->SetStringField(TEXT("clientName"),TEXT("codex-mcp-client"));HelloArgs->SetStringField(TEXT("clientVersion"),TEXT("1.0"));
+    Row(TEXT("OptionalSdkClientIdentityAcceptedWithoutBusinessFingerprint"),ParseRequest(JsonBytes(Hello),Read,Request,Error)&&Fingerprint(Request).IsEmpty());
+    HelloArgs->RemoveField(TEXT("clientVersion"));
+    Row(TEXT("PartialSdkClientIdentityRejected"),!ParseRequest(JsonBytes(Hello),Read,Request,Error));
+    HelloArgs->RemoveField(TEXT("clientId"));HelloArgs->RemoveField(TEXT("clientName"));
     HelloArgs->SetStringField(TEXT("credential"), TEXT("invalid-public-fixture"));
     Row(TEXT("RejectedHelloDoesNotReflectCredentialOrPath"), !ParseRequest(JsonBytes(Hello), Read, Request, Error)
         && !Failure(Error)->GetObjectField(TEXT("error"))->GetStringField(TEXT("message")).Contains(TEXT("invalid-public-fixture")));

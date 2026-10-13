@@ -8,7 +8,7 @@ struct FNodeForgeEditorState
 {
     FNodeForgePanelState Input;
     bool bBusy = false;
-    FString ResultText = TEXT("准备就绪。粘贴构图 JSON，先检查输入，再生成新资产。完整诊断通过报告按钮查看。");
+    FString ResultText;
     FString ResultNotice;
     FString LastReportPath;
     FString LastAssetPath;

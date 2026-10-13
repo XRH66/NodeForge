@@ -27,6 +27,12 @@ bool FNodeForgePanelInputGuardsTest::RunTest(const FString& Parameters)
     auto Row=[&](const TCHAR* Name,bool Passed)
     {TestTrue(Name,Passed);auto R=MakeShared<FJsonObject>();R->SetStringField(TEXT("case"),Name);R->SetBoolField(TEXT("passed"),Passed);Rows.Add(MakeShared<FJsonValueObject>(R));};
     FNodeForgePanelState State;FString Error;
+    FNodeForgePanelState Editing;
+    Row(TEXT("FirstManualEditCapturesEmptyRestorePoint"),Editing.Edit(TEXT("first"))&&Editing.CanRestore());
+    Row(TEXT("ContinuousManualEditsKeepPreEditSnapshot"),Editing.Edit(TEXT("second"))&&Editing.Restore()&&Editing.Draft().Text.IsEmpty());
+    Row(TEXT("ExplicitLoadStartsNewEditingSegment"),Editing.Replace(TEXT("loaded"),TEXT("file"),TEXT("Input.json"),TEXT("hash"),Error)
+        &&Editing.Edit(TEXT("loaded edit"))&&Editing.Edit(TEXT("loaded edit 2"))&&Editing.Restore()&&Editing.Draft().Text==TEXT("loaded")
+        &&Editing.Draft().SourcePath==TEXT("Input.json")&&Editing.Draft().SourceDigest==TEXT("hash"));
     const FString A=TEXT("{\"value\":\"AbC\"}"),B=TEXT("{\"value\":\"中文\"}");
     Row(TEXT("NativeEditUpdatesRevision"),State.Edit(A)&&State.Revision()==1);
     const uint64 RevisionA=State.Revision();

@@ -12,6 +12,8 @@ public class NodeForgeEditor : ModuleRules
         });
         PublicSystemLibraries.Add("bcrypt.lib");
         PublicSystemLibraries.Add("advapi32.lib");
+        PublicSystemLibraries.Add("windowscodecs.lib");
+        PublicSystemLibraries.Add("ole32.lib");
         if (Target.Platform == UnrealTargetPlatform.Win64)
             PrivateDependencyModuleNames.Add("LiveCoding");
         if (Target.bBuildDeveloperTools)

@@ -209,7 +209,7 @@ def execute(args, summary):
             if argument not in ('NFInput', 'NFPrevious'):
                 raise ControlError('NFCLI_DESCRIPTION', 'Unsupported host file binding in description', field['name'], 3)
             path = installation_path(value)
-            scopes = (ROOT / 'Examples', ROOT / 'Tests', state_directory(project) / 'Reports') if argument == 'NFInput' else (state_directory(project) / 'Reports',)
+            scopes = (ROOT / 'Examples', ROOT / 'Tests', state_directory(project) / 'Reports', state_directory(project) / 'RelayoutInputs') if argument == 'NFInput' else (state_directory(project) / 'Reports',)
             if not any(path.is_relative_to(scope) for scope in scopes):
                 raise ControlError('NFCLI_FILE_SCOPE', 'Selected project state or installed example required', field['name'])
             limit = 65536 if argument == 'NFInput' else REPORT_LIMIT

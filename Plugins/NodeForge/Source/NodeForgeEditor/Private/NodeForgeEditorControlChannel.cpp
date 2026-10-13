@@ -160,7 +160,8 @@ struct FNodeForgeEditorControlChannel::FImpl
     using FHandle = NodeForgeControlWindows::FHandle;
     struct FWorker : FRunnable
     {
-        FImpl& Owner; FHandle Pipe, IoEvent, Done;
+        FImpl& Owner; FHandle Pipe, IoEvent, Done, ClientStop{CreateEventW(nullptr,1,0,nullptr)};
+        FString ClientId,ClientName,ClientVersion; // Protected by Owner.ClientLock.
         TUniquePtr<FRunnableThread> Thread; OVERLAPPED Overlap = {};
         TArray<uint8> IoBuffer; // Also survives a failed cancellation/stop observation.
         bool bPending = false;
@@ -170,10 +171,10 @@ struct FNodeForgeEditorControlChannel::FImpl
         ~FWorker() override { check(!bPending); }
         bool WaitIo(DWORD& Count, double Deadline)
         {
-            HANDLE Events[] = {Owner.StopEvent.Value, IoEvent.Value};
+            HANDLE Events[] = {Owner.StopEvent.Value, ClientStop.Value, IoEvent.Value};
             const double Left = Deadline - FPlatformTime::Seconds();
-            DWORD Wait = WaitForMultipleObjects(2, Events, 0, Left <= 0 ? 0 : static_cast<DWORD>(FMath::Min(Left * 1000, double(MAX_uint32 - 1))));
-            if (Wait != WAIT_OBJECT_0 + 1)
+            DWORD Wait = WaitForMultipleObjects(3, Events, 0, Left <= 0 ? 0 : static_cast<DWORD>(FMath::Min(Left * 1000, double(MAX_uint32 - 1))));
+            if (Wait != WAIT_OBJECT_0 + 2)
             {
                 CancelIoEx(Pipe.Value, &Overlap); ++CancelRequested;
                 // Cancellation request is not completion. Keep all storage until the actual event completes.
@@ -199,7 +200,8 @@ struct FNodeForgeEditorControlChannel::FImpl
         void BeginIo() { check(!bPending); ResetEvent(IoEvent.Value); Overlap = {}; Overlap.hEvent = IoEvent.Value; }
         bool Transfer(bool Write, uint8* Data, DWORD Size, DWORD& Count, double Deadline)
         {
-            if (FPlatformTime::Seconds() >= Deadline || WaitForSingleObject(Owner.StopEvent.Value, 0) == WAIT_OBJECT_0) return false;
+            if (FPlatformTime::Seconds() >= Deadline || WaitForSingleObject(Owner.StopEvent.Value, 0) == WAIT_OBJECT_0
+                ||WaitForSingleObject(ClientStop.Value,0)==WAIT_OBJECT_0) return false;
             IoBuffer.SetNumUninitialized(Size); if (Write) FMemory::Memcpy(IoBuffer.GetData(), Data, Size);
             BeginIo(); Count = 0;
             const BOOL Ok = Write ? WriteFile(Pipe.Value, IoBuffer.GetData(), Size, &Count, &Overlap) : ReadFile(Pipe.Value, IoBuffer.GetData(), Size, &Count, &Overlap);
@@ -272,6 +274,13 @@ struct FNodeForgeEditorControlChannel::FImpl
                         if (!Owner.Hello(Request))
                         { Error.RpcCode = -32010; Error.Code = TEXT("sessionMismatch"); if (Send(Failure(Error), HelloDeadline)) ObserveClientClose(HelloDeadline); break; }
                         Authenticated = true;
+                        if(Request.Arguments->HasField(TEXT("clientId")))
+                        {
+                            FScopeLock Lock(&Owner.ClientLock);
+                            ClientId=Request.Arguments->GetStringField(TEXT("clientId"));
+                            ClientName=Request.Arguments->GetStringField(TEXT("clientName"));
+                            ClientVersion=Request.Arguments->GetStringField(TEXT("clientVersion"));
+                        }
                         TSharedPtr<FJsonObject> LocalIdentity;
                         if (!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Owner.IdentityCache), LocalIdentity) || !LocalIdentity) break;
                         Response = LocalIdentity.ToSharedRef();
@@ -323,8 +332,10 @@ struct FNodeForgeEditorControlChannel::FImpl
                     }
                     if (!Send(Result(Request.Id, Response), ReplyDeadline)) break;
                 }
+                {FScopeLock Lock(&Owner.ClientLock);ClientId.Empty();ClientName.Empty();ClientVersion.Empty();}
                 if (bPending) break;
                 DisconnectNamedPipe(Pipe.Value);
+                ResetEvent(ClientStop.Value);
             }
             SetEvent(Done.Value); return 0;
         }
@@ -340,6 +351,7 @@ struct FNodeForgeEditorControlChannel::FImpl
         bool bPublishing = true;
     };
     FCriticalSection RegistryLock; TMap<FString, FCall> Calls;
+    FCriticalSection ClientLock;
     FString PendingCall, ActiveCall;
     std::atomic<bool> bStopping{false}, bStopRequested{false};
     std::atomic<uint32> ManagementReplies{0};
@@ -531,7 +543,7 @@ bool FNodeForgeEditorControlChannel::Start(FString& Error)
     SECURITY_ATTRIBUTES Attributes = {sizeof(SECURITY_ATTRIBUTES), Impl->Security.PipeSd, 0};
     for (int32 I = 0; I < MaxConnections; ++I)
     {
-        auto Worker = MakeUnique<FImpl::FWorker>(*Impl); if (!Worker->IoEvent.Valid() || !Worker->Done.Valid()) return false;
+        auto Worker = MakeUnique<FImpl::FWorker>(*Impl); if (!Worker->IoEvent.Valid() || !Worker->Done.Valid() || !Worker->ClientStop.Valid()) return false;
         Worker->Pipe.Value = CreateNamedPipeW(*Impl->PipeName, PIPE_ACCESS_DUPLEX | FILE_FLAG_OVERLAPPED | (I == 0 ? FILE_FLAG_FIRST_PIPE_INSTANCE : 0),
             PIPE_TYPE_BYTE | PIPE_READMODE_BYTE | PIPE_WAIT | PIPE_REJECT_REMOTE_CLIENTS, MaxConnections, 65536, 65536, 0, &Attributes);
         auto PipeEvidence = MakeShared<FJsonObject>();
@@ -597,6 +609,7 @@ void FNodeForgeEditorControlChannel::Drain(FNodeForgeEditorControlService& Servi
 void FNodeForgeEditorControlChannel::Publish(const TSharedRef<FJsonObject>& State, const TSharedRef<FJsonObject>& Draft)
 {
     check(IsInGameThread()); State->SetObjectField(TEXT("identity"), Impl->Identity.IsValid() ? Impl->Identity.ToSharedRef() : MakeShared<FJsonObject>());
+    State->SetArrayField(TEXT("clients"),ConnectedClients());
     FString StateText = NodeForgeControlWindows::JsonText(State), DraftText = NodeForgeControlWindows::JsonText(Draft);
     FScopeLock Lock(&Impl->CacheLock); Impl->StateCache = MoveTemp(StateText); Impl->DraftCache = MoveTemp(DraftText);
 }
@@ -669,6 +682,36 @@ void FNodeForgeEditorControlChannel::SetBeforeDrainProbeForChecks(TFunction<void
 bool FNodeForgeEditorControlChannel::IsStopped() const { return Impl->bStopped; }
 TSharedRef<FJsonObject> FNodeForgeEditorControlChannel::PublicIdentity() const
 { check(IsInGameThread()); return Impl->Identity.IsValid() ? MakeShared<FJsonObject>(*Impl->Identity) : MakeShared<FJsonObject>(); }
+TArray<TSharedPtr<FJsonValue>> FNodeForgeEditorControlChannel::ConnectedClients() const
+{
+    TArray<TSharedPtr<FJsonValue>> Rows;FScopeLock Lock(&Impl->ClientLock);
+    for(const auto& Worker:Impl->Workers)if(!Worker->ClientId.IsEmpty()&&WaitForSingleObject(Worker->ClientStop.Value,0)!=WAIT_OBJECT_0)
+    {
+        auto Row=MakeShared<FJsonObject>();Row->SetStringField(TEXT("id"),Worker->ClientId);
+        Row->SetStringField(TEXT("name"),Worker->ClientName);Row->SetStringField(TEXT("version"),Worker->ClientVersion);
+        Rows.Add(MakeShared<FJsonValueObject>(Row));
+    }
+    return Rows;
+}
+namespace
+{
+bool MatchesClient(const FString& Name,const FString& Client)
+{
+    return Client==TEXT("codex")&&(Name==TEXT("codex")||Name==TEXT("codex-mcp-client")||Name==TEXT("Codex"));
+}
+}
+bool FNodeForgeEditorControlChannel::HasConnectedClient(const FString& Client) const
+{
+    FScopeLock Lock(&Impl->ClientLock);
+    for(const auto& Worker:Impl->Workers)if(!Worker->ClientId.IsEmpty()&&MatchesClient(Worker->ClientName,Client)
+        &&WaitForSingleObject(Worker->ClientStop.Value,0)!=WAIT_OBJECT_0)return true;
+    return false;
+}
+void FNodeForgeEditorControlChannel::DisconnectClient(const FString& Client)
+{
+    FScopeLock Lock(&Impl->ClientLock);
+    for(const auto& Worker:Impl->Workers)if(!Worker->ClientId.IsEmpty()&&MatchesClient(Worker->ClientName,Client))SetEvent(Worker->ClientStop.Value);
+}
 bool FNodeForgeEditorControlChannel::CheckRestrictedConnection(TSharedRef<FJsonObject>& Evidence) const
 {
     using namespace NodeForgeControlWindows;

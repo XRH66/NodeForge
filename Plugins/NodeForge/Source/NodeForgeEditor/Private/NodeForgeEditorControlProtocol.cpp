@@ -279,6 +279,9 @@ bool ParseRequest(TConstArrayView<uint8> Bytes, uint8 EnabledFeatures, FRequest&
     case EArguments::Hello:
     {
         const auto& Args = Request.Arguments; uint64 Start = 0; const double Pid = Args->GetNumberField(TEXT("expectedPid"));
+        const bool HasClient=Args->HasField(TEXT("clientId"));
+        if(HasClient!=Args->HasField(TEXT("clientName"))||HasClient!=Args->HasField(TEXT("clientVersion"))
+            ||(HasClient&&!Hex(Args->GetStringField(TEXT("clientId")),32)))return Reject(-32602,TEXT("invalidClientIdentity"));
         if (Args->GetStringField(TEXT("editorApiVersion")) != ApiVersion || Args->GetStringField(TEXT("profile")) != Profile
             || !Hex(Args->GetStringField(TEXT("controlSessionId")), 32) || !Hex(Args->GetStringField(TEXT("credential")), 64)
             || !Hex(Args->GetStringField(TEXT("expectedBinarySha256")), 64) || Args->GetStringField(TEXT("expectedProject")).IsEmpty()

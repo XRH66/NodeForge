@@ -1,0 +1,23 @@
+[
+  {
+    "client": "deepseek",
+    "source": "https://www.deepseek.com/favicon.ico",
+    "file": "DeepSeek.ico",
+    "bytes": 209762,
+    "sha256": "30a4420e6e4dcb17fd7de560c5004346c2bc8cd971d2d5f5ee15326603e51321"
+  },
+  {
+    "client": "codex",
+    "source": "https://developers.openai.com/favicon.png",
+    "file": "CodexOpenAi.png",
+    "bytes": 1841,
+    "sha256": "8d5575ee667ff715cd3e3074d5296edc68d5aadd89720d203e13131b68b22a04"
+  },
+  {
+    "client": "claude",
+    "source": "https://assets.claude.com/95a868946ac8a31e5ff832e2899f294aa368b836.png?w=32&h=32",
+    "file": "Claude.png",
+    "bytes": 1198,
+    "sha256": "4004381309500f25e49a1ae639912ce307ea81da74cc383954a1ac8b9d343fe6"
+  }
+]

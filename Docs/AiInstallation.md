@@ -1,12 +1,12 @@
 # 连接 AI
 
-AI 接入让支持 MCP 的客户端查询 NodeForge 规则、读取资源和生成资产。适用于 **NodeForge v0.2.0、官方 UE 5.3.2、Windows 64 位**。接入包自带 Python 和固定依赖，无需另装运行环境。
+AI 接入让支持 MCP 的客户端查询 NodeForge 规则、读取资源和生成资产。适用于 **NodeForge v1.0.0、官方 UE 5.3.2、Windows 64 位**。接入包自带 Python 和固定依赖，无需另装运行环境。
 
 **配置一次，之后正常打开工程即可使用。** 不需要每次运行安装工具、填写启动参数或重新下载环境。
 
 ## 1. 下载接入包
 
-从 [v0.2.0 Release](https://github.com/XRH66/NodeForge/releases/tag/v0.2.0) 下载 **NodeForge-AI-0.2.0-Windows.zip**，解压到临时文件夹。已装同版普通插件可以补装；尚未安装时，工具可取得同版普通包并安装到引擎目录。
+从 [v1.0.0 Release](https://github.com/XRH66/NodeForge/releases/tag/v1.0.0) 下载 **NodeForge-AI-1.0.0-Windows.zip**，解压到临时文件夹。已装同版普通插件可以补装；尚未安装时，工具可取得同版普通包并安装到引擎目录。
 
 仓库目前为私有，需要有访问权的 GitHub 账号。下载显示 404 时先检查登录权限。也可下载同页的普通插件 ZIP，安装时用 `-PluginZip` 指定本地文件。
 
@@ -15,9 +15,9 @@ AI 接入让支持 MCP 的客户端查询 NodeForge 规则、读取资源和生�
 关闭使用这套插件的 UE 编辑器，再把以下任务交给具有本机操作权限的 AI。只需提供**引擎目录和客户端名称**，无需预先指定工程：
 
 ```text
-请安装 NodeForge v0.2.0 并接入我的 AI 客户端。
-指南：https://github.com/XRH66/NodeForge/blob/v0.2.0/Docs/AiInstallation.md
-下载：https://github.com/XRH66/NodeForge/releases/tag/v0.2.0
+请安装 NodeForge v1.0.0 并接入我的 AI 客户端。
+指南：https://github.com/XRH66/NodeForge/blob/v1.0.0/Docs/AiInstallation.md
+下载：https://github.com/XRH66/NodeForge/releases/tag/v1.0.0
 引擎：填写官方 UE 5.3.2 安装目录
 客户端：填写客户端名称
 请使用包内安装工具和运行环境，找到客户端实际读取的配置文件，
@@ -50,7 +50,7 @@ Codex TOML 使用 `codex-toml`；采用 `mcpServers` JSON 的客户端使用 `mc
 | 没有合格工程 | 返回 `notConnected`，仍可读取文档；等待正常打开工程 |
 | 工程关闭后重新打开 | 重新连接取得新句柄；旧句柄失效，不会转到另一个工程 |
 
-日常无需再运行安装工具，也不需要 `NFControl` 或 `NoLiveCoding` 启动参数。**停止本工程 AI** 只停止当前工程通道；需要时可在面板点 **连接 AI**。正常关闭编辑器会结束本会话。连接期间模块身份必须稳定，重新启用 Live Coding 或加载补丁会停止通道。
+日常无需再运行安装工具，也不需要 `NFControl` 或 `NoLiveCoding` 启动参数。齿轮 → MCP → **停止本工程服务** 只停止当前工程通道；需要时可在齿轮 → MCP 点 **启用服务**。正常关闭编辑器会结束本会话。连接期间模块身份必须稳定，重新启用 Live Coding 或加载补丁会停止通道。
 
 ## 高级选项与恢复
 
@@ -66,7 +66,7 @@ Codex TOML 使用 `codex-toml`；采用 `mcpServers` JSON 的客户端使用 `mc
 
 安装引擎目录可能需要写入权限；日常 UE 和 MCP 不要求管理员。引擎插件与工程插件不能同时存在同名副本，工具不会擅自删除旧副本。
 
-同版重复安装会保持核心和客户端配置。可识别旧版 NodeForge 条目可迁移，未知同名条目会拒绝覆盖。旧版升级步骤见[兼容与迁移](Versions/v0.2.0/Version/CompatibilityAndMigration.md)。
+同版重复安装会保持核心和客户端配置。可识别旧版 NodeForge 条目可迁移，未知同名条目会拒绝覆盖。旧版升级步骤见[兼容与迁移](Versions/v1.0.0/Version/CompatibilityAndMigration.md)。
 
 失败时先读结果中的 `receipt`，确认已完成步骤和当前文件。部分写入可用包内 Python 调用 `Scripts/NodeForgeAiInstall.py --resume-receipt <原收据>` 并提供原安装参数；已完成的同版 AI 文件更新使用 `--upgrade-receipt <原完成收据>`。这些入口检查实际字节，不用于覆盖不同核心或未知文件。不要删除锁、改目标盲重试或清除历史收据。
 

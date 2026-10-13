@@ -1,8 +1,8 @@
 # MCP 接口
 
-NodeForge 的 AI 接入通过本地 stdio MCP 服务调用插件。v0.2.0 的 AI 接入包包含固定 Python 环境、MCP SDK 和连接工具；一次安装后正常打开已启用插件的工程连接，步骤见[连接 AI](../Docs/AiInstallation.md)。
+NodeForge 的 AI 接入通过本地 stdio MCP 服务调用插件。v1.0.0 的 AI 接入包包含固定 Python 环境、MCP SDK 和连接工具；桥 0.4.1、SDK 2.3.0、ABI1。一次安装后正常打开已启用插件的工程连接，步骤见[连接 AI](../Docs/AiInstallation.md)。
 
-服务提供 20 个工具，其中 16 个对应编辑器业务操作，另外 4 个用于连接、文档和报告读取。精确参数与返回结构见[ToolContract.json](../Releases/0.2.0/ToolContract.json)，逐个工具的说明见[API 参考](../Docs/Versions/v0.2.0/Ai/ApiReference.md)。
+服务提供 20 个工具，其中 16 个对应编辑器业务操作，另外 4 个用于连接、文档和报告读取。精确参数与返回结构见[ToolContract.json](../Releases/1.0.0/ToolContract.json)，逐个工具的说明见[API 参考](../Docs/Versions/v1.0.0/Ai/ApiReference.md)。
 
 ## 工具与调用顺序
 
@@ -37,6 +37,12 @@ stdio 标准输出只传输 MCP 消息，诊断写入标准错误。SDK 负责�
 connect 通过安全客户端核对公开会话、PID、创建时间、管道、模块、SHA 和操作定义，返回随机 handle 与无秘密身份。handle 固定工程/会话，不代替身份检查；分别连接 A/B 不覆盖另一上下文。关闭重开需新 connect，旧 handle 不改指另一工程或新会话，服务不重放业务。已知上下文的 pending/unknown 会阻止新的依赖写入，原调用保持原归属与查询路径。
 
 多个客户端可以读取同一份文档和工具列表，但业务连接受排他锁约束。已有业务所有者时返回 `NFMCP_BUSY`，文档工具仍可用。不能删除锁文件来绕过正在运行或尚未查清结果的调用。
+
+## 原生面板中的客户端状态
+
+SDK 初始化的真实 `client_info` 经原 `session.hello` 的成组可选 `clientId/clientName/clientVersion` 进入已认证通道。Codex 的 presence 只读取缓存状态，不占业务排他槽；业务调用仍经过原锁、修订和调用台账。唯一合格工程可自动识别，多候选不自动选择。`editor.getState` 的 `clients` 返回已握手连接的 `id/name/version`，不包含凭据。
+
+面板选择客户端不建立连接。Codex 名称匹配 `codex/codex-mcp-client/Codex`；断开关闭本工程该客户端的匹配连接，保留其它客户端与工程，原 handle/调用台账仍用于查询原调用和报告。连接被定向断开后业务返回 `notConnected`，需主动重新 connect，不自动重放。MCP 页的“停止本工程服务”则结束本工程全部连接，两种操作不能互换。Claude/DeepSeek 本版只有选择、图标和标准配置入口，专有检测延期并显示“未检测”。
 
 ## 读取资源和导出图
 

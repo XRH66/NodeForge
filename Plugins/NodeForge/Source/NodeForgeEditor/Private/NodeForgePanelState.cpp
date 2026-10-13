@@ -23,6 +23,7 @@ bool FNodeForgePanelState::ValidateExternalText(const FString& Text, FString& Er
 bool FNodeForgePanelState::Edit(const FString& Text)
 {
     if (Current.Text.Equals(Text, ESearchCase::CaseSensitive)) return false;
+    if (!bManualEditing) { Previous = Current; bHasPrevious = true; bManualEditing = true; }
     Current.Text = Text;
     Current.bEdited = !Current.Text.Equals(Current.OriginalText, ESearchCase::CaseSensitive);
     ++CurrentRevision;
@@ -40,13 +41,14 @@ bool FNodeForgePanelState::Replace(const FString& Text, const FString& Origin,
             && Current.ExportOrigin->GetStringField(TEXT("reportSha256")) == ExportOrigin->GetStringField(TEXT("reportSha256")));
     if (SameText && SameExport && Current.Origin.Equals(Origin, ESearchCase::CaseSensitive)
         && Current.SourcePath.Equals(SourcePath, ESearchCase::CaseSensitive)
-        && Current.SourceDigest.Equals(SourceDigest, ESearchCase::CaseSensitive)) return true;
+        && Current.SourceDigest.Equals(SourceDigest, ESearchCase::CaseSensitive)) { bManualEditing = false; return true; }
     // Repeated identical content must not replace the previous useful draft.
     if (!SameText || !SameExport) { Previous = Current; bHasPrevious = true; }
     Current = FNodeForgeDraft();
     Current.Text = Text; Current.OriginalText = Text; Current.Origin = Origin;
     Current.SourcePath = SourcePath; Current.SourceDigest = SourceDigest;
     Current.ExportOrigin = ExportOrigin;
+    bManualEditing = false;
     ++CurrentRevision;
     return true;
 }
@@ -55,6 +57,7 @@ bool FNodeForgePanelState::Restore()
 {
     if (!bHasPrevious) return false;
     Current = MoveTemp(Previous); Previous = FNodeForgeDraft(); bHasPrevious = false;
+    bManualEditing = false;
     ++CurrentRevision; // Restoring text never restores an old validation result.
     return true;
 }
@@ -65,13 +68,16 @@ bool FNodeForgePanelState::PrepareCopy(const FString& Text, const FString& Prepa
     Previous=Current;bHasPrevious=true;
     Current.Text=Text;Current.PreparationReport=PreparationReport;
     Current.bEdited=!Text.Equals(Current.OriginalText,ESearchCase::CaseSensitive);
+    bManualEditing=false;
     ++CurrentRevision;
     return true;
 }
 
 FString FNodeForgePanelState::DescribeSource() const
 {
-    FString Source = Current.Origin == TEXT("file") ? TEXT("文件：") + FPaths::GetCleanFilename(Current.SourcePath)
+    if (Current.Text.IsEmpty()) return TEXT("来源：尚未输入 · 0 / 65536 字节");
+    FString Source = Current.Origin == TEXT("example") ? TEXT("来源：案例")
+        : Current.Origin == TEXT("file") ? TEXT("文件：") + FPaths::GetCleanFilename(Current.SourcePath)
         : Current.Origin == TEXT("clipboard") ? TEXT("来源：剪贴板")
         : Current.Origin == TEXT("export") ? TEXT("来源：已导出构图") : TEXT("来源：手工输入");
     if (Current.bEdited) Source += TEXT("（已编辑）");

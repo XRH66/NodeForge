@@ -6,7 +6,7 @@ from pathlib import Path
 from RunGraphRegression import sha, ref, write_new, REQUIRED_IMPORT_CHECKS, readback_errors
 
 
-def run_cases(root, out, folder, identity, process, client, guard, asset_snapshot, allow_asset, freeze_asset):
+def run_cases(root, out, folder, identity, process, client, guard, asset_snapshot, allow_asset, freeze_asset, *, sources=None):
     rows = []
     results = []
     revision = '0'
@@ -37,9 +37,11 @@ def run_cases(root, out, folder, identity, process, client, guard, asset_snapsho
                 time.sleep(.1)
         raise RuntimeError('Actual GUI receipt missing before deadline; preserve unknown writes')
 
-    for case, filename in (('Blueprint', 'BlueprintConcat.json'), ('Material', 'StaticColor.json')):
+    cases = sources if sources is not None else tuple((case, root / 'Examples/GraphV2Samples' / filename)
+        for case, filename in (('Blueprint', 'BlueprintConcat.json'), ('Material', 'StaticColor.json')))
+    for case, source in cases:
         guard()
-        source = root / 'Examples/GraphV2Samples' / filename
+        source = Path(source)
         request = json.loads(source.read_text('utf-8-sig'))
         target = (folder / 'Content' / (request['assetPath'].removeprefix('/Game/') + '.uasset')).resolve()
         require(case + 'FreshFixedTarget', target.is_relative_to(folder / 'Content') and not target.exists())

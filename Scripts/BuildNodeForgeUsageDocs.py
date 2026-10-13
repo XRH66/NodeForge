@@ -1281,10 +1281,10 @@ def publish_installation_edition(input_path):
             source=(ROOT/override).resolve()
             if not source.is_relative_to(ROOT/'Docs') or not source.is_file():raise ValueError('Invalid public guide input')
         text=source.read_text('utf-8').replace('v'+old_version,'v'+version).replace('NodeForge-'+old_version,'NodeForge-'+version).replace('NodeForge-AI-'+old_version,'NodeForge-AI-'+version)
-        text=text.replace('桥0.3.6','桥0.4.0')
-        if row['pageId']=='VersionReadme':
+        text=re.sub(r'桥\s*'+re.escape(base['bridgeVersion']), '桥 '+contract['bridgeVersion'], text)
+        if row['pageId']=='VersionReadme' and not override:
             text=text.replace('这是 NodeForge 的第一个可用版本，','本版增加引擎级共享安装和 AI 一次接入，')
-        if row['pageId']=='DeveloperVersionRelease':
+        if row['pageId']=='DeveloperVersionRelease' and not override:
             text=text.replace('v'+version+' 是第一个可用版本。','v0.1.0 是首个可用版本；本版增加引擎级安装与 AI 一次接入。')
         destination=output/(ROOT/row['path']).relative_to(old)
         # Canonical repository guides become same-version local links.
@@ -1314,7 +1314,7 @@ def publish_installation_edition(input_path):
     save(output/'Manifest.json',dump(manifest))
     receipt={'status':'candidateRequiresReview','pages':len(pages),'tools':len(contract['tools']),
         'generator':ref(Path(__file__).resolve()),'input':ref(Path(input_path).resolve()),'manifest':ref(output/'Manifest.json'),
-        'qualification':'Unchanged node knowledge reused; new installation/lifecycle evidence in E0-E4; no new node qualification'}
+        'qualification':cfg.get('qualification','Unchanged node knowledge reused; new installation/lifecycle evidence in E0-E4; no new node qualification')}
     save(ROOT/cfg['receipt'],dump(receipt));print(dump({k:receipt[k] for k in ['status','pages','tools']}))
     return manifest
 

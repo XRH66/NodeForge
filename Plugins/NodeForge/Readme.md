@@ -2,26 +2,28 @@
 
 NodeForge 是 UE 编辑器插件，用 JSON 描述并生成可编辑的材质和 Actor 蓝图，也支持查询节点、读取资源和生成新副本。
 
-普通用户请下载 [v0.1.0 插件包](https://github.com/XRH66/NodeForge/releases/tag/v0.1.0)，按 [安装指南](../../Docs/Installation.md) 操作。此目录主要保存插件源码；Git 仓库不包含可直接运行的编译 DLL。
+普通用户请下载 [v1.0.0 插件包](https://github.com/XRH66/NodeForge/releases/tag/v1.0.0)，按 [安装指南](../../Docs/Installation.md) 操作。此目录主要保存插件源码；Git 仓库不包含可直接运行的编译 DLL。
 
 ## 开始使用
 
 本版支持 Windows 64 位和官方 UE 5.3.2。
 
-1. 把 Release ZIP 中的 `NodeForge` 文件夹放入工程的 `Plugins` 目录。
+1. 把 Release ZIP 中的 `NodeForge` 文件夹复制到引擎的 `Engine/Plugins/Marketplace`；工程级 `Plugins/NodeForge` 保留为高级用法。
 2. 在 UE 中启用插件，从 **窗口（Window）→ NodeForge** 打开面板。
 3. 首次打开时确认工程和引擎位置。
-4. 载入插件附带的 `Examples/FirstMaterial.json`，检查输入，再生成资产。
+4. 点击 **载入 → 载入案例**，再点击 **检查** 和 **生成**；也可选择包内 `Examples/FirstMaterial.json`。
 
 详细操作见 [生成第一个材质](../../Docs/GettingStarted.md)。需要 AI 直接操作时，按 [连接 AI](../../Docs/AiInstallation.md) 补装接入包；普通使用无需 Python 或 MCP。
 
-生成的新资产位于 `Content/NodeForgeTests` 下，同名资产不会被覆盖。具体支持的资产、节点和操作见 [用户手册](../../Docs/Versions/v0.1.0/User/Readme.md) 与 [已知限制](../../Docs/Versions/v0.1.0/Version/KnownIssues.md)。
+生成的新资产位于 `Content/NodeForgeTests` 下，同名资产不会被覆盖。具体支持的资产、节点和操作见 [用户手册](../../Docs/Versions/v1.0.0/User/Readme.md) 与 [已知限制](../../Docs/Versions/v1.0.0/Version/KnownIssues.md)。
 
 ## 源码入口
 
 | 文件 | 负责什么 |
 | --- | --- |
 | [NodeForgeEditorModule.cpp](Source/NodeForgeEditor/Private/NodeForgeEditorModule.cpp) | 模块与编辑器菜单注册 |
+| [NodeForgePanel.cpp](Source/NodeForgeEditor/Private/NodeForgePanel.cpp) | 原生紧凑面板、次级窗口与真实动作接入 |
+| [NodeForgePanelPreferences.cpp](Source/NodeForgeEditor/Private/NodeForgePanelPreferences.cpp) | 工程独立设置草稿、应用与持久化 |
 | [NodeForgeInstallation.cpp](Source/NodeForgeEditor/Private/NodeForgeInstallation.cpp) | 安装位置、工程和版本检查 |
 | [NodeForgeInstallationPanel.cpp](Source/NodeForgeEditor/Private/NodeForgeInstallationPanel.cpp) | 首次安装确认界面 |
 | [NodeForgePrototype.cpp](Source/NodeForgeEditor/Private/NodeForgePrototype.cpp) | 请求处理及构图入口 |
@@ -41,5 +43,5 @@ NodeForge 是 UE 编辑器插件，用 JSON 描述并生成可编辑的材质和
 
 - [Graph JSON](../../Contracts/GraphProtocol.md)：图的字段、节点、连线和资源约束。
 - [编辑器控制协议](../../Contracts/EditorControlProtocol.md)：CLI 与编辑器之间的调用。
-- [v0.1.0 节点目录](../../Docs/Versions/v0.1.0/Catalog.json)：本版的精确节点和引脚。
+- [v1.0.0 节点目录](../../Docs/Versions/v1.0.0/Catalog.json)：本版的精确节点和引脚。
 - [第三方许可](ThirdPartyNotices.md)：引用代码的来源与许可说明。

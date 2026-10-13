@@ -35,7 +35,7 @@ if ($StageOnly) {
     foreach ($nfFile in @('NodeForge.uplugin','ThirdPartyNotices.md')) {
         Copy-Item -LiteralPath (Join-Path $nfWorkspace "Plugins\NodeForge\$nfFile") -Destination $nfStageRoot
     }
-    foreach ($nfDirectory in @('Source','Licenses')) {
+    foreach ($nfDirectory in @('Source','Licenses','Resources')) {
         Copy-Item -LiteralPath (Join-Path $nfWorkspace "Plugins\NodeForge\$nfDirectory") -Destination $nfStageRoot -Recurse
     }
 }

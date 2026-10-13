@@ -12,7 +12,7 @@ namespace NodeForgeEditorControl
     constexpr uint32 MaxReportBytes = 1048576;
     constexpr uint32 MaxDescriptorBytes = 65536;
     constexpr int32 MaxJsonDepth = 32;
-    constexpr int32 MaxConnections = 2;
+    constexpr int32 MaxConnections = 4; // Two admitted MCP presence peers plus existing bounded CLI work.
     constexpr int32 MaxBusinessCalls = 128;
     constexpr double HelloSeconds = 5, FrameSeconds = 10, CallSeconds = 180;
     constexpr double QuerySeconds = 5, IdleSeconds = 60, StopSeconds = 10, ExitSeconds = 60;

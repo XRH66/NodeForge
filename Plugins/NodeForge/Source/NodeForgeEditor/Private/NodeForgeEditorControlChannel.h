@@ -19,6 +19,9 @@ public:
     bool HasStopRequest() const;
     bool IsStopped() const;
     TSharedRef<FJsonObject> PublicIdentity() const;
+    TArray<TSharedPtr<FJsonValue>> ConnectedClients() const;
+    bool HasConnectedClient(const FString& Client) const;
+    void DisconnectClient(const FString& Client); // Ends only matching authenticated MCP peers, never the project service.
     bool CheckRestrictedConnection(TSharedRef<FJsonObject>& Evidence) const;
 #if WITH_DEV_AUTOMATION_TESTS
     void SetBeforeDrainProbeForChecks(TFunction<void()> Probe);

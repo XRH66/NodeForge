@@ -23,7 +23,7 @@ CLI 位于 [NodeForgeControl.py](../Scripts/NodeForgeControl.py)。它在明确�
 
 工程使用已建立的 `Config/NodeForgeInstallation.json`，插件使用自己的 `InstallationManifest.json`。客户端核对工程、引擎、插件路径与实际 DLL，而不是根据目录名称推断权限。独立 Commandlet 执行前，目标工程不能被其他 UE 进程使用。CLI 不创建工程或安装插件。
 
-v0.2.0 同一 portablePlugin 识别引擎直接、Marketplace 与工程三种位置，重复同名安装拒绝。新 `--run-directory`、输入快照与生成报告的运行范围为本工程 `Saved/NodeForge/Reports`；静态输入仍可来自插件 `Examples` 或 `Tests`。共享引擎安装不把不同工程报告写入程序根。
+v1.0.0 同一 portablePlugin 识别引擎直接、Marketplace 与工程三种位置，重复同名安装拒绝。新 `--run-directory`、输入快照与生成报告的运行范围为本工程 `Saved/NodeForge/Reports`；静态输入仍可来自插件 `Examples` 或 `Tests`。原重排生成的 `NFInput` 还精确允许本工程 `Saved/NodeForge/RelayoutInputs`，不扩展报告或任意文件读取范围。共享引擎安装不把不同工程报告写入程序根。
 
 图输入最多 64 KiB，生成报告与原生结果最多 1 MiB。输入读取后保存字节快照和 SHA，后续处理不覆盖原文件。每个调用使用新的报告目录，报告不能覆盖。
 

@@ -1,6 +1,7 @@
 // Operates only the real registered production tab in an explicitly owned test Editor.
 #include "NodeForgePanel.h"
 #include "NodeForgePrototype.h"
+#include "NodeForgeInstallation.h"
 #include "NodeForgeEditorControlService.h"
 #include "NodeForgeEditorControlChannel.h"
 #if WITH_DEV_AUTOMATION_TESTS && WITH_EDITOR
@@ -60,7 +61,8 @@ public:
             Tab->DrawAttention();
             Input = StaticCastSharedPtr<SMultiLineEditableTextBox>(FindTagged(Tab->GetContent(), TEXT("NodeForge.Input")));
             if (!Row(TEXT("RealProductionInputFound"), Input.IsValid())) return Finish();
-            OriginalPath = NodeForgePrototype::WorkspaceDirectory() / TEXT("Examples/GraphV2Samples/BlueprintConcat.json");
+            OriginalPath = NodeForgePrototype::WorkspaceDirectory() / (FParse::Param(FCommandLine::Get(), TEXT("NFUiIntegrationChecks"))
+                ? TEXT("Examples/FirstMaterial.json") : TEXT("Examples/GraphV2Samples/BlueprintConcat.json"));
             if (bExternal)
             {
                 Channel = NodeForgePanel::GetControlChannel();
@@ -389,13 +391,15 @@ bool FNodeForgeProductionUiTest::RunTest(const FString& Parameters)
     FString Output; const FString Root = NodeForgePrototype::WorkspaceDirectory();
     const FString Project = FPaths::ConvertRelativePathToFull(FPaths::GetProjectFilePath());
     const FString ProjectName = FPaths::GetBaseFilename(Project);
+    const bool UiIntegration = FParse::Param(FCommandLine::Get(), TEXT("NFUiIntegrationChecks")) && ProjectName == TEXT("NFCUiPreview");
     if (IsRunningCommandlet() || !FSlateApplication::IsInitialized()
         || !FParse::Param(FCommandLine::Get(), TEXT("NFEditorUiChecks"))
-        || !FPaths::IsUnderDirectory(Project, Root / TEXT("ValidationProject/RegressionRuns"))
+        || (!UiIntegration && !FPaths::IsUnderDirectory(Project, Root / TEXT("ValidationProject/RegressionRuns")))
         || ProjectName.Len() > 20
         || !(ProjectName.StartsWith(TEXT("NFCUi")) || ProjectName.StartsWith(TEXT("ControlEditorUiState")))
         || !FParse::Value(FCommandLine::Get(), TEXT("NFEditorUiReport="), Output)
-        || !FPaths::IsUnderDirectory(FPaths::ConvertRelativePathToFull(Output), Root / TEXT("Reports/PluginControlStageTwo"))
+        || !FPaths::IsUnderDirectory(FPaths::ConvertRelativePathToFull(Output), UiIntegration
+            ? NodeForgeInstallation::StateDirectory() / TEXT("UiIntegrationChecks") : Root / TEXT("Reports/PluginControlStageTwo"))
         || IFileManager::Get().FileExists(*Output))
     { AddError(TEXT("Explicit owned UI checks project, real Editor and fresh second-stage report required")); return false; }
     ADD_LATENT_AUTOMATION_COMMAND(FNodeForgeProductionUiCommand(this, Output)); return true;

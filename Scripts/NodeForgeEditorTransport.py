@@ -280,6 +280,15 @@ class Session:
             if not isinstance(credential,str) or len(credential)!=64 or any(c not in '0123456789abcdef' for c in credential):raise TransportError('NFEDITOR_CREDENTIAL_FORMAT',2)
             params={'editorApiVersion':API,'profile':PROFILE,'controlSessionId':session,'expectedProject':project.as_posix(),'expectedPid':pid,
                 'expectedProcessStart':data['processStart'],'expectedBinarySha256':data['binarySha256'],'credential':credential}
+            client=getattr(args,'mcp_client',None)
+            if client is not None:
+                if (not isinstance(client,dict) or set(client)!={'id','name','version'}
+                    or not isinstance(client['id'],str) or len(client['id'])!=32
+                    or any(c not in '0123456789abcdef' for c in client['id'])
+                    or not isinstance(client['name'],str) or not 0<len(client['name'])<=80
+                    or not isinstance(client['version'],str) or len(client['version'])>80):
+                    raise TransportError('NFEDITOR_CLIENT_IDENTITY',2)
+                params.update(clientId=client['id'],clientName=client['name'],clientVersion=client['version'])
             response=self.exchange({'jsonrpc':'2.0','id':'Hello-1','method':'session.hello','params':params},hello_deadline)
             result=response.get('result')
             public={key:value for key,value in data.items() if key!='credential'}

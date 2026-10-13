@@ -12,6 +12,7 @@
 #include "Factories/MaterialInstanceConstantFactoryNew.h"
 #include "MaterialEditingLibrary.h"
 #include "Materials/Material.h"
+#include "MaterialDomain.h"
 #include "Materials/MaterialInstanceConstant.h"
 #include "Materials/MaterialExpressionTextureBase.h"
 #include "Materials/MaterialFunctionInterface.h"

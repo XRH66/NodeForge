@@ -30,6 +30,34 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def closed_idle_session(index):
+    """Admit an exited, never-used session without deleting its evidence or locks."""
+    identity = installation_json(index)
+    descriptor = installation_path(identity['sessionFile'])
+    if not descriptor.exists():
+        return None
+    observation = process_identity(identity['pid'])
+    if observation.get('state') not in ('absent', 'exited'):
+        raise ValueError('previousSessionUnresolved: inspect original process')
+    project = installation_path(identity['project'])
+    session = identity['controlSessionId']
+    state = project.parent / 'Saved/NodeForge'
+    report = installation_path(identity['reportRoot'])
+    if (index.name != session + '.json'
+            or descriptor != state / 'Reports/PluginControlSessions' / session / 'Session.json'
+            or not report.is_relative_to(state / 'Reports/PluginControlStageTwo')
+            or installation_json(report / 'SessionPublic.json') != identity):
+        raise ValueError('previousSessionUnresolved: original identity mismatch')
+    # A stopped process is not proof that an issued write completed. Only an
+    # idle session with no native journal, bridge calls or retained CLI qualifies.
+    for directory in ('Calls', 'Bridge/Calls', 'Bridge/LiveCli'):
+        if any((report / directory).glob('*.json')):
+            raise ValueError('previousSessionUnresolved: inspect original call and report')
+    return {'sessionIndex':str(index), 'sessionIndexSha256':digest(index),
+            'descriptorSha256':digest(descriptor), 'process':observation,
+            'nativeAndBridgeCallCount':0, 'originalEvidencePreserved':True}
+
+
 def product_project(value):
     path = installation_path(value)
     if path.is_dir():
@@ -351,16 +379,25 @@ def install_verified(args, manifest, project, engine, target):
                 # Unknown entries, residual credentials and partial writes stop activation.
                 prior = list((config.parent / 'InstallReceipts').glob('*/Receipt*.json'))
                 if len(prior) > 128: raise ValueError('installationReceiptLimit')
-                owned = any(r.get('status') == 'installed' and r.get('requiresReview') is False
-                    and any(w.get('path') == str(config) and w.get('sha256') == digest(config)
+                # Exact resumed partial writes were verified above against their
+                # owner-protected receipt. They also own an activation written
+                # before a discovery failure, even without a completed install.
+                owned_fingerprints = {digest(config)}
+                if current['enabled'] is False:
+                    # Disabling an installed product changes only its explicit
+                    # enabled bit. A completed receipt must still prove every
+                    # installation identity field; unknown configurations remain rejected.
+                    owned_fingerprints.add(hashlib.sha256(encoded({**current, 'enabled': True})).hexdigest())
+                owned = bool(previous and any(w.get('path') == str(config)
+                    and w.get('sha256') == digest(config) for w in previous['completedWrites'])) or any(r.get('status') == 'installed' and r.get('requiresReview') is False
+                    and any(w.get('path') == str(config) and w.get('sha256') in owned_fingerprints
                             for w in r.get('completedWrites', []))
                     for r in (installation_json(p, 4 * 1048576) for p in prior))
                 if not owned or current['engineRoot'] != engine.as_posix():
                     raise ValueError('aiInstallationUpgradeUnknown: original state preserved')
                 indexes = list((config.parent / 'Sessions').glob('*.json'))
                 if len(indexes) > 128: raise ValueError('sessionDiscoveryLimit')
-                if any(Path(installation_json(p)['sessionFile']).exists() for p in indexes):
-                    raise ValueError('previousSessionUnresolved: inspect original session and report')
+                receipt['closedIdleSessions'] = [v for p in indexes if (v := closed_idle_session(p)) is not None]
                 receipt['previousInstallation'] = current
                 receipt['previousInstallationSha256'] = digest(config)
                 save()

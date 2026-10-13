@@ -36,4 +36,5 @@ private:
     FNodeForgeDraft Previous;
     uint64 CurrentRevision = 0;
     bool bHasPrevious = false;
+    bool bManualEditing = false; // One pre-edit snapshot per continuous editing segment.
 };

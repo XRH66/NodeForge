@@ -51,6 +51,19 @@
           },
           "expectedPid": {
             "type": "integer"
+          },
+          "clientId": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{32}$"
+          },
+          "clientName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "clientVersion": {
+            "type": "string",
+            "maxLength": 80
           }
         },
         "required": [
@@ -341,11 +354,11 @@
     },
     {
       "name": "resources.query",
+      "implementationStatus": "implemented",
       "resultKind": "resourceQueryReceipt",
       "sideEffect": "metadataQueryReportOnly",
       "expectedDraftRevisionRequired": true,
       "dispatch": "gameThread",
-      "implementationStatus": "implemented",
       "argumentsSchema": {
         "type": "object",
         "additionalProperties": false,
@@ -360,8 +373,8 @@
           },
           "directory": {
             "type": "string",
-            "maxLength": 256,
-            "minLength": 1
+            "minLength": 1,
+            "maxLength": 256
           },
           "nameContains": {
             "type": "string",
@@ -468,22 +481,5 @@
         "required": []
       }
     }
-  ],
-  "limits": {
-    "frameBytes": 524288,
-    "graphBytes": 65536,
-    "reportBytes": 1048576,
-    "descriptorBytes": 65536,
-    "jsonDepth": 32,
-    "connections": 2,
-    "businessSlots": 1,
-    "retainedCalls": 128,
-    "helloSeconds": 5,
-    "frameSeconds": 10,
-    "callSeconds": 180,
-    "querySeconds": 5,
-    "idleSeconds": 60,
-    "stopSeconds": 10,
-    "exitSeconds": 60
-  }
+  ]
 }

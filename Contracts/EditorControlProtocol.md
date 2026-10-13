@@ -1,6 +1,6 @@
 # 编辑器控制协议
 
-本协议用于操作已经运行的 UE 编辑器。适用 NodeForge v0.2.0，宿主为 `activeEditor`，`editorApiVersion="1.0"`、`profile="nodeforge.editor.v1"`，消息使用 JSON-RPC 2.0。
+本协议用于操作已经运行的 UE 编辑器。适用 NodeForge v1.0.0，宿主为 `activeEditor`，`editorApiVersion="1.0"`、`profile="nodeforge.editor.v1"`，消息使用 JSON-RPC 2.0。
 
 建议通过[AI 安装工具](../Docs/AiInstallation.md)准备连接，或调用 [NodeForgeControl.py](../Scripts/NodeForgeControl.py)。独立命令行生成与保存检查见[CLI 协议](ControlProtocol.md)。
 
@@ -18,7 +18,7 @@ CLI 显式提供 `--session-file --project --plugin-directory --run-directory`�
 
 ## 可用方法
 
-精确参数类型、范围和条件见 [Operations.json](../Docs/Versions/v0.2.0/Operations.json)。额外或大小写不符的字段会被拒绝。
+精确参数类型、范围和条件见 [Operations.json](../Docs/Versions/v1.0.0/Operations.json)。额外或大小写不符的字段会被拒绝。
 
 | 方法 | arguments | expectedDraftRevision | 结果类型 |
 | --- | --- | --- | --- |
@@ -42,6 +42,8 @@ CLI 显式提供 `--session-file --project --plugin-directory --run-directory`�
 | `control.disable` | `{}` | 不得提供 | `stoppingRequested` |
 
 `session.hello` 由客户端内部握手使用，普通 editor-call 不接受它。`expectedPid` 为非零 uint32 整数，其他握手身份字段为字符串，credential 由安全客户端读取。
+
+v1.0.0 握手可选 `clientId/clientName/clientVersion`，三项必须同时提供或同时省略。clientId 为32位小写十六进制字符串，clientName 为1–80字符，clientVersion 为0–80字符；普通 CLI 可省略。通过认证的客户端信息进入 `editor.getState.clients` 的 `id/name/version`，不包含凭据或新业务权限。面板的 Codex 定向断开与整个服务停止分开，详情见 [MCP 客户端状态](McpProtocol.md#原生面板中的客户端状态)。
 
 普通参数由 `context` 和 `arguments` 两个对象组成。context 包含 `controlSessionId/editorApiVersion/profile`；需要修订号的方法再包含 `expectedDraftRevision`。修订号和 Windows 创建时间均为规范十进制 uint64 字符串，不能带前导零、符号或溢出。
 
@@ -88,7 +90,7 @@ Windows 本地字节管道以 4 字节小端长度开头，后接一个 UTF-8 JS
 | reportBytes | 1048576 |
 | descriptorBytes | 65536 |
 | jsonDepth | 32 |
-| connections | 2 |
+| connections | 4 |
 | businessSlots | 1 |
 | retainedCalls | 128 |
 | helloSeconds / frameSeconds | 5 / 10 |

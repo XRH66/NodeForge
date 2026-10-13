@@ -4,6 +4,7 @@ import builtins
 import json
 import os
 import sys
+import uuid
 from types import ModuleType
 from datetime import datetime, timezone
 import anyio
@@ -106,6 +107,35 @@ class ServerRuntime:
         self.gate = anyio.Lock()
         self.inflight = 0
         self.application = sys.modules[__name__]
+        self.client_info = None
+        self.client_id = uuid.uuid4().hex
+        self.presence_started = False
+        self.presence_error = None
+
+    def observe_client(self, ctx):
+        initialized=ctx.session.client_params
+        info=initialized.client_info if initialized is not None else None
+        if info is not None and isinstance(info.name,str) and 0<len(info.name)<=80 and isinstance(info.version,str) and len(info.version)<=80:
+            self.client_info={'id':self.client_id,'name':info.name,'version':info.version}
+
+    async def presence(self):
+        while True:
+            if self.client_info is not None:
+                try:
+                    if not self.presence_started:
+                        print(json.dumps({'event':'NodeForgeClientPresenceStarted','clientName':self.client_info['name']}),file=sys.stderr,flush=True)
+                        write_new(self.bridge.run_root/'PresenceStarted.json',{'clientName':self.client_info['name'],'bridgePid':os.getpid()})
+                        self.presence_started=True
+                    await anyio.to_thread.run_sync(self.bridge.client_presence_tick,self.client_info)
+                except (BridgeError,TransportError,OSError,ValueError,KeyError) as error:
+                    # A missing/ambiguous editor is an accurate offline state;
+                    # presence never replays business or replaces its receipts.
+                    print(json.dumps({'event':'NodeForgeClientPresenceUnavailable','code':getattr(error,'code',type(error).__name__)}),file=sys.stderr,flush=True)
+                    code=getattr(error,'code',type(error).__name__)
+                    if code != self.presence_error:
+                        write_new(self.bridge.run_root/'PresenceObservations'/('Error'+uuid.uuid4().hex+'.json'),{'code':code,'observedAtUtc':datetime.now(timezone.utc).isoformat()})
+                        self.presence_error=code
+            await anyio.sleep(2)
 
     async def acquire(self, name=None, params=None):
         async with self.gate:
@@ -142,6 +172,7 @@ async def serve(config_path):
         if not path.exists():
             try:
                 write_new(path, {'protocolVersion': ctx.protocol_version, 'method': ctx.method,
+                                 'clientInfo': runtime.client_info,
                                  'observedAtUtc': datetime.now(timezone.utc).isoformat(),
                                  'bridgePid': os.getpid(),
                                  'bridgeVersion': bridge.contract['bridgeVersion'], 'transport': 'stdio',
@@ -150,6 +181,7 @@ async def serve(config_path):
                 # A concurrent read-only client already recorded the first observation.
                 pass
     async def list_tools(ctx, params):
+        runtime.observe_client(ctx)
         bridge, refresh, _ = await runtime.acquire()
         try:
             protocol_seen(ctx, bridge)
@@ -157,6 +189,7 @@ async def serve(config_path):
         finally:
             await runtime.release()
     async def call_tool(ctx, params):
+        runtime.observe_client(ctx)
         # A client's cancellation cannot abandon an issued UE operation or its durable receipt.
         with anyio.CancelScope(shield=True):
             try:
@@ -192,10 +225,19 @@ async def serve(config_path):
     server = Server('NodeForge', version=VERSION, instructions=runtime.bridge.contract.get('instructions', 'Read nodeforge_docs_index first; business requires an explicitly prepared current editor.'), on_list_tools=list_tools, on_call_tool=call_tool,
         on_list_resources=resources, on_list_resource_templates=templates,
         get_tool_input_schema=lambda name: runtime.bridge.tools.get(name, {}).get('inputSchema'))
+    async def initialization_observer(ctx, call_next):
+        value=await call_next(ctx)
+        if ctx.method=='notifications/initialized':runtime.observe_client(ctx)
+        return value
+    server.middleware.append(initialization_observer)
     try:
         async with stdio_server() as (incoming, outgoing):
-            await server.run(incoming, outgoing, server.create_initialization_options(
-                notification_options=NotificationOptions(tools_changed=True)))
+            async with anyio.create_task_group() as tasks:
+                tasks.start_soon(runtime.presence)
+                try:
+                    await server.run(incoming, outgoing, server.create_initialization_options(
+                        notification_options=NotificationOptions(tools_changed=True)))
+                finally:tasks.cancel_scope.cancel()
     finally: runtime.close()
 
 def main():

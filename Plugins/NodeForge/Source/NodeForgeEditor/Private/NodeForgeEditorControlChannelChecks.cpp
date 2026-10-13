@@ -25,6 +25,7 @@
 #include "Framework/Docking/TabManager.h"
 #include "Widgets/Docking/SDockTab.h"
 #include "Widgets/Input/SMultiLineEditableTextBox.h"
+#include "Widgets/Text/STextBlock.h"
 #include "Widgets/SWindow.h"
 #include "Widgets/Layout/SExpandableArea.h"
 #include "Widgets/Layout/SScrollBox.h"
@@ -73,7 +74,7 @@ public:
                 if (!Row(TEXT("GraphUiUsesRealRegisteredProductionTab"), Tab.IsValid())) return Finish();
                 Tab->DrawAttention();
                 Input = StaticCastSharedPtr<SMultiLineEditableTextBox>(NodeForgePanel::FindTaggedForChecks(Tab->GetContent(), TEXT("NodeForge.Input")));
-                Summary = StaticCastSharedPtr<SMultiLineEditableTextBox>(NodeForgePanel::FindTaggedForChecks(Tab->GetContent(), TEXT("NodeForge.ResultSummary")));
+                Summary = StaticCastSharedPtr<STextBlock>(NodeForgePanel::FindTaggedForChecks(Tab->GetContent(), TEXT("NodeForge.InputSource")));
                 if (!Row(TEXT("GraphUiActualInputAndResultWidgetsFound"), Input.IsValid() && Summary.IsValid())) return Finish();
                 if (GuiGenerate || BusinessUi || AuxUi)
                 {
@@ -729,7 +730,8 @@ private:
         const bool Visible = Window.IsValid() && Window->IsVisible() && Window->GetNativeWindow().IsValid();
         Passed &= Row(*(Case + TEXT("ActualGuiVisibleResultAndDraft")), Visible
             && Input->GetText().ToString() == State.Input.Draft().Text
-            && Summary->GetText().ToString() == State.ResultText && !State.ResultText.IsEmpty());
+            && Summary->GetText().ToString() == (State.ResultNotice.IsEmpty() ? State.ResultText : State.ResultNotice)
+            && !State.ResultText.IsEmpty());
         const FString Screenshot = Directory / (Case + TEXT("GuiProduction.png"));
         if (Passed)
         {
@@ -907,7 +909,8 @@ private:
     TSharedPtr<IAsyncAutomationDriver, ESPMode::ThreadSafe> Driver;
     TSharedPtr<IAsyncDriverSequence, ESPMode::ThreadSafe> Sequence;
     TAsyncResult<bool> Pending;
-    TSharedPtr<SDockTab> Tab; TSharedPtr<SMultiLineEditableTextBox> Input, Summary;
+    TSharedPtr<SDockTab> Tab; TSharedPtr<SMultiLineEditableTextBox> Input;
+    TSharedPtr<STextBlock> Summary;
     TSharedRef<FJsonObject> Report = MakeShared<FJsonObject>(); TArray<TSharedPtr<FJsonValue>> Rows;
 };
 }
