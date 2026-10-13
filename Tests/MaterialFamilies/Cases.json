@@ -1,0 +1,106 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "catalogStatus": "Actual Build4 Catalog4 signatures; archived digest cases intentionally preserve original catalog identity",
+  "cases": [
+    {
+      "name": "TextureParameter",
+      "input": "TextureParameter.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialFamilies"
+    },
+    {
+      "name": "TextureParameterTint",
+      "input": "TextureParameterTint.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialFamilies"
+    },
+    {
+      "name": "TextureParameterShuffle",
+      "input": "TextureParameterShuffle.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialFamilies",
+      "equivalentTo": "TextureParameterTint",
+      "compareLayoutWith": "TextureParameterTint",
+      "requireLayout": true
+    },
+    {
+      "name": "FractionMath",
+      "input": "FractionMath.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialFamilies"
+    },
+    {
+      "name": "VectorProducts",
+      "input": "VectorProducts.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialFamilies"
+    },
+    {
+      "name": "FacingColor",
+      "input": "FacingColor.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialFamilies"
+    },
+    {
+      "name": "FacingDefaults",
+      "input": "FacingDefaults.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialFamilies"
+    },
+    {
+      "name": "WaterFacing",
+      "input": "WaterFacing.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialFamilies"
+    },
+    {
+      "name": "ArchivedColor",
+      "input": "ArchivedColor.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialFamilies",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "MissingParameterTexture",
+      "input": "MissingParameterTexture.json",
+      "expected": "rejected",
+      "category": "nativeMaterialFamilies",
+      "preserveCatalogDigest": false
+    },
+    {
+      "name": "MissingParameterName",
+      "input": "MissingParameterName.json",
+      "expected": "rejected",
+      "category": "nativeMaterialFamilies",
+      "preserveCatalogDigest": false
+    },
+    {
+      "name": "UnsupportedParameterProperty",
+      "input": "UnsupportedParameterProperty.json",
+      "expected": "rejected",
+      "category": "nativeMaterialFamilies",
+      "preserveCatalogDigest": false
+    },
+    {
+      "name": "InvalidParameterPin",
+      "input": "InvalidParameterPin.json",
+      "expected": "rejected",
+      "category": "nativeMaterialFamilies",
+      "preserveCatalogDigest": false
+    },
+    {
+      "name": "NewNodeArchivedDigest",
+      "input": "NewNodeArchivedDigest.json",
+      "expected": "rejected",
+      "category": "nativeMaterialFamilies",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "UnknownCatalogDigest",
+      "input": "UnknownCatalogDigest.json",
+      "expected": "rejected",
+      "category": "nativeMaterialFamilies",
+      "preserveCatalogDigest": true
+    }
+  ]
+}

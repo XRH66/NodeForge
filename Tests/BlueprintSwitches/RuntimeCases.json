@@ -1,0 +1,271 @@
+{
+  "scope": "Native execution changes Actor location; independent sequence sentinel proves unmatched/unwired branches terminate",
+  "cases": [
+    {
+      "case": "SwitchInt",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        20,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "SwitchChanged",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        10,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "SwitchTopology",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        10,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "SwitchOne",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        10,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "SwitchEight",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        80,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "SwitchNegativeStart",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        20,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "SwitchDefault",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        100,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "SwitchNoDefault",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "SwitchUnwiredMatch",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "SwitchName",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        20,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "SwitchNameMember",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        20,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "SwitchNameDefault",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        100,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "SwitchNameNoDefault",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "SwitchNameCaseInsensitive",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        20,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    }
+  ]
+}

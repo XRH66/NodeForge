@@ -1,0 +1,207 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphSpatialOutput",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFSpatialOutput",
+  "catalogDigest": "588f572606053d53eebe80b3461b0e01baac2326f30e778c2cdbc3f03e4e2801",
+  "nodes": [
+    {
+      "id": "Position",
+      "class": "/Script/Engine.MaterialExpressionWorldPosition",
+      "properties": {
+        "WorldPositionShaderOffset": "WPT_Default"
+      }
+    },
+    {
+      "id": "Axis",
+      "class": "/Script/Engine.MaterialExpressionComponentMask",
+      "properties": {
+        "R": true,
+        "G": false,
+        "B": false,
+        "A": false
+      }
+    },
+    {
+      "id": "Scale",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Scale",
+        "DefaultValue": 0.01
+      }
+    },
+    {
+      "id": "Spatial",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "Clock",
+      "class": "/Script/Engine.MaterialExpressionTime",
+      "properties": {}
+    },
+    {
+      "id": "Speed",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Speed",
+        "DefaultValue": 0.18
+      }
+    },
+    {
+      "id": "Temporal",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "Phase",
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "properties": {}
+    },
+    {
+      "id": "Wave",
+      "class": "/Script/Engine.MaterialExpressionSine",
+      "properties": {
+        "Period": 1
+      }
+    },
+    {
+      "id": "Half",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 0.5
+      }
+    },
+    {
+      "id": "Bias",
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "properties": {
+        "ConstB": 0.5
+      }
+    },
+    {
+      "id": "LowColor",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "LowColor",
+        "DefaultValue": [
+          0.015,
+          0.03,
+          0.09,
+          1
+        ]
+      }
+    },
+    {
+      "id": "HighColor",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "HighColor",
+        "DefaultValue": [
+          0.03,
+          0.65,
+          0.95,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Blend",
+      "class": "/Script/Engine.MaterialExpressionLinearInterpolate",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "Position",
+      "output": "3",
+      "to": "Axis",
+      "input": "Input"
+    },
+    {
+      "from": "Axis",
+      "output": "0",
+      "to": "Spatial",
+      "input": "A"
+    },
+    {
+      "from": "Scale",
+      "output": "0",
+      "to": "Spatial",
+      "input": "B"
+    },
+    {
+      "from": "Clock",
+      "output": "0",
+      "to": "Temporal",
+      "input": "A"
+    },
+    {
+      "from": "Speed",
+      "output": "0",
+      "to": "Temporal",
+      "input": "B"
+    },
+    {
+      "from": "Spatial",
+      "output": "0",
+      "to": "Phase",
+      "input": "A"
+    },
+    {
+      "from": "Temporal",
+      "output": "0",
+      "to": "Phase",
+      "input": "B"
+    },
+    {
+      "from": "Phase",
+      "output": "0",
+      "to": "Wave",
+      "input": "Input"
+    },
+    {
+      "from": "Wave",
+      "output": "0",
+      "to": "Half",
+      "input": "A"
+    },
+    {
+      "from": "Half",
+      "output": "0",
+      "to": "Bias",
+      "input": "A"
+    },
+    {
+      "from": "Bias",
+      "output": "0",
+      "to": "Blend",
+      "input": "Alpha"
+    },
+    {
+      "from": "LowColor",
+      "output": "0",
+      "to": "Blend",
+      "input": "A"
+    },
+    {
+      "from": "HighColor",
+      "output": "0",
+      "to": "Blend",
+      "input": "B"
+    },
+    {
+      "from": "Blend",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

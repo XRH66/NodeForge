@@ -1,0 +1,2483 @@
+{
+  "format": "NodeForgeGraphVerification1",
+  "date": "2026-10-09",
+  "scope": "仅汇总 GraphRun2 正例的实际构建回读、编译、保存及独立重开；不把发现/实例化或拒绝用例当作成功生成证明。",
+  "catalog": "UE532Graph.json",
+  "catalogSource": "../Reports/20261008GraphUpgrade/Catalog2.json",
+  "catalogDigest": "0d786af7d63e1ea209691493e9b336f50e61eaeb45ef34eeec12ff01b22a884f",
+  "engine": "5.3.2-29314046+++UE5+Release-5.3",
+  "adapter": "NodeForge-UE532-Graph-2",
+  "binarySha256": "517d7694c57b01ace5e7a89c9e1541a5e1b13cb0da06f29c97875ff7f5f514e2",
+  "summaryReport": "../Reports/20261008GraphV2/GraphRun2/Summary.json",
+  "summarySha256": "374624ff90441d05987ef477449a1825978069303c456607ff4889788b659ab0",
+  "matrixResult": "passed",
+  "matrixCaseCount": 33,
+  "positiveCaseCount": 20,
+  "negativeCaseCount": 13,
+  "oneUnchangedBuild": true,
+  "protectedAssetsUnchanged": true,
+  "verificationMeaning": "passedInListedGraphs 仅对列出的输入配置和图有效；未测试条目保持 notVerified，不保证任意合法类型组合或全部属性值。",
+  "material": [
+    {
+      "class": "/Script/Engine.MaterialExpressionAbs",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "DynamicChanged",
+        "DynamicPulse"
+      ],
+      "uses": [
+        {
+          "case": "DynamicPulse",
+          "logicalId": "Positive",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "DynamicChanged",
+          "logicalId": "Positive",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "Water",
+        "WaterChanged"
+      ],
+      "uses": [
+        {
+          "case": "Water",
+          "logicalId": "DiagonalU",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "SlopeX",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "SlopeY",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "DiagonalU",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "SlopeX",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "SlopeY",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionAppendVector",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "Water",
+        "WaterChanged"
+      ],
+      "uses": [
+        {
+          "case": "Water",
+          "logicalId": "NormalXY",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "NormalXYZ",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "NormalXY",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "NormalXYZ",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionClamp",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionComponentMask",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "Water",
+        "WaterChanged"
+      ],
+      "uses": [
+        {
+          "case": "Water",
+          "logicalId": "U",
+          "requestedProperties": [
+            "A",
+            "B",
+            "G",
+            "R"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "V",
+          "requestedProperties": [
+            "A",
+            "B",
+            "G",
+            "R"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "U",
+          "requestedProperties": [
+            "A",
+            "B",
+            "G",
+            "R"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "V",
+          "requestedProperties": [
+            "A",
+            "B",
+            "G",
+            "R"
+          ],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionConstant",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "Water",
+        "WaterChanged"
+      ],
+      "uses": [
+        {
+          "case": "Water",
+          "logicalId": "NormalZ",
+          "requestedProperties": [
+            "R"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "Specular",
+          "requestedProperties": [
+            "R"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "NormalZ",
+          "requestedProperties": [
+            "R"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "Specular",
+          "requestedProperties": [
+            "R"
+          ],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionConstant2Vector",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "DynamicChanged",
+        "DynamicPulse",
+        "Interpolation",
+        "MaterialDefaults"
+      ],
+      "uses": [
+        {
+          "case": "MaterialDefaults",
+          "logicalId": "Color",
+          "requestedProperties": [
+            "Constant"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Interpolation",
+          "logicalId": "Blue",
+          "requestedProperties": [
+            "Constant"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Interpolation",
+          "logicalId": "Red",
+          "requestedProperties": [
+            "Constant"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "DynamicPulse",
+          "logicalId": "GlowColor",
+          "requestedProperties": [
+            "Constant"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "DynamicChanged",
+          "logicalId": "GlowColor",
+          "requestedProperties": [
+            "Constant"
+          ],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionConstant4Vector",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionCosine",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionDivide",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionLinearInterpolate",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "Interpolation"
+      ],
+      "uses": [
+        {
+          "case": "Interpolation",
+          "logicalId": "Blend",
+          "requestedProperties": [],
+          "requestedDefaults": [
+            "Alpha"
+          ]
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "DynamicChanged",
+        "DynamicPulse",
+        "MaterialDefaults",
+        "StaticAdded",
+        "StaticShuffled",
+        "StaticTopology",
+        "Water",
+        "WaterChanged"
+      ],
+      "uses": [
+        {
+          "case": "MaterialDefaults",
+          "logicalId": "Dim",
+          "requestedProperties": [],
+          "requestedDefaults": [
+            "B"
+          ]
+        },
+        {
+          "case": "StaticAdded",
+          "logicalId": "TintStrength",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "StaticTopology",
+          "logicalId": "TintStrength",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "StaticShuffled",
+          "logicalId": "TintStrength",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "DynamicPulse",
+          "logicalId": "Modulate",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "DynamicChanged",
+          "logicalId": "Modulate",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "DirectionUWeight",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "DirectionVWeight",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "Emissive",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "NormalX",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "NormalY",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "PhaseU",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "PhaseV",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "ScaledTime",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "ScaledUV",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "WaveUToY",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "WaveVToX",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "DirectionUWeight",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "DirectionVWeight",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "Emissive",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "NormalX",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "NormalY",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "PhaseU",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "PhaseV",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "ScaledTime",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "ScaledUV",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "WaveUToY",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "WaveVToX",
+          "requestedProperties": [
+            "ConstB"
+          ],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionNormalize",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "Water",
+        "WaterChanged"
+      ],
+      "uses": [
+        {
+          "case": "Water",
+          "logicalId": "Normal",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "Normal",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionOneMinus",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionPanner",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "Water",
+        "WaterChanged"
+      ],
+      "uses": [
+        {
+          "case": "Water",
+          "logicalId": "Pan",
+          "requestedProperties": [
+            "SpeedX",
+            "SpeedY"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "Pan",
+          "requestedProperties": [
+            "SpeedX",
+            "SpeedY"
+          ],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionPower",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "StaticAdded",
+        "StaticChanged",
+        "StaticColor",
+        "StaticShuffled",
+        "StaticTopology",
+        "Water",
+        "WaterChanged"
+      ],
+      "uses": [
+        {
+          "case": "StaticColor",
+          "logicalId": "Rough",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "StaticChanged",
+          "logicalId": "Rough",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "StaticAdded",
+          "logicalId": "Rough",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "StaticTopology",
+          "logicalId": "Rough",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "StaticShuffled",
+          "logicalId": "Rough",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "Opacity",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "Roughness",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "Scale",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "Speed",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "Strength",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "Opacity",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "Roughness",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "Scale",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "Speed",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "Strength",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionSine",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "DynamicChanged",
+        "DynamicPulse",
+        "Water",
+        "WaterChanged"
+      ],
+      "uses": [
+        {
+          "case": "DynamicPulse",
+          "logicalId": "Wave",
+          "requestedProperties": [
+            "Period"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "DynamicChanged",
+          "logicalId": "Wave",
+          "requestedProperties": [
+            "Period"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "WaveU",
+          "requestedProperties": [
+            "Period"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "WaveV",
+          "requestedProperties": [
+            "Period"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "WaveU",
+          "requestedProperties": [
+            "Period"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "WaveV",
+          "requestedProperties": [
+            "Period"
+          ],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionSubtract",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "Water",
+        "WaterChanged"
+      ],
+      "uses": [
+        {
+          "case": "Water",
+          "logicalId": "DiagonalV",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "DiagonalV",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionTextureCoordinate",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "TextureUv",
+        "Water",
+        "WaterChanged"
+      ],
+      "uses": [
+        {
+          "case": "TextureUv",
+          "logicalId": "UV",
+          "requestedProperties": [
+            "CoordinateIndex",
+            "UTiling",
+            "VTiling"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "UV",
+          "requestedProperties": [
+            "CoordinateIndex",
+            "UTiling",
+            "VTiling"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "UV",
+          "requestedProperties": [
+            "CoordinateIndex",
+            "UTiling",
+            "VTiling"
+          ],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionTextureSample",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "TextureUv"
+      ],
+      "uses": [
+        {
+          "case": "TextureUv",
+          "logicalId": "Texture",
+          "requestedProperties": [
+            "Texture"
+          ],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionTime",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "DynamicChanged",
+        "DynamicPulse",
+        "Water",
+        "WaterChanged"
+      ],
+      "uses": [
+        {
+          "case": "DynamicPulse",
+          "logicalId": "Clock",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "DynamicChanged",
+          "logicalId": "Clock",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "Clock",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "Clock",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "StaticAdded",
+        "StaticChanged",
+        "StaticColor",
+        "StaticReduced",
+        "StaticShuffled",
+        "StaticTopology",
+        "Water",
+        "WaterChanged"
+      ],
+      "uses": [
+        {
+          "case": "StaticColor",
+          "logicalId": "Color",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "StaticChanged",
+          "logicalId": "Color",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "StaticAdded",
+          "logicalId": "Color",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "StaticReduced",
+          "logicalId": "Color",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "StaticTopology",
+          "logicalId": "Color",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "StaticShuffled",
+          "logicalId": "Color",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "Water",
+          "logicalId": "WaterColor",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "WaterChanged",
+          "logicalId": "WaterColor",
+          "requestedProperties": [
+            "DefaultValue",
+            "ParameterName"
+          ],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    }
+  ],
+  "blueprint": [
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "catalogBinding": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Add_DoubleDouble"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "catalogBinding": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "BooleanAND"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "catalogBinding": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Concat_StrStr"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "BlueprintConcat"
+      ],
+      "uses": [
+        {
+          "case": "BlueprintConcat",
+          "logicalId": "Join",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": [
+            "A",
+            "B"
+          ]
+        }
+      ],
+      "runtime": "notAssessedHere"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "catalogBinding": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_DoubleToString"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "catalogBinding": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Greater_DoubleDouble"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "catalogBinding": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Multiply_DoubleDouble"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "catalogBinding": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "BlueprintBranch",
+        "BlueprintBranchFalse",
+        "BlueprintConcat",
+        "BlueprintShuffled",
+        "BlueprintText",
+        "BlueprintTextChanged",
+        "BlueprintZeroDefaults"
+      ],
+      "uses": [
+        {
+          "case": "BlueprintConcat",
+          "logicalId": "Print",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": [
+            "bPrintToLog",
+            "bPrintToScreen"
+          ]
+        },
+        {
+          "case": "BlueprintText",
+          "logicalId": "Print",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen"
+          ]
+        },
+        {
+          "case": "BlueprintTextChanged",
+          "logicalId": "Print",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen"
+          ]
+        },
+        {
+          "case": "BlueprintBranch",
+          "logicalId": "PrintTrue",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": [
+            "bPrintToLog",
+            "bPrintToScreen"
+          ]
+        },
+        {
+          "case": "BlueprintBranch",
+          "logicalId": "PrintFalse",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen"
+          ]
+        },
+        {
+          "case": "BlueprintBranchFalse",
+          "logicalId": "PrintTrue",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": [
+            "bPrintToLog",
+            "bPrintToScreen"
+          ]
+        },
+        {
+          "case": "BlueprintBranchFalse",
+          "logicalId": "PrintFalse",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen"
+          ]
+        },
+        {
+          "case": "BlueprintShuffled",
+          "logicalId": "PrintFalse",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen"
+          ]
+        },
+        {
+          "case": "BlueprintShuffled",
+          "logicalId": "PrintTrue",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": [
+            "bPrintToLog",
+            "bPrintToScreen"
+          ]
+        },
+        {
+          "case": "BlueprintZeroDefaults",
+          "logicalId": "PrintTrue",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": [
+            "bPrintToLog",
+            "bPrintToScreen"
+          ]
+        },
+        {
+          "case": "BlueprintZeroDefaults",
+          "logicalId": "PrintFalse",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen"
+          ]
+        }
+      ],
+      "runtime": "notAssessedHere"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "catalogBinding": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "BlueprintBranch",
+        "BlueprintBranchFalse",
+        "BlueprintConcat",
+        "BlueprintShuffled",
+        "BlueprintText",
+        "BlueprintTextChanged",
+        "BlueprintZeroDefaults"
+      ],
+      "uses": [
+        {
+          "case": "BlueprintConcat",
+          "logicalId": "Begin",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintText",
+          "logicalId": "Begin",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintTextChanged",
+          "logicalId": "Begin",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintBranch",
+          "logicalId": "Begin",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintBranchFalse",
+          "logicalId": "Begin",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintShuffled",
+          "logicalId": "Begin",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintZeroDefaults",
+          "logicalId": "Begin",
+          "requestedProperties": [
+            "member",
+            "owner"
+          ],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_IfThenElse",
+      "catalogBinding": {},
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "BlueprintBranch",
+        "BlueprintBranchFalse",
+        "BlueprintShuffled",
+        "BlueprintZeroDefaults"
+      ],
+      "uses": [
+        {
+          "case": "BlueprintBranch",
+          "logicalId": "Branch",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintBranchFalse",
+          "logicalId": "Branch",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintShuffled",
+          "logicalId": "Branch",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintZeroDefaults",
+          "logicalId": "Branch",
+          "requestedProperties": [],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "catalogBinding": {
+        "variable": "Value"
+      },
+      "variableType": "bool",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "BlueprintBranch",
+        "BlueprintBranchFalse",
+        "BlueprintShuffled",
+        "BlueprintZeroDefaults"
+      ],
+      "uses": [
+        {
+          "case": "BlueprintBranch",
+          "logicalId": "ReadEnabled",
+          "requestedProperties": [
+            "variable"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintBranchFalse",
+          "logicalId": "ReadEnabled",
+          "requestedProperties": [
+            "variable"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintShuffled",
+          "logicalId": "ReadEnabled",
+          "requestedProperties": [
+            "variable"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintZeroDefaults",
+          "logicalId": "ReadEnabled",
+          "requestedProperties": [
+            "variable"
+          ],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "catalogBinding": {
+        "variable": "Value"
+      },
+      "variableType": "float",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "catalogBinding": {
+        "variable": "Value"
+      },
+      "variableType": "string",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "BlueprintBranch",
+        "BlueprintBranchFalse",
+        "BlueprintShuffled",
+        "BlueprintZeroDefaults"
+      ],
+      "uses": [
+        {
+          "case": "BlueprintBranch",
+          "logicalId": "ReadMessage",
+          "requestedProperties": [
+            "variable"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintBranchFalse",
+          "logicalId": "ReadMessage",
+          "requestedProperties": [
+            "variable"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintShuffled",
+          "logicalId": "ReadMessage",
+          "requestedProperties": [
+            "variable"
+          ],
+          "requestedDefaults": []
+        },
+        {
+          "case": "BlueprintZeroDefaults",
+          "logicalId": "ReadMessage",
+          "requestedProperties": [
+            "variable"
+          ],
+          "requestedDefaults": []
+        }
+      ],
+      "runtime": "notAssessedHere"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "catalogBinding": {
+        "variable": "Value"
+      },
+      "variableType": "bool",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "catalogBinding": {
+        "variable": "Value"
+      },
+      "variableType": "float",
+      "discovered": true,
+      "constructible": true,
+      "verification": "notVerified",
+      "checks": {
+        "readback": "notVerified",
+        "compile": "notVerified",
+        "save": "notVerified",
+        "independentReopen": "notVerified"
+      },
+      "caseNames": [],
+      "uses": [],
+      "runtime": "notAssessedHere"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "catalogBinding": {
+        "variable": "Value"
+      },
+      "variableType": "string",
+      "discovered": true,
+      "constructible": true,
+      "verification": "verifiedInListedGraphs",
+      "checks": {
+        "readback": "passedInListedGraphs",
+        "compile": "passedInListedGraphs",
+        "save": "passedInListedGraphs",
+        "independentReopen": "passedInListedGraphs"
+      },
+      "caseNames": [
+        "BlueprintBranch",
+        "BlueprintBranchFalse",
+        "BlueprintShuffled",
+        "BlueprintZeroDefaults"
+      ],
+      "uses": [
+        {
+          "case": "BlueprintBranch",
+          "logicalId": "SetMessage",
+          "requestedProperties": [
+            "variable"
+          ],
+          "requestedDefaults": [
+            "Message"
+          ]
+        },
+        {
+          "case": "BlueprintBranchFalse",
+          "logicalId": "SetMessage",
+          "requestedProperties": [
+            "variable"
+          ],
+          "requestedDefaults": [
+            "Message"
+          ]
+        },
+        {
+          "case": "BlueprintShuffled",
+          "logicalId": "SetMessage",
+          "requestedProperties": [
+            "variable"
+          ],
+          "requestedDefaults": [
+            "Message"
+          ]
+        },
+        {
+          "case": "BlueprintZeroDefaults",
+          "logicalId": "SetMessage",
+          "requestedProperties": [
+            "variable"
+          ],
+          "requestedDefaults": [
+            "Message"
+          ]
+        }
+      ],
+      "runtime": "notAssessedHere"
+    }
+  ],
+  "blueprintVariableDeclarations": [
+    {
+      "type": "bool",
+      "declarationCompileSaveCdoReadbackAndReopen": "passedInListedGraphs",
+      "uses": [
+        {
+          "case": "BlueprintBranch",
+          "variable": "Enabled",
+          "actualDefault": true,
+          "readbackSource": "compiledClassDefaultObject"
+        },
+        {
+          "case": "BlueprintBranchFalse",
+          "variable": "Enabled",
+          "actualDefault": false,
+          "readbackSource": "compiledClassDefaultObject"
+        },
+        {
+          "case": "BlueprintShuffled",
+          "variable": "Enabled",
+          "actualDefault": true,
+          "readbackSource": "compiledClassDefaultObject"
+        },
+        {
+          "case": "BlueprintZeroDefaults",
+          "variable": "Enabled",
+          "actualDefault": false,
+          "readbackSource": "compiledClassDefaultObject"
+        }
+      ],
+      "note": "声明/CDO 默认值验证不等于该类型的 Get/Set 节点均已验证。"
+    },
+    {
+      "type": "float",
+      "declarationCompileSaveCdoReadbackAndReopen": "passedInListedGraphs",
+      "uses": [
+        {
+          "case": "BlueprintZeroDefaults",
+          "variable": "Zero",
+          "actualDefault": 0,
+          "readbackSource": "compiledClassDefaultObject"
+        }
+      ],
+      "note": "声明/CDO 默认值验证不等于该类型的 Get/Set 节点均已验证。"
+    },
+    {
+      "type": "string",
+      "declarationCompileSaveCdoReadbackAndReopen": "passedInListedGraphs",
+      "uses": [
+        {
+          "case": "BlueprintBranch",
+          "variable": "Message",
+          "actualDefault": "Initial default",
+          "readbackSource": "compiledClassDefaultObject"
+        },
+        {
+          "case": "BlueprintBranchFalse",
+          "variable": "Message",
+          "actualDefault": "Initial default",
+          "readbackSource": "compiledClassDefaultObject"
+        },
+        {
+          "case": "BlueprintShuffled",
+          "variable": "Message",
+          "actualDefault": "Initial default",
+          "readbackSource": "compiledClassDefaultObject"
+        },
+        {
+          "case": "BlueprintZeroDefaults",
+          "variable": "Message",
+          "actualDefault": "",
+          "readbackSource": "compiledClassDefaultObject"
+        }
+      ],
+      "note": "声明/CDO 默认值验证不等于该类型的 Get/Set 节点均已验证。"
+    }
+  ],
+  "cases": [
+    {
+      "name": "MaterialDefaults",
+      "assetType": "Material",
+      "assetPath": "/Game/NodeForgeTests/NFGraphMaterialDefaults",
+      "requestId": "GraphMaterialDefaults",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/MaterialDefaults.json",
+      "inputSha256": "d2b3d30cc1727fcaef9d184d06f59d342622840c434a7e77f4f0f40bc30ef333",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/MaterialDefaultsImport.json",
+      "importReportSha256": "f25ff56b70492fec4f00064770d57d91783967ce25daab32a8aa018aaeb51ae2",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/MaterialDefaultsReopen.json",
+      "reopenReportSha256": "842adc2f9942870616428eed939c99099ee41f1737681d75a88ab0ab94bb1ef6",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/MaterialDefaultsResult.json",
+      "externalAssertionsSha256": "cddf30653749f7aa68a4504b319de1b98d5a16794051daa2d22b35ccd6bfea70",
+      "assetSha256": "ca9890478947ad2f78659140345bcbb7f16c5068b31c310a0a02f4c92c862a5e",
+      "actualNodeCount": 2,
+      "actualEdgeCount": 2,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "TextureUv",
+      "assetType": "Material",
+      "assetPath": "/Game/NodeForgeTests/NFGraphTextureUv",
+      "requestId": "GraphTextureUv",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/TextureUv.json",
+      "inputSha256": "100db789b18800341075acda2bed0f92523db50b9aea4ac48debe17c75cda8b9",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/TextureUvImport.json",
+      "importReportSha256": "4fcfc1c6c7b8819cad51cecab1599460663bff68d0aa4e2f3e2d451257cd4f71",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/TextureUvReopen.json",
+      "reopenReportSha256": "e9ab6c144a277b9f6fad58065913b5f06d8cdc800bc995f25730ecbd1a3c05fc",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/TextureUvResult.json",
+      "externalAssertionsSha256": "80cfb5040858f12c96da92e3ca1600cf86b80c0d44b8779ba7ff752999b7c185",
+      "assetSha256": "d0e601a06ed9eef7696d1b6bf200147960d0f60f223afa64e7bbff56e9a7d9ad",
+      "actualNodeCount": 2,
+      "actualEdgeCount": 2,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "Interpolation",
+      "assetType": "Material",
+      "assetPath": "/Game/NodeForgeTests/NFGraphInterpolation",
+      "requestId": "GraphInterpolation",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/Interpolation.json",
+      "inputSha256": "ad0f478810ce334046bd4fbbce56dd6568afd31ecbb8eecc3933e57b8a8dacbe",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/InterpolationImport.json",
+      "importReportSha256": "523a55e4702731263246e46aa05cf7807945944b487554d22fab3f0bdb15022d",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/InterpolationReopen.json",
+      "reopenReportSha256": "a466e635354587cf492d5449618efe73ad8c9ae9cec597285aa709268ee2c6f1",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/InterpolationResult.json",
+      "externalAssertionsSha256": "65d7222f72e0f457a31aa6e372046f0748a3e87a5c7f5c23467eeb2ee7311288",
+      "assetSha256": "24dbbf6fa4868b176dc8d12b94e0a1be2c960d120703d8e115683d290d90177e",
+      "actualNodeCount": 3,
+      "actualEdgeCount": 3,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "BlueprintConcat",
+      "assetType": "Blueprint",
+      "assetPath": "/Game/NodeForgeTests/NFGraphBlueprintConcat",
+      "requestId": "GraphBlueprintConcat",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/BlueprintConcat.json",
+      "inputSha256": "2c14c2820ce59a5c7df8ec67bfac4743974865861f2e6f693f900d621db655cf",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/BlueprintConcatImport.json",
+      "importReportSha256": "8968a003178b8b1d88bf95c60ae69154190c415886ddfd03aeffe4c6846e4f86",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/BlueprintConcatReopen.json",
+      "reopenReportSha256": "c63a5994916c1d23f4e465d1892d2ea164c798bbbbf5a4227511e4b46c9025ca",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/BlueprintConcatResult.json",
+      "externalAssertionsSha256": "5d1063f362700b340f362f00681a15ffcefcf25d2da67ace0088f31bcab505b0",
+      "assetSha256": "85b8e33dc6dc117d41cdeec606f534950323a61c94521557a25312452c842b4b",
+      "actualNodeCount": 3,
+      "actualEdgeCount": 2,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "StaticColor",
+      "assetType": "Material",
+      "assetPath": "/Game/NodeForgeTests/NFGraphStaticColor",
+      "requestId": "GraphStaticColor",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/StaticColor.json",
+      "inputSha256": "b2ad54115ccba1f53a50c34034eb4add504d78a06c6f22b7873eae234507883a",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/StaticColorImport.json",
+      "importReportSha256": "a4169e6fd8cf1c6e092656100508b3469ad6842c179779a8758209c8ca04071c",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/StaticColorReopen.json",
+      "reopenReportSha256": "b7352962ce2f562ae0cd9b86ebfa0f31a73b2651aea79d25f90b72674b11d0e6",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/StaticColorResult.json",
+      "externalAssertionsSha256": "3ae48289ff6f70237f6f56dde97be4583cf6bfed7cfd72403f69060de08838a1",
+      "assetSha256": "5abe9e2d6617f0e0dbaf4409748743abf6aea130dcf640855c2a2db1288fa4f4",
+      "actualNodeCount": 2,
+      "actualEdgeCount": 2,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "StaticChanged",
+      "assetType": "Material",
+      "assetPath": "/Game/NodeForgeTests/NFGraphStaticChanged",
+      "requestId": "GraphStaticChanged",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/StaticChanged.json",
+      "inputSha256": "c55c5d0fbaf3589495187c2b01ca11cca0d4fb2d37be7e2b71b54289461164d4",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/StaticChangedImport.json",
+      "importReportSha256": "991c1308be6b85e40e015199d5ae9477e26885e4f23825eb79e1a9221cfe3bed",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/StaticChangedReopen.json",
+      "reopenReportSha256": "98a296e996ed90d2c2f4fd858068fa3bec582ecacee975f758dff06a990f32ec",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/StaticChangedResult.json",
+      "externalAssertionsSha256": "6e1ed3651a10c9e995be88e52155553cc36a3eedcb8d51ee27992d21fed5bfaa",
+      "assetSha256": "db29b2404f4ce05dd4c592ff456d4c57f044d268e7cd1a68f4e733e72057e1db",
+      "actualNodeCount": 2,
+      "actualEdgeCount": 2,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "StaticAdded",
+      "assetType": "Material",
+      "assetPath": "/Game/NodeForgeTests/NFGraphStaticAdded",
+      "requestId": "GraphStaticAdded",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/StaticAdded.json",
+      "inputSha256": "d844eeafd9466364df5c09bc1e1637de6d0efa44f506a6d00841445c64a3a471",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/StaticAddedImport.json",
+      "importReportSha256": "e95e145880267bc6d2a4c5f064c7400e0d02aa827849d1ec280b673f91e01f5a",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/StaticAddedReopen.json",
+      "reopenReportSha256": "f2b7661a7b621d45ff2b8d7825b8dcd0359932218882d0f59daf9c507ce4d0c3",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/StaticAddedResult.json",
+      "externalAssertionsSha256": "d69528dda99841d0724f6ace1a0233ab274bcebadb653be473414964dc60ca69",
+      "assetSha256": "d5778e905fea5d2ad1999af0d44282ade97981927a9c5da6c3038cedd719f9a3",
+      "actualNodeCount": 3,
+      "actualEdgeCount": 3,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "StaticReduced",
+      "assetType": "Material",
+      "assetPath": "/Game/NodeForgeTests/NFGraphStaticReduced",
+      "requestId": "GraphStaticReduced",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/StaticReduced.json",
+      "inputSha256": "31a107ca17e0391761000d37f10876d73041ac1417bc98be4527c48ffe72fd80",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/StaticReducedImport.json",
+      "importReportSha256": "2b64c20e33c33141f6b3d0d6cf94748d31f440a16d34210216e15e99cfb476ab",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/StaticReducedReopen.json",
+      "reopenReportSha256": "9046883bcc178d955ec5dd8422319caa76e7aaccb3f3632ff7014a9757732b1c",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/StaticReducedResult.json",
+      "externalAssertionsSha256": "5cc05c98372b266f2c3b8493ea6973cd4d851082f35b8a32fd7a6a356a370645",
+      "assetSha256": "ec714f640daab8c6103e84c02b3895d76926d61b424ee902da37fa726f3580d6",
+      "actualNodeCount": 1,
+      "actualEdgeCount": 1,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "StaticTopology",
+      "assetType": "Material",
+      "assetPath": "/Game/NodeForgeTests/NFGraphStaticTopology",
+      "requestId": "GraphStaticTopology",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/StaticTopology.json",
+      "inputSha256": "5ff966e102f4f7aabbbff3490a4f75cc9c69e51710248b7433bb9e61ee80bf47",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/StaticTopologyImport.json",
+      "importReportSha256": "217d0c239e3f3d2b0c29a5fe361ab48b365930c9dfb6310e24ed468d24d6c7c8",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/StaticTopologyReopen.json",
+      "reopenReportSha256": "6c8a70157f224d59ae4d2e2439888cb1eec893149dbb4ea4eaab5b853046eee6",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/StaticTopologyResult.json",
+      "externalAssertionsSha256": "8dffadd49b989d65e5105d0d56d301a7015650071f5eccdf120f20bcf559d060",
+      "assetSha256": "159d9bf7e8c0453757a41dc4345db453622a6d7c42263f0d3d486fee1a98d3f5",
+      "actualNodeCount": 3,
+      "actualEdgeCount": 3,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "StaticShuffled",
+      "assetType": "Material",
+      "assetPath": "/Game/NodeForgeTests/NFGraphStaticShuffled",
+      "requestId": "GraphStaticShuffled",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/StaticShuffled.json",
+      "inputSha256": "fc7bf4a1b262505b89f7ba80e5b1b4a4aa571f809ee302c63eec2a0065c48974",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/StaticShuffledImport.json",
+      "importReportSha256": "b53d9337de87fcd19b367027960ded9a3dc818b7ebe6cff913b3014ced9834de",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/StaticShuffledReopen.json",
+      "reopenReportSha256": "ad851918fc4fe8147c6285edd839bcdaf365e9888dbe3b3d70d26fda387a03dd",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/StaticShuffledResult.json",
+      "externalAssertionsSha256": "5e88aa6524e1b9825dec96a94f3e9b3d0f28b1d959bf87fad57820ad6c72be34",
+      "assetSha256": "3520c313f86a748b7862644e1cdacd2185e2d9b3817e0a14a218c64690cc95f7",
+      "actualNodeCount": 3,
+      "actualEdgeCount": 3,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "DynamicPulse",
+      "assetType": "Material",
+      "assetPath": "/Game/NodeForgeTests/NFGraphDynamicPulse",
+      "requestId": "GraphDynamicPulse",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/DynamicPulse.json",
+      "inputSha256": "be7f8cdba44dac3eeefa47af45859b436a7c127aa357e696f7373f3f5ddb6bfd",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/DynamicPulseImport.json",
+      "importReportSha256": "d55a2da4fb9bbfccaabd1e486423ea2e92bf15f81930199cc22ef4063e5c0a33",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/DynamicPulseReopen.json",
+      "reopenReportSha256": "547353ef8208c9b40e84ecff872e7e1a08ce9114637d2b30e184118143701b30",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/DynamicPulseResult.json",
+      "externalAssertionsSha256": "50af2b154d250c662ba9efc893b1554fc078d37eef8b43e7ee36387d72039244",
+      "assetSha256": "1138d552062907cc76f36ba00c5d50f02b359ea745a9f7d7ae3a4ceef1dfcd37",
+      "actualNodeCount": 5,
+      "actualEdgeCount": 5,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "DynamicChanged",
+      "assetType": "Material",
+      "assetPath": "/Game/NodeForgeTests/NFGraphDynamicChanged",
+      "requestId": "GraphDynamicChanged",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/DynamicChanged.json",
+      "inputSha256": "e1e1d568110c039fba82d6fb7946bb9b3a68a8b01f74f181616a0992f37bd803",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/DynamicChangedImport.json",
+      "importReportSha256": "6a776d3c82f3eb15764afef6e16b352a9e0ca84b8afe439899264bdfa76736a9",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/DynamicChangedReopen.json",
+      "reopenReportSha256": "b96e808206571214d8fcd5de367d4d5aa9d4f6c3dbf72c1f6c6e0a6b80eb7826",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/DynamicChangedResult.json",
+      "externalAssertionsSha256": "bb38f49cadab60bc03e2b35abcec7785f108489cd07f6de20ea7906e5b61d6f4",
+      "assetSha256": "17b08dc2b649a32cbd31c93dbe91e37a47f28fda59e4d4d6ab8988034864f744",
+      "actualNodeCount": 5,
+      "actualEdgeCount": 5,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "Water",
+      "assetType": "Material",
+      "assetPath": "/Game/NodeForgeTests/NFGraphWater",
+      "requestId": "GraphWater",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/Water.json",
+      "inputSha256": "bc925a1b1ec1ad5a3907bef2bc734919a552ef11d05a7e134637808e6338cbf7",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/WaterImport.json",
+      "importReportSha256": "69ee7c0ca9f6dc25faf01b1a94a589d4fbe84723f855bf0fca22e5a778a46c32",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/WaterReopen.json",
+      "reopenReportSha256": "f7ec0512ec568c9d73ca29f2b2429e50e54e12010184c132e8a9a64c5c9fe8d0",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/WaterResult.json",
+      "externalAssertionsSha256": "015f194e18fdf87f172a98642eff500a654fead78cf0abb861de10030bb80557",
+      "assetSha256": "a1194529b893b5ae5c0318e45adf47ebb8dd92439a729628fcb3582d5d05c5d4",
+      "actualNodeCount": 33,
+      "actualEdgeCount": 40,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "WaterChanged",
+      "assetType": "Material",
+      "assetPath": "/Game/NodeForgeTests/NFGraphWaterChanged",
+      "requestId": "GraphWaterChanged",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/WaterChanged.json",
+      "inputSha256": "cf71efc48e253524afa096a41196b2435128296da4448d584d2b31a2f2af53a4",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/WaterChangedImport.json",
+      "importReportSha256": "61feb4d6ec36238518cf5ebbc6e868b94268dba1b33060f4a6dcf02484bb2866",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/WaterChangedReopen.json",
+      "reopenReportSha256": "34b2f5c106edd2030d2622a1a7eab751c83bf9197cc4d62751265424e9d6ddc5",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/WaterChangedResult.json",
+      "externalAssertionsSha256": "18e2e4d801c7525a9f4aa051610a8941807f18aed3fe2cc0ba2a17c99f346d03",
+      "assetSha256": "38e7c95455cd836c68703d2949b74d380849d20f4ec511c942e66a84700b9134",
+      "actualNodeCount": 33,
+      "actualEdgeCount": 40,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "BlueprintText",
+      "assetType": "Blueprint",
+      "assetPath": "/Game/NodeForgeTests/NFGraphBlueprintText",
+      "requestId": "GraphBlueprintText",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/BlueprintText.json",
+      "inputSha256": "f012a8c0f1cc76db7db0f60f9ad286d840eeea0963850a6666bbf3c9568c886f",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/BlueprintTextImport.json",
+      "importReportSha256": "101ce801e8b3f7ca24cc1c01c0d6ce06b1ba7265541d4bde65485083b0f3294c",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/BlueprintTextReopen.json",
+      "reopenReportSha256": "77138051e12e21f0c7952c782e6ccfe5761481c053c68ae6b631e1ef088a03e3",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/BlueprintTextResult.json",
+      "externalAssertionsSha256": "bd06d9cd7772cbf15bda732b5ef98ded0467b15d7bc762e8569f4891eba5dfbb",
+      "assetSha256": "fd56ca7564233434a4bf292175f91bb8253f9a6444a379f930f06e7559e303b4",
+      "actualNodeCount": 2,
+      "actualEdgeCount": 1,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "BlueprintTextChanged",
+      "assetType": "Blueprint",
+      "assetPath": "/Game/NodeForgeTests/NFGraphBlueprintTextChanged",
+      "requestId": "GraphBlueprintTextChanged",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/BlueprintTextChanged.json",
+      "inputSha256": "121899c8a4c84b2659bcee5e47050bb7f8f10c92638417351f0c6bdfd682f0c0",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/BlueprintTextChangedImport.json",
+      "importReportSha256": "4823c80aa31020d5b2ea6844b1c134a60430d5a9bd9580065fc942bac5e7b7b7",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/BlueprintTextChangedReopen.json",
+      "reopenReportSha256": "9abe4deb02206e283f2e8e257fa3cccd859f7982538e1340b69c06dea5155803",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/BlueprintTextChangedResult.json",
+      "externalAssertionsSha256": "3a20f2326cc5aae9b65cdd701cc123d380bc04203c181e8349f943ee312f40be",
+      "assetSha256": "8d3358424fadfd3556b5153b5a7897287093a99f821a0957883831787829f121",
+      "actualNodeCount": 2,
+      "actualEdgeCount": 1,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "BlueprintBranch",
+      "assetType": "Blueprint",
+      "assetPath": "/Game/NodeForgeTests/NFGraphBlueprintBranch",
+      "requestId": "GraphBlueprintBranch",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/BlueprintBranch.json",
+      "inputSha256": "f7fd53ef7aa2f1cc93a7e6d94bdd17230599de5e468194353a8b894928c24e4b",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/BlueprintBranchImport.json",
+      "importReportSha256": "e2b6b5ebb8bc6f9383c92cc4cb6a530347a1539910beb8243b3c3fb1c0477938",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/BlueprintBranchReopen.json",
+      "reopenReportSha256": "265bd3e39917442853593bdacd5d96ffd167d555931e01455d74476f2cdb8bc8",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/BlueprintBranchResult.json",
+      "externalAssertionsSha256": "5a386daf8b270a2b71c5cb020406270856244203b12fe199f74a4953dfc92b5e",
+      "assetSha256": "24cab12a93b89e21d3f030c7f42be3f12e276860e845ad8cb5de3429b0b21a6b",
+      "actualNodeCount": 7,
+      "actualEdgeCount": 6,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "BlueprintBranchFalse",
+      "assetType": "Blueprint",
+      "assetPath": "/Game/NodeForgeTests/NFGraphBlueprintBranchFalse",
+      "requestId": "GraphBlueprintBranchFalse",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/BlueprintBranchFalse.json",
+      "inputSha256": "22a17f0f3563642782c669a0922188bbb5a167c2c76b61a868af173f68bf719b",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/BlueprintBranchFalseImport.json",
+      "importReportSha256": "0cfadd5a978ed97d22a976b78d449abe400547a7a774b65e9eb2d27777fc67b4",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/BlueprintBranchFalseReopen.json",
+      "reopenReportSha256": "70e473149ce66c6b453070458f7a81af25b3bd9e28e61e584a0bc5792d1cb2bc",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/BlueprintBranchFalseResult.json",
+      "externalAssertionsSha256": "fb03862bcd518bdb8979bbbe69129b71957143b947eec296504e0a213eb72f9e",
+      "assetSha256": "1825ed498e4fa846df0e0a15c648a1ed9a42701b8551dfec7077c9713bc4b2c0",
+      "actualNodeCount": 7,
+      "actualEdgeCount": 6,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "BlueprintShuffled",
+      "assetType": "Blueprint",
+      "assetPath": "/Game/NodeForgeTests/NFGraphBlueprintShuffled",
+      "requestId": "GraphBlueprintShuffled",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/BlueprintShuffled.json",
+      "inputSha256": "0ebd141617d8adfbedff9021ac471f6671e1239edc67732f06ffc80670a8b7bc",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/BlueprintShuffledImport.json",
+      "importReportSha256": "f49f24d0658a07eb0888755655972b6fa2b285cc41ae9027ebaf7af9a2571af2",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/BlueprintShuffledReopen.json",
+      "reopenReportSha256": "3980a961237edc911bdc67273d66fffb51a647935db21dcce737a14d4ca7afdc",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/BlueprintShuffledResult.json",
+      "externalAssertionsSha256": "5ffb53e0f8ba86b4813d564c4563532814bcab4f20eca3cf01f8b712757e2d8f",
+      "assetSha256": "f25724d9da391dc684c1ac873f2cff158aee2dca244bb74c2f9996935b5f1ec4",
+      "actualNodeCount": 7,
+      "actualEdgeCount": 6,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    },
+    {
+      "name": "BlueprintZeroDefaults",
+      "assetType": "Blueprint",
+      "assetPath": "/Game/NodeForgeTests/NFGraphBlueprintZeroDefaults",
+      "requestId": "GraphBlueprintZeroDefaults",
+      "input": "../Reports/20261008GraphV2/GraphRun2/Inputs/BlueprintZeroDefaults.json",
+      "inputSha256": "c17c12a654a45ed37b92ad59ad1407c060083f5aef8d80713f38f76334ff3f70",
+      "importReport": "../Reports/20261008GraphV2/GraphRun2/BlueprintZeroDefaultsImport.json",
+      "importReportSha256": "da5d6e9c8e11e7ffeead45b78461edddf5192a0f55503b530fd9f59de2cfe900",
+      "reopenReport": "../Reports/20261008GraphV2/GraphRun2/BlueprintZeroDefaultsReopen.json",
+      "reopenReportSha256": "bb7f875372b8d015e01d0bb349c7a6f3f1f11bfcaa3a29f6ccc313271460768d",
+      "externalAssertions": "../Reports/20261008GraphV2/GraphRun2/BlueprintZeroDefaultsResult.json",
+      "externalAssertionsSha256": "624bb14641bc276996abb38b3074461637688ff2a4891d57a3366d8659be9f50",
+      "assetSha256": "763d3922e0b9fa6ba4f4be02221cf74576720638581794ddee65dec0cf13b1a6",
+      "actualNodeCount": 7,
+      "actualEdgeCount": 6,
+      "readback": "passed",
+      "compile": "passed",
+      "save": "passed",
+      "independentReopen": "passed",
+      "runtime": "notAssessedHere",
+      "visual": "notAssessedHere"
+    }
+  ],
+  "separateValidation": {
+    "runtime": {
+      "status": "awaitingRootFinalReportReference"
+    },
+    "visual": {
+      "status": "awaitingRootFinalReportReference"
+    },
+    "authority": "../ProjectStatus.md",
+    "reason": "运行、视觉、动画及外部 AI UI 另有独立证据，本清单不代填其通过状态；根代理最终报告提供链接。"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "scope": "Project-owned JSON test derivations, not plugin construction recipes or external AI output; original fixtures untouched",
+  "files": [
+    {
+      "source": "Tests/BlueprintMotion/MotionDirect.json",
+      "sourceSha256": "56e4c75b2a3d1347edaec674c18477a77f1859646af1722c8cfde5066101ad0c",
+      "derived": "Tests/BlueprintDelivery/DeliveryDirect.json",
+      "derivedSha256": "a25bfae64e863fdb1f3d6114314feb0a74564c5dc17b1023a04537d795a6c5c2",
+      "changes": [
+        "new request/asset identity",
+        "native self location readback feeds PrintString instead of a literal",
+        "shuffled case order remains deliberately different"
+      ]
+    },
+    {
+      "source": "Tests/BlueprintMotion/MotionChanged.json",
+      "sourceSha256": "391236e475c3180af96c45b2c1a4fa5bb41fd03136c4fec307b82f5dacff1d8c",
+      "derived": "Tests/BlueprintDelivery/DeliveryChanged.json",
+      "derivedSha256": "4e67ba8c3235ba3fd4fec104fde22736dd9798868323c960f9abd6879f23130f",
+      "changes": [
+        "new request/asset identity",
+        "native self location readback feeds PrintString instead of a literal",
+        "shuffled case order remains deliberately different"
+      ]
+    },
+    {
+      "source": "Tests/BlueprintMotion/MotionMade.json",
+      "sourceSha256": "665f89d278ff071c5437f0b7e59386d85ef8a889e204224f9d706945c079cfd5",
+      "derived": "Tests/BlueprintDelivery/DeliveryMade.json",
+      "derivedSha256": "5212142cd2e67b5f0da7116d95189109de4ad1883ea3b8aea7bf898f17054fc4",
+      "changes": [
+        "new request/asset identity",
+        "native self location readback feeds PrintString instead of a literal",
+        "shuffled case order remains deliberately different"
+      ]
+    },
+    {
+      "source": "Tests/BlueprintMotion/MotionShuffled.json",
+      "sourceSha256": "1871fc36b36f437293702477fb93fba3bf645a7b96e82e3453fd3b421ea105a2",
+      "derived": "Tests/BlueprintDelivery/DeliveryShuffled.json",
+      "derivedSha256": "f0a0a2314b2f797406cc0db6b6ecfffac41ff6fbb5a9c59428f84d4fcadc9c8e",
+      "changes": [
+        "new request/asset identity",
+        "native self location readback feeds PrintString instead of a literal",
+        "shuffled case order remains deliberately different"
+      ]
+    },
+    {
+      "source": "Tests/BlueprintMotion/MotionVariable.json",
+      "sourceSha256": "d851583a8500f7fe3650e6847c4c487266a700d9aed8a9c1c280f425bb461811",
+      "derived": "Tests/BlueprintDelivery/DeliveryVariable.json",
+      "derivedSha256": "392f729cb657c07ee7a2fe0880a194ad535c85ce882a8b3908e9087c6570f796",
+      "changes": [
+        "new request/asset identity",
+        "native self location readback feeds PrintString instead of a literal",
+        "shuffled case order remains deliberately different"
+      ]
+    },
+    {
+      "source": "Tests/BlueprintMotion/MotionWrite.json",
+      "sourceSha256": "5a263e069815f10c8dde60f2c93dfd8ffc9a95d75ceb942ac0577bfc0247ccd3",
+      "derived": "Tests/BlueprintDelivery/DeliveryWrite.json",
+      "derivedSha256": "19ed3bbe73edea18748f413b7fc9754dddf4d46087a8cb63d98edd8521cdc584",
+      "changes": [
+        "new request/asset identity",
+        "native self location readback feeds PrintString instead of a literal",
+        "shuffled case order remains deliberately different"
+      ]
+    },
+    {
+      "source": "Tests/BlueprintMotion/MotionBreak.json",
+      "sourceSha256": "be726dcd8820d638dc8db9ad3fa0a6f69a9f4ddd6022ba51b761ffe07e0ae525",
+      "derived": "Tests/BlueprintDelivery/DeliveryBreak.json",
+      "derivedSha256": "ee0c047361516070477c45e69874df51e6fb7679f791afbb86d0e64b70258753",
+      "changes": [
+        "new request/asset identity",
+        "native self location readback feeds PrintString instead of a literal",
+        "shuffled case order remains deliberately different"
+      ]
+    },
+    {
+      "source": "Tests/BlueprintMotion/MotionReadback.json",
+      "sourceSha256": "4b8cea18ad29fe18df4fcf2f0d8a68a4baeb306a3728cd228db5c88781d47dc9",
+      "derived": "Tests/BlueprintDelivery/DeliveryReadback.json",
+      "derivedSha256": "4b11a19d1d4f727768b6596c67bb82c35ce2a63ec6aa318a542503a4b398ab1d",
+      "changes": [
+        "new request/asset identity",
+        "native self location readback feeds PrintString instead of a literal",
+        "shuffled case order remains deliberately different"
+      ]
+    },
+    {
+      "source": "Tests/BlueprintMotion/MotionZero.json",
+      "sourceSha256": "66b4b6aaa58a74f143af15f5399f91d60de73dbcb3a5f7a0d9a8cc01a31ff8fe",
+      "derived": "Tests/BlueprintDelivery/DeliveryZero.json",
+      "derivedSha256": "a4b584d10601c0c9f95aaa1ea50036ff7268b66d2d51733c24adef0656308aee",
+      "changes": [
+        "new request/asset identity",
+        "native self location readback feeds PrintString instead of a literal",
+        "shuffled case order remains deliberately different"
+      ]
+    },
+    {
+      "source": "Tests/BlueprintMotion/MotionExternalTarget.json",
+      "sourceSha256": "1bb3de7701ed31cf2060a08c9470073571e55c650fa2bf24a9d64d571b5ae941",
+      "derived": "Tests/BlueprintDelivery/DeliveryExternalTarget.json",
+      "derivedSha256": "25304dfc9c51baa8ebc3a685849ee13d3afda7c8587755bf18a9a877d345524c",
+      "changes": [
+        "new request/asset identity only; original unsafe/default-link rejection preserved"
+      ]
+    },
+    {
+      "source": "Tests/BlueprintMotion/MotionWrongLink.json",
+      "sourceSha256": "0acb071a7856c9fc76e231f28364b886e8bc52f695a022d072f794c5628dcc7c",
+      "derived": "Tests/BlueprintDelivery/DeliveryWrongLink.json",
+      "derivedSha256": "7044e0de0da5098b84fcdbf060d7fb76ceed5df010ab191c6c995240a3f49bd2",
+      "changes": [
+        "new request/asset identity only; original unsafe/default-link rejection preserved"
+      ]
+    }
+  ]
+}

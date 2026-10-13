@@ -1,0 +1,103 @@
+{
+  "build": "Build40",
+  "catalogDigest": "cd5de7be8e3662c0ca769a729f64b844b359a25bc46d39a26c2d528bef0bb9e1",
+  "selectedBinarySha256": "89dcecf85123a58cde86c35577387cb353672aa5015d2436280b9a3ab6de859a",
+  "scope": "Four own MemberScalars variable signatures only; remaining catalog entries keep separate evidence",
+  "nodes": [
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "variableType": "int",
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": false,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/MemberScalars2/MemberCountReopen.json",
+        "Reports/20261008GraphV2/MemberScalars2/MemberLowReopen.json",
+        "Reports/20261008GraphV2/MemberScalars2/MemberShuffledReopen.json",
+        "Reports/20261008GraphV2/MemberScalars2/MemberLimitsReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/MemberRuntime1/MemberCountRuntime.json",
+        "Reports/20261009UsableEditor/MemberRuntime1/MemberLowRuntime.json",
+        "Reports/20261009UsableEditor/MemberRuntime1/MemberShuffledRuntime.json",
+        "Reports/20261009UsableEditor/MemberRuntime1/MemberLimitsRuntime.json"
+      ],
+      "scope": "Representative own int32/FName members, exact compiled declaration defaults and graph execution; not all name spellings or metadata configurations",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "variableType": "name",
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": false,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/MemberScalars2/MemberStateReopen.json",
+        "Reports/20261008GraphV2/MemberScalars2/MemberNoneReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/MemberRuntime1/MemberStateRuntime.json",
+        "Reports/20261009UsableEditor/MemberRuntime1/MemberNoneRuntime.json"
+      ],
+      "scope": "Representative own int32/FName members, exact compiled declaration defaults and graph execution; not all name spellings or metadata configurations",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "variableType": "int",
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": false,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/MemberScalars2/MemberCountReopen.json",
+        "Reports/20261008GraphV2/MemberScalars2/MemberLowReopen.json",
+        "Reports/20261008GraphV2/MemberScalars2/MemberShuffledReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/MemberRuntime1/MemberCountRuntime.json",
+        "Reports/20261009UsableEditor/MemberRuntime1/MemberLowRuntime.json",
+        "Reports/20261009UsableEditor/MemberRuntime1/MemberShuffledRuntime.json"
+      ],
+      "scope": "Representative own int32/FName members, exact compiled declaration defaults and graph execution; not all name spellings or metadata configurations",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "variableType": "name",
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": false,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/MemberScalars2/MemberStateReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/MemberRuntime1/MemberStateRuntime.json"
+      ],
+      "scope": "Representative own int32/FName members, exact compiled declaration defaults and graph execution; not all name spellings or metadata configurations",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    }
+  ],
+  "evidenceSha256": {
+    "Catalog/UE532BlueprintMemberScalars.json": "14b246f771081d10a021efc65afe8ad06e66b6301a0a3409efeedb5fb6f9f7de",
+    "Reports/20261008GraphV2/MemberScalars2/Summary.json": "27275009dfcd9e0501269441237eba86e8644568a52e51449dd9c0b2a12d3445",
+    "Reports/20261009UsableEditor/MemberRuntime1/Summary.json": "1a51e618071f0595f55bd88131aa813cb9ac59b065e22c53ea6d460f957f57f1",
+    "Reports/20261009UsableEditor/MemberExport1/Summary.json": "f85e882e2cec9da1afb28ef002318cdcbf3251acc46f212a5815f58614fb10ac",
+    "Reports/20261009UsableEditor/Build40/BinaryEvidence.json": "2d1445b01a2110799cdd9de710300d3eded2a0bc833ec9e90478d7b7847a4bd6",
+    "Reports/20261009UsableEditor/MemberScalarExpansion1/LegacyFixtureCorrection.json": "5f17ac897e69055b3730f7095917be6ee891bc7709493da8ff8d9f156f65a886"
+  },
+  "limitations": [
+    "Native catalog experimental status is supplemented by these actual representative results",
+    "No enum/int64/container/object/rotator member support; canonical nonempty FName declaration default required",
+    "Original generated graphs have saved-map PIE; exported copies have compile/save/reopen only",
+    "No Build40 real UI, external AI original output or standalone packaging; RC1/root DLL unchanged",
+    "First matrix fixture-preparation failure preserved; same DLL retest passed"
+  ]
+}

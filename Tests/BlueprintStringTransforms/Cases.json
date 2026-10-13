@@ -1,0 +1,123 @@
+{
+  "description": "字符串派生、数据驱动分支及旧摘要/精确身份拒绝；expected仅为期望",
+  "executionStatus": "notRun",
+  "existingPortSource": "Reports/20261009UsableEditor/StringIdentityExpansion1/Capture55/ActualCatalog.json",
+  "existingPortSourceSha256": "d22466b534130d95687d02770a568a1c511782e2c6567c7b1babf69a18566f4c",
+  "existingCatalogDigest": "af8a95377783d90668b062fef423717e1eec33b7a23139aed5de4d3206bc15aa",
+  "candidateNewFunctions": [
+    "Left",
+    "Right",
+    "ToUpper",
+    "ToLower"
+  ],
+  "candidateDeclarationSource": "X:/UnrealEngine/UE_5.3/Engine/Source/Runtime/Engine/Classes/Kismet/KismetStringLibrary.h",
+  "candidateDeclarationSourceSha256": "4339649ecf420aa8ec784a443925ac5a9c1ca4e9883aca45e14ee81658cfd401",
+  "newFunctionActualPortStatus": "pending native Build56 catalog preflight",
+  "cases": [
+    {
+      "name": "TransformCompose",
+      "input": "TransformCompose.json",
+      "expected": "succeeded",
+      "category": "stringTransforms"
+    },
+    {
+      "name": "TransformComposeReordered",
+      "input": "TransformComposeReordered.json",
+      "expected": "succeeded",
+      "category": "stringTransforms"
+    },
+    {
+      "name": "TransformUpperOnly",
+      "input": "TransformUpperOnly.json",
+      "expected": "succeeded",
+      "category": "stringTransforms"
+    },
+    {
+      "name": "TransformLowerOnly",
+      "input": "TransformLowerOnly.json",
+      "expected": "succeeded",
+      "category": "stringTransforms"
+    },
+    {
+      "name": "TransformContainsSensitive",
+      "input": "TransformContainsSensitive.json",
+      "expected": "succeeded",
+      "category": "stringTransforms"
+    },
+    {
+      "name": "TransformContainsInsensitive",
+      "input": "TransformContainsInsensitive.json",
+      "expected": "succeeded",
+      "category": "stringTransforms"
+    },
+    {
+      "name": "TransformLengthEnough",
+      "input": "TransformLengthEnough.json",
+      "expected": "succeeded",
+      "category": "stringTransforms"
+    },
+    {
+      "name": "TransformLengthShort",
+      "input": "TransformLengthShort.json",
+      "expected": "succeeded",
+      "category": "stringTransforms"
+    },
+    {
+      "name": "TransformZeroSlice",
+      "input": "TransformZeroSlice.json",
+      "expected": "succeeded",
+      "category": "stringTransforms"
+    },
+    {
+      "name": "TransformLongSlice",
+      "input": "TransformLongSlice.json",
+      "expected": "succeeded",
+      "category": "stringTransforms"
+    },
+    {
+      "name": "TransformOld55Reject",
+      "input": "TransformOld55Reject.json",
+      "expected": "rejected",
+      "category": "stringTransforms",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "TransformOld52Reject",
+      "input": "TransformOld52Reject.json",
+      "expected": "rejected",
+      "category": "stringTransforms",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "TransformWrongMember",
+      "input": "TransformWrongMember.json",
+      "expected": "rejected",
+      "category": "stringTransforms"
+    },
+    {
+      "name": "TransformWrongSourcePin",
+      "input": "TransformWrongSourcePin.json",
+      "expected": "rejected",
+      "category": "stringTransforms"
+    },
+    {
+      "name": "TransformCountFractional",
+      "input": "TransformCountFractional.json",
+      "expected": "rejected",
+      "category": "stringTransforms"
+    },
+    {
+      "name": "TransformUnknownProperty",
+      "input": "TransformUnknownProperty.json",
+      "expected": "rejected",
+      "category": "stringTransforms"
+    },
+    {
+      "name": "TransformCollision",
+      "input": "TransformCollision.json",
+      "expected": "rejected",
+      "category": "stringTransforms",
+      "requires": "TransformCompose"
+    }
+  ]
+}

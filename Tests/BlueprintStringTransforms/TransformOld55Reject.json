@@ -1,0 +1,59 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphTransformOld55Reject",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFTransformOld55Reject",
+  "catalogDigest": "af8a95377783d90668b062fef423717e1eec33b7a23139aed5de4d3206bc15aa",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Text",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "ToUpper"
+      },
+      "defaults": {
+        "SourceString": "MiXeD/AbC"
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "Text",
+      "output": "ReturnValue",
+      "to": "Print",
+      "input": "InString"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}

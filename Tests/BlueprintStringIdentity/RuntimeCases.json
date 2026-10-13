@@ -1,0 +1,120 @@
+{
+  "scope": "保存并独立重开后的精确消息与Actor变换期望；未执行UE",
+  "executionStatus": "notRun",
+  "cases": [
+    {
+      "case": "StringPrintMixed",
+      "expectedMessage": "AbC",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "StringPrintLower",
+      "expectedMessage": "abc",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "StringMember",
+      "expectedMessage": "AbC",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "StringNameNone",
+      "expectedMessage": "None",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "StringCompose",
+      "expectedMessage": "AbC/abc",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "StringSwitch52Compat",
+      "expectedMessage": "Switch checked",
+      "expectedLocation": [
+        20,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    }
+  ]
+}

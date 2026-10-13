@@ -1,0 +1,57 @@
+[
+  {
+    "name": "SameNameBlueprint",
+    "input": "Tests/Invalid/SameNameBlueprint.json",
+    "expected": "rejected"
+  },
+  {
+    "name": "SameNameMaterial",
+    "input": "Tests/Invalid/SameNameMaterial.json",
+    "expected": "rejected"
+  },
+  {
+    "name": "UnknownPin",
+    "input": "Tests/Invalid/UnknownPin.json",
+    "expected": "rejected"
+  },
+  {
+    "name": "UnknownClass",
+    "input": "Tests/Invalid/UnknownClass.json",
+    "expected": "rejected"
+  },
+  {
+    "name": "OutsideRoot",
+    "input": "Tests/Invalid/OutsideRoot.json",
+    "expected": "rejected"
+  },
+  {
+    "name": "StringConstant",
+    "input": "Tests/Invalid/StringConstant.json",
+    "expected": "rejected"
+  },
+  {
+    "name": "StaleCatalog",
+    "input": "Tests/Invalid/StaleCatalog.json",
+    "expected": "rejected"
+  },
+  {
+    "name": "UnknownField",
+    "input": "Tests/Invalid/UnknownField.json",
+    "expected": "rejected"
+  },
+  {
+    "name": "DuplicateKey",
+    "input": "Tests/Invalid/DuplicateKey.json",
+    "expected": "rejected"
+  },
+  {
+    "name": "DeepJson",
+    "input": "Tests/Invalid/DeepJson.json",
+    "expected": "rejected"
+  },
+  {
+    "name": "ChangedRequestBytes",
+    "input": "Tests/Invalid/ChangedRequestBytes.json",
+    "expected": "rejected"
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphUnknownNodeId",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphUnknownNodeId",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Color",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "SurfaceColor",
+        "DefaultValue": [
+          0.05,
+          0.55,
+          0.8,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Rough",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "SurfaceRoughness",
+        "DefaultValue": 0.3
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "NoSuchNode",
+      "output": "0",
+      "to": "Material",
+      "input": "BaseColor"
+    },
+    {
+      "from": "Rough",
+      "output": "0",
+      "to": "Material",
+      "input": "Roughness"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "DefaultLit",
+    "twoSided": false
+  }
+}

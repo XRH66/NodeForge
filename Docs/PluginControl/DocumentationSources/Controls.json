@@ -1,0 +1,164 @@
+[
+  {
+    "name": "恢复上次输入",
+    "region": "主操作区",
+    "input": "上一可恢复稿",
+    "enabled": "!busy且canRestore",
+    "effect": "恢复上一份服务保留输入，改变草稿/修订，不撤销磁盘资产",
+    "next": "核恢复后的稿，重新检查；无恢复稿时禁用",
+    "ai": "draft.restore"
+  },
+  {
+    "name": "粘贴剪贴板",
+    "region": "主操作区",
+    "input": "完整剪贴板文本",
+    "enabled": "!busy",
+    "effect": "整框替换输入，不自动生成；Ctrl+V/右键仍按光标/选区编辑",
+    "next": "核完整字节和新稿；超限/无效内容看诊断，不生成",
+    "ai": "draft.replace可接收AI完整文本；不操作剪贴板"
+  },
+  {
+    "name": "检查输入",
+    "region": "主操作区",
+    "input": "当前不可变草稿快照",
+    "enabled": "!busy",
+    "effect": "预检并出报告，不编译保存或预留名字",
+    "next": "看原GraphPreflight；编辑后旧结论失效",
+    "ai": "graphs.preflight"
+  },
+  {
+    "name": "生成新资产",
+    "region": "主操作区",
+    "input": "当前草稿快照及新目标/request",
+    "enabled": "!busy，提交还需合法输入/目标/修订",
+    "effect": "新建、编译、回读、保存资产/收据；同目标/request拒绝",
+    "next": "保存后通常waitingPersistence；读完整报告并独立Verify，未知停写",
+    "ai": "graphs.generate"
+  },
+  {
+    "name": "载入 JSON 文件",
+    "region": "主操作区",
+    "input": "文件选择器选中的JSON字节",
+    "enabled": "!busy",
+    "effect": "替换草稿/记录来源，不自动生成",
+    "next": "取消不作生成；失败看诊断，成功检查新稿",
+    "ai": "draft.loadFile有正式路径准入，不等于AI操作文件选择器"
+  },
+  {
+    "name": "准备新副本",
+    "region": "主操作区",
+    "input": "当前非空完整稿",
+    "enabled": "!busy且trim稿非空；解析还须通过",
+    "effect": "共享Service验证完整派生稿后只替换assetPath/requestId并载入；不写资产/不预约，保留原输入和资产",
+    "next": "核新身份再检查生成；连续未生成可能得到同建议，保存时再查冲突",
+    "ai": "正式 draft.prepareCopy，与UI共用生产协调器；真实新身份由产品返回，实验台账只记录"
+  },
+  {
+    "name": "查询材质规则",
+    "region": "规则折叠区",
+    "input": "规则查询词；非构图输入",
+    "enabled": "!busy",
+    "effect": "只读Material规则并出报告/复制缓存，不生成",
+    "next": "空词全族，≤256字符/8词OR子串；失败清旧读取缓存",
+    "ai": "rules.query assetKind=Material"
+  },
+  {
+    "name": "查询蓝图规则",
+    "region": "规则折叠区",
+    "input": "规则查询词",
+    "enabled": "!busy",
+    "effect": "只读Blueprint规则/报告",
+    "next": "搜索不构图；规则限制与节点精确名需分清",
+    "ai": "rules.query assetKind=Blueprint"
+  },
+  {
+    "name": "导出全部节点规则",
+    "region": "规则折叠区",
+    "input": "同版原生目录",
+    "enabled": "!busy",
+    "effect": "只读完整目录到报告/读取缓存，不导出选中资产图",
+    "next": "用报告分段读节点，experimental不是全验",
+    "ai": "catalog.get"
+  },
+  {
+    "name": "读取选中材质 / 函数",
+    "region": "规则折叠区",
+    "input": "唯一准确、已保存干净且具有当前受控加载证明的普通Material/MaterialFunction",
+    "enabled": "!busy；对象路径需/Engine/或测试根",
+    "effect": "只读真实参数/函数GUID签名和源SHA，不修改源",
+    "next": "实例/层/函数实例/多选拒绝；失败清旧数据",
+    "ai": "resources.inspect；API不修改草稿/来源/修订，需GT门槛和受控源证明"
+  },
+  {
+    "name": "复制读取内容",
+    "region": "规则折叠区",
+    "input": "最近完整读取数据",
+    "enabled": "!busy且LastReadOnlyData非空",
+    "effect": "复制完整规则/签名/导出数据，不是最近结果摘要",
+    "next": "提示完整内容已复制；缺数据禁用",
+    "ai": "report_read读原内容，不操作剪贴板"
+  },
+  {
+    "name": "只读导出选中构图",
+    "region": "副本折叠区",
+    "input": "内容浏览器唯一已保存干净支持图",
+    "enabled": "!busy；普通Material或测试根Actor蓝图且可完整表达",
+    "effect": "同共享服务读源、导出完整报告/新身份；UI在草稿修订仍匹配时后置载入/基线，不改源",
+    "next": "不支持结构明确拒绝；失败清理仅作用于仍匹配的基线，晚到结果不覆盖后来稿；另检查生成",
+    "ai": "graphs.export；API纯读取，report_read取得完整导出，再显式载入与绑定来源"
+  },
+  {
+    "name": "预览新副本差异",
+    "region": "副本折叠区",
+    "input": "当前完整v2稿及其绑定的可信ExportOrigin源/原报告",
+    "enabled": "!busy且当前草稿有ExportOrigin；比较时源/报告须有效干净",
+    "effect": "只读比较逻辑ID/属性/边/位置，不生成",
+    "next": "草稿编辑使旧预览失效；源/基线不符停下重新确认",
+    "ai": "正式 graphs.preview(arguments={})；report_read读原graphDifference，不允许另传任意baseline"
+  },
+  {
+    "name": "按上次成功输入重排新副本",
+    "region": "副本折叠区",
+    "input": "归档LastImportInputPath及原SHA",
+    "enabled": "!busy且LastImportInputPath非空",
+    "effect": "去原坐标/新身份并调用同Import生成新资产，不修改原资产",
+    "next": "不包括后改资产或无关当前稿；读派生输入/报告，另Verify",
+    "ai": "UI/内部能力，暂无独立MCP"
+  },
+  {
+    "name": "定位资产",
+    "region": "结果区",
+    "input": "当前非过期LastAssetPath",
+    "enabled": "!busy且!ResultIsStale且资产路径非空",
+    "effect": "内容浏览器定位，不生成/验证",
+    "next": "旧稿结果过期禁用；定位成功不提升验收层",
+    "ai": "视图动作，无需独立MCP"
+  },
+  {
+    "name": "打开资产",
+    "region": "结果区",
+    "input": "当前非过期LastAssetPath",
+    "enabled": "!busy且!ResultIsStale且资产路径非空",
+    "effect": "打开UE资产编辑器，不生成/验证",
+    "next": "仍按报告层级判断结果",
+    "ai": "视图动作，无独立MCP"
+  },
+  {
+    "name": "打开完整报告",
+    "region": "结果区",
+    "input": "当前已有原报告路径",
+    "enabled": "!busy且HasReport",
+    "effect": "显示完整原诊断，不提升资产状态",
+    "next": "摘要不足时读原报告；文件缺失须查原证据",
+    "ai": "report_read按已登记ID读取"
+  },
+  {
+    "name": "复制完整报告",
+    "region": "结果区",
+    "input": "当前已有完整报告",
+    "enabled": "!busy且HasReport",
+    "effect": "复制原完整报告，不复制有界摘要代替原结果",
+    "next": "失败保留报告路径/证据，不重生成",
+    "ai": "report_read提供原子树，不操作剪贴板"
+  }
+]

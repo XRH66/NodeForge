@@ -1,0 +1,72 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphLayoutMaterialAnchorsShuffled",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphLayoutMaterialAnchorsShuffled",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "TintStrength",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 0.5
+      }
+    },
+    {
+      "id": "Rough",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "SurfaceRoughness",
+        "DefaultValue": 0.3
+      },
+      "position": [
+        925,
+        -411
+      ]
+    },
+    {
+      "id": "Color",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "SurfaceColor",
+        "DefaultValue": [
+          0.05,
+          0.55,
+          0.8,
+          1
+        ]
+      },
+      "position": [
+        -1733,
+        257
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "TintStrength",
+      "output": "0",
+      "to": "Material",
+      "input": "BaseColor"
+    },
+    {
+      "from": "Rough",
+      "output": "0",
+      "to": "Material",
+      "input": "Roughness"
+    },
+    {
+      "from": "Color",
+      "output": "0",
+      "to": "TintStrength",
+      "input": "A"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "DefaultLit",
+    "twoSided": false
+  }
+}

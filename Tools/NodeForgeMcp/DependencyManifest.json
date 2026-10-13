@@ -1,0 +1,318 @@
+{
+  "environment": "Windows x64 Python 3.12",
+  "sdkCommit": "2118f14f8a19bc158d8a1cf90af58d85d187f849",
+  "sdkVersion": "2.3.0",
+  "packages": [
+    {
+      "name": "mcp",
+      "version": "2.3.0",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/mcp-2.3.0-py3-none-any.whl",
+      "sha256": "dd0c44c089d16453e8ae31a3877a0054d7a2314caaa81f5e0541b9b1734b2377",
+      "licenseFilesInWheel": {
+        "mcp-2.3.0.dist-info/licenses/LICENSE": "5e13dbbc1d120fc2a03cecde7c91424ae2d7de11b63d58ded2f4431e261ee50d"
+      }
+    },
+    {
+      "name": "mcp-types",
+      "version": "2.3.0",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/mcp_types-2.3.0-py3-none-any.whl",
+      "sha256": "968efdbdaedfab06adae40d378a34395f1090c5921d4be3c9cde283aaf76d91d",
+      "licenseFilesInWheel": {
+        "mcp_types-2.3.0.dist-info/licenses/LICENSE": "5e13dbbc1d120fc2a03cecde7c91424ae2d7de11b63d58ded2f4431e261ee50d"
+      }
+    },
+    {
+      "name": "anyio",
+      "version": "4.15.1",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/anyio-4.15.1-py3-none-any.whl",
+      "sha256": "6152fdbbf9a77fdec97731721bebf7c4c44f7c29b424b0065826173efc7ed101",
+      "licenseFilesInWheel": {
+        "anyio-4.15.1.dist-info/licenses/LICENSE": "5361ac9dc58f2ef5fd2e9b09c68297c17f04950909bbc8023bdb82eacf22c2b0"
+      }
+    },
+    {
+      "name": "httpx2",
+      "version": "2.13.1",
+      "license": "BSD-3-Clause",
+      "wheel": "Tools/NodeForgeMcp/Packages/httpx2-2.13.1-py3-none-any.whl",
+      "sha256": "6dff50fabc270ee5fd25d845d0b078ed20564579744d6d962850975996d2f9a4",
+      "licenseFilesInWheel": {
+        "httpx2-2.13.1.dist-info/licenses/LICENSE.md": "7e7d6dbaf7fe160d39fd6e84fd02c33cab96bcbea34d36998d545bceb4a19c30"
+      }
+    },
+    {
+      "name": "httpcore2",
+      "version": "2.13.1",
+      "license": "BSD-3-Clause",
+      "wheel": "Tools/NodeForgeMcp/Packages/httpcore2-2.13.1-py3-none-any.whl",
+      "sha256": "e1e05d4f25f7d7d496bfb96748f6f4b67657b03da069b3a68c36069f3db73d0a",
+      "licenseFilesInWheel": {
+        "httpcore2-2.13.1.dist-info/licenses/LICENSE.md": "c4df125c807b0613501e943a5c92496dd11d2c16604ce396097a8dde396304d9"
+      }
+    },
+    {
+      "name": "jsonschema",
+      "version": "4.26.0",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/jsonschema-4.26.0-py3-none-any.whl",
+      "sha256": "d489f15263b8d200f8387e64b4c3a75f06629559fb73deb8fdfb525f2dab50ce",
+      "licenseFilesInWheel": {
+        "jsonschema-4.26.0.dist-info/licenses/COPYING": "4f92a015a13c4d1a040bef018aa13430b4f1bc73b41b16bb846c346766de7439"
+      }
+    },
+    {
+      "name": "opentelemetry-api",
+      "version": "1.45.1",
+      "license": "Apache-2.0",
+      "wheel": "Tools/NodeForgeMcp/Packages/opentelemetry_api-1.45.1-py3-none-any.whl",
+      "sha256": "b31553efa588ae44bc306f863c785c5333a9ecc091248c6ee68b4b6c87fdedfb",
+      "licenseFilesInWheel": {
+        "opentelemetry_api-1.45.1.dist-info/licenses/LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      }
+    },
+    {
+      "name": "pydantic",
+      "version": "2.14.0",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/pydantic-2.14.0-py3-none-any.whl",
+      "sha256": "15fab1bea6f1dc5003b54fc2ecab230c1fd1dbade2acd4addc52d81e32416d4b",
+      "licenseFilesInWheel": {
+        "pydantic-2.14.0.dist-info/licenses/LICENSE": "a9e186f3ca16b5eef84318e7a701721351a00cb7b8ae3a4394b67b49e3529ef3"
+      }
+    },
+    {
+      "name": "pydantic_core",
+      "version": "2.50.0",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/pydantic_core-2.50.0-cp312-cp312-win_amd64.whl",
+      "sha256": "1541c334af5d42cb9eb03862a9b4d2cfbfc670fd05172ec51f3ce02d704550f1",
+      "licenseFilesInWheel": {
+        "pydantic_core-2.50.0.dist-info/licenses/LICENSE": "fbe7f615f18d135c07000e5a86325db27f42c7729699ef166ac1f7a3f4586bf4"
+      }
+    },
+    {
+      "name": "PyJWT",
+      "version": "2.15.1",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/pyjwt-2.15.1-py3-none-any.whl",
+      "sha256": "42d59d631f7768a1028a64c7ff581a9bf7519804daf91fc5b6c56e30eec5e193",
+      "licenseFilesInWheel": {
+        "pyjwt-2.15.1.dist-info/licenses/AUTHORS.rst": "925ce43461029eedbf558ec0b7cf7fc4b045def5120ebb97937c70814071cf07",
+        "pyjwt-2.15.1.dist-info/licenses/LICENSE": "797a7a20231d4c433e9f1911db1731d06b5828b98f499819a034f7c0f56f5ce5"
+      }
+    },
+    {
+      "name": "python-multipart",
+      "version": "0.0.32",
+      "license": "Apache-2.0",
+      "wheel": "Tools/NodeForgeMcp/Packages/python_multipart-0.0.32-py3-none-any.whl",
+      "sha256": "ff6d3f776f16878c894e52e107296ffc890e913c611b1a4ec6c44e2821fe2e23",
+      "licenseFilesInWheel": {
+        "python_multipart-0.0.32.dist-info/licenses/LICENSE.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      }
+    },
+    {
+      "name": "pywin32",
+      "version": "312",
+      "license": "PSF",
+      "wheel": "Tools/NodeForgeMcp/Packages/pywin32-312-cp312-cp312-win_amd64.whl",
+      "sha256": "b457f6d628a47e8a7346ce22acb7e1a46a4a78b52e1d17e1af56871bd19a93bc",
+      "licenseFilesInWheel": {
+        "adodbapi/license.txt": "5ea2f23c7f00c3006bacf267183e816d8d4b6dc95ea57a4ddb0ff81de6d8719e",
+        "pythonwin/License.txt": "a74d826efb242db087b850348e20abbfd591b51e2081f2048735290913872924",
+        "pythonwin/Scintilla-License.txt": "57ec79bbeab4fd1cf7460a7ad450d2ab01471810459aeae9e75e4c66b472095f",
+        "pythonwin/pywin/idle/LICENSE.txt": "a0fa1e7b8a4230055685e796548ac084a6c0eea395294574093bba72efd9191b",
+        "pywin32-312.dist-info/licenses/adodbapi/license.txt": "5ea2f23c7f00c3006bacf267183e816d8d4b6dc95ea57a4ddb0ff81de6d8719e",
+        "pywin32-312.dist-info/licenses/com/License.txt": "fad39c18fc3825fa278db1c86fd52cf88d7c525b3c2fbf7817fa383cbae4d423",
+        "pywin32-312.dist-info/licenses/com/win32comext/mapi/src/MAPIStubLibrary/LICENSE": "1c4cf44d2fb8bf2d10214d6da80cc9e05502824cc4460f35be4c7bcb4cde53da",
+        "pywin32-312.dist-info/licenses/isapi/README.txt": "41383bcc95edb8138d37077ae54bfdcbd2a3b77bf745a8529a9c161146e22303",
+        "pywin32-312.dist-info/licenses/pythonwin/License.txt": "a74d826efb242db087b850348e20abbfd591b51e2081f2048735290913872924",
+        "pywin32-312.dist-info/licenses/pythonwin/Scintilla/License.txt": "57ec79bbeab4fd1cf7460a7ad450d2ab01471810459aeae9e75e4c66b472095f",
+        "pywin32-312.dist-info/licenses/pythonwin/pywin/idle/LICENSE.txt": "a0fa1e7b8a4230055685e796548ac084a6c0eea395294574093bba72efd9191b",
+        "pywin32-312.dist-info/licenses/win32/License.txt": "a74d826efb242db087b850348e20abbfd591b51e2081f2048735290913872924",
+        "win32/License.txt": "a74d826efb242db087b850348e20abbfd591b51e2081f2048735290913872924",
+        "win32com/License.txt": "fad39c18fc3825fa278db1c86fd52cf88d7c525b3c2fbf7817fa383cbae4d423",
+        "win32comext/License.txt": "fad39c18fc3825fa278db1c86fd52cf88d7c525b3c2fbf7817fa383cbae4d423",
+        "win32comext/mapi/MAPIStubLibrary-License.txt": "1c4cf44d2fb8bf2d10214d6da80cc9e05502824cc4460f35be4c7bcb4cde53da"
+      }
+    },
+    {
+      "name": "sse-starlette",
+      "version": "3.5.0",
+      "license": "BSD-3-Clause",
+      "wheel": "Tools/NodeForgeMcp/Packages/sse_starlette-3.5.0-py3-none-any.whl",
+      "sha256": "3e6e1070df3f0f5d9cea81496de92dbb72f6721871d99748ece67441dd8b7997",
+      "licenseFilesInWheel": {
+        "sse_starlette-3.5.0.dist-info/licenses/AUTHORS": "c2ff63d2ecf128bbda8ab1b2016830a5da124202fbb97168685bb9946aed3f1a",
+        "sse_starlette-3.5.0.dist-info/licenses/LICENSE": "80af6bfccbebd2c14d4aab96695cab9950e177190cc80f5ef819e99996883e8e"
+      }
+    },
+    {
+      "name": "starlette",
+      "version": "1.7.0",
+      "license": "BSD-3-Clause",
+      "wheel": "Tools/NodeForgeMcp/Packages/starlette-1.7.0-py3-none-any.whl",
+      "sha256": "67f8e99895493dd2911a03f11314af6ceebeae4e704bb9f43dfc6a9db151c93e",
+      "licenseFilesInWheel": {
+        "starlette-1.7.0.dist-info/licenses/LICENSE.md": "dcb95677a02240243187e964f941847d19b17821cf99e5afae684fab328c19bf"
+      }
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0",
+      "license": "PSF-2.0",
+      "wheel": "Tools/NodeForgeMcp/Packages/typing_extensions-4.16.0-py3-none-any.whl",
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+      "licenseFilesInWheel": {
+        "typing_extensions-4.16.0.dist-info/licenses/LICENSE": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf"
+      }
+    },
+    {
+      "name": "typing-inspection",
+      "version": "0.4.4",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/typing_inspection-0.4.4-py3-none-any.whl",
+      "sha256": "65b8397ba37ccbce054456aaccddfc91e6e3083c92824df348d96ca832f3f147",
+      "licenseFilesInWheel": {
+        "typing_inspection-0.4.4.dist-info/licenses/LICENSE": "804b59b25f2c31bd278f9202a19ae49a3945aa2664387e2d0a128c7cacc61ec3"
+      }
+    },
+    {
+      "name": "uvicorn",
+      "version": "0.54.0",
+      "license": "BSD-3-Clause",
+      "wheel": "Tools/NodeForgeMcp/Packages/uvicorn-0.54.0-py3-none-any.whl",
+      "sha256": "505bdb0f318731d45f1f712071fc781a8981f6847a31c902c9f5e652d4f67faf",
+      "licenseFilesInWheel": {
+        "uvicorn-0.54.0.dist-info/licenses/LICENSE.md": "efe1acf3e62fb99c288b0ec73e5a773b7268ef4320fe757ea994214e4b63c371"
+      }
+    },
+    {
+      "name": "annotated-types",
+      "version": "0.8.0",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/annotated_types-0.8.0-py3-none-any.whl",
+      "sha256": "f072f4d804ea359e4eaf198b1af7a8b0943881a87f31bb764f8bf219bb9419e0",
+      "licenseFilesInWheel": {
+        "annotated_types-0.8.0.dist-info/licenses/LICENSE": "fe1049884b1a0d9342901e88e07f32925d24b3121d9972b6a6805fb9824b095d"
+      }
+    },
+    {
+      "name": "attrs",
+      "version": "26.1.0",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/attrs-26.1.0-py3-none-any.whl",
+      "sha256": "c647aa4a12dfbad9333ca4e71fe62ddc36f4e63b2d260a37a8b83d2f043ac309",
+      "licenseFilesInWheel": {
+        "attrs-26.1.0.dist-info/licenses/LICENSE": "882115c95dfc2af1eeb6714f8ec6d5cbcabf667caff8729f42420da63f714e9f"
+      }
+    },
+    {
+      "name": "click",
+      "version": "8.5.0",
+      "license": "BSD-3-Clause",
+      "wheel": "Tools/NodeForgeMcp/Packages/click-8.5.0-py3-none-any.whl",
+      "sha256": "255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360",
+      "licenseFilesInWheel": {
+        "click-8.5.0.dist-info/licenses/LICENSE.txt": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d"
+      }
+    },
+    {
+      "name": "cryptography",
+      "version": "50.0.2",
+      "license": "Apache-2.0 OR BSD-3-Clause",
+      "wheel": "Tools/NodeForgeMcp/Packages/cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+      "sha256": "7afa5a6602a9f29af1f3a2965f831bae7c9d5d597b7cbb716d41ab3b7d89879c",
+      "licenseFilesInWheel": {
+        "cryptography-50.0.2.dist-info/licenses/LICENSE": "3e0c7c091a948b82533ba98fd7cbb40432d6f1a9acbf85f5922d2f99a93ae6bb",
+        "cryptography-50.0.2.dist-info/licenses/LICENSE.APACHE": "aac73b3148f6d1d7111dbca32099f68d26c644c6813ae1e4f05f6579aa2663fe",
+        "cryptography-50.0.2.dist-info/licenses/LICENSE.BSD": "602c4c7482de6479dd2e9793cda275e5e63d773dacd1eca689232ab7008fb4fb"
+      }
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/h11-0.16.0-py3-none-any.whl",
+      "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86",
+      "licenseFilesInWheel": {
+        "h11-0.16.0.dist-info/licenses/LICENSE.txt": "37db5bb85926db28a427a25867f10b1232003aea1be69ccb851138adb8e6f361"
+      }
+    },
+    {
+      "name": "idna",
+      "version": "3.20",
+      "license": "BSD-3-Clause",
+      "wheel": "Tools/NodeForgeMcp/Packages/idna-3.20-py3-none-any.whl",
+      "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c",
+      "licenseFilesInWheel": {
+        "idna-3.20.dist-info/licenses/LICENSE.md": "1a9a4f0e3d479a27240ddd59a9137a66ab4a0f9dfdc8ca6188cc0bfd85187f04"
+      }
+    },
+    {
+      "name": "jsonschema-specifications",
+      "version": "2025.9.1",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/jsonschema_specifications-2025.9.1-py3-none-any.whl",
+      "sha256": "98802fee3a11ee76ecaca44429fda8a41bff98b00a0f2838151b113f210cc6fe",
+      "licenseFilesInWheel": {
+        "jsonschema_specifications-2025.9.1.dist-info/licenses/COPYING": "42dcd63495f87b4eb7c7757afa379bb55a53f94afd7a5f657d9adf57236e515c"
+      }
+    },
+    {
+      "name": "referencing",
+      "version": "0.37.0",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/referencing-0.37.0-py3-none-any.whl",
+      "sha256": "381329a9f99628c9069361716891d34ad94af76e461dcb0335825aecc7692231",
+      "licenseFilesInWheel": {
+        "referencing-0.37.0.dist-info/licenses/COPYING": "42dcd63495f87b4eb7c7757afa379bb55a53f94afd7a5f657d9adf57236e515c"
+      }
+    },
+    {
+      "name": "rpds-py",
+      "version": "2026.9.1",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/rpds_py-2026.9.1-cp312-cp312-win_amd64.whl",
+      "sha256": "5ce8943f79c2210f7abcc28e86367b03b28d95027fd01c46d2472373ae70c86f",
+      "licenseFilesInWheel": {
+        "rpds_py-2026.9.1.dist-info/licenses/LICENSE": "8bcb72c82ea8ae74802293c41d93ad7d51434001b0ae45a603a5af0f507aee0a"
+      }
+    },
+    {
+      "name": "truststore",
+      "version": "0.10.4",
+      "license": "MIT",
+      "wheel": "Tools/NodeForgeMcp/Packages/truststore-0.10.4-py3-none-any.whl",
+      "sha256": "adaeaecf1cbb5f4de3b1959b42d41f6fab57b2b1666adb59e89cb0b53361d981",
+      "licenseFilesInWheel": {
+        "truststore-0.10.4.dist-info/licenses/LICENSE": "33be7b7e8fa4fd19b1760e1a8ed8a668bdab852c91b692dd41424bcb725a9fca"
+      }
+    },
+    {
+      "name": "cffi",
+      "version": "2.1.1",
+      "license": "MIT-0",
+      "wheel": "Tools/NodeForgeMcp/Packages/cffi-2.1.1-cp312-cp312-win_amd64.whl",
+      "sha256": "f53e442b08449d42821fa4a4fba000095af9f62742a500f978a9f557ec44339a",
+      "licenseFilesInWheel": {
+        "cffi-2.1.1.dist-info/licenses/LICENSE": "5ba24ddc57067f9249add644c3afc41a5d6dc37e23433ef759d95df370b0af63"
+      }
+    },
+    {
+      "name": "pycparser",
+      "version": "3.11",
+      "license": "BSD-3-Clause",
+      "wheel": "Tools/NodeForgeMcp/Packages/pycparser-3.11-py3-none-any.whl",
+      "sha256": "51d5a8ba2be0bbe440b99d2112604c95bbbc3c2748a64260186c541e1729cd80",
+      "licenseFilesInWheel": {
+        "pycparser-3.11.dist-info/licenses/LICENSE": "0a9e78156ae8b96caf1b4f11ac2df424b83de29736f9e757630548a6272fdf90"
+      }
+    }
+  ],
+  "reviewScope": "Exact wheel hashes, metadata and included licenses; not a full security/source audit",
+  "runtime": "stdio only; HTTP/OAuth/telemetry not enabled by the bridge"
+}

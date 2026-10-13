@@ -1,0 +1,119 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphCameraDistance",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFCameraDistance",
+  "catalogDigest": "588f572606053d53eebe80b3461b0e01baac2326f30e778c2cdbc3f03e4e2801",
+  "nodes": [
+    {
+      "id": "Camera",
+      "class": "/Script/Engine.MaterialExpressionCameraPositionWS",
+      "properties": {}
+    },
+    {
+      "id": "Position",
+      "class": "/Script/Engine.MaterialExpressionWorldPosition",
+      "properties": {
+        "WorldPositionShaderOffset": "WPT_Default"
+      }
+    },
+    {
+      "id": "Range",
+      "class": "/Script/Engine.MaterialExpressionDistance",
+      "properties": {}
+    },
+    {
+      "id": "DistanceScale",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "DistanceScale",
+        "DefaultValue": 0.001
+      }
+    },
+    {
+      "id": "Scaled",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "Limit",
+      "class": "/Script/Engine.MaterialExpressionSaturate",
+      "properties": {}
+    },
+    {
+      "id": "Tint",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "Tint",
+        "DefaultValue": [
+          0.1,
+          0.9,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Color",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "Camera",
+      "output": "0",
+      "to": "Range",
+      "input": "A"
+    },
+    {
+      "from": "Position",
+      "output": "0",
+      "to": "Range",
+      "input": "B"
+    },
+    {
+      "from": "Range",
+      "output": "0",
+      "to": "Scaled",
+      "input": "A"
+    },
+    {
+      "from": "DistanceScale",
+      "output": "0",
+      "to": "Scaled",
+      "input": "B"
+    },
+    {
+      "from": "Scaled",
+      "output": "0",
+      "to": "Limit",
+      "input": "Input"
+    },
+    {
+      "from": "Limit",
+      "output": "0",
+      "to": "Color",
+      "input": "A"
+    },
+    {
+      "from": "Tint",
+      "output": "0",
+      "to": "Color",
+      "input": "B"
+    },
+    {
+      "from": "Color",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

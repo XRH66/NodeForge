@@ -1,0 +1,46 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphSamplerColorParent",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphSamplerColorParent",
+  "catalogDigest": "1b12e94c89af0c2e18d3dbbf362222754473f341d3a353eff24ca6abc8809dc1",
+  "nodes": [
+    {
+      "id": "UV",
+      "class": "/Script/Engine.MaterialExpressionTextureCoordinate",
+      "properties": {
+        "UTiling": 2,
+        "VTiling": 3
+      }
+    },
+    {
+      "id": "Image",
+      "class": "/Script/Engine.MaterialExpressionTextureSampleParameter2D",
+      "properties": {
+        "Texture": "/Engine/EngineResources/DefaultTexture.DefaultTexture",
+        "ParameterName": "SurfaceTexture"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "UV",
+      "output": "0",
+      "to": "Image",
+      "input": "Coordinates"
+    },
+    {
+      "from": "Image",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

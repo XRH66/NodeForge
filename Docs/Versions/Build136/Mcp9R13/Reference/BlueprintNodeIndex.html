@@ -1,0 +1,1982 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="theme-color" content="#141414"><title>Blueprint 精确节点索引 · NodeForge 文档</title><script>try{var t=new URLSearchParams(location.search).get('theme')||localStorage.getItem('nodeforge-docs-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script><link rel="icon" type="image/png" href="../Assets/NodeForgeDocs/Brand/BrandIcon.png"><link rel="stylesheet" href="../Assets/NodeForgeDocs/Theme.css"><link rel="stylesheet" href="../Assets/NodeForgeDocs/Blueprint.css"><script src="../Assets/NodeForgeDocs/Blueprint.js" data-blueprint-controller data-glass-finalized="true" defer></script><link rel="stylesheet" href="../Assets/NodeForgeDocs/Reading.css"><script src="../Assets/NodeForgeDocs/SearchIndex.js" defer></script><script src="../Assets/NodeForgeDocs/Theme.js" data-doc-root="../" defer></script></head>
+<body class="document-page" style="--hero-motion-duration:46s;--backdrop-blur:4px;--backdrop-veil:0.018;--frost-start:0%;--frost-end:1%;--card-blur:40px;--card-opacity:0.98"><a class="skip-link" href="#main">跳到正文</a><header class="site-header"><div class="topbar"><button type="button" class="mobile-menu-button" aria-label="打开文档导航"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><a class="brand" href="../Index.html" aria-label="NodeForge 节点熔炉文档首页"><img class="brand-icon" src="../Assets/NodeForgeDocs/Brand/BrandIcon.png" width="34" height="34" alt=""><img class="brand-wordmark brand-dark" src="../Assets/NodeForgeDocs/Brand/WordmarkDark.svg" width="253" height="33" alt="NodeForge · 节点熔炉"><img class="brand-wordmark brand-light" src="../Assets/NodeForgeDocs/Brand/WordmarkLight.svg" width="253" height="33" alt="NodeForge · 节点熔炉"></a><nav class="topnav" aria-label="手册分类"><a href="../Index.html">首页</a><a href="../User/Readme.html">使用手册</a><a href="../Ai/Readme.html">AI 调用</a><a href="../Developer/Readme.html">原理与开发</a><a href="../Version/Readme.html">版本说明</a></nav><div class="header-tools"><button type="button" class="search-trigger" aria-label="搜索整个文档站点"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span>搜索文档</span><kbd>Ctrl K</kbd></button><div class="theme-switch" role="group" aria-label="页面主题"><button type="button" data-set-theme="dark" aria-label="使用暗色模式" aria-pressed="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 15.5A8.6 8.6 0 0 1 8.5 3.7a8.6 8.6 0 1 0 11.8 11.8Z"/></svg><span>暗色</span></button><button type="button" data-set-theme="light" aria-label="使用亮色模式" aria-pressed="false"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><span>亮色</span></button></div></div></div></header>
+<div class="document-backdrop blueprint-surface" data-blueprint-scene aria-hidden="true"><div class="hero-scene" aria-hidden="true"><div class="blueprint-plane"><div class="blueprint-track"><svg class="blueprint-tile" viewBox="0 0 1800 1600" width="1800" height="1600" xmlns="http://www.w3.org/2000/svg" focusable="false"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/><g transform="translate(0 800)"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/></g></svg><svg class="blueprint-tile" viewBox="0 0 1800 1600" width="1800" height="1600" xmlns="http://www.w3.org/2000/svg" focusable="false"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/><g transform="translate(0 800)"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/></g></svg><svg class="blueprint-tile" viewBox="0 0 1800 1600" width="1800" height="1600" xmlns="http://www.w3.org/2000/svg" focusable="false"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/><g transform="translate(0 800)"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/></g></svg><svg class="blueprint-tile" viewBox="0 0 1800 1600" width="1800" height="1600" xmlns="http://www.w3.org/2000/svg" focusable="false"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/><g transform="translate(0 800)"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/></g></svg></div></div></div><div class="document-background-frost"></div></div><div class="workspace"><aside class="sidebar reading-card"><div class="side-inner"><a class="sidebar-home" href="../Index.html"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m5-5-5 5 5 5"/></svg>文档首页</a><div class="side-caption"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H4V4Zm16 0h-5a2 2 0 0 0-2 2m0 15a4 4 0 0 1 4-2h3V4Z"/></svg>公共参考</div><nav class="side-links" aria-label="章节导航"><a href="FeatureMap.html">功能矩阵</a><a href="GraphAuthoring.html">JSON 构图规则</a><a href="Material.html">材质</a><a href="Blueprint.html">Actor 蓝图</a><a href="MaterialInstance.html">普通材质实例</a><a href="MaterialNodeIndex.html">材质节点</a><a href="BlueprintNodeIndex.html" class="current" aria-current="page">蓝图节点</a><a href="Examples.html">JSON 样例</a><a href="SourcesAndLicenses.html">来源与许可</a><a href="ResultsAndRecovery.html">结果状态、报告与有界恢复</a></nav><div class="side-divider"></div><a class="side-resource" href="FeatureMap.html">功能与支持范围<svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6L10 14M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a><a class="side-resource" href="../Version/KnownIssues.html">已知限制<svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6L10 14M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a><div class="sidebar-bottom"><span class="version-badge"><span class="version-dot"></span>Build136-Mcp9R13</span><p class="offline-note">本地文档 · 离线可读</p></div></div></aside>
+<div class="reading"><main id="main" class="reading-card article"><nav class="breadcrumb" aria-label="当前位置"><a href="../Index.html">文档</a><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><a href="FeatureMap.html">公共参考</a><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><span class="crumb-current">Blueprint 精确节点索引</span></nav><div class="article-hero"><div class="eyebrow">参考资料 / 07</div><h1 id="section-0">Blueprint 精确节点索引</h1><div class="article-meta"><span><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H4V4Zm16 0h-5a2 2 0 0 0-2 2m0 15a4 4 0 0 1 4-2h3V4Z"/></svg>公共参考</span><span class="meta-divider"></span><span>0 个章节</span><span class="meta-divider"></span><span><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>约 43 分钟</span></div></div><div class="article-content">
+<p>当前327条；digest be97bf57d226778102038c261c556b89b262197c78158fe16ca293de709d8847。页ID按精确身份hash，Manifest再绑定版本；目录可构造不代表所有配置实测。</p>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>pageId</th>
+<th>family</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="Nodes/BlueprintNode80bf2ceb87ef.html">自身Actor前方向</a></td>
+<td>BlueprintNode80bf2ceb87ef</td>
+<td>SelfActorOrientation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2da90b9a4f20.html">自身Actor右方向</a></td>
+<td>BlueprintNode2da90b9a4f20</td>
+<td>SelfActorOrientation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodee6f0f2a2ceab.html">自身Actor缩放</a></td>
+<td>BlueprintNodee6f0f2a2ceab</td>
+<td>SelfActorOrientation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode5d8f870aabd7.html">自身Actor上方向</a></td>
+<td>BlueprintNode5d8f870aabd7</td>
+<td>SelfActorOrientation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodec7779adab129.html">自身Actor世界位置</a></td>
+<td>BlueprintNodec7779adab129</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode56973aadc2eb.html">自身Actor世界旋转</a></td>
+<td>BlueprintNode56973aadc2eb</td>
+<td>SelfActorOrientation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode65c95157bbd7.html">取得自身Actor根组件</a></td>
+<td>BlueprintNode65c95157bbd7</td>
+<td>SelfRootComponent</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodec2ef35a6df91.html">设置自身Actor位置</a></td>
+<td>BlueprintNodec2ef35a6df91</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode456980d23caf.html">设置自身Actor旋转</a></td>
+<td>BlueprintNode456980d23caf</td>
+<td>SelfActorOrientation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodead77c3f385e7.html">设置自身Actor缩放</a></td>
+<td>BlueprintNodead77c3f385e7</td>
+<td>SelfActorOrientation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodea788c92b698b.html">原生纯计算：Abs_Int</a></td>
+<td>BlueprintNodea788c92b698b</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNoded031c2ef0312.html">双精度绝对值</a></td>
+<td>BlueprintNoded031c2ef0312</td>
+<td>ScalarMathInterpolation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode7262e02e17dd.html">原生纯计算：Acos</a></td>
+<td>BlueprintNode7262e02e17dd</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2fcc474b0e69.html">双精度加法</a></td>
+<td>BlueprintNode2fcc474b0e69</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode72090d2fe954.html">整数加法</a></td>
+<td>BlueprintNode72090d2fe954</td>
+<td>IntegerAndScalar</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2468ec0abece.html">原生纯计算：Add_VectorFloat</a></td>
+<td>BlueprintNode2468ec0abece</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodef4f7847eb850.html">原生纯计算：Add_VectorInt</a></td>
+<td>BlueprintNodef4f7847eb850</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode5d7558f4ce48.html">向量加法</a></td>
+<td>BlueprintNode5d7558f4ce48</td>
+<td>VectorAndRotation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode8e8ddcf72d09.html">原生纯计算：And_IntInt</a></td>
+<td>BlueprintNode8e8ddcf72d09</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNoded5f41a167a76.html">原生纯计算：Asin</a></td>
+<td>BlueprintNoded5f41a167a76</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode6577ff830150.html">原生纯计算：Atan2</a></td>
+<td>BlueprintNode6577ff830150</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodea8b618479da7.html">原生纯计算：Atan</a></td>
+<td>BlueprintNodea8b618479da7</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode8e9039173649.html">布尔与</a></td>
+<td>BlueprintNode8e9039173649</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb4188d23bdec.html">原生纯计算：BooleanNAND</a></td>
+<td>BlueprintNodeb4188d23bdec</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode922cc301214c.html">原生纯计算：BooleanNOR</a></td>
+<td>BlueprintNode922cc301214c</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode596c15776faa.html">布尔或</a></td>
+<td>BlueprintNode596c15776faa</td>
+<td>IntegerAndScalar</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode64f9be2e434f.html">原生纯计算：BooleanXOR</a></td>
+<td>BlueprintNode64f9be2e434f</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodee90c7dba63f2.html">拆分Pitch/Yaw/Roll</a></td>
+<td>BlueprintNodee90c7dba63f2</td>
+<td>VectorAndRotation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode64959bf748fa.html">原生纯计算：BreakRotIntoAxes</a></td>
+<td>BlueprintNode64959bf748fa</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode352d1153fcfd.html">拆分向量XYZ</a></td>
+<td>BlueprintNode352d1153fcfd</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodedc418a765c69.html">原生纯计算：ClampAngle</a></td>
+<td>BlueprintNodedc418a765c69</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeaa693fd5aaad.html">原生纯计算：ClampAxis</a></td>
+<td>BlueprintNodeaa693fd5aaad</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode3197d1f2343e.html">原生纯计算：ClampVectorSize</a></td>
+<td>BlueprintNode3197d1f2343e</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNoded1b98be703f3.html">原生纯计算：Clamp</a></td>
+<td>BlueprintNoded1b98be703f3</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2f43b424e58c.html">原生纯计算：ComposeRotators</a></td>
+<td>BlueprintNode2f43b424e58c</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodedb66b98130b0.html">原生纯计算：Conv_BoolToDouble</a></td>
+<td>BlueprintNodedb66b98130b0</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode54ca7ca38cd6.html">原生纯计算：Conv_BoolToInt</a></td>
+<td>BlueprintNode54ca7ca38cd6</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode72572c3165cb.html">原生纯计算：Conv_DoubleToVector</a></td>
+<td>BlueprintNode72572c3165cb</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode9eb7714b761e.html">原生纯计算：Conv_IntToBool</a></td>
+<td>BlueprintNode9eb7714b761e</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodedd098e0f3b79.html">整数转双精度</a></td>
+<td>BlueprintNodedd098e0f3b79</td>
+<td>IntegerAndScalar</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode450fb623f528.html">原生纯计算：Conv_IntToVector</a></td>
+<td>BlueprintNode450fb623f528</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode0b1d08af83a6.html">原生纯计算：Conv_RotatorToVector</a></td>
+<td>BlueprintNode0b1d08af83a6</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeabb82ccaae7a.html">原生纯计算：Conv_VectorToRotator</a></td>
+<td>BlueprintNodeabb82ccaae7a</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode53553c5ac176.html">原生纯计算：Cos</a></td>
+<td>BlueprintNode53553c5ac176</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode9d8d9d1347e8.html">原生纯计算：CreateVectorFromYawPitch</a></td>
+<td>BlueprintNode9d8d9d1347e8</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeecd4fdd695ee.html">向量叉积</a></td>
+<td>BlueprintNodeecd4fdd695ee</td>
+<td>VectorAndRotation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode56a829a0ba2a.html">原生纯计算：DaysInMonth</a></td>
+<td>BlueprintNode56a829a0ba2a</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode5c38617f1bd1.html">原生纯计算：DaysInYear</a></td>
+<td>BlueprintNode5c38617f1bd1</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode3fd5362ac49b.html">原生纯计算：DegAcos</a></td>
+<td>BlueprintNode3fd5362ac49b</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2062c4c646b6.html">原生纯计算：DegAsin</a></td>
+<td>BlueprintNode2062c4c646b6</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode6f61d2696c87.html">原生纯计算：DegAtan2</a></td>
+<td>BlueprintNode6f61d2696c87</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode161385345070.html">原生纯计算：DegAtan</a></td>
+<td>BlueprintNode161385345070</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode066ae1b1365a.html">角度制余弦</a></td>
+<td>BlueprintNode066ae1b1365a</td>
+<td>ScalarMathInterpolation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode62a5c4b711b1.html">原生纯计算：DegreesToRadians</a></td>
+<td>BlueprintNode62a5c4b711b1</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb74416a5c384.html">角度制正弦</a></td>
+<td>BlueprintNodeb74416a5c384</td>
+<td>ScalarMathInterpolation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode152ec4453463.html">原生纯计算：DegTan</a></td>
+<td>BlueprintNode152ec4453463</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeee177b8beed9.html">双精度除法</a></td>
+<td>BlueprintNodeee177b8beed9</td>
+<td>IntegerAndScalar</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode58ace85d0b5a.html">原生纯计算：Divide_IntInt</a></td>
+<td>BlueprintNode58ace85d0b5a</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodebf239055e4f5.html">原生纯计算：Divide_VectorFloat</a></td>
+<td>BlueprintNodebf239055e4f5</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeed16dcef2138.html">原生纯计算：Divide_VectorInt</a></td>
+<td>BlueprintNodeed16dcef2138</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNoded8da39277d2e.html">原生纯计算：Divide_VectorVector</a></td>
+<td>BlueprintNoded8da39277d2e</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode07c9d8506b6f.html">向量点积</a></td>
+<td>BlueprintNode07c9d8506b6f</td>
+<td>VectorAndRotation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2904c63b03fe.html">原生纯计算：DynamicWeightedMovingAverage_Float</a></td>
+<td>BlueprintNode2904c63b03fe</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode113b797c70ae.html">原生纯计算：DynamicWeightedMovingAverage_FRotator</a></td>
+<td>BlueprintNode113b797c70ae</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode24a2ab766800.html">原生纯计算：DynamicWeightedMovingAverage_FVector</a></td>
+<td>BlueprintNode24a2ab766800</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodefb88711ad2db.html">原生纯计算：EqualEqual_BoolBool</a></td>
+<td>BlueprintNodefb88711ad2db</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode348d186509ff.html">原生纯计算：EqualEqual_DoubleDouble</a></td>
+<td>BlueprintNode348d186509ff</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb9497f35725c.html">整数相等比较</a></td>
+<td>BlueprintNodeb9497f35725c</td>
+<td>IntegerAndScalar</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode217c55a0e9be.html">原生纯计算：EqualEqual_NameName</a></td>
+<td>BlueprintNode217c55a0e9be</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode9be7d8808238.html">原生纯计算：EqualEqual_RotatorRotator</a></td>
+<td>BlueprintNode9be7d8808238</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb22d04daba43.html">原生纯计算：EqualEqual_VectorVector</a></td>
+<td>BlueprintNodeb22d04daba43</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode354c0c205ffa.html">原生纯计算：EqualExactly_VectorVector</a></td>
+<td>BlueprintNode354c0c205ffa</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode9bef4938d277.html">原生纯计算：Exp</a></td>
+<td>BlueprintNode9bef4938d277</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode3aeaaa6f7686.html">原生纯计算：FCeil</a></td>
+<td>BlueprintNode3aeaaa6f7686</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode14fdfd0d069e.html">双精度范围限制</a></td>
+<td>BlueprintNode14fdfd0d069e</td>
+<td>IntegerAndScalar</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode07324c56d297.html">原生纯计算：FFloor</a></td>
+<td>BlueprintNode07324c56d297</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode88478efa12da.html">原生纯计算：FindClosestPointOnLine</a></td>
+<td>BlueprintNode88478efa12da</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb47645441feb.html">原生纯计算：FindClosestPointOnSegment</a></td>
+<td>BlueprintNodeb47645441feb</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodebe8f9ca5ebe9.html">原生纯计算：FindLookAtRotation</a></td>
+<td>BlueprintNodebe8f9ca5ebe9</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode7ebd74f5d9a1.html">原生纯计算：FindNearestPointsOnLineSegments</a></td>
+<td>BlueprintNode7ebd74f5d9a1</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode1f8d3134b8dc.html">原生纯计算：FInterpEaseInOut</a></td>
+<td>BlueprintNode1f8d3134b8dc</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode884bf0cf6c0a.html">原生纯计算：FInterpTo_Constant</a></td>
+<td>BlueprintNode884bf0cf6c0a</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode0406148bdfe9.html">原生纯计算：FInterpTo</a></td>
+<td>BlueprintNode0406148bdfe9</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode5f786e392ab5.html">原生纯计算：FixedTurn</a></td>
+<td>BlueprintNode5f786e392ab5</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode1703220d4162.html">双精度最大值</a></td>
+<td>BlueprintNode1703220d4162</td>
+<td>ScalarMathInterpolation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode99db0bf0df8d.html">双精度最小值</a></td>
+<td>BlueprintNode99db0bf0df8d</td>
+<td>ScalarMathInterpolation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode6e88a2e516dc.html">原生纯计算：FMod</a></td>
+<td>BlueprintNode6e88a2e516dc</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode6dd4e7f220fc.html">原生纯计算：Fraction</a></td>
+<td>BlueprintNode6dd4e7f220fc</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode0bbdad3f3e46.html">原生纯计算：FTrunc</a></td>
+<td>BlueprintNode0bbdad3f3e46</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode6774b48eaf9f.html">原生纯计算：FWrap</a></td>
+<td>BlueprintNode6774b48eaf9f</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeafcec646c3f0.html">原生纯计算：GetAxes</a></td>
+<td>BlueprintNodeafcec646c3f0</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodea9d44048115d.html">原生纯计算：GetDirectionUnitVector</a></td>
+<td>BlueprintNodea9d44048115d</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode7b2f005e2138.html">原生纯计算：GetForwardVector</a></td>
+<td>BlueprintNode7b2f005e2138</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode29b50c7fea5f.html">原生纯计算：GetMaxElement</a></td>
+<td>BlueprintNode29b50c7fea5f</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode4d7a9164a70e.html">原生纯计算：GetMinElement</a></td>
+<td>BlueprintNode4d7a9164a70e</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode982e5c104b28.html">原生纯计算：GetPI</a></td>
+<td>BlueprintNode982e5c104b28</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2d9d92e33b77.html">原生纯计算：GetPointDistanceToLine</a></td>
+<td>BlueprintNode2d9d92e33b77</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode0a4381379564.html">原生纯计算：GetPointDistanceToSegment</a></td>
+<td>BlueprintNode0a4381379564</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode23d638967449.html">原生纯计算：GetReflectionVector</a></td>
+<td>BlueprintNode23d638967449</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode58121b01155b.html">原生纯计算：GetRightVector</a></td>
+<td>BlueprintNode58121b01155b</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode036e43c20591.html">原生纯计算：GetSlopeDegreeAngles</a></td>
+<td>BlueprintNode036e43c20591</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2fb125fa69f9.html">原生纯计算：GetTAU</a></td>
+<td>BlueprintNode2fb125fa69f9</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeec50f8d5a81c.html">原生纯计算：GetUpVector</a></td>
+<td>BlueprintNodeec50f8d5a81c</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode577bfd5b8a31.html">原生纯计算：GetYawPitchFromVector</a></td>
+<td>BlueprintNode577bfd5b8a31</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodebfe041b307a3.html">双精度大于比较</a></td>
+<td>BlueprintNodebfe041b307a3</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode3a048b81d38a.html">原生纯计算：Greater_IntInt</a></td>
+<td>BlueprintNode3a048b81d38a</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode741f471cb7fc.html">原生纯计算：GreaterEqual_DoubleDouble</a></td>
+<td>BlueprintNode741f471cb7fc</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode886da6d8beb6.html">整数大于等于比较</a></td>
+<td>BlueprintNode886da6d8beb6</td>
+<td>IntegerAndScalar</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode1c474577453b.html">原生纯计算：GreaterGreater_VectorRotator</a></td>
+<td>BlueprintNode1c474577453b</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode0634024cdb8a.html">原生纯计算：GridSnap_Float</a></td>
+<td>BlueprintNode0634024cdb8a</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode94ca765c8aae.html">原生纯计算：Hypotenuse</a></td>
+<td>BlueprintNode94ca765c8aae</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode96286c97809a.html">原生纯计算：InRange_FloatFloat</a></td>
+<td>BlueprintNode96286c97809a</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNoded50f2f0f1a6f.html">原生纯计算：InRange_IntInt</a></td>
+<td>BlueprintNoded50f2f0f1a6f</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeba554954b2a0.html">原生纯计算：IsLeapYear</a></td>
+<td>BlueprintNodeba554954b2a0</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2e9b4c0dec83.html">原生纯计算：IsPointInBox</a></td>
+<td>BlueprintNode2e9b4c0dec83</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode99788f7232e8.html">双精度线性插值</a></td>
+<td>BlueprintNode99788f7232e8</td>
+<td>ScalarMathInterpolation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode6b47e1a419a1.html">原生纯计算：Less_DoubleDouble</a></td>
+<td>BlueprintNode6b47e1a419a1</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2120a879826b.html">原生纯计算：Less_IntInt</a></td>
+<td>BlueprintNode2120a879826b</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode16b6d7321c0d.html">原生纯计算：LessEqual_DoubleDouble</a></td>
+<td>BlueprintNode16b6d7321c0d</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode32a73e0238ee.html">原生纯计算：LessEqual_IntInt</a></td>
+<td>BlueprintNode32a73e0238ee</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb28be4a6d39b.html">原生纯计算：LessLess_VectorRotator</a></td>
+<td>BlueprintNodeb28be4a6d39b</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodebe33236de424.html">原生纯计算：LinePlaneIntersection_OriginNormal</a></td>
+<td>BlueprintNodebe33236de424</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode51f0a54441ea.html">原生纯计算：Loge</a></td>
+<td>BlueprintNode51f0a54441ea</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode95b76ccd6626.html">原生纯计算：Log</a></td>
+<td>BlueprintNode95b76ccd6626</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodefdee30a39efc.html">原生纯计算：MakePulsatingValue</a></td>
+<td>BlueprintNodefdee30a39efc</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodea41b4fcffb38.html">原生纯计算：MakeRotationFromAxes</a></td>
+<td>BlueprintNodea41b4fcffb38</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodef7646ca1cbbd.html">构造Pitch/Yaw/Roll旋转</a></td>
+<td>BlueprintNodef7646ca1cbbd</td>
+<td>VectorAndRotation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode5f553e10eda7.html">原生纯计算：MakeRotFromXY</a></td>
+<td>BlueprintNode5f553e10eda7</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode02e9948e019e.html">原生纯计算：MakeRotFromXZ</a></td>
+<td>BlueprintNode02e9948e019e</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodebba455a598a1.html">原生纯计算：MakeRotFromX</a></td>
+<td>BlueprintNodebba455a598a1</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode20c1d9985b97.html">原生纯计算：MakeRotFromYX</a></td>
+<td>BlueprintNode20c1d9985b97</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode154d70fb1f7d.html">原生纯计算：MakeRotFromYZ</a></td>
+<td>BlueprintNode154d70fb1f7d</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodef1eeb1864bfa.html">原生纯计算：MakeRotFromY</a></td>
+<td>BlueprintNodef1eeb1864bfa</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodef92fc825fd29.html">原生纯计算：MakeRotFromZX</a></td>
+<td>BlueprintNodef92fc825fd29</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodef64ccc493205.html">原生纯计算：MakeRotFromZY</a></td>
+<td>BlueprintNodef64ccc493205</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode0acce98efde2.html">原生纯计算：MakeRotFromZ</a></td>
+<td>BlueprintNode0acce98efde2</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode6dba7c7d85fb.html">构造XYZ向量</a></td>
+<td>BlueprintNode6dba7c7d85fb</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodee8ac71f8ed89.html">原生纯计算：MapRangeClamped</a></td>
+<td>BlueprintNodee8ac71f8ed89</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeaa96d94e07f3.html">原生纯计算：MapRangeUnclamped</a></td>
+<td>BlueprintNodeaa96d94e07f3</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodebdef804c527e.html">原生纯计算：Max</a></td>
+<td>BlueprintNodebdef804c527e</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodefadd7fb74b83.html">原生纯计算：Min</a></td>
+<td>BlueprintNodefadd7fb74b83</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodedd4a5d4d6e0e.html">原生纯计算：MirrorVectorByNormal</a></td>
+<td>BlueprintNodedd4a5d4d6e0e</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode23897730ebb6.html">双精度乘法</a></td>
+<td>BlueprintNode23897730ebb6</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode003b721f39af.html">原生纯计算：Multiply_IntFloat</a></td>
+<td>BlueprintNode003b721f39af</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodec933af6aee56.html">整数乘法</a></td>
+<td>BlueprintNodec933af6aee56</td>
+<td>IntegerAndScalar</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodec1be3617738b.html">原生纯计算：Multiply_RotatorFloat</a></td>
+<td>BlueprintNodec1be3617738b</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodef769adabc111.html">原生纯计算：Multiply_RotatorInt</a></td>
+<td>BlueprintNodef769adabc111</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2e949e695f98.html">原生纯计算：Multiply_VectorFloat</a></td>
+<td>BlueprintNode2e949e695f98</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNoded8e70f891239.html">原生纯计算：Multiply_VectorInt</a></td>
+<td>BlueprintNoded8e70f891239</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodecf8f8d1c53a0.html">原生纯计算：Multiply_VectorVector</a></td>
+<td>BlueprintNodecf8f8d1c53a0</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodea35c471748e8.html">原生纯计算：MultiplyByPi</a></td>
+<td>BlueprintNodea35c471748e8</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode53107a7f4ac9.html">原生纯计算：MultiplyMultiply_FloatFloat</a></td>
+<td>BlueprintNode53107a7f4ac9</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode473c75087ca5.html">原生纯计算：NearlyEqual_FloatFloat</a></td>
+<td>BlueprintNode473c75087ca5</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode5a391ea32b79.html">原生纯计算：NegateRotator</a></td>
+<td>BlueprintNode5a391ea32b79</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode1295afdc87ad.html">原生纯计算：NegateVector</a></td>
+<td>BlueprintNode1295afdc87ad</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode5a0dcd2ed3d0.html">原生纯计算：NormalizeAxis</a></td>
+<td>BlueprintNode5a0dcd2ed3d0</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodea4585964c5ef.html">原生纯计算：NormalizedDeltaRotator</a></td>
+<td>BlueprintNodea4585964c5ef</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeeba108d8b58c.html">原生纯计算：NormalizeToRange</a></td>
+<td>BlueprintNodeeba108d8b58c</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeba054ba8f669.html">原生纯计算：Normal</a></td>
+<td>BlueprintNodeba054ba8f669</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode14f626fc467e.html">原生纯计算：Not_Int</a></td>
+<td>BlueprintNode14f626fc467e</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode88f2f49ac703.html">布尔取反</a></td>
+<td>BlueprintNode88f2f49ac703</td>
+<td>IntegerAndScalar</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode77a55bea0bd6.html">原生纯计算：NotEqual_BoolBool</a></td>
+<td>BlueprintNode77a55bea0bd6</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodefee7f48daf2a.html">原生纯计算：NotEqual_DoubleDouble</a></td>
+<td>BlueprintNodefee7f48daf2a</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode71df5835588d.html">原生纯计算：NotEqual_IntInt</a></td>
+<td>BlueprintNode71df5835588d</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode9bad6f8b87cb.html">原生纯计算：NotEqual_NameName</a></td>
+<td>BlueprintNode9bad6f8b87cb</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeaa3e5e8e9a7e.html">原生纯计算：NotEqual_RotatorRotator</a></td>
+<td>BlueprintNodeaa3e5e8e9a7e</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodec1c073719f3d.html">原生纯计算：NotEqual_VectorVector</a></td>
+<td>BlueprintNodec1c073719f3d</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode715667a9c528.html">原生纯计算：NotEqualExactly_VectorVector</a></td>
+<td>BlueprintNode715667a9c528</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb87b34d28992.html">原生纯计算：Or_IntInt</a></td>
+<td>BlueprintNodeb87b34d28992</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode42533ec16c4b.html">原生纯计算：Percent_IntInt</a></td>
+<td>BlueprintNode42533ec16c4b</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodea0cb1c76bce1.html">原生纯计算：ProjectPointOnToPlane</a></td>
+<td>BlueprintNodea0cb1c76bce1</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodee4718412bd98.html">原生纯计算：ProjectVectorOnToPlane</a></td>
+<td>BlueprintNodee4718412bd98</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodef889258d42e0.html">原生纯计算：ProjectVectorOnToVector</a></td>
+<td>BlueprintNodef889258d42e0</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode731be58598af.html">原生纯计算：RadiansToDegrees</a></td>
+<td>BlueprintNode731be58598af</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode42f12d0a4b4d.html">原生纯计算：RInterpTo_Constant</a></td>
+<td>BlueprintNode42f12d0a4b4d</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2435d8236ff9.html">原生纯计算：RInterpTo</a></td>
+<td>BlueprintNode2435d8236ff9</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode7e8238457bd2.html">旋转插值</a></td>
+<td>BlueprintNode7e8238457bd2</td>
+<td>RotationInterpolation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodec557b1766a20.html">原生纯计算：RotateAngleAxis</a></td>
+<td>BlueprintNodec557b1766a20</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodefb53c8d01201.html">原生纯计算：RotatorFromAxisAndAngle</a></td>
+<td>BlueprintNodefb53c8d01201</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode4bf4ec67a04e.html">原生纯计算：Round</a></td>
+<td>BlueprintNode4bf4ec67a04e</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode14c7fb7aec9b.html">原生纯计算：SafeDivide</a></td>
+<td>BlueprintNode14c7fb7aec9b</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode3e6aac42b675.html">原生纯计算：SelectFloat</a></td>
+<td>BlueprintNode3e6aac42b675</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode6e8bc06a5ec7.html">按布尔选择整数</a></td>
+<td>BlueprintNode6e8bc06a5ec7</td>
+<td>IntegerAndScalar</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodef74f9d692e85.html">原生纯计算：SelectRotator</a></td>
+<td>BlueprintNodef74f9d692e85</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode874963e7fac0.html">按布尔选择字符串</a></td>
+<td>BlueprintNode874963e7fac0</td>
+<td>IntegerAndScalar</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode04af637c8fd3.html">原生纯计算：SelectVector</a></td>
+<td>BlueprintNode04af637c8fd3</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodee1236fccbb35.html">原生纯计算：SignOfFloat</a></td>
+<td>BlueprintNodee1236fccbb35</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode0d2d6c3e8a4e.html">原生纯计算：SignOfInteger</a></td>
+<td>BlueprintNode0d2d6c3e8a4e</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode3a7fddc0205a.html">原生纯计算：Sin</a></td>
+<td>BlueprintNode3a7fddc0205a</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb076fc1ae8a8.html">原生纯计算：Sqrt</a></td>
+<td>BlueprintNodeb076fc1ae8a8</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodee99810d18085.html">原生纯计算：Square</a></td>
+<td>BlueprintNodee99810d18085</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode8a0e759ee9c8.html">双精度减法</a></td>
+<td>BlueprintNode8a0e759ee9c8</td>
+<td>IntegerAndScalar</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeadeba5bbcef5.html">整数减法</a></td>
+<td>BlueprintNodeadeba5bbcef5</td>
+<td>IntegerAndScalar</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb8da9a3f45b0.html">原生纯计算：Subtract_VectorFloat</a></td>
+<td>BlueprintNodeb8da9a3f45b0</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodecfbd1ba4115f.html">原生纯计算：Subtract_VectorInt</a></td>
+<td>BlueprintNodecfbd1ba4115f</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodee9090019d5cf.html">向量减法</a></td>
+<td>BlueprintNodee9090019d5cf</td>
+<td>VectorAndRotation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodef9dbc024a8b1.html">原生纯计算：Tan</a></td>
+<td>BlueprintNodef9dbc024a8b1</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode55a56f581053.html">原生纯计算：Vector_Backward</a></td>
+<td>BlueprintNode55a56f581053</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2e1bf10f2763.html">原生纯计算：Vector_BoundedToBox</a></td>
+<td>BlueprintNode2e1bf10f2763</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode9da42da38938.html">原生纯计算：Vector_BoundedToCube</a></td>
+<td>BlueprintNode9da42da38938</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode32c12766675b.html">原生纯计算：Vector_ClampSize2D</a></td>
+<td>BlueprintNode32c12766675b</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode8ec2e9b56185.html">原生纯计算：Vector_ClampSizeMax2D</a></td>
+<td>BlueprintNode8ec2e9b56185</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodefb2c07495f34.html">原生纯计算：Vector_ClampSizeMax</a></td>
+<td>BlueprintNodefb2c07495f34</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodebc45c3e143c5.html">原生纯计算：Vector_ComponentMax</a></td>
+<td>BlueprintNodebc45c3e143c5</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode0f346136fd5a.html">原生纯计算：Vector_ComponentMin</a></td>
+<td>BlueprintNode0f346136fd5a</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode202c04e84788.html">原生纯计算：Vector_CosineAngle2D</a></td>
+<td>BlueprintNode202c04e84788</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode375dd6e0ffb5.html">原生纯计算：Vector_Distance2DSquared</a></td>
+<td>BlueprintNode375dd6e0ffb5</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode236150c287f6.html">原生纯计算：Vector_Distance2D</a></td>
+<td>BlueprintNode236150c287f6</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodedfe392c407ad.html">原生纯计算：Vector_DistanceSquared</a></td>
+<td>BlueprintNodedfe392c407ad</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode8b857690cf31.html">原生纯计算：Vector_Distance</a></td>
+<td>BlueprintNode8b857690cf31</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode3659e855a796.html">原生纯计算：Vector_Down</a></td>
+<td>BlueprintNode3659e855a796</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodea1ca5484d01f.html">原生纯计算：Vector_Forward</a></td>
+<td>BlueprintNodea1ca5484d01f</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode7e0196dd818c.html">原生纯计算：Vector_GetAbsMax</a></td>
+<td>BlueprintNode7e0196dd818c</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode5a5bf11dec9c.html">原生纯计算：Vector_GetAbsMin</a></td>
+<td>BlueprintNode5a5bf11dec9c</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode277f2cac85f1.html">原生纯计算：Vector_GetAbs</a></td>
+<td>BlueprintNode277f2cac85f1</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode199863a3847c.html">原生纯计算：Vector_GetProjection</a></td>
+<td>BlueprintNode199863a3847c</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeacba1153da1b.html">原生纯计算：Vector_GetSignVector</a></td>
+<td>BlueprintNodeacba1153da1b</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeee1312fdfba2.html">原生纯计算：Vector_HeadingAngle</a></td>
+<td>BlueprintNodeee1312fdfba2</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode392c185c3bdf.html">原生纯计算：Vector_IsNAN</a></td>
+<td>BlueprintNode392c185c3bdf</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode350a2766ba5c.html">原生纯计算：Vector_IsNearlyZero</a></td>
+<td>BlueprintNode350a2766ba5c</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode1ebf47ba57d3.html">原生纯计算：Vector_IsNormal</a></td>
+<td>BlueprintNode1ebf47ba57d3</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode1864be4b3131.html">原生纯计算：Vector_IsUniform</a></td>
+<td>BlueprintNode1864be4b3131</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb4cdec3b0dea.html">原生纯计算：Vector_IsUnit</a></td>
+<td>BlueprintNodeb4cdec3b0dea</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2c7c31b56665.html">原生纯计算：Vector_IsZero</a></td>
+<td>BlueprintNode2c7c31b56665</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode89b1de761715.html">原生纯计算：Vector_Left</a></td>
+<td>BlueprintNode89b1de761715</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode87c32be7dbf6.html">原生纯计算：Vector_Normal2D</a></td>
+<td>BlueprintNode87c32be7dbf6</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode40311718f84d.html">原生纯计算：Vector_NormalUnsafe</a></td>
+<td>BlueprintNode40311718f84d</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode04b079cb56af.html">原生纯计算：Vector_One</a></td>
+<td>BlueprintNode04b079cb56af</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2858d2ca64e2.html">原生纯计算：Vector_ProjectOnToNormal</a></td>
+<td>BlueprintNode2858d2ca64e2</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodedd504fc41c20.html">原生纯计算：Vector_Reciprocal</a></td>
+<td>BlueprintNodedd504fc41c20</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb0457f7f2ea1.html">原生纯计算：Vector_Right</a></td>
+<td>BlueprintNodeb0457f7f2ea1</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodedadcbbc03b20.html">原生纯计算：Vector_SlerpNormals</a></td>
+<td>BlueprintNodedadcbbc03b20</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode1af90af2c657.html">原生纯计算：Vector_SlerpVectorToDirection</a></td>
+<td>BlueprintNode1af90af2c657</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode5e62b6c18b95.html">原生纯计算：Vector_SnappedToGrid</a></td>
+<td>BlueprintNode5e62b6c18b95</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode518dd9b87a93.html">原生纯计算：Vector_ToDegrees</a></td>
+<td>BlueprintNode518dd9b87a93</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodea424ee2ee73d.html">原生纯计算：Vector_ToRadians</a></td>
+<td>BlueprintNodea424ee2ee73d</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode71d038718fa9.html">原生纯计算：Vector_Up</a></td>
+<td>BlueprintNode71d038718fa9</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode3449cd7add98.html">原生纯计算：Vector_Zero</a></td>
+<td>BlueprintNode3449cd7add98</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode74326b850a64.html">原生纯计算：VInterpTo_Constant</a></td>
+<td>BlueprintNode74326b850a64</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode1c57dd976cfe.html">原生纯计算：VInterpTo</a></td>
+<td>BlueprintNode1c57dd976cfe</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode69ccf51ae897.html">原生纯计算：VLerp</a></td>
+<td>BlueprintNode69ccf51ae897</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode0b32d255574d.html">原生纯计算：VSizeSquared</a></td>
+<td>BlueprintNode0b32d255574d</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode4a4a9ad77673.html">原生纯计算：VSizeXYSquared</a></td>
+<td>BlueprintNode4a4a9ad77673</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodee02c8d8cc658.html">原生纯计算：VSizeXY</a></td>
+<td>BlueprintNodee02c8d8cc658</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodebbd91651d8c0.html">向量长度</a></td>
+<td>BlueprintNodebbd91651d8c0</td>
+<td>VectorAndRotation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodedd94b7bab98b.html">原生纯计算：WeightedMovingAverage_Float</a></td>
+<td>BlueprintNodedd94b7bab98b</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode70fcea6ec668.html">原生纯计算：WeightedMovingAverage_FRotator</a></td>
+<td>BlueprintNode70fcea6ec668</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode69f14f5a42c2.html">原生纯计算：WeightedMovingAverage_FVector</a></td>
+<td>BlueprintNode69f14f5a42c2</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode0f3d54eed9ca.html">原生纯计算：Wrap</a></td>
+<td>BlueprintNode0f3d54eed9ca</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodecd633f19c816.html">原生纯计算：Xor_IntInt</a></td>
+<td>BlueprintNodecd633f19c816</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeaaba7378454f.html">原生纯计算：BuildString_Bool</a></td>
+<td>BlueprintNodeaaba7378454f</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodedf81a86358d9.html">原生纯计算：BuildString_Double</a></td>
+<td>BlueprintNodedf81a86358d9</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb9d2a1ee2daf.html">原生纯计算：BuildString_Int</a></td>
+<td>BlueprintNodeb9d2a1ee2daf</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode66c4fd5edb39.html">原生纯计算：BuildString_Name</a></td>
+<td>BlueprintNode66c4fd5edb39</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode2fa1c12a4f77.html">原生纯计算：BuildString_Rotator</a></td>
+<td>BlueprintNode2fa1c12a4f77</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodec2f513e83365.html">原生纯计算：BuildString_Vector</a></td>
+<td>BlueprintNodec2f513e83365</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode9f673375caf5.html">拼接字符串</a></td>
+<td>BlueprintNode9f673375caf5</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodedbfde4346b46.html">查找字符串子串</a></td>
+<td>BlueprintNodedbfde4346b46</td>
+<td>StringAndName</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodedb5fd72837d8.html">布尔转字符串</a></td>
+<td>BlueprintNodedb5fd72837d8</td>
+<td>StringAndName</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodec0c23348b5bd.html">双精度转字符串</a></td>
+<td>BlueprintNodec0c23348b5bd</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode50746b0edc6e.html">整数转字符串</a></td>
+<td>BlueprintNode50746b0edc6e</td>
+<td>StringAndName</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode60cfdeeeb658.html">Name转字符串</a></td>
+<td>BlueprintNode60cfdeeeb658</td>
+<td>StringAndName</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode5cf6df17e785.html">旋转转字符串</a></td>
+<td>BlueprintNode5cf6df17e785</td>
+<td>StringAndName</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode7486c166f0ef.html">原生纯计算：Conv_StringToDouble</a></td>
+<td>BlueprintNode7486c166f0ef</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb272d88961f9.html">原生纯计算：Conv_StringToInt</a></td>
+<td>BlueprintNodeb272d88961f9</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode8ea0749d0776.html">原生纯计算：Conv_StringToName</a></td>
+<td>BlueprintNode8ea0749d0776</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode83decf6e555e.html">原生纯计算：Conv_StringToRotator</a></td>
+<td>BlueprintNode83decf6e555e</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodef093e1619fd7.html">原生纯计算：Conv_StringToVector</a></td>
+<td>BlueprintNodef093e1619fd7</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeba98e5e0087d.html">向量转字符串</a></td>
+<td>BlueprintNodeba98e5e0087d</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode7f39c6c4e47d.html">原生纯计算：EqualEqual_StriStri</a></td>
+<td>BlueprintNode7f39c6c4e47d</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb4701afbb626.html">原生纯计算：EqualEqual_StrStr</a></td>
+<td>BlueprintNodeb4701afbb626</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode7f43ae3d3b63.html">原生纯计算：FindSubstring</a></td>
+<td>BlueprintNode7f43ae3d3b63</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodebf23f4bc6386.html">原生纯计算：GetCharacterAsNumber</a></td>
+<td>BlueprintNodebf23f4bc6386</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodefa2f47924ab2.html">原生纯计算：GetSubstring</a></td>
+<td>BlueprintNodefa2f47924ab2</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeb579c2514068.html">原生纯计算：IsEmpty</a></td>
+<td>BlueprintNodeb579c2514068</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode83645cb5b7b5.html">原生纯计算：IsNumeric</a></td>
+<td>BlueprintNode83645cb5b7b5</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodea61c2f4540dc.html">原生纯计算：LeftChop</a></td>
+<td>BlueprintNodea61c2f4540dc</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode6958252a7dc3.html">原生纯计算：LeftPad</a></td>
+<td>BlueprintNode6958252a7dc3</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodea5830365df70.html">取字符串左侧片段</a></td>
+<td>BlueprintNodea5830365df70</td>
+<td>StringTransforms</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodef0872aafccbe.html">字符串长度</a></td>
+<td>BlueprintNodef0872aafccbe</td>
+<td>StringAndName</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodebaa00f361b6a.html">取字符串中间片段</a></td>
+<td>BlueprintNodebaa00f361b6a</td>
+<td>StringAndName</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode8ad7294f424f.html">原生纯计算：NotEqual_StriStri</a></td>
+<td>BlueprintNode8ad7294f424f</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodee21899cfe626.html">原生纯计算：NotEqual_StrStr</a></td>
+<td>BlueprintNodee21899cfe626</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode60707f49783b.html">原生纯计算：Reverse</a></td>
+<td>BlueprintNode60707f49783b</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode8c7f6f176f66.html">原生纯计算：RightChop</a></td>
+<td>BlueprintNode8c7f6f176f66</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodedb48b36a15c1.html">原生纯计算：RightPad</a></td>
+<td>BlueprintNodedb48b36a15c1</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodec8399028165c.html">取字符串右侧片段</a></td>
+<td>BlueprintNodec8399028165c</td>
+<td>StringTransforms</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode77027d8bbd36.html">原生纯计算：TimeSecondsToString</a></td>
+<td>BlueprintNode77027d8bbd36</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode8dfd6b898af3.html">字符串转小写</a></td>
+<td>BlueprintNode8dfd6b898af3</td>
+<td>StringTransforms</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodef94f192b9f6c.html">字符串转大写</a></td>
+<td>BlueprintNodef94f192b9f6c</td>
+<td>StringTransforms</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode0098b7d0b7d6.html">原生纯计算：TrimTrailing</a></td>
+<td>BlueprintNode0098b7d0b7d6</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode02cb7acaffcd.html">原生纯计算：Trim</a></td>
+<td>BlueprintNode02cb7acaffcd</td>
+<td>OrdinaryPureComputation</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodef861a59d0eaf.html">输出诊断字符串</a></td>
+<td>BlueprintNodef861a59d0eaf</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode6ec169f5d191.html">本Actor根组件世界位置</a></td>
+<td>BlueprintNode6ec169f5d191</td>
+<td>SelfRootComponent</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodea036c1bd6806.html">本Actor根组件世界旋转</a></td>
+<td>BlueprintNodea036c1bd6806</td>
+<td>SelfRootComponent</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode6925d1c96bfe.html">本Actor根组件世界缩放</a></td>
+<td>BlueprintNode6925d1c96bfe</td>
+<td>SelfRootComponent</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode82097a2dc379.html">设置本Actor根组件世界位置</a></td>
+<td>BlueprintNode82097a2dc379</td>
+<td>SelfRootComponent</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNoded59b78077a47.html">设置本Actor根组件世界旋转</a></td>
+<td>BlueprintNoded59b78077a47</td>
+<td>SelfRootComponent</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNoded12c09465de7.html">设置本Actor根组件世界缩放</a></td>
+<td>BlueprintNoded12c09465de7</td>
+<td>SelfRootComponent</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodedaee3eb2a864.html">Actor开始运行事件</a></td>
+<td>BlueprintNodedaee3eb2a864</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNoded1ed6994f65d.html">普通Actor逐帧事件，实际DeltaSeconds用于速度积分</a></td>
+<td>BlueprintNoded1ed6994f65d</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode47c36e3cd361.html">按Then_0起顺序触发2个执行出口</a></td>
+<td>BlueprintNode47c36e3cd361</td>
+<td>ExecutionSequence</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeeeef13c47707.html">按Then_0起顺序触发3个执行出口</a></td>
+<td>BlueprintNodeeeef13c47707</td>
+<td>ExecutionSequence</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode81eaa299bc3a.html">按Then_0起顺序触发4个执行出口</a></td>
+<td>BlueprintNode81eaa299bc3a</td>
+<td>ExecutionSequence</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode5bda8c0d134e.html">按Then_0起顺序触发5个执行出口</a></td>
+<td>BlueprintNode5bda8c0d134e</td>
+<td>ExecutionSequence</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode89f1f9f4d31e.html">按Then_0起顺序触发6个执行出口</a></td>
+<td>BlueprintNode89f1f9f4d31e</td>
+<td>ExecutionSequence</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodebdc4505051c0.html">按Then_0起顺序触发7个执行出口</a></td>
+<td>BlueprintNodebdc4505051c0</td>
+<td>ExecutionSequence</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodecdb2be7691bc.html">按Then_0起顺序触发8个执行出口</a></td>
+<td>BlueprintNodecdb2be7691bc</td>
+<td>ExecutionSequence</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode69da268f2986.html">按布尔条件分支执行</a></td>
+<td>BlueprintNode69da268f2986</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode32aceca1f1f9.html">按整数case选择执行出口；本页是目录代表配置</a></td>
+<td>BlueprintNode32aceca1f1f9</td>
+<td>MultiwaySelection</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode63fd2e38fe1d.html">按整数case选择执行出口；本页是目录代表配置</a></td>
+<td>BlueprintNode63fd2e38fe1d</td>
+<td>MultiwaySelection</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodeedf272af3984.html">按Name case选择执行出口；本页是目录代表配置</a></td>
+<td>BlueprintNodeedf272af3984</td>
+<td>MultiwaySelection</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodefb81d4a215bb.html">按Name case选择执行出口；本页是目录代表配置</a></td>
+<td>BlueprintNodefb81d4a215bb</td>
+<td>MultiwaySelection</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodee58bfeee469d.html">读取本Actor声明的bool成员变量</a></td>
+<td>BlueprintNodee58bfeee469d</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodebc26d510e504.html">读取本Actor声明的float成员变量</a></td>
+<td>BlueprintNodebc26d510e504</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode575fb791f4d9.html">读取本Actor声明的int成员变量</a></td>
+<td>BlueprintNode575fb791f4d9</td>
+<td>MemberScalars</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode7d336997abb7.html">读取本Actor声明的name成员变量</a></td>
+<td>BlueprintNode7d336997abb7</td>
+<td>MemberScalars</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodedbef72798590.html">读取本Actor声明的rotator成员变量</a></td>
+<td>BlueprintNodedbef72798590</td>
+<td>RotatorMembers</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode03eafb4eff62.html">读取本Actor声明的string成员变量</a></td>
+<td>BlueprintNode03eafb4eff62</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodee44cc1acbf7a.html">读取本Actor声明的vector成员变量</a></td>
+<td>BlueprintNodee44cc1acbf7a</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode68f9a4d4d16b.html">写入本Actor声明的bool成员变量</a></td>
+<td>BlueprintNode68f9a4d4d16b</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode280d9fac275c.html">写入本Actor声明的float成员变量</a></td>
+<td>BlueprintNode280d9fac275c</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode13d294889a85.html">写入本Actor声明的int成员变量</a></td>
+<td>BlueprintNode13d294889a85</td>
+<td>MemberScalars</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode5764711fe372.html">写入本Actor声明的name成员变量</a></td>
+<td>BlueprintNode5764711fe372</td>
+<td>MemberScalars</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode49073c671be3.html">写入本Actor声明的rotator成员变量</a></td>
+<td>BlueprintNode49073c671be3</td>
+<td>RotatorMembers</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNodebb37b1df628d.html">写入本Actor声明的string成员变量</a></td>
+<td>BlueprintNodebb37b1df628d</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><a href="Nodes/BlueprintNode281c3259049a.html">写入本Actor声明的vector成员变量</a></td>
+<td>BlueprintNode281c3259049a</td>
+<td>ExistingCore</td>
+<td>experimental</td>
+</tr>
+</tbody></table>
+</div><nav class="page-pagination" aria-label="相邻章节"><a class="previous" href="MaterialNodeIndex.html"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m5-5-5 5 5 5"/></svg><span><small>上一页</small><strong>材质节点</strong></span></a><a class="next" href="Examples.html"><span><small>下一页</small><strong>JSON 样例</strong></span><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></nav><footer class="article-footer"><span>NodeForge · 节点熔炉 / Build136-Mcp9R13</span><span class="footer-links"><a href="BlueprintNodeIndex.md">查看 Markdown</a><a href="SourcesAndLicenses.html">资料来源</a></span></footer></main>
+<aside class="toc reading-card" aria-label="本页内容"><div class="toc-inner"><div class="toc-title"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>本页内容</div><nav></nav><div class="toc-footer"><button type="button" data-back-top><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg>回到顶部</button><div class="reading-progress" aria-hidden="true"><span></span></div></div></div></aside></div></div>
+<dialog class="search-dialog" aria-label="搜索文档"><div class="search-box"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><label class="sr-only" for="docs-search">搜索文档标题、章节或节点名称</label><input id="docs-search" class="search-input" type="search" placeholder="搜索文档、章节、节点…" autocomplete="off"><button type="button" class="dialog-close" data-close aria-label="关闭搜索"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><div class="search-summary" role="status"></div><ol class="search-results" aria-label="搜索结果"></ol><div class="search-bottom"><span>↑ ↓ 选择 · Enter 打开</span><span>Esc 关闭 · 本地搜索</span></div></dialog>
+<dialog class="navigation-dialog" aria-label="文档导航"><div class="navigation-head"><strong>文档导航</strong><button type="button" class="dialog-close" data-close aria-label="关闭导航"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><nav class="mobile-groups" aria-label="手册分类"><a href="../Index.html">首页</a><a href="../User/Readme.html">使用手册</a><a href="../Ai/Readme.html">AI 调用</a><a href="../Developer/Readme.html">原理与开发</a><a href="../Version/Readme.html">版本说明</a></nav><div class="side-caption">公共参考</div><nav class="side-links" aria-label="章节导航"><a href="FeatureMap.html">功能矩阵</a><a href="GraphAuthoring.html">JSON 构图规则</a><a href="Material.html">材质</a><a href="Blueprint.html">Actor 蓝图</a><a href="MaterialInstance.html">普通材质实例</a><a href="MaterialNodeIndex.html">材质节点</a><a href="BlueprintNodeIndex.html" class="current" aria-current="page">蓝图节点</a><a href="Examples.html">JSON 样例</a><a href="SourcesAndLicenses.html">来源与许可</a><a href="ResultsAndRecovery.html">结果状态、报告与有界恢复</a></nav></dialog><div class="toast" role="status" aria-live="polite"></div></body></html>

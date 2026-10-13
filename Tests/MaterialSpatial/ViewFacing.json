@@ -1,0 +1,105 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphViewFacing",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFViewFacing",
+  "catalogDigest": "588f572606053d53eebe80b3461b0e01baac2326f30e778c2cdbc3f03e4e2801",
+  "nodes": [
+    {
+      "id": "Normal",
+      "class": "/Script/Engine.MaterialExpressionPixelNormalWS",
+      "properties": {}
+    },
+    {
+      "id": "View",
+      "class": "/Script/Engine.MaterialExpressionCameraVectorWS",
+      "properties": {}
+    },
+    {
+      "id": "Facing",
+      "class": "/Script/Engine.MaterialExpressionDotProduct",
+      "properties": {}
+    },
+    {
+      "id": "Magnitude",
+      "class": "/Script/Engine.MaterialExpressionAbs",
+      "properties": {}
+    },
+    {
+      "id": "Falloff",
+      "class": "/Script/Engine.MaterialExpressionPower",
+      "properties": {
+        "ConstExponent": 3
+      }
+    },
+    {
+      "id": "Tint",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "Tint",
+        "DefaultValue": [
+          0.05,
+          0.3,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Color",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "Normal",
+      "output": "0",
+      "to": "Facing",
+      "input": "A"
+    },
+    {
+      "from": "View",
+      "output": "0",
+      "to": "Facing",
+      "input": "B"
+    },
+    {
+      "from": "Facing",
+      "output": "0",
+      "to": "Magnitude",
+      "input": "Input"
+    },
+    {
+      "from": "Magnitude",
+      "output": "0",
+      "to": "Falloff",
+      "input": "Base"
+    },
+    {
+      "from": "Falloff",
+      "output": "0",
+      "to": "Color",
+      "input": "A"
+    },
+    {
+      "from": "Tint",
+      "output": "0",
+      "to": "Color",
+      "input": "B"
+    },
+    {
+      "from": "Color",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "scope": "Affected Blueprint/material native construction and persistence only, no UI/visual or large-float runtime claim",
+  "cases": [
+    {
+      "name": "MaterialDefaults",
+      "input": "../GraphV2/MaterialDefaults.json",
+      "expected": "succeeded",
+      "category": "nativeFloatDefaults"
+    },
+    {
+      "name": "StaticColor",
+      "input": "../GraphV2/StaticColor.json",
+      "expected": "succeeded",
+      "category": "canonicalMaterialProperties"
+    },
+    {
+      "name": "BlueprintConcat",
+      "input": "../GraphV2/BlueprintConcat.json",
+      "expected": "succeeded",
+      "category": "exactBlueprintStrings"
+    },
+    {
+      "name": "MathRotation",
+      "input": "../BlueprintMathInterpolation/MathRotation.json",
+      "expected": "succeeded",
+      "category": "nativeFloatPinAndRotatorDefaults"
+    },
+    {
+      "name": "NumericDefaults",
+      "input": "NumericDefaults.json",
+      "expected": "succeeded",
+      "category": "doubleAndVectorLargePersistedDefaults"
+    },
+    {
+      "name": "LargeFloatPin",
+      "input": "LargeFloatPin.json",
+      "expected": "succeeded",
+      "category": "floatPinTextPersistenceNotRuntimeDoubleClaim"
+    },
+    {
+      "name": "LargeMaterialFloat",
+      "input": "LargeMaterialFloat.json",
+      "expected": "succeeded",
+      "category": "nativeFloat32PropertyQuantization"
+    }
+  ]
+}

@@ -1,0 +1,729 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphWaterWavesVisible",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphWaterWavesVisible",
+  "catalogDigest": "9703b92dac063c1a473c335d505d78d917fc97608a78501dc0c1d1f2491264ca",
+  "nodes": [
+    {
+      "id": "UV",
+      "class": "/Script/Engine.MaterialExpressionTextureCoordinate",
+      "properties": {}
+    },
+    {
+      "id": "Scale",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Scale",
+        "DefaultValue": 0.8
+      }
+    },
+    {
+      "id": "ScaledUV",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "Clock",
+      "class": "/Script/Engine.MaterialExpressionTime",
+      "properties": {}
+    },
+    {
+      "id": "Speed",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Speed",
+        "DefaultValue": 0.24
+      }
+    },
+    {
+      "id": "ScaledTime",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "Strength",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "WaveStrength",
+        "DefaultValue": 0.28
+      }
+    },
+    {
+      "id": "Direction1",
+      "class": "/Script/Engine.MaterialExpressionConstant2Vector",
+      "properties": {
+        "R": 1,
+        "G": 0.32
+      }
+    },
+    {
+      "id": "Projection1",
+      "class": "/Script/Engine.MaterialExpressionDotProduct",
+      "properties": {}
+    },
+    {
+      "id": "Space1",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 5
+      }
+    },
+    {
+      "id": "Motion1",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 1
+      }
+    },
+    {
+      "id": "Phase1",
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "properties": {}
+    },
+    {
+      "id": "Wave1",
+      "class": "/Script/Engine.MaterialExpressionCosine",
+      "properties": {
+        "Period": 1.0
+      }
+    },
+    {
+      "id": "Amount1",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 0.7
+      }
+    },
+    {
+      "id": "Slope1",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "X1",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 1
+      }
+    },
+    {
+      "id": "Y1",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 0.32
+      }
+    },
+    {
+      "id": "Direction2",
+      "class": "/Script/Engine.MaterialExpressionConstant2Vector",
+      "properties": {
+        "R": -0.57,
+        "G": 1
+      }
+    },
+    {
+      "id": "Projection2",
+      "class": "/Script/Engine.MaterialExpressionDotProduct",
+      "properties": {}
+    },
+    {
+      "id": "Space2",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 8
+      }
+    },
+    {
+      "id": "Motion2",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": -0.73
+      }
+    },
+    {
+      "id": "Phase2",
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "properties": {}
+    },
+    {
+      "id": "Wave2",
+      "class": "/Script/Engine.MaterialExpressionCosine",
+      "properties": {
+        "Period": 1.0
+      }
+    },
+    {
+      "id": "Amount2",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 0.45
+      }
+    },
+    {
+      "id": "Slope2",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "X2",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": -0.57
+      }
+    },
+    {
+      "id": "Y2",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 1
+      }
+    },
+    {
+      "id": "Direction3",
+      "class": "/Script/Engine.MaterialExpressionConstant2Vector",
+      "properties": {
+        "R": 0.72,
+        "G": -0.83
+      }
+    },
+    {
+      "id": "Projection3",
+      "class": "/Script/Engine.MaterialExpressionDotProduct",
+      "properties": {}
+    },
+    {
+      "id": "Space3",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 13
+      }
+    },
+    {
+      "id": "Motion3",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 1.37
+      }
+    },
+    {
+      "id": "Phase3",
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "properties": {}
+    },
+    {
+      "id": "Wave3",
+      "class": "/Script/Engine.MaterialExpressionCosine",
+      "properties": {
+        "Period": 1.0
+      }
+    },
+    {
+      "id": "Amount3",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 0.25
+      }
+    },
+    {
+      "id": "Slope3",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "X3",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 0.72
+      }
+    },
+    {
+      "id": "Y3",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": -0.83
+      }
+    },
+    {
+      "id": "XFirst",
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "properties": {}
+    },
+    {
+      "id": "XTotal",
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "properties": {}
+    },
+    {
+      "id": "YFirst",
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "properties": {}
+    },
+    {
+      "id": "YTotal",
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "properties": {}
+    },
+    {
+      "id": "NormalXY",
+      "class": "/Script/Engine.MaterialExpressionAppendVector",
+      "properties": {}
+    },
+    {
+      "id": "NormalZ",
+      "class": "/Script/Engine.MaterialExpressionConstant",
+      "properties": {
+        "R": 1
+      }
+    },
+    {
+      "id": "NormalXYZ",
+      "class": "/Script/Engine.MaterialExpressionAppendVector",
+      "properties": {}
+    },
+    {
+      "id": "Normal",
+      "class": "/Script/Engine.MaterialExpressionNormalize",
+      "properties": {}
+    },
+    {
+      "id": "WaterColor",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "WaterColor",
+        "DefaultValue": [
+          0.018,
+          0.19,
+          0.28,
+          1
+        ]
+      }
+    },
+    {
+      "id": "EdgeColor",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "EdgeColor",
+        "DefaultValue": [
+          0.12,
+          0.4,
+          0.48,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Facing",
+      "class": "/Script/Engine.MaterialExpressionFresnel",
+      "properties": {
+        "Exponent": 4,
+        "BaseReflectFraction": 0.03
+      }
+    },
+    {
+      "id": "SurfaceColor",
+      "class": "/Script/Engine.MaterialExpressionLinearInterpolate",
+      "properties": {}
+    },
+    {
+      "id": "Roughness",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Roughness",
+        "DefaultValue": 0.3
+      }
+    },
+    {
+      "id": "Opacity",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Opacity",
+        "DefaultValue": 0.65
+      }
+    },
+    {
+      "id": "Specular",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Specular",
+        "DefaultValue": 0.55
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "UV",
+      "output": "0",
+      "to": "ScaledUV",
+      "input": "A"
+    },
+    {
+      "from": "Scale",
+      "output": "0",
+      "to": "ScaledUV",
+      "input": "B"
+    },
+    {
+      "from": "Clock",
+      "output": "0",
+      "to": "ScaledTime",
+      "input": "A"
+    },
+    {
+      "from": "Speed",
+      "output": "0",
+      "to": "ScaledTime",
+      "input": "B"
+    },
+    {
+      "from": "ScaledUV",
+      "output": "0",
+      "to": "Projection1",
+      "input": "A"
+    },
+    {
+      "from": "Direction1",
+      "output": "0",
+      "to": "Projection1",
+      "input": "B"
+    },
+    {
+      "from": "Projection1",
+      "output": "0",
+      "to": "Space1",
+      "input": "A"
+    },
+    {
+      "from": "ScaledTime",
+      "output": "0",
+      "to": "Motion1",
+      "input": "A"
+    },
+    {
+      "from": "Space1",
+      "output": "0",
+      "to": "Phase1",
+      "input": "A"
+    },
+    {
+      "from": "Motion1",
+      "output": "0",
+      "to": "Phase1",
+      "input": "B"
+    },
+    {
+      "from": "Phase1",
+      "output": "0",
+      "to": "Wave1",
+      "input": "Input"
+    },
+    {
+      "from": "Wave1",
+      "output": "0",
+      "to": "Amount1",
+      "input": "A"
+    },
+    {
+      "from": "Amount1",
+      "output": "0",
+      "to": "Slope1",
+      "input": "A"
+    },
+    {
+      "from": "Strength",
+      "output": "0",
+      "to": "Slope1",
+      "input": "B"
+    },
+    {
+      "from": "Slope1",
+      "output": "0",
+      "to": "X1",
+      "input": "A"
+    },
+    {
+      "from": "Slope1",
+      "output": "0",
+      "to": "Y1",
+      "input": "A"
+    },
+    {
+      "from": "ScaledUV",
+      "output": "0",
+      "to": "Projection2",
+      "input": "A"
+    },
+    {
+      "from": "Direction2",
+      "output": "0",
+      "to": "Projection2",
+      "input": "B"
+    },
+    {
+      "from": "Projection2",
+      "output": "0",
+      "to": "Space2",
+      "input": "A"
+    },
+    {
+      "from": "ScaledTime",
+      "output": "0",
+      "to": "Motion2",
+      "input": "A"
+    },
+    {
+      "from": "Space2",
+      "output": "0",
+      "to": "Phase2",
+      "input": "A"
+    },
+    {
+      "from": "Motion2",
+      "output": "0",
+      "to": "Phase2",
+      "input": "B"
+    },
+    {
+      "from": "Phase2",
+      "output": "0",
+      "to": "Wave2",
+      "input": "Input"
+    },
+    {
+      "from": "Wave2",
+      "output": "0",
+      "to": "Amount2",
+      "input": "A"
+    },
+    {
+      "from": "Amount2",
+      "output": "0",
+      "to": "Slope2",
+      "input": "A"
+    },
+    {
+      "from": "Strength",
+      "output": "0",
+      "to": "Slope2",
+      "input": "B"
+    },
+    {
+      "from": "Slope2",
+      "output": "0",
+      "to": "X2",
+      "input": "A"
+    },
+    {
+      "from": "Slope2",
+      "output": "0",
+      "to": "Y2",
+      "input": "A"
+    },
+    {
+      "from": "ScaledUV",
+      "output": "0",
+      "to": "Projection3",
+      "input": "A"
+    },
+    {
+      "from": "Direction3",
+      "output": "0",
+      "to": "Projection3",
+      "input": "B"
+    },
+    {
+      "from": "Projection3",
+      "output": "0",
+      "to": "Space3",
+      "input": "A"
+    },
+    {
+      "from": "ScaledTime",
+      "output": "0",
+      "to": "Motion3",
+      "input": "A"
+    },
+    {
+      "from": "Space3",
+      "output": "0",
+      "to": "Phase3",
+      "input": "A"
+    },
+    {
+      "from": "Motion3",
+      "output": "0",
+      "to": "Phase3",
+      "input": "B"
+    },
+    {
+      "from": "Phase3",
+      "output": "0",
+      "to": "Wave3",
+      "input": "Input"
+    },
+    {
+      "from": "Wave3",
+      "output": "0",
+      "to": "Amount3",
+      "input": "A"
+    },
+    {
+      "from": "Amount3",
+      "output": "0",
+      "to": "Slope3",
+      "input": "A"
+    },
+    {
+      "from": "Strength",
+      "output": "0",
+      "to": "Slope3",
+      "input": "B"
+    },
+    {
+      "from": "Slope3",
+      "output": "0",
+      "to": "X3",
+      "input": "A"
+    },
+    {
+      "from": "Slope3",
+      "output": "0",
+      "to": "Y3",
+      "input": "A"
+    },
+    {
+      "from": "X1",
+      "output": "0",
+      "to": "XFirst",
+      "input": "A"
+    },
+    {
+      "from": "X2",
+      "output": "0",
+      "to": "XFirst",
+      "input": "B"
+    },
+    {
+      "from": "XFirst",
+      "output": "0",
+      "to": "XTotal",
+      "input": "A"
+    },
+    {
+      "from": "X3",
+      "output": "0",
+      "to": "XTotal",
+      "input": "B"
+    },
+    {
+      "from": "Y1",
+      "output": "0",
+      "to": "YFirst",
+      "input": "A"
+    },
+    {
+      "from": "Y2",
+      "output": "0",
+      "to": "YFirst",
+      "input": "B"
+    },
+    {
+      "from": "YFirst",
+      "output": "0",
+      "to": "YTotal",
+      "input": "A"
+    },
+    {
+      "from": "Y3",
+      "output": "0",
+      "to": "YTotal",
+      "input": "B"
+    },
+    {
+      "from": "XTotal",
+      "output": "0",
+      "to": "NormalXY",
+      "input": "A"
+    },
+    {
+      "from": "YTotal",
+      "output": "0",
+      "to": "NormalXY",
+      "input": "B"
+    },
+    {
+      "from": "NormalXY",
+      "output": "0",
+      "to": "NormalXYZ",
+      "input": "A"
+    },
+    {
+      "from": "NormalZ",
+      "output": "0",
+      "to": "NormalXYZ",
+      "input": "B"
+    },
+    {
+      "from": "NormalXYZ",
+      "output": "0",
+      "to": "Normal",
+      "input": "VectorInput"
+    },
+    {
+      "from": "Normal",
+      "output": "0",
+      "to": "Material",
+      "input": "Normal"
+    },
+    {
+      "from": "WaterColor",
+      "output": "0",
+      "to": "SurfaceColor",
+      "input": "A"
+    },
+    {
+      "from": "EdgeColor",
+      "output": "0",
+      "to": "SurfaceColor",
+      "input": "B"
+    },
+    {
+      "from": "Facing",
+      "output": "0",
+      "to": "SurfaceColor",
+      "input": "Alpha"
+    },
+    {
+      "from": "SurfaceColor",
+      "output": "0",
+      "to": "Material",
+      "input": "BaseColor"
+    },
+    {
+      "from": "Roughness",
+      "output": "0",
+      "to": "Material",
+      "input": "Roughness"
+    },
+    {
+      "from": "Opacity",
+      "output": "0",
+      "to": "Material",
+      "input": "Opacity"
+    },
+    {
+      "from": "Specular",
+      "output": "0",
+      "to": "Material",
+      "input": "Specular"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Translucent",
+    "shading": "DefaultLit",
+    "twoSided": true,
+    "lighting": "SurfaceForwardShading"
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "build": "Build52",
+  "catalogDigest": "1ae2791da31e336b3d147d1ed20e173ddfe51e721d255df040c843c743171317",
+  "selectedBinarySha256": "01fdbe3ab986fbd75caebdb82073ed24aab205e219e9fe8df00bc869e65affd7",
+  "nodes": [
+    {
+      "class": "/Script/BlueprintGraph.K2Node_SwitchInteger",
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "representativeCaseCounts": [
+        1,
+        2,
+        3,
+        8
+      ],
+      "experimentalOtherAllowedCounts": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "allowedCaseCounts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "nativeHasDefaultConfigurations": [
+        false,
+        true
+      ],
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/Switches1/SwitchIntReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchChangedReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchTopologyReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchShuffledReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchOneReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchEightReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchNegativeStartReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchDefaultReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchNoDefaultReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchUnwiredMatchReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchMinIntReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchMaxSafeReopen.json"
+      ],
+      "nativeIndependentRuntime": [
+        "Reports/20261009UsableEditor/SwitchRuntime1/SwitchIntRuntime.json",
+        "Reports/20261009UsableEditor/SwitchRuntime1/SwitchChangedRuntime.json",
+        "Reports/20261009UsableEditor/SwitchRuntime1/SwitchTopologyRuntime.json",
+        "Reports/20261009UsableEditor/SwitchRuntime1/SwitchOneRuntime.json",
+        "Reports/20261009UsableEditor/SwitchRuntime1/SwitchEightRuntime.json",
+        "Reports/20261009UsableEditor/SwitchRuntime1/SwitchNegativeStartRuntime.json",
+        "Reports/20261009UsableEditor/SwitchRuntime1/SwitchDefaultRuntime.json",
+        "Reports/20261009UsableEditor/SwitchRuntime1/SwitchNoDefaultRuntime.json",
+        "Reports/20261009UsableEditor/SwitchRuntime1/SwitchUnwiredMatchRuntime.json"
+      ],
+      "exportCopyIndependentReopen": "Reports/20261009UsableEditor/SwitchExport1/Summary.json",
+      "abnormalSourceGuards": "Reports/20261009UsableEditor/SwitchGuards3/Summary.json",
+      "scope": "Representative bounded configurations, exact requested case labels and pins, native execution; no universal UE node coverage",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_SwitchName",
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "representativeCaseCounts": [
+        2,
+        3
+      ],
+      "experimentalOtherAllowedCounts": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "allowedCaseCounts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "nativeHasDefaultConfigurations": [
+        false,
+        true
+      ],
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/Switches1/SwitchNameReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchNameMemberReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchNameDefaultReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchNameNoDefaultReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchNameRenamedReopen.json",
+        "Reports/20261008GraphV2/Switches1/SwitchNameCaseInsensitiveReopen.json"
+      ],
+      "nativeIndependentRuntime": [
+        "Reports/20261009UsableEditor/SwitchRuntime1/SwitchNameRuntime.json",
+        "Reports/20261009UsableEditor/SwitchRuntime1/SwitchNameMemberRuntime.json",
+        "Reports/20261009UsableEditor/SwitchRuntime1/SwitchNameDefaultRuntime.json",
+        "Reports/20261009UsableEditor/SwitchRuntime1/SwitchNameNoDefaultRuntime.json",
+        "Reports/20261009UsableEditor/SwitchRuntime1/SwitchNameCaseInsensitiveRuntime.json"
+      ],
+      "exportCopyIndependentReopen": "Reports/20261009UsableEditor/SwitchExport1/Summary.json",
+      "abnormalSourceGuards": "Reports/20261009UsableEditor/SwitchGuards3/Summary.json",
+      "scope": "Representative bounded configurations, exact requested case labels and pins, native execution; no universal UE node coverage",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    }
+  ],
+  "reports": {
+    "guards": "Reports/20261009UsableEditor/SwitchGuards3/Summary.json",
+    "graphs": "Reports/20261008GraphV2/Switches1/Summary.json",
+    "runtime": "Reports/20261009UsableEditor/SwitchRuntime1/Summary.json",
+    "export": "Reports/20261009UsableEditor/SwitchExport1/Summary.json",
+    "core": "Reports/20261008GraphV2/SwitchCore1/Summary.json",
+    "legacy": "Reports/20261008UsablePrototype/SwitchLegacy1/Summary.json",
+    "legacyNegatives": "Reports/20261009UsableEditor/SwitchLegacyNeg1/Summary.json",
+    "rules": "Reports/20261009UsableEditor/SwitchRules1/Summary.json"
+  },
+  "limitations": [
+    "Raw probe retains experimental labels; verified overlay defines representative scope",
+    "Ordinary string/name values, function/member identities and export metadata have separate pending case-sensitive audit",
+    "No live root or RC1 deployment, UI/externalAI/new Win64 package notRun"
+  ]
+}

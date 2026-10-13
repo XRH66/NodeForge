@@ -1,0 +1,99 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphVectorProducts",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphVectorProducts",
+  "catalogDigest": "9703b92dac063c1a473c335d505d78d917fc97608a78501dc0c1d1f2491264ca",
+  "nodes": [
+    {
+      "id": "X",
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "properties": {
+        "Constant": [
+          1,
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Y",
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "properties": {
+        "Constant": [
+          0,
+          1,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Z",
+      "class": "/Script/Engine.MaterialExpressionCrossProduct",
+      "properties": {}
+    },
+    {
+      "id": "Strength",
+      "class": "/Script/Engine.MaterialExpressionDotProduct",
+      "properties": {}
+    },
+    {
+      "id": "Tint",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "X",
+      "output": "0",
+      "to": "Z",
+      "input": "A"
+    },
+    {
+      "from": "Y",
+      "output": "0",
+      "to": "Z",
+      "input": "B"
+    },
+    {
+      "from": "Z",
+      "output": "0",
+      "to": "Strength",
+      "input": "A"
+    },
+    {
+      "from": "Z",
+      "output": "0",
+      "to": "Strength",
+      "input": "B"
+    },
+    {
+      "from": "Z",
+      "output": "0",
+      "to": "Tint",
+      "input": "A"
+    },
+    {
+      "from": "Strength",
+      "output": "0",
+      "to": "Tint",
+      "input": "B"
+    },
+    {
+      "from": "Tint",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

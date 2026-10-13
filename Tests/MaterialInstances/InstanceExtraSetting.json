@@ -1,0 +1,30 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "assetType": "MaterialInstance",
+  "nodes": [],
+  "edges": [],
+  "settings": {
+    "parent": "/Game/NodeForgeTests/NFGraphInstanceWaterParent.NFGraphInstanceWaterParent",
+    "parentAssetSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "scalarParameters": {
+      "Speed": 0.32,
+      "Scale": 0.8,
+      "WaveStrength": 0.3,
+      "Roughness": 0.32
+    },
+    "vectorParameters": {
+      "WaterColor": [
+        0.02,
+        0.25,
+        0.4,
+        1
+      ]
+    },
+    "textureParameters": {},
+    "unexpected": true
+  },
+  "requestId": "GraphInstanceExtraSetting",
+  "assetPath": "/Game/NodeForgeTests/NFGraphInstanceExtraSetting",
+  "catalogDigest": "1b12e94c89af0c2e18d3dbbf362222754473f341d3a353eff24ca6abc8809dc1"
+}

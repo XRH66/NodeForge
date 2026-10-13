@@ -1,0 +1,75 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphNumericDefaults",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFNightNumericDefaults",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "SetAmount",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "properties": {
+        "variable": "Amount"
+      },
+      "defaults": {
+        "Amount": 999999900000
+      }
+    },
+    {
+      "id": "SetOffset",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "properties": {
+        "variable": "Offset"
+      },
+      "defaults": {
+        "Offset": [
+          999999900000,
+          -999999900000,
+          123.125
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "SetAmount",
+      "input": "execute"
+    },
+    {
+      "from": "SetAmount",
+      "output": "then",
+      "to": "SetOffset",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": [
+      {
+        "name": "Amount",
+        "type": "float",
+        "default": 999999900000
+      },
+      {
+        "name": "Offset",
+        "type": "vector",
+        "default": [
+          999999900000,
+          -999999900000,
+          123.125
+        ]
+      }
+    ]
+  }
+}

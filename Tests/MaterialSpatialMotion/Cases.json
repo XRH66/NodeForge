@@ -1,0 +1,12 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "scope": "One data-only follow-up after visual inspection found surface occlusion; not the full spatial matrix",
+  "cases": [
+    {
+      "name": "NormalRaised",
+      "input": "NormalRaised.json",
+      "expected": "succeeded",
+      "category": "visibleNormalOffset"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "catalogStatus": "Actual UE5.3.2 Build35 catalog 6993743...; experimental capabilities require representative verification",
+  "cases": [
+    {
+      "name": "CountTrue",
+      "input": "CountTrue.json",
+      "expected": "succeeded",
+      "category": "nativeFunctionFamily"
+    },
+    {
+      "name": "CountFalse",
+      "input": "CountFalse.json",
+      "expected": "succeeded",
+      "category": "nativeFunctionFamily"
+    },
+    {
+      "name": "CountShuffled",
+      "input": "CountShuffled.json",
+      "expected": "succeeded",
+      "category": "orderIndependent",
+      "compareLayoutWith": "CountTrue"
+    },
+    {
+      "name": "TextKnown",
+      "input": "TextKnown.json",
+      "expected": "succeeded",
+      "category": "nativeFunctionFamily"
+    },
+    {
+      "name": "TextAbsent",
+      "input": "TextAbsent.json",
+      "expected": "succeeded",
+      "category": "nativeFunctionFamily"
+    },
+    {
+      "name": "VectorBasis",
+      "input": "VectorBasis.json",
+      "expected": "succeeded",
+      "category": "nativeFunctionFamily"
+    },
+    {
+      "name": "ScalarSelection",
+      "input": "ScalarSelection.json",
+      "expected": "succeeded",
+      "category": "nativeFunctionFamily"
+    },
+    {
+      "name": "IntFraction",
+      "input": "IntFraction.json",
+      "expected": "rejected",
+      "category": "integerDefault"
+    },
+    {
+      "name": "IntOverflow",
+      "input": "IntOverflow.json",
+      "expected": "rejected",
+      "category": "integerDefault"
+    },
+    {
+      "name": "IntWrongType",
+      "input": "IntWrongType.json",
+      "expected": "rejected",
+      "category": "integerDefault"
+    },
+    {
+      "name": "NameWrongType",
+      "input": "NameWrongType.json",
+      "expected": "rejected",
+      "category": "nameDefault"
+    },
+    {
+      "name": "NameTooLong",
+      "input": "NameTooLong.json",
+      "expected": "rejected",
+      "category": "nameDefault"
+    },
+    {
+      "name": "FamilyUnknownPin",
+      "input": "FamilyUnknownPin.json",
+      "expected": "rejected",
+      "category": "exactPin"
+    },
+    {
+      "name": "FamilyUnknownFunction",
+      "input": "FamilyUnknownFunction.json",
+      "expected": "rejected",
+      "category": "functionSelection"
+    },
+    {
+      "name": "FamilyWrongLink",
+      "input": "FamilyWrongLink.json",
+      "expected": "rejected",
+      "category": "exactPinType"
+    },
+    {
+      "name": "FamilyDuplicateInput",
+      "input": "FamilyDuplicateInput.json",
+      "expected": "rejected",
+      "category": "oneSourcePerInput"
+    },
+    {
+      "name": "FamilyExternalTarget",
+      "input": "FamilyExternalTarget.json",
+      "expected": "rejected",
+      "category": "implicitSelfOnly"
+    },
+    {
+      "name": "FamilyOldCatalog",
+      "input": "FamilyOldCatalog.json",
+      "expected": "rejected",
+      "category": "versionScope",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "FamilyCollision",
+      "input": "FamilyCollision.json",
+      "expected": "rejected",
+      "category": "sameNameProtection",
+      "requires": "CountTrue"
+    }
+  ]
+}
+

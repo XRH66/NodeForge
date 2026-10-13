@@ -1,0 +1,137 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphTransformComposeReordered",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFTransformComposeReordered",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    },
+    {
+      "id": "LowerText",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "ToLower"
+      }
+    },
+    {
+      "id": "LeftText",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Left"
+      },
+      "defaults": {
+        "SourceString": "qRsTuVw",
+        "Count": 2
+      }
+    },
+    {
+      "id": "Join",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Concat_StrStr"
+      }
+    },
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "RightText",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Right"
+      },
+      "defaults": {
+        "SourceString": "qRsTuVw",
+        "Count": 4
+      }
+    },
+    {
+      "id": "Prefix",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Concat_StrStr"
+      },
+      "defaults": {
+        "B": ":"
+      }
+    },
+    {
+      "id": "UpperText",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "ToUpper"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "LowerText",
+      "output": "ReturnValue",
+      "to": "Join",
+      "input": "B"
+    },
+    {
+      "from": "RightText",
+      "output": "ReturnValue",
+      "to": "LowerText",
+      "input": "SourceString"
+    },
+    {
+      "from": "Join",
+      "output": "ReturnValue",
+      "to": "Print",
+      "input": "InString"
+    },
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "Prefix",
+      "output": "ReturnValue",
+      "to": "Join",
+      "input": "A"
+    },
+    {
+      "from": "LeftText",
+      "output": "ReturnValue",
+      "to": "UpperText",
+      "input": "SourceString"
+    },
+    {
+      "from": "UpperText",
+      "output": "ReturnValue",
+      "to": "Prefix",
+      "input": "A"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}

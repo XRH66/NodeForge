@@ -1,0 +1,137 @@
+{
+  "cases": [
+    {
+      "case": "MemberCount",
+      "expectedMessage": "count=5",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        90,
+        0
+      ],
+      "expectedScale": [
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MemberLow",
+      "expectedMessage": "below threshold",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MemberShuffled",
+      "expectedMessage": "count=5",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        90,
+        0
+      ],
+      "expectedScale": [
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MemberState",
+      "expectedMessage": "NodeForge9",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MemberNone",
+      "expectedMessage": "None",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MemberLimits",
+      "expectedMessage": "-21474836482147483647",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MemberRootLegacy",
+      "expectedMessage": "Root offset applied",
+      "expectedLocation": [
+        15,
+        20,
+        32
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    }
+  ]
+}

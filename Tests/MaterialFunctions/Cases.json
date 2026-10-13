@@ -1,0 +1,103 @@
+{
+  "cases": [
+    {
+      "name": "FunctionSmoothDefault",
+      "input": "FunctionSmoothDefault.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicFunctionBinding"
+    },
+    {
+      "name": "FunctionSmoothInputs",
+      "input": "FunctionSmoothInputs.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicFunctionBinding"
+    },
+    {
+      "name": "FunctionSmoothShuffled",
+      "input": "FunctionSmoothShuffled.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicFunctionBinding",
+      "equivalentTo": "FunctionSmoothInputs",
+      "compareLayoutWith": "FunctionSmoothInputs"
+    },
+    {
+      "name": "FunctionSmoothDynamic",
+      "input": "FunctionSmoothDynamic.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicFunctionBinding"
+    },
+    {
+      "name": "FunctionOverlay",
+      "input": "FunctionOverlay.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicFunctionBinding"
+    },
+    {
+      "name": "FunctionOverlaySwap",
+      "input": "FunctionOverlaySwap.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicFunctionBinding"
+    },
+    {
+      "name": "FunctionChain",
+      "input": "FunctionChain.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicFunctionBinding"
+    },
+    {
+      "name": "FunctionAnimated",
+      "input": "FunctionAnimated.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicFunctionBinding"
+    },
+    {
+      "name": "FunctionUnknownInput",
+      "input": "FunctionUnknownInput.json",
+      "expected": "rejected",
+      "category": "nativeDynamicFunctionBinding"
+    },
+    {
+      "name": "FunctionUnknownOutput",
+      "input": "FunctionUnknownOutput.json",
+      "expected": "rejected",
+      "category": "nativeDynamicFunctionBinding"
+    },
+    {
+      "name": "FunctionStaleHash",
+      "input": "FunctionStaleHash.json",
+      "expected": "rejected",
+      "category": "nativeDynamicFunctionBinding"
+    },
+    {
+      "name": "FunctionMissingHash",
+      "input": "FunctionMissingHash.json",
+      "expected": "rejected",
+      "category": "nativeDynamicFunctionBinding"
+    },
+    {
+      "name": "FunctionWrongResource",
+      "input": "FunctionWrongResource.json",
+      "expected": "rejected",
+      "category": "nativeDynamicFunctionBinding"
+    },
+    {
+      "name": "FunctionExtraProperty",
+      "input": "FunctionExtraProperty.json",
+      "expected": "rejected",
+      "category": "nativeDynamicFunctionBinding"
+    },
+    {
+      "name": "FunctionOldCatalog",
+      "input": "FunctionOldCatalog.json",
+      "expected": "rejected",
+      "category": "nativeDynamicFunctionBinding",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "FunctionRequiredInput",
+      "input": "FunctionRequiredInput.json",
+      "expected": "rejected",
+      "category": "nativeDynamicFunctionBinding"
+    }
+  ]
+}

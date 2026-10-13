@@ -1,0 +1,100 @@
+# NodeForge：2026-10-13首次源码上传，根目录采用明确白名单。
+# 本机验证工程、ZIP、报告/会话与工作管理资料保留磁盘。
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/Plugins/
+!/Scripts/
+!/Contracts/
+!/Catalog/
+!/Examples/
+!/Tests/
+!/Tools/
+!/Metadata/
+!/Releases/
+!/Docs/
+/Docs/*
+!/Docs/Installation.md
+!/Docs/AiInstallation.md
+!/Docs/GitHubReleaseDeliveryPlan.md
+!/Docs/RepositoryGuide.md
+!/Docs/Versions/
+/Docs/Versions/*
+!/Docs/Versions/Build136/
+/Docs/Versions/Build136/*
+!/Docs/Versions/Build136/Mcp9R13/
+!/Docs/Versions/Build136/Mcp9R19/
+!/Docs/Versions/Build135/
+/Docs/Versions/Build135/*
+!/Docs/Versions/Build135/Mcp8R5/
+/Docs/Versions/Build135/Mcp8R5/*
+!/Docs/Versions/Build135/Mcp8R5/Reference/
+/Docs/Versions/Build135/Mcp8R5/Reference/*
+!/Docs/Versions/Build135/Mcp8R5/Reference/GraphAuthoring.md
+!/Docs/Versions/Build135/Mcp8R5/Reference/Material.md
+!/Docs/Versions/Build135/Mcp8R5/Reference/Blueprint.md
+!/Docs/Versions/Build135/Mcp8R5/Reference/MaterialInstance.md
+!/Docs/Versions/Build135/Mcp8R5/Reference/Examples.md
+!/Docs/Versions/Build135/Mcp8R5/Reference/ResultsAndRecovery.md
+!/Docs/PluginControl/
+/Docs/PluginControl/*
+!/Docs/PluginControl/DocumentationSources/
+/Tools/NodeForgeMcp/Environment/
+/Tools/NodeForgeMcp/packages/
+**/__pycache__/
+**/.pytest_cache/
+**/.venv/
+**/*.pyc
+# 编译文件不进Git；Release保存选定DLL。
+/Plugins/**/Binaries/
+/Plugins/**/Intermediate/
+/Plugins/**/Saved/
+/Plugins/**/DerivedDataCache/
+/DevProject/**/Binaries/
+/DevProject/**/Intermediate/
+/DevProject/**/Saved/
+/DevProject/**/DerivedDataCache/
+/ValidationProject/**/Binaries/
+/ValidationProject/**/Intermediate/
+/ValidationProject/**/Saved/
+/ValidationProject/**/DerivedDataCache/
+
+# 本机 IDE 缓存与未来生成的工程文件；不忽略上游原始源码快照。
+/.vs/
+/DevProject/**/.vs/
+/ValidationProject/**/.vs/
+/Plugins/**/.vs/
+/DevProject/*.sln
+/DevProject/*.suo
+/DevProject/*.VC.db
+/ValidationProject/*.sln
+/ValidationProject/*.suo
+/ValidationProject/*.VC.db
+/Scripts/**/__pycache__/
+/Scripts/**/.pytest_cache/
+/Scripts/**/.venv/
+/Scripts/**/*.pyc
+
+# 临时区域必须显式放在这些位置，验证日志与截图应转入 Reports 后保留。
+/Temp/
+/DevProject/Temp/
+/ValidationProject/Temp/
+/Builds/Temp/
+/Builds/Staging/
+
+# 本机秘密。示例模板可保留，但其中不得包含真实凭据。
+/Reports/PluginControlSessions/*/Session.json
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.template
+**/LocalSecrets/
+*.privatekey
+*.pfx
+*.p12
+
+# JSON、Contracts、Tests及工具品牌资源按白名单保留。
+# Plugins、DevProject、ValidationProject 中的 Binaries 属于可重建开发输出。
+# Builds、Deliverables和上游原始快照留本机，选定安装包上传Release。
+# 忽略不删除文件；不把验证工程或私人会话加入源码提交。

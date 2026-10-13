@@ -1,0 +1,61 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphStringMember",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFStringMember",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    },
+    {
+      "id": "ReadMessage",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "Message"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "ReadMessage",
+      "output": "Message",
+      "to": "Print",
+      "input": "InString"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": [
+      {
+        "name": "Message",
+        "type": "string",
+        "default": "AbC"
+      }
+    ]
+  }
+}

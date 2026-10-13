@@ -1,0 +1,48 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphSpatialPixelNormal",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFSpatialPixelNormal",
+  "catalogDigest": "588f572606053d53eebe80b3461b0e01baac2326f30e778c2cdbc3f03e4e2801",
+  "nodes": [
+    {
+      "id": "Normal",
+      "class": "/Script/Engine.MaterialExpressionPixelNormalWS",
+      "properties": {}
+    },
+    {
+      "id": "Tint",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "Tint",
+        "DefaultValue": [
+          0.1,
+          0.4,
+          0.8,
+          1
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Normal",
+      "output": "0",
+      "to": "Material",
+      "input": "Normal"
+    },
+    {
+      "from": "Tint",
+      "output": "0",
+      "to": "Material",
+      "input": "BaseColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "DefaultLit",
+    "twoSided": false
+  }
+}

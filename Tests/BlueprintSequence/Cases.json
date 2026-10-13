@@ -1,0 +1,154 @@
+{
+  "cases": [
+    {
+      "name": "SequenceTwo",
+      "input": "SequenceTwo.json",
+      "expected": "succeeded",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceThree",
+      "input": "SequenceThree.json",
+      "expected": "succeeded",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceChanged",
+      "input": "SequenceChanged.json",
+      "expected": "succeeded",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceSwapped",
+      "input": "SequenceSwapped.json",
+      "expected": "succeeded",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceShuffled",
+      "input": "SequenceShuffled.json",
+      "expected": "succeeded",
+      "category": "nativeSequence",
+      "compareLayoutWith": "SequenceThree"
+    },
+    {
+      "name": "SequenceEight",
+      "input": "SequenceEight.json",
+      "expected": "succeeded",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceNested",
+      "input": "SequenceNested.json",
+      "expected": "succeeded",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceMemberLegacy",
+      "input": "SequenceMemberLegacy.json",
+      "expected": "succeeded",
+      "category": "nativeSequence",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SequenceNameLegacy",
+      "input": "SequenceNameLegacy.json",
+      "expected": "succeeded",
+      "category": "nativeSequence",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SequenceRootLegacy",
+      "input": "SequenceRootLegacy.json",
+      "expected": "succeeded",
+      "category": "nativeSequence",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SequenceLow",
+      "input": "SequenceLow.json",
+      "expected": "rejected",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceHigh",
+      "input": "SequenceHigh.json",
+      "expected": "rejected",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceFraction",
+      "input": "SequenceFraction.json",
+      "expected": "rejected",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceString",
+      "input": "SequenceString.json",
+      "expected": "rejected",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceMissing",
+      "input": "SequenceMissing.json",
+      "expected": "rejected",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceExtra",
+      "input": "SequenceExtra.json",
+      "expected": "rejected",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceWrongPin",
+      "input": "SequenceWrongPin.json",
+      "expected": "rejected",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceOutside",
+      "input": "SequenceOutside.json",
+      "expected": "rejected",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceExecDefault",
+      "input": "SequenceExecDefault.json",
+      "expected": "rejected",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceCycle",
+      "input": "SequenceCycle.json",
+      "expected": "rejected",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceFanout",
+      "input": "SequenceFanout.json",
+      "expected": "rejected",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceOld40",
+      "input": "SequenceOld40.json",
+      "expected": "rejected",
+      "category": "nativeSequence",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SequenceUnknown",
+      "input": "SequenceUnknown.json",
+      "expected": "rejected",
+      "category": "nativeSequence"
+    },
+    {
+      "name": "SequenceCollision",
+      "input": "SequenceCollision.json",
+      "expected": "rejected",
+      "category": "nativeSequence",
+      "requires": "SequenceThree"
+    }
+  ]
+}

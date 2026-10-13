@@ -1,0 +1,102 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphColorSelect",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFColorSelect",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Signal",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Level",
+        "DefaultValue": 0.2
+      }
+    },
+    {
+      "id": "Hot",
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "properties": {
+        "Constant": [
+          0.8,
+          0.2,
+          0.05,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Cold",
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "properties": {
+        "Constant": [
+          0.02,
+          0.2,
+          0.8,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Equal",
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "properties": {
+        "Constant": [
+          0.1,
+          0.8,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Choose",
+      "class": "/Script/Engine.MaterialExpressionIf",
+      "properties": {
+        "EqualsThreshold": 0.0001
+      },
+      "defaults": {
+        "B": 0.5
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Signal",
+      "output": "0",
+      "to": "Choose",
+      "input": "A"
+    },
+    {
+      "from": "Hot",
+      "output": "0",
+      "to": "Choose",
+      "input": "AGreaterThanB"
+    },
+    {
+      "from": "Cold",
+      "output": "0",
+      "to": "Choose",
+      "input": "ALessThanB"
+    },
+    {
+      "from": "Equal",
+      "output": "0",
+      "to": "Choose",
+      "input": "AEqualsB"
+    },
+    {
+      "from": "Choose",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

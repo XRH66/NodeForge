@@ -1,0 +1,195 @@
+{
+  "scope": "Actual Actor transforms and attributed messages in separately saved/reopened maps",
+  "cases": [
+    {
+      "case": "MathRange",
+      "expectedMessage": "math=11.0",
+      "expectedLocation": [
+        11,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MathChanged",
+      "expectedMessage": "math=16.0",
+      "expectedLocation": [
+        16,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MathTopology",
+      "expectedMessage": "math=6.75",
+      "expectedLocation": [
+        6.75,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MathReduced",
+      "expectedMessage": "math=14.0",
+      "expectedLocation": [
+        14,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MathDegrees",
+      "expectedMessage": "Degree motion",
+      "expectedLocation": [
+        10,
+        -10,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MathDegreesChanged",
+      "expectedMessage": "Degree motion",
+      "expectedLocation": [
+        0,
+        10,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MathRotation",
+      "expectedMessage": "Rotation blend",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        45,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MathShortest",
+      "expectedMessage": "Rotation blend",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        -170,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MathLinear",
+      "expectedMessage": "Rotation blend",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        10,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "MathMember",
+      "expectedMessage": "Rotation blend",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        25,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    }
+  ]
+}

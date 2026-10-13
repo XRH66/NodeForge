@@ -1,0 +1,65 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphRotatorOld42Default",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFRotatorOld42Default",
+  "catalogDigest": "588f572606053d53eebe80b3461b0e01baac2326f30e778c2cdbc3f03e4e2801",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Rotate",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorRotation"
+      },
+      "defaults": {
+        "bTeleportPhysics": true,
+        "NewRotation": {
+          "pitch": 22.5,
+          "yaw": -55,
+          "roll": 12.25
+        }
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "InString": "Rotator applied",
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Rotate",
+      "input": "execute"
+    },
+    {
+      "from": "Rotate",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}

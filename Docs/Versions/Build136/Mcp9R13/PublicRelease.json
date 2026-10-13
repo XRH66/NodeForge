@@ -1,0 +1,30 @@
+{
+  "format": "NodeForgePublicRelease1",
+  "release": {
+    "bundleId": "NodeForge-Build136-Mcp9R13",
+    "buildId": "Build136 Repair6",
+    "bridgeVersion": "0.3.6",
+    "binarySha256": "2453cf2fb843021aee347b2c1403680a8787579f189751b6e69bdd42159ce05b",
+    "engine": "5.3.2-29314046+++UE5+Release-5.3",
+    "adapter": "NodeForge-UE532-Graph-3",
+    "graphProtocolVersion": 3,
+    "acceptedGraphVersions": [
+      2,
+      3
+    ],
+    "installationSchemaVersion": 1,
+    "stage": "PluginStage/NodeForge",
+    "reportNamespace": "Reports/PluginControlStageTwo"
+  },
+  "counts": {
+    "material": 71,
+    "blueprint": 327
+  },
+  "catalogDigest": "be97bf57d226778102038c261c556b89b262197c78158fe16ca293de709d8847",
+  "tools": 20,
+  "qualification": "actualNativeCoreCapturedRepair6",
+  "fullPublicContentAudit": "passedFinitePC6PC7",
+  "privateInstallation": "PrepareNodeForgeInstallation generates local bindings/commands; not included in public release",
+  "publicationStatus": "frozen",
+  "qualificationScope": "finite resource production, installed read entry, fixed Masked GPU and no-generator Win64 run; experimental node catalog"
+}

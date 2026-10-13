@@ -1,0 +1,101 @@
+{
+  "build": "Build45",
+  "catalogDigest": "96c9459d583fd0c5156842882d5ba68a259db91e5b3db8d495f77be79cfee8c7",
+  "selectedBinarySha256": "b30fd86a88b05c2ea90ba3db5eb63ca6070d1186ac430b9640bf345443a43fd5",
+  "nodes": [
+    {
+      "class": "/Script/Engine.MaterialExpressionDesaturation",
+      "minimumMaterialRevision": 5,
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/ColorSelection1/ColorDesaturateReopen.json",
+        "Reports/20261008GraphV2/ColorSelection1/ColorDesaturateChangedReopen.json",
+        "Reports/20261008GraphV2/ColorSelection1/ColorPulseReopen.json"
+      ],
+      "representativeVisual": "Reports/20261009UsableEditor/ColorVisual1/VisualInspection.json",
+      "exportCopyIndependentReopen": [
+        "Reports/20261009UsableEditor/ColorExport1/ColorPulseReopen.json"
+      ],
+      "scope": "Representative explicit numeric/color configurations; actual native signatures, properties and connections, no universal UE node coverage",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionIf",
+      "minimumMaterialRevision": 5,
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/ColorSelection1/ColorSelectReopen.json",
+        "Reports/20261008GraphV2/ColorSelection1/ColorSelectChangedReopen.json",
+        "Reports/20261008GraphV2/ColorSelection1/ColorSelectTopologyReopen.json",
+        "Reports/20261008GraphV2/ColorSelection1/ColorSelectShuffledReopen.json",
+        "Reports/20261008GraphV2/ColorSelection1/ColorPulseReopen.json"
+      ],
+      "representativeVisual": "Reports/20261009UsableEditor/ColorVisual1/VisualInspection.json",
+      "exportCopyIndependentReopen": [
+        "Reports/20261009UsableEditor/ColorExport1/ColorPulseReopen.json"
+      ],
+      "scope": "Representative explicit numeric/color configurations; actual native signatures, properties and connections, no universal UE node coverage",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionMax",
+      "minimumMaterialRevision": 5,
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/ColorSelection1/ColorLimitsReopen.json",
+        "Reports/20261008GraphV2/ColorSelection1/ColorLimitsDefaultsReopen.json",
+        "Reports/20261008GraphV2/ColorSelection1/ColorPulseReopen.json"
+      ],
+      "representativeVisual": "Reports/20261009UsableEditor/ColorVisual1/VisualInspection.json",
+      "exportCopyIndependentReopen": [
+        "Reports/20261009UsableEditor/ColorExport1/ColorPulseReopen.json"
+      ],
+      "scope": "Representative explicit numeric/color configurations; actual native signatures, properties and connections, no universal UE node coverage",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionMin",
+      "minimumMaterialRevision": 5,
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/ColorSelection1/ColorLimitsReopen.json",
+        "Reports/20261008GraphV2/ColorSelection1/ColorLimitsDefaultsReopen.json",
+        "Reports/20261008GraphV2/ColorSelection1/ColorPulseReopen.json"
+      ],
+      "representativeVisual": "Reports/20261009UsableEditor/ColorVisual1/VisualInspection.json",
+      "exportCopyIndependentReopen": [
+        "Reports/20261009UsableEditor/ColorExport1/ColorPulseReopen.json"
+      ],
+      "scope": "Representative explicit numeric/color configurations; actual native signatures, properties and connections, no universal UE node coverage",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    }
+  ],
+  "reports": {
+    "graphs": "Reports/20261008GraphV2/ColorSelection1/Summary.json",
+    "blueprintCompatibility": "Reports/20261009UsableEditor/ColorBlueprint1/Summary.json",
+    "export": "Reports/20261009UsableEditor/ColorExport1/Summary.json",
+    "gpuAndRules": "Reports/20261009UsableEditor/ColorVisual1/Summary.json",
+    "visibleColors": "Reports/20261009UsableEditor/ColorVisual1/VisualInspection.json"
+  },
+  "limitations": [
+    "Desaturation Fraction explicitly connected; native optional omission not adapted",
+    "Representative graphs/pixels only, no universal numeric domain guarantee",
+    "Original raw catalog retains experimental probe labels; verified scope is recorded separately"
+  ]
+}

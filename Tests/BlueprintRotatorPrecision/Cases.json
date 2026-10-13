@@ -1,0 +1,72 @@
+{
+  "scope": "Build44 affected rotator precision regression; immutable Build43 fixtures reused",
+  "cases": [
+    {
+      "name": "RotatorRead",
+      "input": "../BlueprintRotators/RotatorRead.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults",
+      "requireLayout": true
+    },
+    {
+      "name": "RotatorChanged",
+      "input": "../BlueprintRotators/RotatorChanged.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorStore",
+      "input": "../BlueprintRotators/RotatorStore.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults",
+      "requireLayout": true
+    },
+    {
+      "name": "RotatorReordered",
+      "input": "../BlueprintRotators/RotatorReordered.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorDirect",
+      "input": "../BlueprintRotators/RotatorDirect.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorStoreDefault",
+      "input": "../BlueprintRotators/RotatorStoreDefault.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorShuffled",
+      "input": "../BlueprintRotators/RotatorShuffled.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults",
+      "requireLayout": true,
+      "compareLayoutWith": "RotatorStore",
+      "equivalentTo": "RotatorStore"
+    },
+    {
+      "name": "RotatorWrongType",
+      "input": "../BlueprintRotators/RotatorWrongType.json",
+      "expected": "rejected",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorOld42Member",
+      "input": "../BlueprintRotators/RotatorOld42Member.json",
+      "expected": "rejected",
+      "category": "rotatorMembersAndDefaults",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "RotatorOld42Default",
+      "input": "../BlueprintRotators/RotatorOld42Default.json",
+      "expected": "rejected",
+      "category": "rotatorMembersAndDefaults",
+      "preserveCatalogDigest": true
+    }
+  ]
+}

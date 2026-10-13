@@ -1,0 +1,146 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphNormalRaised",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFNormalRaised",
+  "catalogDigest": "588f572606053d53eebe80b3461b0e01baac2326f30e778c2cdbc3f03e4e2801",
+  "nodes": [
+    {
+      "id": "Normal",
+      "class": "/Script/Engine.MaterialExpressionVertexNormalWS",
+      "properties": {}
+    },
+    {
+      "id": "Clock",
+      "class": "/Script/Engine.MaterialExpressionTime",
+      "properties": {}
+    },
+    {
+      "id": "Speed",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Speed",
+        "DefaultValue": 0.3
+      }
+    },
+    {
+      "id": "Phase",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "Wave",
+      "class": "/Script/Engine.MaterialExpressionSine",
+      "properties": {
+        "Period": 1
+      }
+    },
+    {
+      "id": "Amplitude",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Amplitude",
+        "DefaultValue": 20
+      }
+    },
+    {
+      "id": "Height",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "Offset",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "Tint",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "Tint",
+        "DefaultValue": [
+          0.05,
+          0.5,
+          0.8,
+          1
+        ]
+      }
+    },
+    {
+      "id": "HeightBias",
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "properties": {
+        "ConstB": 60
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Clock",
+      "output": "0",
+      "to": "Phase",
+      "input": "A"
+    },
+    {
+      "from": "Speed",
+      "output": "0",
+      "to": "Phase",
+      "input": "B"
+    },
+    {
+      "from": "Phase",
+      "output": "0",
+      "to": "Wave",
+      "input": "Input"
+    },
+    {
+      "from": "Wave",
+      "output": "0",
+      "to": "Height",
+      "input": "A"
+    },
+    {
+      "from": "Amplitude",
+      "output": "0",
+      "to": "Height",
+      "input": "B"
+    },
+    {
+      "from": "Normal",
+      "output": "0",
+      "to": "Offset",
+      "input": "A"
+    },
+    {
+      "from": "HeightBias",
+      "output": "0",
+      "to": "Offset",
+      "input": "B"
+    },
+    {
+      "from": "Offset",
+      "output": "0",
+      "to": "Material",
+      "input": "WorldPositionOffset"
+    },
+    {
+      "from": "Tint",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    },
+    {
+      "from": "Height",
+      "output": "0",
+      "to": "HeightBias",
+      "input": "A"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

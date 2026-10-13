@@ -1,0 +1,72 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphFunctionSmoothShuffled",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphFunctionSmoothShuffled",
+  "catalogDigest": "7d11f08760383d7b4704eab618fb098447f2558d9b456955139fbd818b7851e2",
+  "nodes": [
+    {
+      "id": "Function",
+      "class": "/Script/Engine.MaterialExpressionMaterialFunctionCall",
+      "properties": {
+        "MaterialFunction": "/Engine/Functions/Engine_MaterialFunctions02/SmoothStep.SmoothStep",
+        "FunctionAssetSha256": "6738a8b58e1f9b0448ac3b2c50f8ee621fb1870a0c2693542d7ea06ec83d6aa5"
+      }
+    },
+    {
+      "id": "Max",
+      "class": "/Script/Engine.MaterialExpressionConstant",
+      "properties": {
+        "R": 0.8
+      }
+    },
+    {
+      "id": "Min",
+      "class": "/Script/Engine.MaterialExpressionConstant",
+      "properties": {
+        "R": 0.2
+      }
+    },
+    {
+      "id": "Alpha",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Threshold",
+        "DefaultValue": 0.72
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Alpha",
+      "output": "0",
+      "to": "Function",
+      "input": "Alpha (S)"
+    },
+    {
+      "from": "Min",
+      "output": "0",
+      "to": "Function",
+      "input": "Min (S)"
+    },
+    {
+      "from": "Max",
+      "output": "0",
+      "to": "Function",
+      "input": "Max (S)"
+    },
+    {
+      "from": "Function",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphSpatialOldOriginal",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFSpatialOldOriginal",
+  "catalogDigest": "0d786af7d63e1ea209691493e9b336f50e61eaeb45ef34eeec12ff01b22a884f",
+  "nodes": [
+    {
+      "id": "Rim",
+      "class": "/Script/Engine.MaterialExpressionFresnel",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "Rim",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

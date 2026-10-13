@@ -1,0 +1,281 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphSwitchMaxSafe",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFSwitchMaxSafe",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Sequence",
+      "class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+      "properties": {
+        "outputCount": 2
+      }
+    },
+    {
+      "id": "Select",
+      "class": "/Script/BlueprintGraph.K2Node_SwitchInteger",
+      "properties": {
+        "startIndex": 2147483639,
+        "caseCount": 8,
+        "hasDefault": true
+      },
+      "defaults": {
+        "Selection": 2147483646
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "InString": "Switch checked",
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    },
+    {
+      "id": "Move0",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          10,
+          0,
+          0
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Move1",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          20,
+          0,
+          0
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Move2",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          30,
+          0,
+          0
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Move3",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          40,
+          0,
+          0
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Move4",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          50,
+          0,
+          0
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Move5",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          60,
+          0,
+          0
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Move6",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          70,
+          0,
+          0
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Move7",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          80,
+          0,
+          0
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Move8",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          100,
+          0,
+          0
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Sequence",
+      "input": "execute"
+    },
+    {
+      "from": "Sequence",
+      "output": "then_0",
+      "to": "Select",
+      "input": "execute"
+    },
+    {
+      "from": "Sequence",
+      "output": "then_1",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "Select",
+      "output": "2147483639",
+      "to": "Move0",
+      "input": "execute"
+    },
+    {
+      "from": "Select",
+      "output": "2147483640",
+      "to": "Move1",
+      "input": "execute"
+    },
+    {
+      "from": "Select",
+      "output": "2147483641",
+      "to": "Move2",
+      "input": "execute"
+    },
+    {
+      "from": "Select",
+      "output": "2147483642",
+      "to": "Move3",
+      "input": "execute"
+    },
+    {
+      "from": "Select",
+      "output": "2147483643",
+      "to": "Move4",
+      "input": "execute"
+    },
+    {
+      "from": "Select",
+      "output": "2147483644",
+      "to": "Move5",
+      "input": "execute"
+    },
+    {
+      "from": "Select",
+      "output": "2147483645",
+      "to": "Move6",
+      "input": "execute"
+    },
+    {
+      "from": "Select",
+      "output": "2147483646",
+      "to": "Move7",
+      "input": "execute"
+    },
+    {
+      "from": "Select",
+      "output": "Default",
+      "to": "Move8",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}

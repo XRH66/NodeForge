@@ -1,0 +1,109 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphTransformContainsInsensitive",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFTransformContainsInsensitive",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "LowerText",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "ToLower"
+      },
+      "defaults": {
+        "SourceString": "AbC-Tail"
+      }
+    },
+    {
+      "id": "ContainsText",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Contains"
+      },
+      "defaults": {
+        "Substring": "ABC",
+        "bUseCase": false,
+        "bSearchFromEnd": true
+      }
+    },
+    {
+      "id": "Branch",
+      "class": "/Script/BlueprintGraph.K2Node_IfThenElse",
+      "properties": {}
+    },
+    {
+      "id": "PrintTrue",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true,
+        "InString": "Contains Match"
+      }
+    },
+    {
+      "id": "PrintFalse",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true,
+        "InString": "Contains Miss"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Branch",
+      "input": "execute"
+    },
+    {
+      "from": "LowerText",
+      "output": "ReturnValue",
+      "to": "ContainsText",
+      "input": "SearchIn"
+    },
+    {
+      "from": "ContainsText",
+      "output": "ReturnValue",
+      "to": "Branch",
+      "input": "Condition"
+    },
+    {
+      "from": "Branch",
+      "output": "then",
+      "to": "PrintTrue",
+      "input": "execute"
+    },
+    {
+      "from": "Branch",
+      "output": "else",
+      "to": "PrintFalse",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}

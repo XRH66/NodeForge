@@ -1,0 +1,88 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphSwitchMathCompat",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFSwitchMathCompat",
+  "catalogDigest": "aec5b1e30e736a0a16b069b7567817d23a8e9ca9a583aa951ee538e6e73c24c7",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Blend",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "RLerp"
+      },
+      "defaults": {
+        "A": {
+          "pitch": 0,
+          "yaw": 170,
+          "roll": 0
+        },
+        "B": {
+          "pitch": 0,
+          "yaw": -150,
+          "roll": 0
+        },
+        "Alpha": 0.5,
+        "bShortestPath": true
+      }
+    },
+    {
+      "id": "Rotate",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorRotation"
+      },
+      "defaults": {
+        "bTeleportPhysics": true
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "InString": "Rotation blend",
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Rotate",
+      "input": "execute"
+    },
+    {
+      "from": "Rotate",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "Blend",
+      "output": "ReturnValue",
+      "to": "Rotate",
+      "input": "NewRotation"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}

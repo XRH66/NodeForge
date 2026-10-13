@@ -1,0 +1,91 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphObjectRelative",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFObjectRelative",
+  "catalogDigest": "588f572606053d53eebe80b3461b0e01baac2326f30e778c2cdbc3f03e4e2801",
+  "nodes": [
+    {
+      "id": "Position",
+      "class": "/Script/Engine.MaterialExpressionWorldPosition",
+      "properties": {
+        "WorldPositionShaderOffset": "WPT_CameraRelativeNoOffsets"
+      }
+    },
+    {
+      "id": "Origin",
+      "class": "/Script/Engine.MaterialExpressionObjectPositionWS",
+      "properties": {
+        "OriginType": "CameraRelative"
+      }
+    },
+    {
+      "id": "Relative",
+      "class": "/Script/Engine.MaterialExpressionSubtract",
+      "properties": {}
+    },
+    {
+      "id": "Positive",
+      "class": "/Script/Engine.MaterialExpressionAbs",
+      "properties": {}
+    },
+    {
+      "id": "LocalScale",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "LocalScale",
+        "DefaultValue": 0.01
+      }
+    },
+    {
+      "id": "Color",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "Position",
+      "output": "0",
+      "to": "Relative",
+      "input": "A"
+    },
+    {
+      "from": "Origin",
+      "output": "0",
+      "to": "Relative",
+      "input": "B"
+    },
+    {
+      "from": "Relative",
+      "output": "0",
+      "to": "Positive",
+      "input": "Input"
+    },
+    {
+      "from": "Positive",
+      "output": "0",
+      "to": "Color",
+      "input": "A"
+    },
+    {
+      "from": "LocalScale",
+      "output": "0",
+      "to": "Color",
+      "input": "B"
+    },
+    {
+      "from": "Color",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphTextureUv",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphTextureUv",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {"id": "UV", "class": "/Script/Engine.MaterialExpressionTextureCoordinate", "properties": {"CoordinateIndex": 0, "UTiling": 3, "VTiling": 2}},
+    {"id": "Texture", "class": "/Script/Engine.MaterialExpressionTextureSample", "properties": {"Texture": "/Engine/EngineResources/DefaultTexture.DefaultTexture"}}
+  ],
+  "edges": [
+    {"from": "UV", "output": "0", "to": "Texture", "input": "Coordinates"},
+    {"from": "Texture", "output": "0", "to": "Material", "input": "EmissiveColor"}
+  ],
+  "settings": {"domain": "Surface", "blend": "Opaque", "shading": "Unlit", "twoSided": false}
+}

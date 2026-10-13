@@ -1,0 +1,13 @@
+/* Fixed first-screen artwork. No scroll-driven mask or appearance controls. */
+.home-experience{--hero-motion-duration:46s;--edge-inset:clamp(16px,2.5vw,56px);--edge-feather:clamp(48px,4.2vw,96px)}
+.home-hero-band{position:relative;isolation:isolate;overflow:hidden}
+.home-backdrop{position:absolute;inset:0;z-index:-2;mask-image:linear-gradient(90deg,transparent 0,transparent var(--edge-inset),#000 calc(var(--edge-inset) + var(--edge-feather)),#000 calc(100% - var(--edge-inset) - var(--edge-feather)),transparent calc(100% - var(--edge-inset)),transparent 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent var(--edge-inset),#000 calc(var(--edge-inset) + var(--edge-feather)),#000 calc(100% - var(--edge-inset) - var(--edge-feather)),transparent calc(100% - var(--edge-inset)),transparent 100%)}
+.home-backdrop .hero-scene{mask-image:linear-gradient(#000 0%,#000 45%,transparent 100%);-webkit-mask-image:linear-gradient(#000 0%,#000 45%,transparent 100%)}
+.home-backdrop .blueprint-plane{height:1100px}
+.home-page .home-hero{display:block;position:relative;min-height:580px;margin:0;padding:78px 0 94px;border:0;border-radius:0;box-shadow:none;background:none}
+.home-hero .hero-copy{position:relative;max-width:550px;min-width:0}.home-hero .home-kicker{margin-bottom:27px}.home-hero .hero-description{max-width:465px;color:var(--body)}.home-hero .hero-footnote{color:var(--muted)}.home-hero .button-secondary{background:transparent}
+.home-content{padding-top:58px}
+@media(max-width:1100px){.home-page .home-hero{padding:58px 0 90px;min-height:540px}}
+@media(max-width:700px){.home-page .home-hero{min-height:0;padding:43px 0 40px}.home-backdrop .hero-scene{opacity:.6}.home-hero .hero-copy{max-width:480px}.home-hero .hero-description{font-size:14px}.home-hero .hero-footnote{flex-wrap:wrap;font-size:9px}.home-content{padding-top:43px}}
+@media(max-width:390px){.home-page .home-hero{padding-top:33px}.home-hero .hero-copy h1{font-size:35px}.home-hero .hero-actions{gap:8px}.home-hero .button-primary,.home-hero .button-secondary{font-size:11px;padding:11px 12px;gap:11px}}
+@media print{.home-backdrop{display:none}.home-page .home-hero{min-height:0;padding:20px 0;margin:0 0 25px}.home-content{padding-top:0}}

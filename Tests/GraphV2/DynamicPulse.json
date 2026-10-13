@@ -1,0 +1,82 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphDynamicPulse",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphDynamicPulse",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Clock",
+      "class": "/Script/Engine.MaterialExpressionTime",
+      "properties": {}
+    },
+    {
+      "id": "Wave",
+      "class": "/Script/Engine.MaterialExpressionSine",
+      "properties": {
+        "Period": 2
+      }
+    },
+    {
+      "id": "Positive",
+      "class": "/Script/Engine.MaterialExpressionAbs",
+      "properties": {}
+    },
+    {
+      "id": "GlowColor",
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "properties": {
+        "Constant": [
+          0.12,
+          0.38,
+          0.9,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Modulate",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "Clock",
+      "output": "0",
+      "to": "Wave",
+      "input": "Input"
+    },
+    {
+      "from": "Wave",
+      "output": "0",
+      "to": "Positive",
+      "input": "Input"
+    },
+    {
+      "from": "Positive",
+      "output": "0",
+      "to": "Modulate",
+      "input": "A"
+    },
+    {
+      "from": "GlowColor",
+      "output": "0",
+      "to": "Modulate",
+      "input": "B"
+    },
+    {
+      "from": "Modulate",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

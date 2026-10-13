@@ -1,0 +1,16 @@
+{
+  "map": "/Game/NodeForgeTests/NFTextureFunctionVisualMap",
+  "material": "/Game/NodeForgeTests/NFGraphRotatingTexture",
+  "scalarChanges": {
+    "SpinSpeed": 0.7
+  },
+  "vectorChanges": {
+    "Tint": [
+      1,
+      0.12,
+      0.03,
+      1
+    ]
+  }
+}
+

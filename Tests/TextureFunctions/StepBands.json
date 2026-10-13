@@ -1,0 +1,120 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphStepBands",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphStepBands",
+  "catalogDigest": "340e22d25dbc9c24271c5e05c89c5043d366f765a5e8b9fc4bc40bd2080389d1",
+  "nodes": [
+    {
+      "id": "UV",
+      "class": "/Script/Engine.MaterialExpressionTextureCoordinate",
+      "properties": {
+        "UTiling": 6,
+        "VTiling": 1
+      }
+    },
+    {
+      "id": "Mask",
+      "class": "/Script/Engine.MaterialExpressionComponentMask",
+      "properties": {
+        "R": true,
+        "G": false,
+        "B": false,
+        "A": false
+      }
+    },
+    {
+      "id": "Fract",
+      "class": "/Script/Engine.MaterialExpressionFrac",
+      "properties": {}
+    },
+    {
+      "id": "Step",
+      "class": "/Script/Engine.MaterialExpressionStep",
+      "properties": {
+        "ConstX": 0.4
+      }
+    },
+    {
+      "id": "ColorA",
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "properties": {
+        "Constant": [
+          0.03,
+          0.15,
+          0.5,
+          1
+        ]
+      }
+    },
+    {
+      "id": "ColorB",
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "properties": {
+        "Constant": [
+          0.04,
+          0.9,
+          0.8,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Lerp",
+      "class": "/Script/Engine.MaterialExpressionLinearInterpolate",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "UV",
+      "output": "0",
+      "to": "Mask",
+      "input": "Input"
+    },
+    {
+      "from": "Mask",
+      "output": "0",
+      "to": "Fract",
+      "input": "Input"
+    },
+    {
+      "from": "Fract",
+      "output": "0",
+      "to": "Step",
+      "input": "Y"
+    },
+    {
+      "from": "Step",
+      "output": "0",
+      "to": "Lerp",
+      "input": "Alpha"
+    },
+    {
+      "from": "ColorA",
+      "output": "0",
+      "to": "Lerp",
+      "input": "A"
+    },
+    {
+      "from": "ColorB",
+      "output": "0",
+      "to": "Lerp",
+      "input": "B"
+    },
+    {
+      "from": "Lerp",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}
+

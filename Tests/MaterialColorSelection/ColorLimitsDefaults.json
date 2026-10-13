@@ -1,0 +1,47 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphColorLimitsDefaults",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFColorLimitsDefaults",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Lower",
+      "class": "/Script/Engine.MaterialExpressionMax",
+      "properties": {},
+      "defaults": {
+        "A": 0.2,
+        "B": 0.8
+      }
+    },
+    {
+      "id": "Upper",
+      "class": "/Script/Engine.MaterialExpressionMin",
+      "properties": {},
+      "defaults": {
+        "B": 0.7
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Lower",
+      "output": "0",
+      "to": "Upper",
+      "input": "A"
+    },
+    {
+      "from": "Upper",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "themeVersion": "1.0.0",
+  "defaultTheme": "dark",
+  "siteTitle": "NodeForge 文档",
+  "brand": {
+    "dark": "Brand/WordmarkDark.svg",
+    "light": "Brand/WordmarkLight.svg",
+    "icon": "Brand/BrandIcon.png"
+  },
+  "groups": [
+    {"id":"User","label":"使用手册","shortLabel":"使用手册","home":"UserReadme","eyebrow":"使用指南","menu":[["UserReadme","阅读首页"],["UserOverview","插件介绍"],["UserGettingStarted","开始使用"],["UserManualWorkflows","手动操作"],["UserAiWorkflows","使用 AI"],["UserInterfaceGuide","界面与按钮"],["UserTroubleshooting","问题处理"]]},
+    {"id":"Ai","label":"AI 调用手册","shortLabel":"AI 调用","home":"AiReadme","eyebrow":"AI 工作流","menu":[["AiReadme","阅读首页"],["AiQuickStart","调用流程"],["AiPreparation","工程与身份"],["AiTaskRecipes","任务与调用例子"],["AiApiReference","API 参考"],["AiResultsAndRecovery","结果与恢复"],["FeatureMap","功能与限制"],["Examples","JSON 样例"],["MaterialNodeIndex","材质节点"],["BlueprintNodeIndex","蓝图节点"]]},
+    {"id":"Developer","label":"原理与开发","shortLabel":"原理与开发","home":"DeveloperReadme","eyebrow":"开发指南","menu":[["DeveloperReadme","阅读首页"],["DeveloperArchitecture","原理与架构"],["DeveloperSourceMap","源码地图"],["DeveloperNodeExtension","节点与特殊语义"],["DeveloperOperationExtension","业务扩展"],["DeveloperTestingAndEvidence","验证与证据"],["DeveloperVersionRelease","版本发布"],["DeveloperRecoveryAndHandoff","恢复与交接"]]},
+    {"id":"Version","label":"版本资料","shortLabel":"版本说明","home":"VersionReadme","eyebrow":"版本资料","menu":[["VersionReadme","版本身份"],["VersionReleaseNotes","发行说明"],["VersionCompatibilityAndMigration","兼容、迁移与回退"],["VersionKnownIssues","已知限制"]]},
+    {"id":"Reference","label":"公共参考","shortLabel":"公共参考","home":"FeatureMap","eyebrow":"参考资料","topNav":false,"menu":[["FeatureMap","功能矩阵"],["GraphAuthoring","JSON 构图规则"],["Material","材质"],["Blueprint","Actor 蓝图"],["MaterialInstance","普通材质实例"],["MaterialNodeIndex","材质节点"],["BlueprintNodeIndex","蓝图节点"],["Examples","JSON 样例"],["SourcesAndLicenses","来源与许可"]]}
+  ]
+}

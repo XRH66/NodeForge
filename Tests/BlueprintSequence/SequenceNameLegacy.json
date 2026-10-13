@@ -1,0 +1,197 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphSequenceNameLegacy",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFSequenceNameLegacy",
+  "catalogDigest": "cd5de7be8e3662c0ca769a729f64b844b359a25bc46d39a26c2d528bef0bb9e1",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Name",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_NameToString"
+      }
+    },
+    {
+      "id": "Mid",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Mid"
+      },
+      "defaults": {
+        "Start": 0,
+        "Count": 9
+      }
+    },
+    {
+      "id": "Contains",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Contains"
+      },
+      "defaults": {
+        "Substring": "Node"
+      }
+    },
+    {
+      "id": "Select",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "SelectString"
+      },
+      "defaults": {
+        "B": "missing"
+      }
+    },
+    {
+      "id": "Length",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Len"
+      }
+    },
+    {
+      "id": "Number",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_IntToString"
+      }
+    },
+    {
+      "id": "Join",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Concat_StrStr"
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    },
+    {
+      "id": "SetMode",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "properties": {
+        "variable": "Mode"
+      },
+      "defaults": {
+        "Mode": "NodeForgeName"
+      }
+    },
+    {
+      "id": "ReadMode",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "Mode"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Name",
+      "output": "ReturnValue",
+      "to": "Mid",
+      "input": "SourceString"
+    },
+    {
+      "from": "Name",
+      "output": "ReturnValue",
+      "to": "Contains",
+      "input": "SearchIn"
+    },
+    {
+      "from": "Contains",
+      "output": "ReturnValue",
+      "to": "Select",
+      "input": "bPickA"
+    },
+    {
+      "from": "Mid",
+      "output": "ReturnValue",
+      "to": "Select",
+      "input": "A"
+    },
+    {
+      "from": "Select",
+      "output": "ReturnValue",
+      "to": "Length",
+      "input": "S"
+    },
+    {
+      "from": "Length",
+      "output": "ReturnValue",
+      "to": "Number",
+      "input": "InInt"
+    },
+    {
+      "from": "Select",
+      "output": "ReturnValue",
+      "to": "Join",
+      "input": "A"
+    },
+    {
+      "from": "Number",
+      "output": "ReturnValue",
+      "to": "Join",
+      "input": "B"
+    },
+    {
+      "from": "Join",
+      "output": "ReturnValue",
+      "to": "Print",
+      "input": "InString"
+    },
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "SetMode",
+      "input": "execute"
+    },
+    {
+      "from": "SetMode",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "ReadMode",
+      "output": "Mode",
+      "to": "Name",
+      "input": "InName"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": [
+      {
+        "name": "Mode",
+        "type": "name",
+        "default": "Idle"
+      }
+    ]
+  }
+}

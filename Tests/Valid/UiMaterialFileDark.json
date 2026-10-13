@@ -1,0 +1,49 @@
+{
+  "format": "NodeForgePrototype",
+  "version": 1,
+  "requestId": "UiMaterialFileDarkRun1",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFUiMaterialFileDark",
+  "catalogDigest": "b0e510f2affbf6dd59e60bd60fc42c728cfcbf90ef35cfab82f09f2b2f1817d6",
+  "nodes": [
+    {
+      "id": "First",
+      "class": "/Script/Engine.MaterialExpressionConstant",
+      "value": 0.25
+    },
+    {
+      "id": "Second",
+      "class": "/Script/Engine.MaterialExpressionConstant",
+      "value": 0.5
+    },
+    {
+      "id": "Multiply",
+      "class": "/Script/Engine.MaterialExpressionMultiply"
+    }
+  ],
+  "edges": [
+    {
+      "from": "First",
+      "output": "0",
+      "to": "Multiply",
+      "input": "A"
+    },
+    {
+      "from": "Second",
+      "output": "0",
+      "to": "Multiply",
+      "input": "B"
+    },
+    {
+      "from": "Multiply",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit"
+  }
+}

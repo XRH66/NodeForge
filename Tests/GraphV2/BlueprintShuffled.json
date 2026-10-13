@@ -1,0 +1,125 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphBlueprintShuffled",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFGraphBlueprintShuffled",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "PrintFalse",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "InString": "Disabled branch ran",
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    },
+    {
+      "id": "PrintTrue",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    },
+    {
+      "id": "Branch",
+      "class": "/Script/BlueprintGraph.K2Node_IfThenElse",
+      "properties": {}
+    },
+    {
+      "id": "ReadEnabled",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "Enabled"
+      }
+    },
+    {
+      "id": "ReadMessage",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "Message"
+      }
+    },
+    {
+      "id": "SetMessage",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "properties": {
+        "variable": "Message"
+      },
+      "defaults": {
+        "Message": "Message set by graph input"
+      }
+    },
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Branch",
+      "output": "else",
+      "to": "PrintFalse",
+      "input": "execute"
+    },
+    {
+      "from": "Branch",
+      "output": "then",
+      "to": "PrintTrue",
+      "input": "execute"
+    },
+    {
+      "from": "ReadMessage",
+      "output": "Message",
+      "to": "PrintTrue",
+      "input": "InString"
+    },
+    {
+      "from": "ReadEnabled",
+      "output": "Enabled",
+      "to": "Branch",
+      "input": "Condition"
+    },
+    {
+      "from": "SetMessage",
+      "output": "then",
+      "to": "Branch",
+      "input": "execute"
+    },
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "SetMessage",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": [
+      {
+        "name": "Message",
+        "type": "string",
+        "default": "Initial default"
+      },
+      {
+        "name": "Enabled",
+        "type": "bool",
+        "default": true
+      }
+    ]
+  }
+}

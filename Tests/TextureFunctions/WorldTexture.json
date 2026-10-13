@@ -1,0 +1,64 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphWorldTexture",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphWorldTexture",
+  "catalogDigest": "340e22d25dbc9c24271c5e05c89c5043d366f765a5e8b9fc4bc40bd2080389d1",
+  "nodes": [
+    {
+      "id": "Texture",
+      "class": "/Script/Engine.MaterialExpressionTextureObject",
+      "properties": {
+        "Texture": "/Engine/EngineResources/DefaultTexture.DefaultTexture"
+      }
+    },
+    {
+      "id": "Size",
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "properties": {
+        "Constant": [
+          64,
+          64,
+          64,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Function",
+      "class": "/Script/Engine.MaterialExpressionMaterialFunctionCall",
+      "properties": {
+        "MaterialFunction": "/Engine/Functions/Engine_MaterialFunctions01/Texturing/WorldAlignedTexture.WorldAlignedTexture",
+        "FunctionAssetSha256": "a0bd3a9d3762e4e7b3e70446f1bbd1cfbd6df37e25ec6e4f63d2cef5521f6c1a"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Texture",
+      "output": "0",
+      "to": "Function",
+      "input": "TextureObject (T2d)"
+    },
+    {
+      "from": "Size",
+      "output": "0",
+      "to": "Function",
+      "input": "TextureSize (V3)"
+    },
+    {
+      "from": "Function",
+      "output": "2",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}
+

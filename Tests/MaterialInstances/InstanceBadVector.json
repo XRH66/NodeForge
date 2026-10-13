@@ -1,0 +1,23 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "assetType": "MaterialInstance",
+  "nodes": [],
+  "edges": [],
+  "settings": {
+    "parent": "/Game/NodeForgeTests/NFGraphInstanceWaterParent.NFGraphInstanceWaterParent",
+    "parentAssetSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "scalarParameters": {},
+    "vectorParameters": {
+      "WaterColor": [
+        0.1,
+        0.2,
+        0.3
+      ]
+    },
+    "textureParameters": {}
+  },
+  "requestId": "GraphInstanceBadVector",
+  "assetPath": "/Game/NodeForgeTests/NFGraphInstanceBadVector",
+  "catalogDigest": "1b12e94c89af0c2e18d3dbbf362222754473f341d3a353eff24ca6abc8809dc1"
+}

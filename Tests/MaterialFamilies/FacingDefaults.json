@@ -1,0 +1,82 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphFacingDefaults",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphFacingDefaults",
+  "catalogDigest": "9703b92dac063c1a473c335d505d78d917fc97608a78501dc0c1d1f2491264ca",
+  "nodes": [
+    {
+      "id": "Facing",
+      "class": "/Script/Engine.MaterialExpressionFresnel",
+      "properties": {},
+      "defaults": {
+        "ExponentIn": 6,
+        "BaseReflectFractionIn": 0.15
+      }
+    },
+    {
+      "id": "Center",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "CenterColor",
+        "DefaultValue": [
+          0.02,
+          0.1,
+          0.4,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Edge",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "EdgeColor",
+        "DefaultValue": [
+          0.3,
+          0.7,
+          0.9,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Color",
+      "class": "/Script/Engine.MaterialExpressionLinearInterpolate",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "Center",
+      "output": "0",
+      "to": "Color",
+      "input": "A"
+    },
+    {
+      "from": "Edge",
+      "output": "0",
+      "to": "Color",
+      "input": "B"
+    },
+    {
+      "from": "Facing",
+      "output": "0",
+      "to": "Color",
+      "input": "Alpha"
+    },
+    {
+      "from": "Color",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

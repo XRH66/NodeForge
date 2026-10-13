@@ -1,0 +1,12 @@
+{
+  "product": "NodeForge",
+  "buildId": "Build137 Repair5",
+  "engineVersion": "5.3.2",
+  "pluginDirectory": ".",
+  "installLayout": "projectPlugin",
+  "binarySha256": "88f805cd0461138570c00b653982c423ace693f380717b97f5c7c20b64b38b80",
+  "moduleManifestSha256": "20910b43da25cf0d8b0500f686b1dd8488dfb36eaf28ce008b6a3c5bad8615ed",
+  "pluginDescriptorSha256": "7d4c4d980161b720a408942f28a37e6202c5626089226a480b34364f71b3a1ec",
+  "installationSchemaVersion": 1,
+  "catalogSha256": "739bd41f430b2f1066cc0616ae1ea63bf8340850e7cb11ecced59427d8c81690"
+}

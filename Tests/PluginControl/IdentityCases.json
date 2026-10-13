@@ -1,0 +1,7 @@
+{
+  "cases": [
+    {"name":"ExistingRequestOnly","operation":"graphs.generateFromFile","source":"Examples/GraphV2Samples/BlueprintConcat.json","replace":{"assetPath":"/Game/NodeForgeTests/NFRejectedDuplicateRequest"},"expectedExit":4,"nativeCode":"NFERR-REQUEST-EXISTS"},
+    {"name":"ExistingTargetOnly","operation":"graphs.generateFromFile","source":"Examples/GraphV2Samples/BlueprintConcat.json","replace":{"requestId":"RejectedDifferentRequest"},"expectedExit":4,"nativeCode":"NFERR-TARGET-EXISTS"},
+    {"name":"DescriptionMismatch","operation":"graphs.generateFromFile","input":"Examples/GraphV2Samples/BlueprintConcat.json","overrideDescription":"Reports/20261010PluginControl/M1/Describe.json","expectedExit":3,"errorCode":"NFCLI_DESCRIPTION_MISMATCH"}
+  ]
+}

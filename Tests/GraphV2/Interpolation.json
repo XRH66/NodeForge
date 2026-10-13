@@ -1,0 +1,19 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphInterpolation",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphInterpolation",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {"id": "Red", "class": "/Script/Engine.MaterialExpressionConstant3Vector", "properties": {"Constant": [0.8, 0.05, 0.04, 1]}},
+    {"id": "Blue", "class": "/Script/Engine.MaterialExpressionConstant3Vector", "properties": {"Constant": [0.04, 0.2, 0.85, 1]}},
+    {"id": "Blend", "class": "/Script/Engine.MaterialExpressionLinearInterpolate", "properties": {}, "defaults": {"Alpha": 0.35}}
+  ],
+  "edges": [
+    {"from": "Red", "output": "0", "to": "Blend", "input": "A"},
+    {"from": "Blue", "output": "0", "to": "Blend", "input": "B"},
+    {"from": "Blend", "output": "0", "to": "Material", "input": "EmissiveColor"}
+  ],
+  "settings": {"domain": "Surface", "blend": "Opaque", "shading": "Unlit", "twoSided": false}
+}

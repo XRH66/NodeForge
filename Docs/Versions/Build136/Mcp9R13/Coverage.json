@@ -1,0 +1,414 @@
+{
+  "format": "NodeForgeUsageCoverage2",
+  "counts": {
+    "material": 71,
+    "blueprint": 327
+  },
+  "features": [
+    {
+      "business": "发现操作、状态、草稿、调用",
+      "ui": "UI 状态",
+      "entry": "operations.describe/editor.getState/draft.get/calls.get",
+      "mcp": "当前16业务投影中；原版本证据保持其范围",
+      "evidenceMeaning": "A/S及P1覆盖；P3真实Codex操作/状态/原生成call通过，draft.get未另重复实测",
+      "boundary": "无资产写入"
+    },
+    {
+      "business": "载入、替换、恢复草稿",
+      "ui": "载入文件/粘贴/恢复",
+      "entry": "draft.loadFile/replace/restore",
+      "mcp": "正式开放",
+      "evidenceMeaning": "共享服务/P1桥检查；P3真实Codex loadFile通过，replace/restore复用既有证据；Build131两族严格replace/retain编辑、BP普通replace清来源/恢复及同文稿不增修订、Material UI恢复实际通过",
+      "boundary": "修改草稿、修订；不自动生成；本版成对可选导出来源绑定，未知/冲突停止依赖写入；本期新增显式retain来源编辑，新增部分C3两族正式链通过"
+    },
+    {
+      "business": "规则与目录查询",
+      "ui": "两族查询/目录",
+      "entry": "rules.query/catalog.get；CLI getGraphCatalog",
+      "mcp": "正式开放",
+      "evidenceMeaning": "A两UI查询；P3真实Codex两族规则/完整目录摘要/精确节点pointer通过",
+      "boundary": "报告只读；Material/Blueprint query，不含实例参数查询"
+    },
+    {
+      "business": "预检与生成 Material/Actor Blueprint",
+      "ui": "检查/生成新资产",
+      "entry": "graphs.preflight/generate；CLI preflightGraph/generateGraph",
+      "mcp": "正式开放",
+      "evidenceMeaning": "P3真实Codex一批双图结构/编译/保存及新PIDVerify通过；Build131本期实际准备输出各一新副本编译保存通过，原报告waitingPersistence；另附新PIDVerify",
+      "boundary": "新资产 create-only；其它组合/运行效果分别未验"
+    },
+    {
+      "business": "普通 MaterialInstanceConstant",
+      "ui": "Graph 输入生成",
+      "entry": "通用 graphs 管线接受共同描述，输入v2/v3；无独立实例查询工具",
+      "mcp": "通用图入口可达；本期实例 MCP 实测 notRun",
+      "evidenceMeaning": "定点核心/共享调用静态核查＋历史实例报告",
+      "boundary": "新实例；先取得已保存干净父材质参数/直接文件 SHA"
+    },
+    {
+      "business": "参数与材质函数签名读取",
+      "ui": "检查一个选中资源",
+      "entry": "resources.inspect；MaterialParameters/MaterialFunction",
+      "mcp": "明确正式开放",
+      "evidenceMeaning": "Build128正式CLI两正例及独立N参数/签名、Build130未变共享读取源码连续性复用",
+      "boundary": "准确源对象/允许根/saved/clean/受控加载证明；函数模板是单节点片段，直接文件SHA"
+    },
+    {
+      "business": "普通材质/Actor 图导出",
+      "ui": "导出选中图到草稿",
+      "entry": "graphs.export；MaterialGraphExport/BlueprintGraphExport",
+      "mcp": "明确正式开放",
+      "evidenceMeaning": "Build130原Codex两族完整导出、正式来源拒绝、原payload生成保存及新PIDVerify通过；运行/画面/打包notRun；Build131各一次新DLL完整导出与正式载入建立本期来源基线",
+      "boundary": "准确源、新目标/request、完整结构；API纯读，显式载入原text及成对报告来源，预检生成再核源"
+    },
+    {
+      "business": "准备新副本",
+      "ui": "准备新副本/恢复",
+      "entry": "draft.prepareCopy；共享PrepareSnapshot→PrepareNewCopy",
+      "mcp": "明确正式开放",
+      "evidenceMeaning": "Build131官方SDK两族真实准备；只改两身份、完整draft.get/原报告/SHA一致；Material实际UI共核通过，同run产品派生身份登记先于生成",
+      "boundary": "只更改两身份；不生成/预留；保留父目录"
+    },
+    {
+      "business": "差异预览",
+      "ui": "预览新副本差异",
+      "entry": "graphs.preview",
+      "mcp": "明确正式投影",
+      "evidenceMeaning": "Build131官方SDK两族完整差异对独立期望通过；Material实际UI预览，缺来源/staleRevision/目标占用拒绝且草稿未变；未变旧差异算法矩阵按连续性复用",
+      "boundary": "精确结构/布局；不改稿/资产，不证明运行画面"
+    },
+    {
+      "business": "布局与重排副本",
+      "ui": "生成时布局；按上次成功输入重排新副本",
+      "entry": "共享布局；内部 RelayoutCopy",
+      "mcp": "生成布局复用；无独立重排 MCP",
+      "evidenceMeaning": "历史布局/widget/保存重开有限证据",
+      "boundary": "显式锚点保持；尺寸 estimate；重排不含后来手工修改"
+    },
+    {
+      "business": "独立保存核验",
+      "ui": "结果显示待独立重开",
+      "entry": "原正式 CLI verifySaved",
+      "mcp": "未封装进程调度工具",
+      "evidenceMeaning": "M/A原证据保留；P3本批两新资产各新PIDVerify通过；Build131原输入/收据、原CLI新PID94680/107528通过，未Import/resave",
+      "boundary": "原输入/收据/SHA/同 DLL，新 PID；不重 Import"
+    },
+    {
+      "business": "定位、打开资产/完整报告、复制",
+      "ui": "结果按钮及剪贴板",
+      "entry": "UI 服务/有界结果；MCP report_read 是受控报告读",
+      "mcp": "纯 UI 视图操作未 API 化",
+      "evidenceMeaning": "S/夜间各限定证据；本期不剪贴板/文件框大测",
+      "boundary": "原报告≤1MiB；普通MCP子树≤32KiB，/exportedRequest专用完整Graph≤64KiB；UI视图不提升验收层"
+    },
+    {
+      "business": "版本资料、来源和许可",
+      "ui": "本地资料",
+      "entry": "MCP docs_index/docs_read",
+      "mcp": "正式桥功能",
+      "evidenceMeaning": "P2静态/SDK；原Codex真实索引/Readme读取通过，P4冻结准确指纹",
+      "boundary": "manifest 指定 SHA/bytes/pageId，有界非秘密内容"
+    },
+    {
+      "business": "运行、画面、地图/布局探针、打包试用",
+      "ui": "历史辅助/试用",
+      "entry": "内部测试模式/原报告",
+      "mcp": "非 AI 任意 NFMode 工具",
+      "evidenceMeaning": "历史各原版本证据；本期 runtime/visual/package notRun",
+      "boundary": "生成/Verify 不继承这些结论；RC1 冻结"
+    },
+    {
+      "business": "显式保留来源编辑与正式准备副本",
+      "ui": "编辑输入/准备新副本",
+      "entry": "draft.replace(retainExportOrigin=true)/draft.prepareCopy",
+      "mcp": "明确正式投影",
+      "evidenceMeaning": "Build131两族正式链及27项同run派生身份登记helper有限检查；错误初载/跨族/旧修订/报告SHA与恢复实际证据分层",
+      "boundary": "完整Graph v2/v3两族；核源和真实提交，不预约不生成"
+    },
+    {
+      "business": "普通Actor ReceiveTick与持续样例",
+      "ui": "同一受控图输入与原生成按钮",
+      "entry": "原catalog/preflight/generate/export工具；没有逐事件或公开PIE工具",
+      "boundary": "每个精确事件最多1个；有限X轴100厘米/秒样例的实际Delta/三时刻/两区间证据见AiBlueprintTick；其它组合仍experimental"
+    },
+    {
+      "business": "Surface材质细节与七类变量编辑属性",
+      "ui": "材质/变量原生Details；同一输入与原生成按钮",
+      "entry": "原catalog、preflight、generate、export、prepare/preview工具；19工具保持",
+      "boundary": "Masked/OpacityMask、四项材质设置、instanceEditable/category/tooltip；字段条件/完整v2/v3与有限实证见AiAssetSettings；画面/TAA/LOD/打包未重测"
+    },
+    {
+      "business": "Surface材质细节与七类变量编辑属性",
+      "ui": "材质/变量原生Details；同一输入与原生成按钮",
+      "entry": "原catalog、preflight、generate、export、prepare/preview工具；工具数以本包契约为准",
+      "boundary": "Masked/OpacityMask、四项材质设置、instanceEditable/category/tooltip；字段条件与完整v2/v3见AiAssetSettings；当前候选实际画面/Win64有限范围见VersionReleaseNotes，TAA/LOD仍未重测"
+    },
+    {
+      "business": "有界资源发现、精确检查与引用",
+      "ui": "原资源读取与图输入区域；无新增浏览器面板",
+      "entry": "resources.query / resources.inspect / 原graphs入口",
+      "boundary": "Texture2D、MaterialFunction、Material元数据列表；发现/政策/检查/图导出分开，实际来源准入与恢复见AiResources"
+    }
+  ],
+  "controls": [
+    {
+      "name": "恢复上次输入",
+      "region": "主操作区",
+      "input": "上一可恢复稿",
+      "enabled": "!busy且canRestore",
+      "effect": "恢复上一份服务保留输入，改变草稿/修订，不撤销磁盘资产",
+      "next": "核恢复后的稿，重新检查；无恢复稿时禁用",
+      "ai": "draft.restore"
+    },
+    {
+      "name": "粘贴剪贴板",
+      "region": "主操作区",
+      "input": "完整剪贴板文本",
+      "enabled": "!busy",
+      "effect": "整框替换输入，不自动生成；Ctrl+V/右键仍按光标/选区编辑",
+      "next": "核完整字节和新稿；超限/无效内容看诊断，不生成",
+      "ai": "draft.replace可接收AI完整文本；不操作剪贴板"
+    },
+    {
+      "name": "检查输入",
+      "region": "主操作区",
+      "input": "当前不可变草稿快照",
+      "enabled": "!busy",
+      "effect": "预检并出报告，不编译保存或预留名字",
+      "next": "看原GraphPreflight；编辑后旧结论失效",
+      "ai": "graphs.preflight"
+    },
+    {
+      "name": "生成新资产",
+      "region": "主操作区",
+      "input": "当前草稿快照及新目标/request",
+      "enabled": "!busy，提交还需合法输入/目标/修订",
+      "effect": "新建、编译、回读、保存资产/收据；同目标/request拒绝",
+      "next": "保存后通常waitingPersistence；读完整报告并独立Verify，未知停写",
+      "ai": "graphs.generate"
+    },
+    {
+      "name": "载入 JSON 文件",
+      "region": "主操作区",
+      "input": "文件选择器选中的JSON字节",
+      "enabled": "!busy",
+      "effect": "替换草稿/记录来源，不自动生成",
+      "next": "取消不作生成；失败看诊断，成功检查新稿",
+      "ai": "draft.loadFile有正式路径准入，不等于AI操作文件选择器"
+    },
+    {
+      "name": "准备新副本",
+      "region": "主操作区",
+      "input": "当前非空完整稿",
+      "enabled": "!busy且trim稿非空；解析还须通过",
+      "effect": "共享Service验证完整派生稿后只替换assetPath/requestId并载入；不写资产/不预约，保留原输入和资产",
+      "next": "核新身份再检查生成；连续未生成可能得到同建议，保存时再查冲突",
+      "ai": "正式 draft.prepareCopy，与UI共用生产协调器；真实新身份由产品返回，实验台账只记录"
+    },
+    {
+      "name": "查询材质规则",
+      "region": "规则折叠区",
+      "input": "规则查询词；非构图输入",
+      "enabled": "!busy",
+      "effect": "只读Material规则并出报告/复制缓存，不生成",
+      "next": "空词全族，≤256字符/8词OR子串；失败清旧读取缓存",
+      "ai": "rules.query assetKind=Material"
+    },
+    {
+      "name": "查询蓝图规则",
+      "region": "规则折叠区",
+      "input": "规则查询词",
+      "enabled": "!busy",
+      "effect": "只读Blueprint规则/报告",
+      "next": "搜索不构图；规则限制与节点精确名需分清",
+      "ai": "rules.query assetKind=Blueprint"
+    },
+    {
+      "name": "导出全部节点规则",
+      "region": "规则折叠区",
+      "input": "同版原生目录",
+      "enabled": "!busy",
+      "effect": "只读完整目录到报告/读取缓存，不导出选中资产图",
+      "next": "用报告分段读节点，experimental不是全验",
+      "ai": "catalog.get"
+    },
+    {
+      "name": "读取选中材质 / 函数",
+      "region": "规则折叠区",
+      "input": "唯一准确、已保存干净且具有当前受控加载证明的普通Material/MaterialFunction",
+      "enabled": "!busy；对象路径需/Engine/或测试根",
+      "effect": "只读真实参数/函数GUID签名和源SHA，不修改源",
+      "next": "实例/层/函数实例/多选拒绝；失败清旧数据",
+      "ai": "resources.inspect；API不修改草稿/来源/修订，需GT门槛和受控源证明"
+    },
+    {
+      "name": "复制读取内容",
+      "region": "规则折叠区",
+      "input": "最近完整读取数据",
+      "enabled": "!busy且LastReadOnlyData非空",
+      "effect": "复制完整规则/签名/导出数据，不是最近结果摘要",
+      "next": "提示完整内容已复制；缺数据禁用",
+      "ai": "report_read读原内容，不操作剪贴板"
+    },
+    {
+      "name": "只读导出选中构图",
+      "region": "副本折叠区",
+      "input": "内容浏览器唯一已保存干净支持图",
+      "enabled": "!busy；普通Material或测试根Actor蓝图且可完整表达",
+      "effect": "同共享服务读源、导出完整报告/新身份；UI在草稿修订仍匹配时后置载入/基线，不改源",
+      "next": "不支持结构明确拒绝；失败清理仅作用于仍匹配的基线，晚到结果不覆盖后来稿；另检查生成",
+      "ai": "graphs.export；API纯读取，report_read取得完整导出，再显式载入与绑定来源"
+    },
+    {
+      "name": "预览新副本差异",
+      "region": "副本折叠区",
+      "input": "当前完整v2稿及其绑定的可信ExportOrigin源/原报告",
+      "enabled": "!busy且当前草稿有ExportOrigin；比较时源/报告须有效干净",
+      "effect": "只读比较逻辑ID/属性/边/位置，不生成",
+      "next": "草稿编辑使旧预览失效；源/基线不符停下重新确认",
+      "ai": "正式 graphs.preview(arguments={})；report_read读原graphDifference，不允许另传任意baseline"
+    },
+    {
+      "name": "按上次成功输入重排新副本",
+      "region": "副本折叠区",
+      "input": "归档LastImportInputPath及原SHA",
+      "enabled": "!busy且LastImportInputPath非空",
+      "effect": "去原坐标/新身份并调用同Import生成新资产，不修改原资产",
+      "next": "不包括后改资产或无关当前稿；读派生输入/报告，另Verify",
+      "ai": "UI/内部能力，暂无独立MCP"
+    },
+    {
+      "name": "定位资产",
+      "region": "结果区",
+      "input": "当前非过期LastAssetPath",
+      "enabled": "!busy且!ResultIsStale且资产路径非空",
+      "effect": "内容浏览器定位，不生成/验证",
+      "next": "旧稿结果过期禁用；定位成功不提升验收层",
+      "ai": "视图动作，无需独立MCP"
+    },
+    {
+      "name": "打开资产",
+      "region": "结果区",
+      "input": "当前非过期LastAssetPath",
+      "enabled": "!busy且!ResultIsStale且资产路径非空",
+      "effect": "打开UE资产编辑器，不生成/验证",
+      "next": "仍按报告层级判断结果",
+      "ai": "视图动作，无独立MCP"
+    },
+    {
+      "name": "打开完整报告",
+      "region": "结果区",
+      "input": "当前已有原报告路径",
+      "enabled": "!busy且HasReport",
+      "effect": "显示完整原诊断，不提升资产状态",
+      "next": "摘要不足时读原报告；文件缺失须查原证据",
+      "ai": "report_read按已登记ID读取"
+    },
+    {
+      "name": "复制完整报告",
+      "region": "结果区",
+      "input": "当前已有完整报告",
+      "enabled": "!busy且HasReport",
+      "effect": "复制原完整报告，不复制有界摘要代替原结果",
+      "next": "失败保留报告路径/证据，不重生成",
+      "ai": "report_read提供原子树，不操作剪贴板"
+    }
+  ],
+  "requiredGuideIds": [
+    "Readme",
+    "UserReadme",
+    "UserOverview",
+    "UserGettingStarted",
+    "UserManualWorkflows",
+    "UserAiWorkflows",
+    "UserTroubleshooting",
+    "AiReadme",
+    "AiQuickStart",
+    "AiTaskRecipes",
+    "DeveloperReadme",
+    "DeveloperArchitecture",
+    "DeveloperNodeExtension",
+    "DeveloperOperationExtension",
+    "DeveloperTestingAndEvidence",
+    "DeveloperRecoveryAndHandoff",
+    "VersionReadme",
+    "VersionReleaseNotes",
+    "VersionKnownIssues",
+    "UserInterfaceGuide",
+    "AiPreparation",
+    "DeveloperVersionRelease",
+    "VersionCompatibilityAndMigration",
+    "AiApiReference",
+    "AiResultsAndRecovery",
+    "DeveloperSourceMap",
+    "FeatureMap",
+    "GraphAuthoring",
+    "Material",
+    "Blueprint",
+    "MaterialInstance",
+    "Examples",
+    "MaterialNodeIndex",
+    "BlueprintNodeIndex",
+    "SourcesAndLicenses",
+    "AiAssetRead",
+    "AiAssetReadExamples",
+    "AiCopyPreview",
+    "UserCopyPreview",
+    "UserNodeCoverage",
+    "AiNodeBulk",
+    "AiNodeBulkExamples",
+    "AiJsonArchitectureExamples",
+    "AiBlueprintTick",
+    "AiAssetSettings",
+    "UserInstallation",
+    "AiResources"
+  ],
+  "nativeOperations": [
+    "operations.describe",
+    "session.hello",
+    "editor.getState",
+    "draft.get",
+    "draft.loadFile",
+    "draft.replace",
+    "draft.restore",
+    "draft.prepareCopy",
+    "graphs.preview",
+    "graphs.preflight",
+    "graphs.generate",
+    "rules.query",
+    "catalog.get",
+    "resources.inspect",
+    "resources.query",
+    "graphs.export",
+    "calls.get",
+    "control.disable"
+  ],
+  "businessTools": [
+    "nodeforge_operations_describe",
+    "nodeforge_editor_getState",
+    "nodeforge_draft_get",
+    "nodeforge_draft_loadFile",
+    "nodeforge_draft_replace",
+    "nodeforge_draft_restore",
+    "nodeforge_draft_prepareCopy",
+    "nodeforge_graphs_preview",
+    "nodeforge_graphs_preflight",
+    "nodeforge_graphs_generate",
+    "nodeforge_rules_query",
+    "nodeforge_catalog_get",
+    "nodeforge_calls_get",
+    "nodeforge_resources_inspect",
+    "nodeforge_graphs_export",
+    "nodeforge_resources_query"
+  ],
+  "knowledgeCategories": [
+    "User",
+    "Ai",
+    "Developer",
+    "Version",
+    "Reference"
+  ],
+  "nodeExplanations": 398,
+  "noFullNodeRetest": true,
+  "ueTestsExecutedByGenerator": false
+}

@@ -1,0 +1,20 @@
+/* Pico interaction: 8px pill, 10px on hover/drag; 950ms idle, 180ms fade.
+   Keep native gutter dimensions so installing the overlay never shifts content. */
+.nf-scroll-viewport{scrollbar-color:transparent transparent!important}
+.nf-scroll-viewport::-webkit-scrollbar-thumb,.nf-scroll-viewport::-webkit-scrollbar-track{background:transparent!important}
+.nf-scroll-rail{position:fixed;z-index:40;opacity:0;transition:opacity 180ms ease;touch-action:none;user-select:none}
+.nf-scroll-rail[hidden]{display:none!important}
+.nf-scroll-y{width:16px}
+.nf-scroll-x{height:16px}
+.nf-scroll-rail.is-visible{opacity:.76}
+.nf-scroll-rail:hover,.nf-scroll-rail.is-dragging{opacity:1}
+.nf-scroll-thumb{position:absolute;border-radius:999px;background:var(--brand);cursor:grab;transition:right 140ms ease,bottom 140ms ease,width 140ms ease,height 140ms ease,background-color 140ms ease}
+.nf-scroll-y .nf-scroll-thumb{top:0;right:4px;width:8px;min-height:32px}
+.nf-scroll-x .nf-scroll-thumb{left:0;bottom:4px;height:8px;min-width:32px}
+.nf-scroll-y .nf-scroll-thumb:hover,.nf-scroll-y.is-dragging .nf-scroll-thumb{right:3px;width:10px}
+.nf-scroll-x .nf-scroll-thumb:hover,.nf-scroll-x.is-dragging .nf-scroll-thumb{bottom:3px;height:10px}
+.nf-scroll-thumb:hover,.nf-scroll-rail.is-dragging .nf-scroll-thumb{background:color-mix(in srgb,var(--brand) 72%,var(--text))}
+.nf-scroll-rail.is-dragging .nf-scroll-thumb{cursor:grabbing}
+@media(prefers-reduced-motion:reduce){.nf-scroll-rail,.nf-scroll-thumb{transition:none}}
+@media(forced-colors:active){.nf-scroll-viewport{scrollbar-color:auto!important}.nf-scroll-rail{display:none!important}}
+@media print{.nf-scroll-rail{display:none!important}}

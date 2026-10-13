@@ -1,0 +1,214 @@
+{
+  "scope": "独立保存关卡和新进程PIE；实际Actor旋转按Pitch,Yaw,Roll、位置、缩放及精确归属消息；尚未运行。",
+  "cases": [
+    {
+      "case": "RotatorRead",
+      "expectedMessage": "Rotator applied",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        15,
+        40,
+        -25
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorChanged",
+      "expectedMessage": "Rotator applied",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        -12.5,
+        72.25,
+        8.75
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorStore",
+      "expectedMessage": "Rotator applied",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        -20,
+        65,
+        35
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorReordered",
+      "expectedMessage": "Rotator applied",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        15,
+        40,
+        -25
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorDirect",
+      "expectedMessage": "Rotator applied",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        22.5,
+        -55,
+        12.25
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorStoreDefault",
+      "expectedMessage": "Rotator applied",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        5.5,
+        -35.25,
+        -10.75
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorShuffled",
+      "expectedMessage": "Rotator applied",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        -20,
+        65,
+        35
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorVectorLegacy",
+      "expectedMessage": "Actor moved from JSON",
+      "expectedLocation": [
+        -15,
+        0,
+        45
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorIntLegacy",
+      "expectedMessage": "count=5",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        90,
+        0
+      ],
+      "expectedScale": [
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorNameLegacy",
+      "expectedMessage": "NodeForge9",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorSequenceLegacy",
+      "expectedMessage": "AB",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    }
+  ]
+}

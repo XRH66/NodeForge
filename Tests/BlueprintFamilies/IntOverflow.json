@@ -1,0 +1,202 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphIntOverflow",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFGraphIntOverflow",
+  "catalogDigest": "6993743a0513489069423790f678c2cccd6bccc29435cd0dd98e4156248aa069",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Sum",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Add_IntInt"
+      },
+      "defaults": {
+        "A": 2147483648,
+        "B": 3
+      }
+    },
+    {
+      "id": "Compare",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "GreaterEqual_IntInt"
+      },
+      "defaults": {
+        "B": 5
+      }
+    },
+    {
+      "id": "Branch",
+      "class": "/Script/BlueprintGraph.K2Node_IfThenElse",
+      "properties": {}
+    },
+    {
+      "id": "Rotation",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "MakeRotator"
+      },
+      "defaults": {
+        "Roll": 0,
+        "Pitch": 0,
+        "Yaw": 90
+      }
+    },
+    {
+      "id": "Rotate",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorRotation"
+      },
+      "defaults": {
+        "bTeleportPhysics": true
+      }
+    },
+    {
+      "id": "Scale",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "SetActorScale3D"
+      },
+      "defaults": {
+        "NewScale3D": [
+          2,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Number",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_IntToString"
+      }
+    },
+    {
+      "id": "Text",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Concat_StrStr"
+      },
+      "defaults": {
+        "A": "count="
+      }
+    },
+    {
+      "id": "PrintTrue",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    },
+    {
+      "id": "PrintFalse",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "InString": "below threshold",
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Branch",
+      "input": "execute"
+    },
+    {
+      "from": "Sum",
+      "output": "ReturnValue",
+      "to": "Compare",
+      "input": "A"
+    },
+    {
+      "from": "Compare",
+      "output": "ReturnValue",
+      "to": "Branch",
+      "input": "Condition"
+    },
+    {
+      "from": "Branch",
+      "output": "then",
+      "to": "Rotate",
+      "input": "execute"
+    },
+    {
+      "from": "Rotation",
+      "output": "ReturnValue",
+      "to": "Rotate",
+      "input": "NewRotation"
+    },
+    {
+      "from": "Rotate",
+      "output": "then",
+      "to": "Scale",
+      "input": "execute"
+    },
+    {
+      "from": "Scale",
+      "output": "then",
+      "to": "PrintTrue",
+      "input": "execute"
+    },
+    {
+      "from": "Sum",
+      "output": "ReturnValue",
+      "to": "Number",
+      "input": "InInt"
+    },
+    {
+      "from": "Number",
+      "output": "ReturnValue",
+      "to": "Text",
+      "input": "B"
+    },
+    {
+      "from": "Text",
+      "output": "ReturnValue",
+      "to": "PrintTrue",
+      "input": "InString"
+    },
+    {
+      "from": "Branch",
+      "output": "else",
+      "to": "PrintFalse",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}
+

@@ -1,0 +1,59 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphFunctionChain",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphFunctionChain",
+  "catalogDigest": "7d11f08760383d7b4704eab618fb098447f2558d9b456955139fbd818b7851e2",
+  "nodes": [
+    {
+      "id": "Alpha",
+      "class": "/Script/Engine.MaterialExpressionConstant",
+      "properties": {
+        "R": 0.7
+      }
+    },
+    {
+      "id": "First",
+      "class": "/Script/Engine.MaterialExpressionMaterialFunctionCall",
+      "properties": {
+        "MaterialFunction": "/Engine/Functions/Engine_MaterialFunctions02/SmoothStep.SmoothStep",
+        "FunctionAssetSha256": "6738a8b58e1f9b0448ac3b2c50f8ee621fb1870a0c2693542d7ea06ec83d6aa5"
+      }
+    },
+    {
+      "id": "Second",
+      "class": "/Script/Engine.MaterialExpressionMaterialFunctionCall",
+      "properties": {
+        "MaterialFunction": "/Engine/Functions/Engine_MaterialFunctions02/SmoothStep.SmoothStep",
+        "FunctionAssetSha256": "6738a8b58e1f9b0448ac3b2c50f8ee621fb1870a0c2693542d7ea06ec83d6aa5"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Alpha",
+      "output": "0",
+      "to": "First",
+      "input": "Alpha (S)"
+    },
+    {
+      "from": "First",
+      "output": "0",
+      "to": "Second",
+      "input": "Alpha (S)"
+    },
+    {
+      "from": "Second",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

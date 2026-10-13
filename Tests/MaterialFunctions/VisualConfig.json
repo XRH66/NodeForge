@@ -1,0 +1,8 @@
+{
+  "map": "/Game/NodeForgeTests/NFGraphVisualMap",
+  "material": "/Game/NodeForgeTests/NFGraphFunctionAnimated",
+  "scalarChanges": {
+    "Speed": 1.25
+  },
+  "vectorChanges": {}
+}

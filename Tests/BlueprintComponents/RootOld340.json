@@ -1,0 +1,259 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphRootOld340",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFGraphRootOld340",
+  "catalogDigest": "340e22d25dbc9c24271c5e05c89c5043d366f765a5e8b9fc4bc40bd2080389d1",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Root",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_GetRootComponent"
+      }
+    },
+    {
+      "id": "Move",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "K2_SetWorldLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          120,
+          -40,
+          15
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Angle",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "MakeRotator"
+      },
+      "defaults": {
+        "Roll": 0,
+        "Pitch": 0,
+        "Yaw": 90
+      }
+    },
+    {
+      "id": "Rotate",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "K2_SetWorldRotation"
+      },
+      "defaults": {
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Scale",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "SetWorldScale3D"
+      },
+      "defaults": {
+        "NewScale": [
+          2,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "ReadLocation",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "K2_GetComponentLocation"
+      }
+    },
+    {
+      "id": "ReadRotation",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "K2_GetComponentRotation"
+      }
+    },
+    {
+      "id": "ReadScale",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "K2_GetComponentScale"
+      }
+    },
+    {
+      "id": "CopyLocation",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "CopyRotation",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorRotation"
+      },
+      "defaults": {
+        "bTeleportPhysics": true
+      }
+    },
+    {
+      "id": "CopyScale",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "SetActorScale3D"
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "InString": "Root motion A",
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Root",
+      "output": "ReturnValue",
+      "to": "Move",
+      "input": "self"
+    },
+    {
+      "from": "Root",
+      "output": "ReturnValue",
+      "to": "Rotate",
+      "input": "self"
+    },
+    {
+      "from": "Root",
+      "output": "ReturnValue",
+      "to": "Scale",
+      "input": "self"
+    },
+    {
+      "from": "Root",
+      "output": "ReturnValue",
+      "to": "ReadLocation",
+      "input": "self"
+    },
+    {
+      "from": "Root",
+      "output": "ReturnValue",
+      "to": "ReadRotation",
+      "input": "self"
+    },
+    {
+      "from": "Root",
+      "output": "ReturnValue",
+      "to": "ReadScale",
+      "input": "self"
+    },
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Move",
+      "input": "execute"
+    },
+    {
+      "from": "Move",
+      "output": "then",
+      "to": "Rotate",
+      "input": "execute"
+    },
+    {
+      "from": "Rotate",
+      "output": "then",
+      "to": "Scale",
+      "input": "execute"
+    },
+    {
+      "from": "Scale",
+      "output": "then",
+      "to": "CopyLocation",
+      "input": "execute"
+    },
+    {
+      "from": "CopyLocation",
+      "output": "then",
+      "to": "CopyRotation",
+      "input": "execute"
+    },
+    {
+      "from": "CopyRotation",
+      "output": "then",
+      "to": "CopyScale",
+      "input": "execute"
+    },
+    {
+      "from": "CopyScale",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "Angle",
+      "output": "ReturnValue",
+      "to": "Rotate",
+      "input": "NewRotation"
+    },
+    {
+      "from": "ReadLocation",
+      "output": "ReturnValue",
+      "to": "CopyLocation",
+      "input": "NewLocation"
+    },
+    {
+      "from": "ReadRotation",
+      "output": "ReturnValue",
+      "to": "CopyRotation",
+      "input": "NewRotation"
+    },
+    {
+      "from": "ReadScale",
+      "output": "ReturnValue",
+      "to": "CopyScale",
+      "input": "NewScale3D"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}

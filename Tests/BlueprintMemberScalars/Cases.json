@@ -1,0 +1,138 @@
+{
+  "description": "Native int32/name own members and affected old graph ranges",
+  "cases": [
+    {
+      "name": "MemberCount",
+      "input": "MemberCount.json",
+      "expected": "succeeded",
+      "category": "memberScalars"
+    },
+    {
+      "name": "MemberLow",
+      "input": "MemberLow.json",
+      "expected": "succeeded",
+      "category": "memberScalars"
+    },
+    {
+      "name": "MemberShuffled",
+      "input": "MemberShuffled.json",
+      "expected": "succeeded",
+      "category": "memberScalars",
+      "compareLayoutWith": "MemberCount"
+    },
+    {
+      "name": "MemberState",
+      "input": "MemberState.json",
+      "expected": "succeeded",
+      "category": "memberScalars"
+    },
+    {
+      "name": "MemberNone",
+      "input": "MemberNone.json",
+      "expected": "succeeded",
+      "category": "memberScalars"
+    },
+    {
+      "name": "MemberLimits",
+      "input": "MemberLimits.json",
+      "expected": "succeeded",
+      "category": "memberScalars"
+    },
+    {
+      "name": "MemberRootLegacy",
+      "input": "MemberRootLegacy.json",
+      "expected": "succeeded",
+      "category": "memberScalars",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "MemberCoreLegacy",
+      "input": "MemberCoreLegacy.json",
+      "expected": "succeeded",
+      "category": "memberScalars",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "MemberMaterialLegacy",
+      "input": "MemberMaterialLegacy.json",
+      "expected": "succeeded",
+      "category": "memberScalars",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "MemberFraction",
+      "input": "MemberFraction.json",
+      "expected": "rejected",
+      "category": "memberScalars"
+    },
+    {
+      "name": "MemberOverflow",
+      "input": "MemberOverflow.json",
+      "expected": "rejected",
+      "category": "memberScalars"
+    },
+    {
+      "name": "MemberBoolInt",
+      "input": "MemberBoolInt.json",
+      "expected": "rejected",
+      "category": "memberScalars"
+    },
+    {
+      "name": "MemberEmptyName",
+      "input": "MemberEmptyName.json",
+      "expected": "rejected",
+      "category": "memberScalars"
+    },
+    {
+      "name": "MemberLongName",
+      "input": "MemberLongName.json",
+      "expected": "rejected",
+      "category": "memberScalars"
+    },
+    {
+      "name": "MemberNumericName",
+      "input": "MemberNumericName.json",
+      "expected": "rejected",
+      "category": "memberScalars"
+    },
+    {
+      "name": "MemberOld699",
+      "input": "MemberOld699.json",
+      "expected": "rejected",
+      "category": "memberScalars",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "MemberOld7dea",
+      "input": "MemberOld7dea.json",
+      "expected": "rejected",
+      "category": "memberScalars",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "MemberMissing",
+      "input": "MemberMissing.json",
+      "expected": "rejected",
+      "category": "memberScalars"
+    },
+    {
+      "name": "MemberWrongPin",
+      "input": "MemberWrongPin.json",
+      "expected": "rejected",
+      "category": "memberScalars"
+    },
+    {
+      "name": "MemberWrongType",
+      "input": "MemberWrongType.json",
+      "expected": "rejected",
+      "category": "memberScalars"
+    },
+    {
+      "name": "MemberCollision",
+      "input": "MemberCollision.json",
+      "expected": "rejected",
+      "category": "memberScalars",
+      "requires": "MemberCount"
+    }
+  ]
+}

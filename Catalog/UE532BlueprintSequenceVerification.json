@@ -1,0 +1,166 @@
+{
+  "build": "Build41",
+  "catalogDigest": "57b27415fee08ce08df3b734d9ea8fbd7a03678564f218007a0f770c3e478b7d",
+  "selectedBinarySha256": "b404718da17a0c2f9da1af5d0bf4f3c45506182cdd394b8533cf76e294a843cd",
+  "scope": "Sequence native configurations only; existing catalog entries retain their separate evidence",
+  "nodes": [
+    {
+      "class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+      "properties": {
+        "outputCount": 2
+      },
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/Sequence1/SequenceTwoReopen.json",
+        "Reports/20261008GraphV2/Sequence1/SequenceNestedReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/SequenceRuntime1/SequenceTwoRuntime.json",
+        "Reports/20261009UsableEditor/SequenceRuntime1/SequenceNestedRuntime.json"
+      ],
+      "exportCopyIndependentReopen": [
+        "Reports/20261009UsableEditor/SequenceExport1/SequenceNestedReopen.json"
+      ],
+      "scope": "Representative exact native output configuration; 4..7 have instance probes and rule export only, not saved graph or runtime verification",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+      "properties": {
+        "outputCount": 3
+      },
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/Sequence1/SequenceThreeReopen.json",
+        "Reports/20261008GraphV2/Sequence1/SequenceChangedReopen.json",
+        "Reports/20261008GraphV2/Sequence1/SequenceSwappedReopen.json",
+        "Reports/20261008GraphV2/Sequence1/SequenceShuffledReopen.json",
+        "Reports/20261008GraphV2/Sequence1/SequenceNestedReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/SequenceRuntime1/SequenceThreeRuntime.json",
+        "Reports/20261009UsableEditor/SequenceRuntime1/SequenceChangedRuntime.json",
+        "Reports/20261009UsableEditor/SequenceRuntime1/SequenceSwappedRuntime.json",
+        "Reports/20261009UsableEditor/SequenceRuntime1/SequenceShuffledRuntime.json",
+        "Reports/20261009UsableEditor/SequenceRuntime1/SequenceNestedRuntime.json"
+      ],
+      "exportCopyIndependentReopen": [
+        "Reports/20261009UsableEditor/SequenceExport1/SequenceThreeReopen.json",
+        "Reports/20261009UsableEditor/SequenceExport1/SequenceNestedReopen.json"
+      ],
+      "scope": "Representative exact native output configuration; 4..7 have instance probes and rule export only, not saved graph or runtime verification",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+      "properties": {
+        "outputCount": 4
+      },
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "exportCopyIndependentReopen": [],
+      "scope": "Representative exact native output configuration; 4..7 have instance probes and rule export only, not saved graph or runtime verification",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+      "properties": {
+        "outputCount": 5
+      },
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "exportCopyIndependentReopen": [],
+      "scope": "Representative exact native output configuration; 4..7 have instance probes and rule export only, not saved graph or runtime verification",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+      "properties": {
+        "outputCount": 6
+      },
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "exportCopyIndependentReopen": [],
+      "scope": "Representative exact native output configuration; 4..7 have instance probes and rule export only, not saved graph or runtime verification",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+      "properties": {
+        "outputCount": 7
+      },
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "exportCopyIndependentReopen": [],
+      "scope": "Representative exact native output configuration; 4..7 have instance probes and rule export only, not saved graph or runtime verification",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+      "properties": {
+        "outputCount": 8
+      },
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/Sequence1/SequenceEightReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/SequenceRuntime1/SequenceEightRuntime.json"
+      ],
+      "exportCopyIndependentReopen": [
+        "Reports/20261009UsableEditor/SequenceExport1/SequenceEightReopen.json"
+      ],
+      "scope": "Representative exact native output configuration; 4..7 have instance probes and rule export only, not saved graph or runtime verification",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    }
+  ],
+  "evidenceSha256": {
+    "Catalog/UE532BlueprintSequence.json": "965e7ff2a46064df2fc23ed859c364a59db7efeff6c580726d3e6a57f0c312d4",
+    "Reports/20261008GraphV2/Sequence1/Summary.json": "3a051b4b47e15bafe860123c68da513caf215bb13c498e99a7c04ab38a9063bb",
+    "Reports/20261009UsableEditor/SequenceRuntime1/Summary.json": "64e4971fac122fb7711eb1b0e4630d2627a1ae78a3965103ab121a05f5e1a6a4",
+    "Reports/20261009UsableEditor/SequenceExport1/Summary.json": "3ac80fff2f382c1825c6baf5989f21c557edd410265768200d07f06b900fca9d",
+    "Reports/20261009UsableEditor/SequenceGuards1/Summary.json": "abbd164cb4919eb591d957a9ce88ce0f7c080d8bc6d55e1ebda7559c39a9b252",
+    "Reports/20261009UsableEditor/SequenceRules1/Summary.json": "f2c4da5112ba280d6c262a3f750009931f9efcbe5aca1e8d9be39beb7dc87c39",
+    "Reports/20261009UsableEditor/Build41/BinaryEvidence.json": "ac02f514d65763a0815d3eea7a157473e10aa569c8a8ac5c405a6790604dd505"
+  },
+  "limitations": [
+    "2, 3 and 8 native outputs verified with representative graphs; 4 through 7 remain experimental",
+    "No loops, latent nodes, macros, delegates or arbitrary execution support",
+    "Original generated graphs have saved-map PIE; exported copies have compile/save/reopen, not separate PIE",
+    "Malformed source checks temporarily alter an independent copied graph in memory, restore it and never save it",
+    "No Build41 real UI, external AI original output or new standalone package; frozen RC1 and running root DLL unchanged",
+    "Raw native catalog remains experimental and this separate evidence file supplements precise verified configurations"
+  ]
+}

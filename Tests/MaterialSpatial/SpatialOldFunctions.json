@@ -1,0 +1,141 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphSpatialOldFunctions",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFSpatialOldFunctions",
+  "catalogDigest": "7d11f08760383d7b4704eab618fb098447f2558d9b456955139fbd818b7851e2",
+  "nodes": [
+    {
+      "id": "UV",
+      "class": "/Script/Engine.MaterialExpressionTextureCoordinate",
+      "properties": {
+        "UTiling": 2,
+        "VTiling": 2
+      }
+    },
+    {
+      "id": "Time",
+      "class": "/Script/Engine.MaterialExpressionTime",
+      "properties": {}
+    },
+    {
+      "id": "Speed",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "SpinSpeed",
+        "DefaultValue": 0.18
+      }
+    },
+    {
+      "id": "ScaleTime",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "Rotate",
+      "class": "/Script/Engine.MaterialExpressionRotator",
+      "properties": {
+        "CenterX": 0.5,
+        "CenterY": 0.5,
+        "Speed": 1,
+        "ConstCoordinate": 0
+      }
+    },
+    {
+      "id": "Texture",
+      "class": "/Script/Engine.MaterialExpressionTextureObject",
+      "properties": {
+        "Texture": "/Engine/EngineResources/DefaultTexture.DefaultTexture"
+      }
+    },
+    {
+      "id": "Sample",
+      "class": "/Script/Engine.MaterialExpressionTextureSample",
+      "properties": {
+        "Texture": "/Engine/EngineResources/DefaultTexture.DefaultTexture",
+        "SamplerType": "SAMPLERTYPE_Color"
+      }
+    },
+    {
+      "id": "Tint",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "Tint",
+        "DefaultValue": [
+          0.1,
+          0.7,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Color",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "UV",
+      "output": "0",
+      "to": "Rotate",
+      "input": "Coordinate"
+    },
+    {
+      "from": "Time",
+      "output": "0",
+      "to": "ScaleTime",
+      "input": "A"
+    },
+    {
+      "from": "Speed",
+      "output": "0",
+      "to": "ScaleTime",
+      "input": "B"
+    },
+    {
+      "from": "ScaleTime",
+      "output": "0",
+      "to": "Rotate",
+      "input": "Time"
+    },
+    {
+      "from": "Rotate",
+      "output": "0",
+      "to": "Sample",
+      "input": "Coordinates"
+    },
+    {
+      "from": "Texture",
+      "output": "0",
+      "to": "Sample",
+      "input": "TextureObject"
+    },
+    {
+      "from": "Sample",
+      "output": "0",
+      "to": "Color",
+      "input": "A"
+    },
+    {
+      "from": "Tint",
+      "output": "0",
+      "to": "Color",
+      "input": "B"
+    },
+    {
+      "from": "Color",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

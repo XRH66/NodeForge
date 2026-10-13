@@ -1,0 +1,86 @@
+{
+  "cases": [
+    {
+      "case": "MotionDirect",
+      "expectedLocation": [
+        100,
+        200,
+        300
+      ],
+      "expectedMessage": "Actor moved from JSON"
+    },
+    {
+      "case": "MotionChanged",
+      "expectedLocation": [
+        -75,
+        20,
+        400
+      ],
+      "expectedMessage": "Changed JSON position"
+    },
+    {
+      "case": "MotionMade",
+      "expectedLocation": [
+        10,
+        20,
+        30
+      ],
+      "expectedMessage": "Actor moved from JSON"
+    },
+    {
+      "case": "MotionShuffled",
+      "expectedLocation": [
+        10,
+        20,
+        30
+      ],
+      "expectedMessage": "Actor moved from JSON"
+    },
+    {
+      "case": "MotionVariable",
+      "expectedLocation": [
+        20,
+        30,
+        40
+      ],
+      "expectedMessage": "Actor moved from JSON"
+    },
+    {
+      "case": "MotionWrite",
+      "expectedLocation": [
+        -15,
+        0,
+        45
+      ],
+      "expectedMessage": "Actor moved from JSON"
+    },
+    {
+      "case": "MotionBreak",
+      "expectedLocation": [
+        1,
+        20,
+        30
+      ],
+      "expectedMessage": "Actor moved from JSON"
+    },
+    {
+      "case": "MotionReadback",
+      "expectedLocation": [
+        100,
+        200,
+        300
+      ],
+      "expectedMessage": "X=100.000 Y=200.000 Z=300.000"
+    },
+    {
+      "case": "MotionZero",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedMessage": "Actor moved from JSON"
+    }
+  ],
+  "scope": "Saved-map independent PIE; actual own Actor location and attributed PrintString required"
+}

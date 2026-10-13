@@ -1,0 +1,68 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphFunctionOverlay",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphFunctionOverlay",
+  "catalogDigest": "7d11f08760383d7b4704eab618fb098447f2558d9b456955139fbd818b7851e2",
+  "nodes": [
+    {
+      "id": "Base",
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "properties": {
+        "Constant": [
+          0.04,
+          0.2,
+          0.45,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Blend",
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "properties": {
+        "Constant": [
+          0.2,
+          0.75,
+          0.5,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Function",
+      "class": "/Script/Engine.MaterialExpressionMaterialFunctionCall",
+      "properties": {
+        "MaterialFunction": "/Engine/Functions/Engine_MaterialFunctions03/Blends/Blend_Overlay.Blend_Overlay",
+        "FunctionAssetSha256": "c0e279ffb62db701d5d5366d3f4e9ab55dd425897fd8fb68e3c7be90e015e6ae"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Base",
+      "output": "0",
+      "to": "Function",
+      "input": "Base (V3)"
+    },
+    {
+      "from": "Blend",
+      "output": "0",
+      "to": "Function",
+      "input": "Blend (V3)"
+    },
+    {
+      "from": "Function",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

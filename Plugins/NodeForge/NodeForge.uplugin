@@ -1,0 +1,19 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "0.1.0-prototype",
+  "FriendlyName": "NodeForge",
+  "Description": "Local fixed-data Blueprint and Material prototype",
+  "Category": "Editor",
+  "CreatedBy": "NodeForge",
+  "CanContainContent": false,
+  "IsBetaVersion": true,
+  "EnabledByDefault": false,
+  "Modules": [
+    {
+      "Name": "NodeForgeEditor",
+      "Type": "Editor",
+      "LoadingPhase": "Default"
+    }
+  ]
+}

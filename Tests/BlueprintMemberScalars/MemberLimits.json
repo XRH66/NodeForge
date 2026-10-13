@@ -1,0 +1,121 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphMemberLimits",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFMemberLimits",
+  "catalogDigest": "cd5de7be8e3662c0ca769a729f64b844b359a25bc46d39a26c2d528bef0bb9e1",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "ReadMinimum",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "Minimum"
+      }
+    },
+    {
+      "id": "ReadMaximum",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "Maximum"
+      }
+    },
+    {
+      "id": "MinText",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_IntToString"
+      }
+    },
+    {
+      "id": "MaxText",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_IntToString"
+      }
+    },
+    {
+      "id": "Join",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Concat_StrStr"
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "ReadMinimum",
+      "output": "Minimum",
+      "to": "MinText",
+      "input": "InInt"
+    },
+    {
+      "from": "ReadMaximum",
+      "output": "Maximum",
+      "to": "MaxText",
+      "input": "InInt"
+    },
+    {
+      "from": "MinText",
+      "output": "ReturnValue",
+      "to": "Join",
+      "input": "A"
+    },
+    {
+      "from": "MaxText",
+      "output": "ReturnValue",
+      "to": "Join",
+      "input": "B"
+    },
+    {
+      "from": "Join",
+      "output": "ReturnValue",
+      "to": "Print",
+      "input": "InString"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": [
+      {
+        "name": "Minimum",
+        "type": "int",
+        "default": -2147483648
+      },
+      {
+        "name": "Maximum",
+        "type": "int",
+        "default": 2147483647
+      }
+    ]
+  }
+}

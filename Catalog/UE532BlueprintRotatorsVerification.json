@@ -1,0 +1,81 @@
+{
+  "build": "Build44",
+  "catalogDigest": "272ec558cb541bb1d69b4d998c4aced90cbcbe32ec42f3926a8005618eb52950",
+  "selectedBinarySha256": "ad22acce7c0fc9aa6804dcba745fdeb13b1380cf9ca03d4ede916dd936177d97",
+  "nodes": [
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "variableType": "rotator",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "actionDatabaseMatch": false,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/Rotators2/RotatorStoreReopen.json",
+        "Reports/20261008GraphV2/Rotators2/RotatorStoreDefaultReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/RotatorRuntime2/RotatorStoreRuntime.json",
+        "Reports/20261009UsableEditor/RotatorRuntime2/RotatorReorderedRuntime.json"
+      ],
+      "exportCopyIndependentReopen": [
+        "Reports/20261009UsableEditor/RotatorExport1/RotatorStoreDefaultReopen.json"
+      ],
+      "scope": "Actor member; strict pitch/yaw/roll object default, native variable spawners and exact pins. Array order does not control execution.",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "variableType": "rotator",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "actionDatabaseMatch": false,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/Rotators2/RotatorStoreReopen.json",
+        "Reports/20261008GraphV2/Rotators2/RotatorStoreDefaultReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/RotatorRuntime2/RotatorStoreRuntime.json",
+        "Reports/20261009UsableEditor/RotatorRuntime2/RotatorReorderedRuntime.json"
+      ],
+      "exportCopyIndependentReopen": [
+        "Reports/20261009UsableEditor/RotatorExport1/RotatorStoreDefaultReopen.json"
+      ],
+      "scope": "Actor member; strict pitch/yaw/roll object default, native variable spawners and exact pins. Array order does not control execution.",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    }
+  ],
+  "typedDefaultCapabilities": [
+    {
+      "type": "rotator",
+      "context": "Actor member declaration and compiled CDO",
+      "supportState": "verified"
+    },
+    {
+      "type": "rotator",
+      "context": "Unconnected K2_SetActorRotation.NewRotation and VariableSet.Facing",
+      "supportState": "verified"
+    }
+  ],
+  "representativeCases": {
+    "graphs": "Reports/20261008GraphV2/Rotators2/Summary.json",
+    "runtime": "Reports/20261009UsableEditor/RotatorRuntime2/Summary.json",
+    "export": "Reports/20261009UsableEditor/RotatorExport1/Summary.json",
+    "core": "Reports/20261008GraphV2/RotatorCore1/Summary.json",
+    "legacy": "Reports/20261008UsablePrototype/RotatorLegacy1/Summary.json",
+    "legacyNegatives": "Reports/20261009UsableEditor/RotatorLegacyNeg1/Summary.json",
+    "rules": "Reports/20261009UsableEditor/RotatorRules1/Summary.json"
+  },
+  "precisionGuard": "Reports/20261009UsableEditor/RotatorGuards1/Native.json",
+  "precisionScope": "At abs=1e12, six native per-axis minus360 errors rejected, restorations accepted in a transient compiled graph only; no big-angle asset save/runtime claim",
+  "limitations": [
+    "Representative configurations only, not all nodes or all angles",
+    "No arbitrary structs, containers, split pins or foreign actor/component binding",
+    "Raw catalog retains experimental probes; this file records separately measured representative support"
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphNameWrongType",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFGraphNameWrongType",
+  "catalogDigest": "6993743a0513489069423790f678c2cccd6bccc29435cd0dd98e4156248aa069",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Name",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_NameToString"
+      },
+      "defaults": {
+        "InName": 7
+      }
+    },
+    {
+      "id": "Mid",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Mid"
+      },
+      "defaults": {
+        "Start": 0,
+        "Count": 9
+      }
+    },
+    {
+      "id": "Contains",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Contains"
+      },
+      "defaults": {
+        "Substring": "Node"
+      }
+    },
+    {
+      "id": "Select",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "SelectString"
+      },
+      "defaults": {
+        "B": "missing"
+      }
+    },
+    {
+      "id": "Length",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Len"
+      }
+    },
+    {
+      "id": "Number",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_IntToString"
+      }
+    },
+    {
+      "id": "Join",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Concat_StrStr"
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "Name",
+      "output": "ReturnValue",
+      "to": "Mid",
+      "input": "SourceString"
+    },
+    {
+      "from": "Name",
+      "output": "ReturnValue",
+      "to": "Contains",
+      "input": "SearchIn"
+    },
+    {
+      "from": "Contains",
+      "output": "ReturnValue",
+      "to": "Select",
+      "input": "bPickA"
+    },
+    {
+      "from": "Mid",
+      "output": "ReturnValue",
+      "to": "Select",
+      "input": "A"
+    },
+    {
+      "from": "Select",
+      "output": "ReturnValue",
+      "to": "Length",
+      "input": "S"
+    },
+    {
+      "from": "Length",
+      "output": "ReturnValue",
+      "to": "Number",
+      "input": "InInt"
+    },
+    {
+      "from": "Select",
+      "output": "ReturnValue",
+      "to": "Join",
+      "input": "A"
+    },
+    {
+      "from": "Number",
+      "output": "ReturnValue",
+      "to": "Join",
+      "input": "B"
+    },
+    {
+      "from": "Join",
+      "output": "ReturnValue",
+      "to": "Print",
+      "input": "InString"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}
+

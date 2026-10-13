@@ -1,0 +1,115 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphRotatorShuffled",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFRotatorShuffled",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Made",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "MakeRotator"
+      },
+      "defaults": {
+        "Pitch": -20,
+        "Yaw": 65,
+        "Roll": 35
+      }
+    },
+    {
+      "id": "Store",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "properties": {
+        "variable": "Facing"
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "InString": "Rotator applied",
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    },
+    {
+      "id": "Rotate",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorRotation"
+      },
+      "defaults": {
+        "bTeleportPhysics": true
+      }
+    },
+    {
+      "id": "Read",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "Facing"
+      }
+    },
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Rotate",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "Read",
+      "output": "Facing",
+      "to": "Rotate",
+      "input": "NewRotation"
+    },
+    {
+      "from": "Store",
+      "output": "then",
+      "to": "Rotate",
+      "input": "execute"
+    },
+    {
+      "from": "Made",
+      "output": "ReturnValue",
+      "to": "Store",
+      "input": "Facing"
+    },
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Store",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": [
+      {
+        "name": "Facing",
+        "type": "rotator",
+        "default": {
+          "pitch": 15,
+          "yaw": 40,
+          "roll": -25
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "source": "Tests/MaterialSpatial/NormalMotion.json",
+  "sourceSha256": "3267cc0ebbce5e2b32868932b18f67021b0616d2e1dde7ab69f4c97c1244b6ea",
+  "changes": [
+    "New request and target",
+    "One Add expression with ConstB=60 between Height and Offset",
+    "Visual parameter amplitude reduced from 70 to 30"
+  ],
+  "pluginChanged": false,
+  "reason": "Original signed offset crosses fixed floor and markers; observed PNGs contradicted a visual pass despite positive pixel-difference metrics",
+  "nativeScene": "Plugins/NodeForge/Source/NodeForgeEditor/Private/NodeForgeGraphChecks.cpp",
+  "sceneGeometry": {
+    "surfaceZ": 0,
+    "floorTopZ": -30,
+    "markerTopZ": -7
+  },
+  "newOffsetBounds": {
+    "originalAmplitude20": [
+      40,
+      80
+    ],
+    "changedAmplitude30": [
+      30,
+      90
+    ]
+  },
+  "externalAiOriginal": false
+}

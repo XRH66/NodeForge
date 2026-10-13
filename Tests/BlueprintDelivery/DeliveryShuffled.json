@@ -1,0 +1,107 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphDeliveryShuffled",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFGraphDeliveryShuffled",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Text",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_VectorToString"
+      }
+    },
+    {
+      "id": "ReadLocation",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_GetActorLocation"
+      }
+    },
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Move",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    },
+    {
+      "id": "Make",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "MakeVector"
+      },
+      "defaults": {
+        "X": 10,
+        "Y": 20,
+        "Z": 30
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Text",
+      "output": "ReturnValue",
+      "to": "Print",
+      "input": "InString"
+    },
+    {
+      "from": "ReadLocation",
+      "output": "ReturnValue",
+      "to": "Text",
+      "input": "InVec"
+    },
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Move",
+      "input": "execute"
+    },
+    {
+      "from": "Move",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "Make",
+      "output": "ReturnValue",
+      "to": "Move",
+      "input": "NewLocation"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}

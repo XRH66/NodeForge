@@ -1,0 +1,30 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphDisconnectedInvalidChain",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphDisconnectedInvalidChain",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Color",
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "properties": {"Constant": [0.1, 0.5, 0.8, 1]}
+    },
+    {
+      "id": "DetachedFloat2",
+      "class": "/Script/Engine.MaterialExpressionConstant2Vector",
+      "properties": {"R": 0.25, "G": 0.75}
+    },
+    {
+      "id": "DetachedAlpha",
+      "class": "/Script/Engine.MaterialExpressionComponentMask",
+      "properties": {"R": false, "G": false, "B": false, "A": true}
+    }
+  ],
+  "edges": [
+    {"from": "Color", "output": "0", "to": "Material", "input": "EmissiveColor"},
+    {"from": "DetachedFloat2", "output": "0", "to": "DetachedAlpha", "input": "Input"}
+  ],
+  "settings": {"domain": "Surface", "blend": "Opaque", "shading": "Unlit", "twoSided": false}
+}

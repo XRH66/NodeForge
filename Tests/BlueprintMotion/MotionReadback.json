@@ -1,0 +1,93 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphMotionReadback",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFGraphMotionReadback",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Move",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          100,
+          200,
+          300
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    },
+    {
+      "id": "ReadLocation",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_GetActorLocation"
+      }
+    },
+    {
+      "id": "Text",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_VectorToString"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Move",
+      "input": "execute"
+    },
+    {
+      "from": "Move",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "ReadLocation",
+      "output": "ReturnValue",
+      "to": "Text",
+      "input": "InVec"
+    },
+    {
+      "from": "Text",
+      "output": "ReturnValue",
+      "to": "Print",
+      "input": "InString"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}

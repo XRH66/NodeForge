@@ -1,0 +1,82 @@
+{
+  "build": "Build55",
+  "catalogDigest": "af8a95377783d90668b062fef423717e1eec33b7a23139aed5de4d3206bc15aa",
+  "selectedBinarySha256": "f5e8885fb856a115a230d0e11f809d008e4eca3179f2b7e42a8212085af9f43f",
+  "scope": "Exact identity/default/export string protection in declared supported graph subset; native runtime name equality and other scalar semantics retained",
+  "supportState": "verified",
+  "nativeNodeSignatures": "unchanged from Build52; node discovery/construction is not universal validation",
+  "verifiedCases": [
+    "StringPrintMixed",
+    "StringPrintLower",
+    "StringMember",
+    "StringNameNone",
+    "StringCompose",
+    "StringSwitch52Compat",
+    "StringMaterial45Compat",
+    "StringWrongOwner",
+    "StringWrongMember",
+    "StringWrongClass",
+    "StringWrongParent",
+    "StringWrongType",
+    "StringWrongVariable",
+    "StringNameLowerNone",
+    "StringNameUpperNone",
+    "StringWrongPin",
+    "StringCollision"
+  ],
+  "actualLiteralMessages": {
+    "StringPrintMixed": {
+      "literal": "AbC",
+      "nativeReport": "Reports/20261009UsableEditor/StringRuntime1/StringPrintMixedRuntime.json",
+      "attributedCount": 1
+    },
+    "StringPrintLower": {
+      "literal": "abc",
+      "nativeReport": "Reports/20261009UsableEditor/StringRuntime1/StringPrintLowerRuntime.json",
+      "attributedCount": 1
+    },
+    "StringMember": {
+      "literal": "AbC",
+      "nativeReport": "Reports/20261009UsableEditor/StringRuntime1/StringMemberRuntime.json",
+      "attributedCount": 1
+    },
+    "StringNameNone": {
+      "literal": "None",
+      "nativeReport": "Reports/20261009UsableEditor/StringRuntime1/StringNameNoneRuntime.json",
+      "attributedCount": 1
+    },
+    "StringCompose": {
+      "literal": "AbC/abc",
+      "nativeReport": "Reports/20261009UsableEditor/StringRuntime1/StringComposeRuntime.json",
+      "attributedCount": 1
+    },
+    "StringSwitch52Compat": {
+      "literal": "Switch checked",
+      "nativeReport": "Reports/20261009UsableEditor/StringRuntime1/StringSwitch52CompatRuntime.json",
+      "attributedCount": 1
+    }
+  },
+  "nativeCaseOnlyMutationGuards": "Reports/20261009UsableEditor/StringGuards1/Summary.json",
+  "nativeMessageMismatchGuard": "Reports/20261009UsableEditor/StringMessageMismatch1/Summary.json",
+  "reports": {
+    "catalog": "Reports/20261009UsableEditor/StringIdentityExpansion1/Capture55/Summary.json",
+    "guards": "Reports/20261009UsableEditor/StringGuards1/Summary.json",
+    "graphs": "Reports/20261008GraphV2/StringIdentity3/Summary.json",
+    "runtime": "Reports/20261009UsableEditor/StringRuntime1/Summary.json",
+    "messageMismatch": "Reports/20261009UsableEditor/StringMessageMismatch1/Summary.json",
+    "export": "Reports/20261009UsableEditor/StringExport1/Summary.json",
+    "core": "Reports/20261008GraphV2/StringCore1/Summary.json",
+    "legacy": "Reports/20261008UsablePrototype/StringLegacy1/Summary.json",
+    "legacyNegatives": "Reports/20261009UsableEditor/StringLegacyNeg1/Summary.json",
+    "rules": "Reports/20261009UsableEditor/StringRules1/Summary.json"
+  },
+  "realUi": "notRun",
+  "externalAiOriginal": "notRun",
+  "noPluginDelivery": "notRun",
+  "limitations": [
+    "No new node family in this safety slice",
+    "No arbitrary nested reflection/containers or production asset edit",
+    "Metadata proof covers member FriendlyName and DataValue, not every possible engine object field",
+    "Root2/RC1 29 unchanged"
+  ]
+}

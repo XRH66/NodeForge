@@ -1,0 +1,530 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphWaterFacing",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphWaterFacing",
+  "catalogDigest": "9703b92dac063c1a473c335d505d78d917fc97608a78501dc0c1d1f2491264ca",
+  "nodes": [
+    {
+      "id": "UV",
+      "class": "/Script/Engine.MaterialExpressionTextureCoordinate",
+      "properties": {
+        "CoordinateIndex": 0,
+        "UTiling": 1,
+        "VTiling": 1
+      }
+    },
+    {
+      "id": "Scale",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Scale",
+        "DefaultValue": 4
+      }
+    },
+    {
+      "id": "ScaledUV",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "Clock",
+      "class": "/Script/Engine.MaterialExpressionTime",
+      "properties": {}
+    },
+    {
+      "id": "Speed",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Speed",
+        "DefaultValue": 0.5
+      }
+    },
+    {
+      "id": "ScaledTime",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "Pan",
+      "class": "/Script/Engine.MaterialExpressionPanner",
+      "properties": {
+        "SpeedX": 0.11,
+        "SpeedY": -0.065
+      }
+    },
+    {
+      "id": "U",
+      "class": "/Script/Engine.MaterialExpressionComponentMask",
+      "properties": {
+        "R": true,
+        "G": false,
+        "B": false,
+        "A": false
+      }
+    },
+    {
+      "id": "V",
+      "class": "/Script/Engine.MaterialExpressionComponentMask",
+      "properties": {
+        "R": false,
+        "G": true,
+        "B": false,
+        "A": false
+      }
+    },
+    {
+      "id": "PhaseU",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 1.25
+      }
+    },
+    {
+      "id": "PhaseV",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 1.8
+      }
+    },
+    {
+      "id": "WaveU",
+      "class": "/Script/Engine.MaterialExpressionSine",
+      "properties": {
+        "Period": 1
+      }
+    },
+    {
+      "id": "WaveV",
+      "class": "/Script/Engine.MaterialExpressionSine",
+      "properties": {
+        "Period": 1
+      }
+    },
+    {
+      "id": "Strength",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "WaveStrength",
+        "DefaultValue": 0.25
+      }
+    },
+    {
+      "id": "NormalX",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "NormalY",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "NormalXY",
+      "class": "/Script/Engine.MaterialExpressionAppendVector",
+      "properties": {}
+    },
+    {
+      "id": "NormalZ",
+      "class": "/Script/Engine.MaterialExpressionConstant",
+      "properties": {
+        "R": 1
+      }
+    },
+    {
+      "id": "NormalXYZ",
+      "class": "/Script/Engine.MaterialExpressionAppendVector",
+      "properties": {}
+    },
+    {
+      "id": "Normal",
+      "class": "/Script/Engine.MaterialExpressionNormalize",
+      "properties": {}
+    },
+    {
+      "id": "WaterColor",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "WaterColor",
+        "DefaultValue": [
+          0.15,
+          0.62,
+          0.85,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Roughness",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Roughness",
+        "DefaultValue": 0.22
+      }
+    },
+    {
+      "id": "Specular",
+      "class": "/Script/Engine.MaterialExpressionConstant",
+      "properties": {
+        "R": 0.85
+      }
+    },
+    {
+      "id": "Opacity",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Opacity",
+        "DefaultValue": 0.4
+      }
+    },
+    {
+      "id": "DirectionVWeight",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 0.55
+      }
+    },
+    {
+      "id": "DirectionUWeight",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 0.65
+      }
+    },
+    {
+      "id": "DiagonalU",
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "properties": {}
+    },
+    {
+      "id": "DiagonalV",
+      "class": "/Script/Engine.MaterialExpressionSubtract",
+      "properties": {}
+    },
+    {
+      "id": "WaveVToX",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": -0.65
+      }
+    },
+    {
+      "id": "WaveUToY",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 0.55
+      }
+    },
+    {
+      "id": "SlopeX",
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "properties": {}
+    },
+    {
+      "id": "SlopeY",
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "properties": {}
+    },
+    {
+      "id": "Emissive",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 0.01
+      }
+    },
+    {
+      "id": "Facing",
+      "class": "/Script/Engine.MaterialExpressionFresnel",
+      "properties": {
+        "Exponent": 3,
+        "BaseReflectFraction": 0.05
+      }
+    },
+    {
+      "id": "WaterEdge",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "EdgeColor",
+        "DefaultValue": [
+          0.2,
+          0.65,
+          0.85,
+          1
+        ]
+      }
+    },
+    {
+      "id": "FacingColor",
+      "class": "/Script/Engine.MaterialExpressionLinearInterpolate",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "UV",
+      "output": "0",
+      "to": "ScaledUV",
+      "input": "A"
+    },
+    {
+      "from": "Scale",
+      "output": "0",
+      "to": "ScaledUV",
+      "input": "B"
+    },
+    {
+      "from": "Clock",
+      "output": "0",
+      "to": "ScaledTime",
+      "input": "A"
+    },
+    {
+      "from": "Speed",
+      "output": "0",
+      "to": "ScaledTime",
+      "input": "B"
+    },
+    {
+      "from": "ScaledUV",
+      "output": "0",
+      "to": "Pan",
+      "input": "Coordinate"
+    },
+    {
+      "from": "ScaledTime",
+      "output": "0",
+      "to": "Pan",
+      "input": "Time"
+    },
+    {
+      "from": "Pan",
+      "output": "0",
+      "to": "U",
+      "input": "Input"
+    },
+    {
+      "from": "Pan",
+      "output": "0",
+      "to": "V",
+      "input": "Input"
+    },
+    {
+      "from": "DiagonalU",
+      "output": "0",
+      "to": "PhaseU",
+      "input": "A"
+    },
+    {
+      "from": "DiagonalV",
+      "output": "0",
+      "to": "PhaseV",
+      "input": "A"
+    },
+    {
+      "from": "PhaseU",
+      "output": "0",
+      "to": "WaveU",
+      "input": "Input"
+    },
+    {
+      "from": "PhaseV",
+      "output": "0",
+      "to": "WaveV",
+      "input": "Input"
+    },
+    {
+      "from": "SlopeX",
+      "output": "0",
+      "to": "NormalX",
+      "input": "A"
+    },
+    {
+      "from": "Strength",
+      "output": "0",
+      "to": "NormalX",
+      "input": "B"
+    },
+    {
+      "from": "SlopeY",
+      "output": "0",
+      "to": "NormalY",
+      "input": "A"
+    },
+    {
+      "from": "Strength",
+      "output": "0",
+      "to": "NormalY",
+      "input": "B"
+    },
+    {
+      "from": "NormalX",
+      "output": "0",
+      "to": "NormalXY",
+      "input": "A"
+    },
+    {
+      "from": "NormalY",
+      "output": "0",
+      "to": "NormalXY",
+      "input": "B"
+    },
+    {
+      "from": "NormalXY",
+      "output": "0",
+      "to": "NormalXYZ",
+      "input": "A"
+    },
+    {
+      "from": "NormalZ",
+      "output": "0",
+      "to": "NormalXYZ",
+      "input": "B"
+    },
+    {
+      "from": "NormalXYZ",
+      "output": "0",
+      "to": "Normal",
+      "input": "VectorInput"
+    },
+    {
+      "from": "Normal",
+      "output": "0",
+      "to": "Material",
+      "input": "Normal"
+    },
+    {
+      "from": "WaterColor",
+      "output": "0",
+      "to": "Emissive",
+      "input": "A"
+    },
+    {
+      "from": "Emissive",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    },
+    {
+      "from": "Roughness",
+      "output": "0",
+      "to": "Material",
+      "input": "Roughness"
+    },
+    {
+      "from": "Specular",
+      "output": "0",
+      "to": "Material",
+      "input": "Specular"
+    },
+    {
+      "from": "V",
+      "output": "0",
+      "to": "DirectionVWeight",
+      "input": "A"
+    },
+    {
+      "from": "U",
+      "output": "0",
+      "to": "DirectionUWeight",
+      "input": "A"
+    },
+    {
+      "from": "U",
+      "output": "0",
+      "to": "DiagonalU",
+      "input": "A"
+    },
+    {
+      "from": "DirectionVWeight",
+      "output": "0",
+      "to": "DiagonalU",
+      "input": "B"
+    },
+    {
+      "from": "V",
+      "output": "0",
+      "to": "DiagonalV",
+      "input": "A"
+    },
+    {
+      "from": "DirectionUWeight",
+      "output": "0",
+      "to": "DiagonalV",
+      "input": "B"
+    },
+    {
+      "from": "WaveV",
+      "output": "0",
+      "to": "WaveVToX",
+      "input": "A"
+    },
+    {
+      "from": "WaveU",
+      "output": "0",
+      "to": "WaveUToY",
+      "input": "A"
+    },
+    {
+      "from": "WaveU",
+      "output": "0",
+      "to": "SlopeX",
+      "input": "A"
+    },
+    {
+      "from": "WaveVToX",
+      "output": "0",
+      "to": "SlopeX",
+      "input": "B"
+    },
+    {
+      "from": "WaveUToY",
+      "output": "0",
+      "to": "SlopeY",
+      "input": "A"
+    },
+    {
+      "from": "WaveV",
+      "output": "0",
+      "to": "SlopeY",
+      "input": "B"
+    },
+    {
+      "from": "Opacity",
+      "output": "0",
+      "to": "Material",
+      "input": "Opacity"
+    },
+    {
+      "from": "WaterColor",
+      "output": "0",
+      "to": "FacingColor",
+      "input": "A"
+    },
+    {
+      "from": "WaterEdge",
+      "output": "0",
+      "to": "FacingColor",
+      "input": "B"
+    },
+    {
+      "from": "Facing",
+      "output": "0",
+      "to": "FacingColor",
+      "input": "Alpha"
+    },
+    {
+      "from": "FacingColor",
+      "output": "0",
+      "to": "Material",
+      "input": "BaseColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Translucent",
+    "shading": "DefaultLit",
+    "twoSided": true,
+    "lighting": "SurfaceForwardShading"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "sourceFiles": {
+    "Reports/20261010NightAudit/CoreFixed66/NumericInput.json": "a039eea3134f0200691011552ae7262d9c714baf6580a735c6136ef560c8a816",
+    "Tests/BlueprintMathInterpolation/MathRotation.json": "f57c793e14abc7683348656dd3deb1e05a9b7264f63f9baebe1e454536516a88"
+  },
+  "changes": {
+    "NumericDefaults": "ID/target/catalog placeholder only",
+    "LargeFloatPin": "ID/target and Alpha only",
+    "LargeMaterialFloat": "Canonical one-node material request for actual float32 quantization"
+  },
+  "newFiles": {
+    "Cases.json": "9c04f160b709755645068539e6ef3c2d75f73f67aebdf9c4329c01c80317cd3b",
+    "LargeFloatPin.json": "3144423b91b2183ff530286d16638ebdc6e9d9742975eff982e1a55da7034f26",
+    "LargeMaterialFloat.json": "fcfcc8192551cafe93986e9f7f51437a3c08c522690056001b25e2c86f2436a7",
+    "NumericDefaults.json": "eaf428fcb287598abbd11c25c654b97048175dc9800387603be30df0ad481095"
+  }
+}

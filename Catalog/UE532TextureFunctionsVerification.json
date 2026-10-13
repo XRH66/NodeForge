@@ -1,0 +1,575 @@
+{
+  "format": "NodeForgeCapabilityVerification1",
+  "catalogDigest": "340e22d25dbc9c24271c5e05c89c5043d366f765a5e8b9fc4bc40bd2080389d1",
+  "binarySha256": "33b90d71974ef5f9064edcc81915ff7fe1251656b8cf5fc38f8d34e386088afc",
+  "sourceCatalog": "Catalog/UE532TextureFunctions.json",
+  "domain": "Material",
+  "entries": [
+    {
+      "class": "/Script/Engine.MaterialExpressionAbs",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionAppendVector",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionClamp",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionComponentMask",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "StepBands"
+      ],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionConstant",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionConstant2Vector",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "RadialChanged",
+        "RadialMask"
+      ],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "StepBands",
+        "WorldParameter",
+        "WorldShuffled",
+        "WorldTexture"
+      ],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionConstant4Vector",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionCosine",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionCrossProduct",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionDistance",
+      "family": "DistanceAndThreshold",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "RadialChanged",
+        "RadialMask"
+      ],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionDivide",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionDotProduct",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionFloor",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionFrac",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "StepBands"
+      ],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionFresnel",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionLinearInterpolate",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "StepBands"
+      ],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionMaterialFunctionCall",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "WorldParameter",
+        "WorldShuffled",
+        "WorldTexture"
+      ],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "RadialChanged",
+        "RadialMask",
+        "RotatingTexture"
+      ],
+      "visualSampleEvidence": [
+        "TextureVisual1"
+      ],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionNormalize",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionOneMinus",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "RadialChanged",
+        "RadialMask"
+      ],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionPanner",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionPower",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionRotator",
+      "family": "UvTransform",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "RotatingTexture"
+      ],
+      "visualSampleEvidence": [
+        "TextureVisual1"
+      ],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionSaturate",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "RotatingTexture"
+      ],
+      "visualSampleEvidence": [
+        "TextureVisual1"
+      ],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionSine",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionSmoothStep",
+      "family": "DistanceAndThreshold",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "RadialChanged",
+        "RadialMask"
+      ],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionStep",
+      "family": "DistanceAndThreshold",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "StepBands"
+      ],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionSubtract",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionTextureCoordinate",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "RadialChanged",
+        "RadialMask",
+        "RotatingTexture",
+        "StepBands"
+      ],
+      "visualSampleEvidence": [
+        "TextureVisual1"
+      ],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionTextureObject",
+      "family": "TextureObjectComposition",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "RotatingTexture",
+        "WorldTexture"
+      ],
+      "visualSampleEvidence": [
+        "TextureVisual1"
+      ],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionTextureObjectParameter",
+      "family": "TextureObjectComposition",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "WorldParameter",
+        "WorldShuffled"
+      ],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionTextureSample",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "RotatingTexture"
+      ],
+      "visualSampleEvidence": [
+        "TextureVisual1"
+      ],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionTextureSampleParameter2D",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "visualSampleEvidence": [],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionTime",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "RotatingTexture"
+      ],
+      "visualSampleEvidence": [
+        "TextureVisual1"
+      ],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "family": "ExistingMaterialFamilies",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "RadialChanged",
+        "RadialMask",
+        "RotatingTexture"
+      ],
+      "visualSampleEvidence": [
+        "TextureVisual1"
+      ],
+      "scope": "Representative sample evidence, not all configurations or per-node execution tracing",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    }
+  ],
+  "evidenceSha256": {
+    "Catalog/UE532TextureFunctions.json": "343141ffa25b4fe356d417cdc3f05c87c0dda9dc443f0170aa51045de2e4d6a9",
+    "Reports/20261008GraphV2/TextureFunctions2/Summary.json": "29231ca06ad39ed8f2561d8f113d057a3ee5c78d1da7fea9e7174e537432c04c",
+    "Reports/20261008GraphUpgrade/TextureVisual1/Summary.json": "5d04c115dce761d7e42e1d6c3b8dbbf781d2694b2f4ff3896e3407c3eaf283dd",
+    "Reports/20261009UsableEditor/TextureBpRuntime1/Summary.json": "8c0f486101653dff00182d9bd80b4bf1cc9cee3ef7048713b14551e01f6a875a",
+    "Reports/20261009UsableEditor/TextureFunctionExpansion2/WorldAlignedTexture.json": "e8dfb1e5f4d666b508b1c81411a6ea556147aa6a9368d60dd7fb1791e6bb7a46",
+    "Reports/20261008GraphV2/TextureFunctions2/WorldTextureImport.json": "3bb9b5e9d336cf8a60a5e8245d1cdcfd9b48b4f2c0281f73df9cf99c97b35c59",
+    "Reports/20261008GraphV2/TextureFunctions2/WorldTextureReopen.json": "cc0e2df34431de8a8d59e63fff9983a198f2448a1cd0a65c2963ed36f881a09b",
+    "Reports/20261008GraphV2/TextureFunctions2/WorldParameterImport.json": "e12c9bbac2a50e11d89245edd78738f0bf52a277e16cf643d54a4565cc8277e5",
+    "Reports/20261008GraphV2/TextureFunctions2/WorldParameterReopen.json": "bd08c626645d3c3e089cd032061090f787d0dc35439fff220d5a40c2193870ec",
+    "Reports/20261008GraphV2/TextureFunctions2/WorldShuffledImport.json": "813bc23e956c502e4625e87697a73a6b299ea6616a9738b0ae8f8ae184f33516",
+    "Reports/20261008GraphV2/TextureFunctions2/WorldShuffledReopen.json": "6a2a0ff95ddead59cf4bcd5bca75b3c43aa3235b7cc416ccd87a856d89ff8f30",
+    "Reports/20261008GraphV2/TextureFunctions2/RotatingTextureImport.json": "b4d6fe15d6ce3304c4d108d9b58ce26f9507320497bddb2b4816b4383ae90578",
+    "Reports/20261008GraphV2/TextureFunctions2/RotatingTextureReopen.json": "1182a189eb9bf1358f61bc17cfe850dabd2a52f7f190e4da701f000060e1aa1d",
+    "Reports/20261008GraphV2/TextureFunctions2/RadialMaskImport.json": "f48ac3a05e34f260569fa4057d5846d8176f56306f4c3413541c42d0166e4686",
+    "Reports/20261008GraphV2/TextureFunctions2/RadialMaskReopen.json": "a454169b4276a921434ac9bfe49a8e63646fe67f1faba8fbb7e59066abd3206b",
+    "Reports/20261008GraphV2/TextureFunctions2/RadialChangedImport.json": "333bb06ea149aebb2d58516689d700f2da96f92548687cc409414810d93f08cc",
+    "Reports/20261008GraphV2/TextureFunctions2/RadialChangedReopen.json": "963657d20f5b65496f6e5cb6a3f800672114787c89a7b7289bd089546199503c",
+    "Reports/20261008GraphV2/TextureFunctions2/StepBandsImport.json": "33aae305f69b7a2bd4b88009e5cc8dad51dbf323c2bff778a8a0ce6376abb147",
+    "Reports/20261008GraphV2/TextureFunctions2/StepBandsReopen.json": "80bbfee3b6bafd6795446ae0087e3e2d8ec53c864047f3ffcda982bc0d62af46",
+    "Reports/20261008GraphUpgrade/TextureVisual1/VisualCheck.json.TimeA.png": "fd57ce8953c5ed569e31dddca5a1a423e2a4feec5c3e93cbc5d8ef61dc4a230f",
+    "Reports/20261008GraphUpgrade/TextureVisual1/VisualCheck.json.TimeB.png": "71ca584b294500567f2ac535f2fa9d8691c6d0f7e7bed1d2e4c8f09092d10eb9",
+    "Reports/20261008GraphUpgrade/TextureVisual1/VisualCheck.json.Parameters.png": "604e4540837db10d2f17f2880cdf27ab6c22ac84693d2261169f114ee8dc67f8"
+  },
+  "visualInspection": {
+    "reviewedFrames": [
+      "TimeA",
+      "TimeB",
+      "Parameters"
+    ],
+    "finding": "Visible cyan texture rotation between time frames and orange tint after parameters; test grid, not final art quality"
+  },
+  "limitations": [
+    "Original TextureFunctions1 failure remains preserved; fixture status corrected to contractual cleanupRequired with stronger no-save assertions.",
+    "Raw discovery catalog remains experimental; verified here means only linked representative graph checks.",
+    "WorldAlignedTexture direct asset hash fixed; nested dependencies not recursively locked.",
+    "No new real UI, external AI output, packaging, or root/RC1 deployment for Build38."
+  ]
+}

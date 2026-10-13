@@ -1,0 +1,193 @@
+{
+  "reportVersion": "ResultContractDraft1",
+  "mode": "Catalog",
+  "engine": "5.3.2-29314046+++UE5+Release-5.3",
+  "adapter": "NodeForge-UE532-Minimal-1",
+  "sessionId": "BA58F95D4364CA5C35111BA9883726B1",
+  "pid": 101356,
+  "project": "X:/NodeForge/DevProject/NodeForgeDev.uproject",
+  "timeUtc": "2026-10-08T13:18:37.937Z",
+  "checks": {
+    "validation": {
+      "status": "notRun"
+    },
+    "build": {
+      "status": "notRun"
+    },
+    "initialReadback": {
+      "status": "notRun"
+    },
+    "compile": {
+      "status": "notRun"
+    },
+    "finalReadback": {
+      "status": "notRun"
+    },
+    "publish": {
+      "status": "notRun"
+    },
+    "save": {
+      "status": "notRun"
+    },
+    "persistence": {
+      "status": "notRun"
+    },
+    "runtime": {
+      "status": "notRun"
+    }
+  },
+  "requestOutcome": "notBuilt",
+  "overallStatus": "succeeded",
+  "catalogDigest": "b0e510f2affbf6dd59e60bd60fc42c728cfcbf90ef35cfab82f09f2b2f1817d6",
+  "catalog": {
+    "engine": "5.3.2-29314046+++UE5+Release-5.3",
+    "adapter": "NodeForge-UE532-Minimal-1",
+    "evidenceLevel": "constructible: actual temporary UE instances; graph verification is reported separately",
+    "beginPlay": {
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "pins": [
+        {
+          "name": "OutputDelegate",
+          "direction": "output",
+          "category": "delegate",
+          "subcategory": "None",
+          "subtype": "None",
+          "hidden": false
+        },
+        {
+          "name": "then",
+          "direction": "output",
+          "category": "exec",
+          "subcategory": "None",
+          "subtype": "None",
+          "hidden": false
+        }
+      ]
+    },
+    "printString": {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "pins": [
+        {
+          "name": "execute",
+          "direction": "input",
+          "category": "exec",
+          "subcategory": "None",
+          "subtype": "None",
+          "hidden": false
+        },
+        {
+          "name": "then",
+          "direction": "output",
+          "category": "exec",
+          "subcategory": "None",
+          "subtype": "None",
+          "hidden": false
+        },
+        {
+          "name": "self",
+          "direction": "input",
+          "category": "object",
+          "subcategory": "None",
+          "subtype": "/Script/Engine.KismetSystemLibrary",
+          "hidden": true
+        },
+        {
+          "name": "WorldContextObject",
+          "direction": "input",
+          "category": "object",
+          "subcategory": "None",
+          "subtype": "/Script/CoreUObject.Object",
+          "hidden": true
+        },
+        {
+          "name": "InString",
+          "direction": "input",
+          "category": "string",
+          "subcategory": "None",
+          "subtype": "None",
+          "hidden": false
+        },
+        {
+          "name": "bPrintToScreen",
+          "direction": "input",
+          "category": "bool",
+          "subcategory": "None",
+          "subtype": "None",
+          "hidden": false
+        },
+        {
+          "name": "bPrintToLog",
+          "direction": "input",
+          "category": "bool",
+          "subcategory": "None",
+          "subtype": "None",
+          "hidden": false
+        },
+        {
+          "name": "TextColor",
+          "direction": "input",
+          "category": "struct",
+          "subcategory": "None",
+          "subtype": "/Script/CoreUObject.LinearColor",
+          "hidden": false
+        },
+        {
+          "name": "Duration",
+          "direction": "input",
+          "category": "real",
+          "subcategory": "float",
+          "subtype": "None",
+          "hidden": false
+        },
+        {
+          "name": "Key",
+          "direction": "input",
+          "category": "name",
+          "subcategory": "None",
+          "subtype": "None",
+          "hidden": false
+        }
+      ]
+    },
+    "constant": {
+      "class": "/Script/Engine.MaterialExpressionConstant",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "None",
+          "mask": 0,
+          "maskR": 0,
+          "maskG": 0,
+          "maskB": 0,
+          "maskA": 0
+        }
+      ]
+    },
+    "multiply": {
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "outputs": [
+        {
+          "name": "None",
+          "mask": 0,
+          "maskR": 0,
+          "maskG": 0,
+          "maskB": 0,
+          "maskA": 0
+        }
+      ]
+    }
+  },
+  "phase": "finished",
+  "nextAction": "Actual instance signatures exported; this is not asset generation or compilation evidence",
+  "residue": {
+    "candidate": "",
+    "target": "",
+    "ownedObject": "None",
+    "diskState": "notWritten",
+    "cleanup": "noneRequired"
+  }
+}

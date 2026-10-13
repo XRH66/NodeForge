@@ -1,0 +1,126 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "scope": "Actual native expression/function composition; experimental-to-verified representative cases, strict rejections and one native compile-negative; no fixed graph recipes",
+  "cases": [
+    {
+      "name": "WorldTexture",
+      "input": "WorldTexture.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialTextureFunction"
+    },
+    {
+      "name": "WorldParameter",
+      "input": "WorldParameter.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialTextureFunction"
+    },
+    {
+      "name": "WorldShuffled",
+      "input": "WorldShuffled.json",
+      "expected": "succeeded",
+      "category": "orderIndependent",
+      "compareLayoutWith": "WorldParameter"
+    },
+    {
+      "name": "RotatingTexture",
+      "input": "RotatingTexture.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialTextureFunction"
+    },
+    {
+      "name": "RadialMask",
+      "input": "RadialMask.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialTextureFunction"
+    },
+    {
+      "name": "RadialChanged",
+      "input": "RadialChanged.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialTextureFunction"
+    },
+    {
+      "name": "StepBands",
+      "input": "StepBands.json",
+      "expected": "succeeded",
+      "category": "nativeMaterialTextureFunction"
+    },
+    {
+      "name": "WorldInstance",
+      "input": "WorldInstance.json",
+      "expected": "succeeded",
+      "category": "textureObjectParameterOverride",
+      "requires": "WorldParameter",
+      "parentHashFromCase": "WorldParameter"
+    },
+    {
+      "name": "BlueprintFamilyLegacy",
+      "input": "BlueprintFamilyLegacy.json",
+      "expected": "succeeded",
+      "category": "archivedBlueprintFamilyCompatibility",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "ObjectMissingTexture",
+      "input": "ObjectMissingTexture.json",
+      "expected": "rejected",
+      "category": "explicitResourceRequired"
+    },
+    {
+      "name": "ObjectWrongResource",
+      "input": "ObjectWrongResource.json",
+      "expected": "rejected",
+      "category": "resourceType"
+    },
+    {
+      "name": "ObjectWrongSampler",
+      "input": "ObjectWrongSampler.json",
+      "expected": "rejected",
+      "category": "nativeSamplerType"
+    },
+    {
+      "name": "ObjectIgnoredUv",
+      "input": "ObjectIgnoredUv.json",
+      "expected": "rejected",
+      "category": "inheritedPinNotConsumed"
+    },
+    {
+      "name": "RotatorWrongPin",
+      "input": "RotatorWrongPin.json",
+      "expected": "rejected",
+      "category": "exactNativeInput"
+    },
+    {
+      "name": "RadialUnknownProperty",
+      "input": "RadialUnknownProperty.json",
+      "expected": "rejected",
+      "category": "controlledReflection"
+    },
+    {
+      "name": "WorldUnknownFunctionPin",
+      "input": "WorldUnknownFunctionPin.json",
+      "expected": "rejected",
+      "category": "exactBoundFunctionInput"
+    },
+    {
+      "name": "TextureOldRules",
+      "input": "TextureOldRules.json",
+      "expected": "rejected",
+      "category": "oldCatalogCannotGainMaterialFamilies",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "TextureCollision",
+      "input": "TextureCollision.json",
+      "expected": "rejected",
+      "category": "sameNameProtection",
+      "requires": "WorldTexture"
+    },
+    {
+      "name": "TextureNumericFail",
+      "input": "TextureNumericFail.json",
+      "expected": "cleanupRequired",
+      "category": "nativeCompileFailureNoAssetSave"
+    }
+  ]
+}

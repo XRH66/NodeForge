@@ -1,0 +1,99 @@
+{
+  "cases": [
+    {
+      "case": "CountTrue",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        90,
+        0
+      ],
+      "expectedScale": [
+        2,
+        1,
+        1
+      ],
+      "expectedMessage": "count=5"
+    },
+    {
+      "case": "CountFalse",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ],
+      "expectedMessage": "below threshold"
+    },
+    {
+      "case": "CountShuffled",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        90,
+        0
+      ],
+      "expectedScale": [
+        2,
+        1,
+        1
+      ],
+      "expectedMessage": "count=5"
+    },
+    {
+      "case": "TextKnown",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedMessage": "NodeForge9"
+    },
+    {
+      "case": "TextAbsent",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedMessage": "missing7"
+    },
+    {
+      "case": "VectorBasis",
+      "expectedLocation": [
+        1,
+        2.23606797749979,
+        7
+      ],
+      "expectedMessage": "Basis computed"
+    },
+    {
+      "case": "ScalarSelection",
+      "expectedLocation": [
+        1,
+        0,
+        0
+      ],
+      "expectedMessage": "Scalar selection complete"
+    }
+  ],
+  "scope": "Saved map independent PIE; logical branches, text and native Actor location/rotation/scale assertions; rotation array is Pitch/Yaw/Roll"
+}
+

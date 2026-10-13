@@ -1,0 +1,143 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphSwitchTooMany",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFSwitchTooMany",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Sequence",
+      "class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+      "properties": {
+        "outputCount": 2
+      }
+    },
+    {
+      "id": "Select",
+      "class": "/Script/BlueprintGraph.K2Node_SwitchInteger",
+      "properties": {
+        "startIndex": 0,
+        "caseCount": 9,
+        "hasDefault": true
+      },
+      "defaults": {
+        "Selection": 1
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "InString": "Switch checked",
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    },
+    {
+      "id": "Move0",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          10,
+          0,
+          0
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Move1",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          20,
+          0,
+          0
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Move2",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          100,
+          0,
+          0
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Sequence",
+      "input": "execute"
+    },
+    {
+      "from": "Sequence",
+      "output": "then_0",
+      "to": "Select",
+      "input": "execute"
+    },
+    {
+      "from": "Sequence",
+      "output": "then_1",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "Select",
+      "output": "0",
+      "to": "Move0",
+      "input": "execute"
+    },
+    {
+      "from": "Select",
+      "output": "1",
+      "to": "Move1",
+      "input": "execute"
+    },
+    {
+      "from": "Select",
+      "output": "Default",
+      "to": "Move2",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}

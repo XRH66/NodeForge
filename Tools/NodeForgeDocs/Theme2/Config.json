@@ -1,0 +1,275 @@
+{
+  "themeVersion": "2.0.1",
+  "defaultTheme": "dark",
+  "siteTitle": "NodeForge 文档",
+  "brand": {
+    "dark": "Brand/WordmarkDark.svg",
+    "light": "Brand/WordmarkLight.svg",
+    "icon": "Brand/BrandIcon.png"
+  },
+  "groups": [
+    {
+      "id": "User",
+      "label": "使用手册",
+      "shortLabel": "使用手册",
+      "home": "UserReadme",
+      "eyebrow": "使用指南",
+      "menu": [
+        [
+          "UserReadme",
+          "阅读首页"
+        ],
+        [
+          "UserOverview",
+          "插件介绍"
+        ],
+        [
+          "UserGettingStarted",
+          "开始使用"
+        ],
+        [
+          "UserManualWorkflows",
+          "手动操作"
+        ],
+        [
+          "UserAiWorkflows",
+          "使用 AI"
+        ],
+        [
+          "UserInterfaceGuide",
+          "界面与按钮"
+        ],
+        [
+          "UserTroubleshooting",
+          "问题处理"
+        ]
+      ]
+    },
+    {
+      "id": "Ai",
+      "label": "AI 调用手册",
+      "shortLabel": "AI 调用",
+      "home": "AiReadme",
+      "eyebrow": "AI 工作流",
+      "menu": [
+        [
+          "AiReadme",
+          "阅读首页"
+        ],
+        [
+          "AiQuickStart",
+          "调用流程"
+        ],
+        [
+          "AiPreparation",
+          "工程与身份"
+        ],
+        [
+          "AiTaskRecipes",
+          "任务与调用例子"
+        ],
+        [
+          "AiApiReference",
+          "API 参考"
+        ],
+        [
+          "AiResultsAndRecovery",
+          "结果与恢复"
+        ],
+        [
+          "FeatureMap",
+          "功能与限制"
+        ],
+        [
+          "Examples",
+          "JSON 样例"
+        ],
+        [
+          "MaterialNodeIndex",
+          "材质节点"
+        ],
+        [
+          "BlueprintNodeIndex",
+          "蓝图节点"
+        ]
+      ]
+    },
+    {
+      "id": "Developer",
+      "label": "原理与开发",
+      "shortLabel": "原理与开发",
+      "home": "DeveloperReadme",
+      "eyebrow": "开发指南",
+      "menu": [
+        [
+          "DeveloperReadme",
+          "阅读首页"
+        ],
+        [
+          "DeveloperArchitecture",
+          "原理与架构"
+        ],
+        [
+          "DeveloperSourceMap",
+          "源码地图"
+        ],
+        [
+          "DeveloperNodeExtension",
+          "节点与特殊语义"
+        ],
+        [
+          "DeveloperOperationExtension",
+          "业务扩展"
+        ],
+        [
+          "DeveloperTestingAndEvidence",
+          "验证与证据"
+        ],
+        [
+          "DeveloperVersionRelease",
+          "版本发布"
+        ],
+        [
+          "DeveloperRecoveryAndHandoff",
+          "恢复与交接"
+        ]
+      ]
+    },
+    {
+      "id": "Version",
+      "label": "版本资料",
+      "shortLabel": "版本说明",
+      "home": "VersionReadme",
+      "eyebrow": "版本资料",
+      "menu": [
+        [
+          "VersionReadme",
+          "版本身份"
+        ],
+        [
+          "VersionReleaseNotes",
+          "发行说明"
+        ],
+        [
+          "VersionCompatibilityAndMigration",
+          "兼容、迁移与回退"
+        ],
+        [
+          "VersionKnownIssues",
+          "已知限制"
+        ]
+      ]
+    },
+    {
+      "id": "Reference",
+      "label": "公共参考",
+      "shortLabel": "公共参考",
+      "home": "FeatureMap",
+      "eyebrow": "参考资料",
+      "topNav": false,
+      "menu": [
+        [
+          "FeatureMap",
+          "功能矩阵"
+        ],
+        [
+          "GraphAuthoring",
+          "JSON 构图规则"
+        ],
+        [
+          "Material",
+          "材质"
+        ],
+        [
+          "Blueprint",
+          "Actor 蓝图"
+        ],
+        [
+          "MaterialInstance",
+          "普通材质实例"
+        ],
+        [
+          "MaterialNodeIndex",
+          "材质节点"
+        ],
+        [
+          "BlueprintNodeIndex",
+          "蓝图节点"
+        ],
+        [
+          "Examples",
+          "JSON 样例"
+        ],
+        [
+          "SourcesAndLicenses",
+          "来源与许可"
+        ]
+      ]
+    }
+  ],
+  "home": {
+    "headline": [
+      "让想法",
+      "在节点中成形"
+    ],
+    "description": "用结构化描述，构建可继续编辑的 UE 材质与 Actor 蓝图。从第一次操作，到 AI 调用与开发扩展，所需指南都在这里。",
+    "primary": {
+      "label": "开始使用",
+      "pageId": "UserGettingStarted"
+    },
+    "secondary": {
+      "label": "使用 AI 构图",
+      "pageId": "UserAiWorkflows"
+    },
+    "routes": [
+      {
+        "pageId": "UserReadme",
+        "title": "开始使用",
+        "description": "了解插件、准备工程，完成第一次创建。按步骤上手，让结果清楚可查。",
+        "action": "阅读使用手册",
+        "icon": "book"
+      },
+      {
+        "pageId": "AiReadme",
+        "title": "与 AI 协作",
+        "description": "配置 MCP，了解调用流程与准备条件，让 AI 在明确的支持范围内工作。",
+        "action": "进入 AI 调用手册",
+        "icon": "nodes"
+      },
+      {
+        "pageId": "DeveloperReadme",
+        "title": "理解与扩展",
+        "description": "从架构到源码，理解已有实现，找到节点、业务与文档的扩展入口。",
+        "action": "探索原理与开发",
+        "icon": "layers"
+      },
+      {
+        "pageId": "VersionReadme",
+        "title": "版本与边界",
+        "description": "确认版本身份，查阅变更、兼容条件和已知限制，让每次使用有据可循。",
+        "action": "查看版本资料",
+        "icon": "list"
+      }
+    ],
+    "references": [
+      {
+        "pageId": "FeatureMap",
+        "title": "功能与限制",
+        "description": "先确认支持范围与使用边界",
+        "icon": "compass"
+      },
+      {
+        "pageId": "MaterialNodeIndex",
+        "title": "材质节点索引",
+        "description": "查节点说明、参数和适用条件",
+        "icon": "nodes"
+      },
+      {
+        "pageId": "BlueprintNodeIndex",
+        "title": "蓝图节点索引",
+        "description": "查真实签名与节点能力",
+        "icon": "layers"
+      }
+    ]
+  }
+}

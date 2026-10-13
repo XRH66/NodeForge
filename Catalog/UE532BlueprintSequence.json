@@ -1,0 +1,6566 @@
+{
+	"reportVersion": "NodeForgeActualCatalog2",
+	"mode": "GraphCatalog",
+	"engine": "5.3.2-29314046+++UE5+Release-5.3",
+	"adapter": "NodeForge-UE532-Graph-2",
+	"sessionId": "F1D1B6D744F759B59C1A3CB45ED2B6F7",
+	"pid": 83788,
+	"capabilityRevision": "Graph2: explicit node/property/default/edge construction; v1 remains separately validated",
+	"project": "X:/NodeForge/ValidationProject/RegressionRuns/SequenceCatalog1/SequenceCatalog1.uproject",
+	"timeUtc": "2026-10-09T05:57:51.526Z",
+	"catalog":
+	{
+		"engine": "5.3.2-29314046+++UE5+Release-5.3",
+		"adapter": "NodeForge-UE532-Graph-2",
+		"material":
+		{
+			"adapter": "NodeForgeMaterialGraph2",
+			"inputIdentity": "exact native GetInputName; output is canonical numeric string index",
+			"verification": "catalog construction is not graph compilation/runtime verification; consult per-asset reports",
+			"defaultPolicy": "omitted allowed properties use recorded native defaults; defaults map only unique numeric OverridingInputProperty; no inserted nodes",
+			"reachabilityPolicy": "every declared expression must reach an active material output; disconnected expressions are rejected, never deleted",
+			"texturePolicy": "existing Texture2D under /Engine/ or /Game/NodeForgeTests/ only; nonvirtual; native sampler inferred if omitted and read back",
+			"compatibleCatalogDigest": "0d786af7d63e1ea209691493e9b336f50e61eaeb45ef34eeec12ff01b22a884f",
+			"compatibilityPolicy": "archived digest supports only original 24 material classes and unchanged blueprint signatures; new families require current digest; no input rewriting",
+			"maximumNodes": 256,
+			"maximumEdges": 1024,
+			"nodes": [
+				{
+					"class": "/Script/Engine.MaterialExpressionAbs",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Input",
+							"nativeType": 15,
+							"required": true
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionAdd",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "A",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstA",
+							"defaultValue": 0
+						},
+						{
+							"name": "B",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstB",
+							"defaultValue": 1
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"ConstA":
+						{
+							"nativeType": "float",
+							"default": 0
+						},
+						"ConstB":
+						{
+							"nativeType": "float",
+							"default": 1
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionAppendVector",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "A",
+							"nativeType": 15,
+							"required": true
+						},
+						{
+							"name": "B",
+							"nativeType": 15,
+							"required": true
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionClamp",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Input",
+							"nativeType": 15,
+							"required": true
+						},
+						{
+							"name": "Min",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "MinDefault",
+							"defaultValue": 0
+						},
+						{
+							"name": "Max",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "MaxDefault",
+							"defaultValue": 1
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"MaxDefault":
+						{
+							"nativeType": "float",
+							"default": 1
+						},
+						"MinDefault":
+						{
+							"nativeType": "float",
+							"default": 0
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionComponentMask",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Input",
+							"nativeType": 15,
+							"required": true
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"A":
+						{
+							"nativeType": "uint8",
+							"default": false
+						},
+						"B":
+						{
+							"nativeType": "uint8",
+							"default": false
+						},
+						"G":
+						{
+							"nativeType": "uint8",
+							"default": true
+						},
+						"R":
+						{
+							"nativeType": "uint8",
+							"default": true
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionConstant",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"R":
+						{
+							"nativeType": "float",
+							"default": 0
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionConstant2Vector",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 2,
+							"mask": 1,
+							"maskR": 1,
+							"maskG": 1,
+							"maskB": 0,
+							"maskA": 0
+						},
+						{
+							"index": "1",
+							"name": "None",
+							"nativeType": 2,
+							"mask": 1,
+							"maskR": 1,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						},
+						{
+							"index": "2",
+							"name": "None",
+							"nativeType": 2,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 1,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"G":
+						{
+							"nativeType": "float",
+							"default": 0
+						},
+						"R":
+						{
+							"nativeType": "float",
+							"default": 0
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionConstant3Vector",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 4,
+							"mask": 1,
+							"maskR": 1,
+							"maskG": 1,
+							"maskB": 1,
+							"maskA": 0
+						},
+						{
+							"index": "1",
+							"name": "None",
+							"nativeType": 4,
+							"mask": 1,
+							"maskR": 1,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						},
+						{
+							"index": "2",
+							"name": "None",
+							"nativeType": 4,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 1,
+							"maskB": 0,
+							"maskA": 0
+						},
+						{
+							"index": "3",
+							"name": "None",
+							"nativeType": 4,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 1,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"Constant":
+						{
+							"nativeType": "FLinearColor",
+							"default": [ 0, 0, 0, 0 ]
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionConstant4Vector",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 8,
+							"mask": 1,
+							"maskR": 1,
+							"maskG": 1,
+							"maskB": 1,
+							"maskA": 1
+						},
+						{
+							"index": "1",
+							"name": "None",
+							"nativeType": 8,
+							"mask": 1,
+							"maskR": 1,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						},
+						{
+							"index": "2",
+							"name": "None",
+							"nativeType": 8,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 1,
+							"maskB": 0,
+							"maskA": 0
+						},
+						{
+							"index": "3",
+							"name": "None",
+							"nativeType": 8,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 1,
+							"maskA": 0
+						},
+						{
+							"index": "4",
+							"name": "None",
+							"nativeType": 8,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 1
+						}
+					],
+					"properties":
+					{
+						"Constant":
+						{
+							"nativeType": "FLinearColor",
+							"default": [ 0, 0, 0, 0 ]
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionCosine",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Input",
+							"nativeType": 15,
+							"required": true
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"Period":
+						{
+							"nativeType": "float",
+							"default": 1
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionCrossProduct",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "A",
+							"nativeType": 15,
+							"required": true
+						},
+						{
+							"name": "B",
+							"nativeType": 15,
+							"required": true
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionDistance",
+					"discovered": true,
+					"constructible": true,
+					"family": "DistanceAndThreshold",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "A",
+							"nativeType": 15,
+							"required": true
+						},
+						{
+							"name": "B",
+							"nativeType": 15,
+							"required": true
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionDivide",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "A",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstA",
+							"defaultValue": 1
+						},
+						{
+							"name": "B",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstB",
+							"defaultValue": 2
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"ConstA":
+						{
+							"nativeType": "float",
+							"default": 1
+						},
+						"ConstB":
+						{
+							"nativeType": "float",
+							"default": 2
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionDotProduct",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "A",
+							"nativeType": 15,
+							"required": true
+						},
+						{
+							"name": "B",
+							"nativeType": 15,
+							"required": true
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionFloor",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Input",
+							"nativeType": 15,
+							"required": true
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionFrac",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Input",
+							"nativeType": 15,
+							"required": true
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionFresnel",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "ExponentIn",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "Exponent",
+							"defaultValue": 5
+						},
+						{
+							"name": "BaseReflectFractionIn",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "BaseReflectFraction",
+							"defaultValue": 0.039999999105930328
+						},
+						{
+							"name": "Normal",
+							"nativeType": 15,
+							"required": false
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"BaseReflectFraction":
+						{
+							"nativeType": "float",
+							"default": 0.039999999105930328
+						},
+						"Exponent":
+						{
+							"nativeType": "float",
+							"default": 5
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionLinearInterpolate",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "A",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstA",
+							"defaultValue": 0
+						},
+						{
+							"name": "B",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstB",
+							"defaultValue": 1
+						},
+						{
+							"name": "Alpha",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstAlpha",
+							"defaultValue": 0.5
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"ConstA":
+						{
+							"nativeType": "float",
+							"default": 0
+						},
+						"ConstAlpha":
+						{
+							"nativeType": "float",
+							"default": 0.5
+						},
+						"ConstB":
+						{
+							"nativeType": "float",
+							"default": 1
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionMaterialFunctionCall",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"signaturePolicy": "dynamic: MaterialFunction inspection binds saved actual function and exports native names/indices/GUIDs; unbound inputs/outputs below are not usable signatures",
+					"configuration": "exactly MaterialFunction canonical path and FunctionAssetSha256; no function instances/layers; no per-call defaults",
+					"inputs": [],
+					"outputs": [],
+					"properties":
+					{
+						"FunctionAssetSha256":
+						{
+							"nativeType": "adapter-owned direct asset byte SHA256 guard",
+							"required": true
+						},
+						"MaterialFunction":
+						{
+							"nativeType": "saved UMaterialFunction reference bound by SetMaterialFunction",
+							"required": true
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionMultiply",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "A",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstA",
+							"defaultValue": 0
+						},
+						{
+							"name": "B",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstB",
+							"defaultValue": 1
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"ConstA":
+						{
+							"nativeType": "float",
+							"default": 0
+						},
+						"ConstB":
+						{
+							"nativeType": "float",
+							"default": 1
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionNormalize",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "VectorInput",
+							"nativeType": 15,
+							"required": true
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionOneMinus",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Input",
+							"nativeType": 15,
+							"required": true
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionPanner",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Coordinate",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstCoordinate",
+							"defaultValue": 0
+						},
+						{
+							"name": "Time",
+							"nativeType": 15,
+							"required": false
+						},
+						{
+							"name": "Speed",
+							"nativeType": 15,
+							"required": false
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"bFractionalPart":
+						{
+							"nativeType": "bool",
+							"default": false
+						},
+						"ConstCoordinate":
+						{
+							"nativeType": "uint32",
+							"default": 0
+						},
+						"SpeedX":
+						{
+							"nativeType": "float",
+							"default": 0
+						},
+						"SpeedY":
+						{
+							"nativeType": "float",
+							"default": 0
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionPower",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Base",
+							"nativeType": 15,
+							"required": true
+						},
+						{
+							"name": "Exponent",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstExponent",
+							"defaultValue": 2
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"ConstExponent":
+						{
+							"nativeType": "float",
+							"default": 2
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionRotator",
+					"discovered": true,
+					"constructible": true,
+					"family": "UvTransform",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Coordinate",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstCoordinate",
+							"defaultValue": 0
+						},
+						{
+							"name": "Time",
+							"nativeType": 15,
+							"required": false
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"CenterX":
+						{
+							"nativeType": "float",
+							"default": 0.5
+						},
+						"CenterY":
+						{
+							"nativeType": "float",
+							"default": 0.5
+						},
+						"ConstCoordinate":
+						{
+							"nativeType": "uint32",
+							"default": 0
+						},
+						"Speed":
+						{
+							"nativeType": "float",
+							"default": 0.25
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionSaturate",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Input",
+							"nativeType": 15,
+							"required": true
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionScalarParameter",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"DefaultValue":
+						{
+							"nativeType": "float",
+							"default": 0
+						},
+						"ParameterName":
+						{
+							"nativeType": "FName",
+							"default": "Param"
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionSine",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Input",
+							"nativeType": 15,
+							"required": true
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"Period":
+						{
+							"nativeType": "float",
+							"default": 1
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionSmoothStep",
+					"discovered": true,
+					"constructible": true,
+					"family": "DistanceAndThreshold",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Min",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstMin",
+							"defaultValue": 0
+						},
+						{
+							"name": "Max",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstMax",
+							"defaultValue": 1
+						},
+						{
+							"name": "Value",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstValue",
+							"defaultValue": 0
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"ConstMax":
+						{
+							"nativeType": "float",
+							"default": 1
+						},
+						"ConstMin":
+						{
+							"nativeType": "float",
+							"default": 0
+						},
+						"ConstValue":
+						{
+							"nativeType": "float",
+							"default": 0
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionStep",
+					"discovered": true,
+					"constructible": true,
+					"family": "DistanceAndThreshold",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Y",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstY",
+							"defaultValue": 0
+						},
+						{
+							"name": "X",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstX",
+							"defaultValue": 1
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"ConstX":
+						{
+							"nativeType": "float",
+							"default": 1
+						},
+						"ConstY":
+						{
+							"nativeType": "float",
+							"default": 0
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionSubtract",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "A",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstA",
+							"defaultValue": 1
+						},
+						{
+							"name": "B",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstB",
+							"defaultValue": 1
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"ConstA":
+						{
+							"nativeType": "float",
+							"default": 1
+						},
+						"ConstB":
+						{
+							"nativeType": "float",
+							"default": 1
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionTextureCoordinate",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"CoordinateIndex":
+						{
+							"nativeType": "int32",
+							"default": 0
+						},
+						"UnMirrorU":
+						{
+							"nativeType": "uint8",
+							"default": false
+						},
+						"UnMirrorV":
+						{
+							"nativeType": "uint8",
+							"default": false
+						},
+						"UTiling":
+						{
+							"nativeType": "float",
+							"default": 1
+						},
+						"VTiling":
+						{
+							"nativeType": "float",
+							"default": 1
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionTextureObject",
+					"discovered": true,
+					"constructible": true,
+					"family": "TextureObjectComposition",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 16,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"SamplerType":
+						{
+							"nativeType": "TEnumAsByte<EMaterialSamplerType>",
+							"default": "SAMPLERTYPE_Color",
+							"enumNames": [
+								"SAMPLERTYPE_Color",
+								"SAMPLERTYPE_Grayscale",
+								"SAMPLERTYPE_Alpha",
+								"SAMPLERTYPE_Normal",
+								"SAMPLERTYPE_Masks",
+								"SAMPLERTYPE_DistanceFieldFont",
+								"SAMPLERTYPE_LinearColor",
+								"SAMPLERTYPE_LinearGrayscale",
+								"SAMPLERTYPE_Data",
+								"SAMPLERTYPE_External"
+							]
+						},
+						"Texture":
+						{
+							"nativeType": "TObjectPtr<UTexture>",
+							"default": "/Engine/EngineResources/DefaultTexture.DefaultTexture"
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionTextureObjectParameter",
+					"discovered": true,
+					"constructible": true,
+					"family": "TextureObjectComposition",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Coordinates",
+							"connectible": false,
+							"adapterLimitation": "inherited native sample input is not consumed by TextureObjectParameter::Compile; connections rejected",
+							"nativeType": 15,
+							"required": false
+						},
+						{
+							"name": "Apply View MipBias",
+							"connectible": false,
+							"adapterLimitation": "inherited native sample input is not consumed by TextureObjectParameter::Compile; connections rejected",
+							"nativeType": 512,
+							"required": false
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 12784,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"ParameterName":
+						{
+							"nativeType": "FName",
+							"default": "Param"
+						},
+						"SamplerType":
+						{
+							"nativeType": "TEnumAsByte<EMaterialSamplerType>",
+							"default": "SAMPLERTYPE_Color",
+							"enumNames": [
+								"SAMPLERTYPE_Color",
+								"SAMPLERTYPE_Grayscale",
+								"SAMPLERTYPE_Alpha",
+								"SAMPLERTYPE_Normal",
+								"SAMPLERTYPE_Masks",
+								"SAMPLERTYPE_DistanceFieldFont",
+								"SAMPLERTYPE_LinearColor",
+								"SAMPLERTYPE_LinearGrayscale",
+								"SAMPLERTYPE_Data",
+								"SAMPLERTYPE_External"
+							]
+						},
+						"Texture":
+						{
+							"nativeType": "TObjectPtr<UTexture>",
+							"default": "/Engine/EngineResources/DefaultTexture.DefaultTexture"
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionTextureSample",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Coordinates",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstCoordinate",
+							"defaultValue": 0
+						},
+						{
+							"name": "TextureObject",
+							"nativeType": 12784,
+							"required": false
+						},
+						{
+							"name": "Apply View MipBias",
+							"nativeType": 512,
+							"required": false
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "RGB",
+							"nativeType": 4,
+							"mask": 1,
+							"maskR": 1,
+							"maskG": 1,
+							"maskB": 1,
+							"maskA": 0
+						},
+						{
+							"index": "1",
+							"name": "R",
+							"nativeType": 15,
+							"mask": 1,
+							"maskR": 1,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						},
+						{
+							"index": "2",
+							"name": "G",
+							"nativeType": 15,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 1,
+							"maskB": 0,
+							"maskA": 0
+						},
+						{
+							"index": "3",
+							"name": "B",
+							"nativeType": 15,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 1,
+							"maskA": 0
+						},
+						{
+							"index": "4",
+							"name": "A",
+							"nativeType": 15,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 1
+						},
+						{
+							"index": "5",
+							"name": "RGBA",
+							"nativeType": 8,
+							"mask": 1,
+							"maskR": 1,
+							"maskG": 1,
+							"maskB": 1,
+							"maskA": 1
+						}
+					],
+					"properties":
+					{
+						"ConstCoordinate":
+						{
+							"nativeType": "uint8",
+							"default": 0
+						},
+						"SamplerType":
+						{
+							"nativeType": "TEnumAsByte<EMaterialSamplerType>",
+							"default": "SAMPLERTYPE_Color",
+							"enumNames": [
+								"SAMPLERTYPE_Color",
+								"SAMPLERTYPE_Grayscale",
+								"SAMPLERTYPE_Alpha",
+								"SAMPLERTYPE_Normal",
+								"SAMPLERTYPE_Masks",
+								"SAMPLERTYPE_DistanceFieldFont",
+								"SAMPLERTYPE_LinearColor",
+								"SAMPLERTYPE_LinearGrayscale",
+								"SAMPLERTYPE_Data",
+								"SAMPLERTYPE_External"
+							]
+						},
+						"Texture":
+						{
+							"nativeType": "TObjectPtr<UTexture>",
+							"default": null
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionTextureSampleParameter2D",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [
+						{
+							"name": "Coordinates",
+							"nativeType": 15,
+							"required": false,
+							"defaultProperty": "ConstCoordinate",
+							"defaultValue": 0
+						},
+						{
+							"name": "Apply View MipBias",
+							"nativeType": 512,
+							"required": false
+						}
+					],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "RGB",
+							"nativeType": 4,
+							"mask": 1,
+							"maskR": 1,
+							"maskG": 1,
+							"maskB": 1,
+							"maskA": 0
+						},
+						{
+							"index": "1",
+							"name": "R",
+							"nativeType": 15,
+							"mask": 1,
+							"maskR": 1,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						},
+						{
+							"index": "2",
+							"name": "G",
+							"nativeType": 15,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 1,
+							"maskB": 0,
+							"maskA": 0
+						},
+						{
+							"index": "3",
+							"name": "B",
+							"nativeType": 15,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 1,
+							"maskA": 0
+						},
+						{
+							"index": "4",
+							"name": "A",
+							"nativeType": 15,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 1
+						},
+						{
+							"index": "5",
+							"name": "RGBA",
+							"nativeType": 8,
+							"mask": 1,
+							"maskR": 1,
+							"maskG": 1,
+							"maskB": 1,
+							"maskA": 1
+						}
+					],
+					"properties":
+					{
+						"ConstCoordinate":
+						{
+							"nativeType": "uint8",
+							"default": 0
+						},
+						"ParameterName":
+						{
+							"nativeType": "FName",
+							"default": "Param"
+						},
+						"SamplerType":
+						{
+							"nativeType": "TEnumAsByte<EMaterialSamplerType>",
+							"default": "SAMPLERTYPE_Color",
+							"enumNames": [
+								"SAMPLERTYPE_Color",
+								"SAMPLERTYPE_Grayscale",
+								"SAMPLERTYPE_Alpha",
+								"SAMPLERTYPE_Normal",
+								"SAMPLERTYPE_Masks",
+								"SAMPLERTYPE_DistanceFieldFont",
+								"SAMPLERTYPE_LinearColor",
+								"SAMPLERTYPE_LinearGrayscale",
+								"SAMPLERTYPE_Data",
+								"SAMPLERTYPE_External"
+							]
+						},
+						"Texture":
+						{
+							"nativeType": "TObjectPtr<UTexture>",
+							"default": "/Engine/EngineResources/DefaultTexture.DefaultTexture"
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionTime",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 0,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						}
+					],
+					"properties":
+					{
+						"bIgnorePause":
+						{
+							"nativeType": "uint8",
+							"default": false
+						},
+						"bOverride_Period":
+						{
+							"nativeType": "uint8",
+							"default": false
+						},
+						"Period":
+						{
+							"nativeType": "float",
+							"default": 0
+						}
+					}
+				},
+				{
+					"class": "/Script/Engine.MaterialExpressionVectorParameter",
+					"discovered": true,
+					"constructible": true,
+					"family": "ExistingMaterialFamilies",
+					"supportState": "experimental",
+					"verified": "notEstablishedByCatalog",
+					"inputs": [],
+					"outputs": [
+						{
+							"index": "0",
+							"name": "None",
+							"nativeType": 4,
+							"mask": 1,
+							"maskR": 1,
+							"maskG": 1,
+							"maskB": 1,
+							"maskA": 0
+						},
+						{
+							"index": "1",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 1,
+							"maskR": 1,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 0
+						},
+						{
+							"index": "2",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 1,
+							"maskB": 0,
+							"maskA": 0
+						},
+						{
+							"index": "3",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 1,
+							"maskA": 0
+						},
+						{
+							"index": "4",
+							"name": "None",
+							"nativeType": 15,
+							"mask": 1,
+							"maskR": 0,
+							"maskG": 0,
+							"maskB": 0,
+							"maskA": 1
+						}
+					],
+					"properties":
+					{
+						"DefaultValue":
+						{
+							"nativeType": "FLinearColor",
+							"default": [ 0, 0, 0, 0 ]
+						},
+						"ParameterName":
+						{
+							"nativeType": "FName",
+							"default": "Param"
+						}
+					}
+				}
+			],
+			"settings":
+			{
+				"domain": "Surface",
+				"blend": "Opaque|Translucent",
+				"shading": "Unlit|DefaultLit",
+				"twoSided": "required boolean",
+				"lighting": "SurfaceForwardShading; explicit when Translucent"
+			},
+			"materialInputs": [
+				"BaseColor",
+				"EmissiveColor",
+				"Metallic",
+				"Normal",
+				"Opacity",
+				"Roughness",
+				"Specular",
+				"WorldPositionOffset"
+			]
+		},
+		"blueprint":
+		{
+			"assetType": "Blueprint",
+			"parentClass": "/Script/Engine.Actor",
+			"discovery": "Native BlueprintActionDatabase plus exact UFunction reflection; not a complete node library",
+			"verification": "Instance signatures collected; compile/runtime evidence is maintained in test reports, not inferred from discovery",
+			"variableTypes": [
+				"bool",
+				"float",
+				"string",
+				"vector",
+				"int",
+				"name"
+			],
+			"memberDefaultRules": "int: integral JSON number in [-2147483648,2147483647], exact compiled int32 readback. name: nonempty string shorter than NAME_SIZE in native FName display spelling; use None for the empty identity; no silent default normalization. No int/name members under earlier catalogs.",
+			"nodes": [
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "Add_DoubleDouble"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "1.000000",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "Add_IntInt"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "IntegerAndScalar",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "1",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "Add_VectorVector"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "VectorAndRotation",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "BooleanAND"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "false",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "BooleanOR"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "IntegerAndScalar",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "false",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "BreakRotator"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "VectorAndRotation",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "InRot",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Rotator",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "Roll",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "float",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "Pitch",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "float",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "Yaw",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "float",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "BreakVector"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "InVec",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "X",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "Y",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "Z",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetStringLibrary",
+						"member": "Concat_StrStr"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetStringLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetStringLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetStringLibrary",
+						"member": "Contains"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "StringAndName",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetStringLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetStringLibrary"
+						},
+						{
+							"name": "SearchIn",
+							"direction": "input",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Substring",
+							"direction": "input",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "bUseCase",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "bSearchFromEnd",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "false",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetStringLibrary",
+						"member": "Conv_BoolToString"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "StringAndName",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetStringLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetStringLibrary"
+						},
+						{
+							"name": "InBool",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetStringLibrary",
+						"member": "Conv_DoubleToString"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetStringLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetStringLibrary"
+						},
+						{
+							"name": "InDouble",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "Conv_IntToDouble"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "IntegerAndScalar",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "InInt",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetStringLibrary",
+						"member": "Conv_IntToString"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "StringAndName",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetStringLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetStringLibrary"
+						},
+						{
+							"name": "InInt",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetStringLibrary",
+						"member": "Conv_NameToString"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "StringAndName",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetStringLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetStringLibrary"
+						},
+						{
+							"name": "InName",
+							"direction": "input",
+							"category": "name",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "None",
+							"defaultObject": "",
+							"defaultMaximumLength": 1023
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetStringLibrary",
+						"member": "Conv_RotatorToString"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "StringAndName",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetStringLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetStringLibrary"
+						},
+						{
+							"name": "InRot",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Rotator",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetStringLibrary",
+						"member": "Conv_VectorToString"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetStringLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetStringLibrary"
+						},
+						{
+							"name": "InVec",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "Cross_VectorVector"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "VectorAndRotation",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "Divide_DoubleDouble"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "IntegerAndScalar",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "1.000000",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "Dot_VectorVector"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "VectorAndRotation",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "EqualEqual_IntInt"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "IntegerAndScalar",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "false",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "FClamp"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "IntegerAndScalar",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "Value",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "Min",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "Max",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "1.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.Actor",
+						"member": "GetActorForwardVector"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "SelfActorOrientation",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.Actor",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.Actor",
+						"member": "GetActorRightVector"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "SelfActorOrientation",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.Actor",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.Actor",
+						"member": "GetActorScale3D"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "SelfActorOrientation",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.Actor",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.Actor",
+						"member": "GetActorUpVector"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "SelfActorOrientation",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.Actor",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "Greater_DoubleDouble"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "false",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "GreaterEqual_IntInt"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "IntegerAndScalar",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "false",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.Actor",
+						"member": "K2_GetActorLocation"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.Actor",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.Actor",
+						"member": "K2_GetActorRotation"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "SelfActorOrientation",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.Actor",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Rotator",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.SceneComponent",
+						"member": "K2_GetComponentLocation"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "SelfRootComponent",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"functionContext": "External-member SceneComponent call: self requires exactly one direct same-graph Actor.K2_GetRootComponent.ReturnValue; exact native SceneComponent object type; no object/string/text defaults or other sources",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.SceneComponent",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.SceneComponent",
+						"member": "K2_GetComponentRotation"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "SelfRootComponent",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"functionContext": "External-member SceneComponent call: self requires exactly one direct same-graph Actor.K2_GetRootComponent.ReturnValue; exact native SceneComponent object type; no object/string/text defaults or other sources",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.SceneComponent",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Rotator",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.SceneComponent",
+						"member": "K2_GetComponentScale"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "SelfRootComponent",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"functionContext": "External-member SceneComponent call: self requires exactly one direct same-graph Actor.K2_GetRootComponent.ReturnValue; exact native SceneComponent object type; no object/string/text defaults or other sources",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.SceneComponent",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.Actor",
+						"member": "K2_GetRootComponent"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "SelfRootComponent",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"functionContext": "Implicit self Actor only; exact native SceneComponent ReturnValue may connect only to SelfRootComponent family SceneComponent self pins",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.Actor",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.SceneComponent",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.Actor",
+						"member": "K2_SetActorLocation"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.Actor",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "NewLocation",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "bSweep",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "SweepHitResult",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.HitResult",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "bTeleport",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "false",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.Actor",
+						"member": "K2_SetActorRotation"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "SelfActorOrientation",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.Actor",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "NewRotation",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Rotator",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "bTeleportPhysics",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "false",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.SceneComponent",
+						"member": "K2_SetWorldLocation"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "SelfRootComponent",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"functionContext": "External-member SceneComponent call: self requires exactly one direct same-graph Actor.K2_GetRootComponent.ReturnValue; exact native SceneComponent object type; no object/string/text defaults or other sources",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.SceneComponent",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "NewLocation",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "bSweep",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "SweepHitResult",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.HitResult",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "bTeleport",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.SceneComponent",
+						"member": "K2_SetWorldRotation"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "SelfRootComponent",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"functionContext": "External-member SceneComponent call: self requires exactly one direct same-graph Actor.K2_GetRootComponent.ReturnValue; exact native SceneComponent object type; no object/string/text defaults or other sources",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.SceneComponent",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "NewRotation",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Rotator",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "bSweep",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "SweepHitResult",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.HitResult",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "bTeleport",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetStringLibrary",
+						"member": "Len"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "StringAndName",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetStringLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetStringLibrary"
+						},
+						{
+							"name": "S",
+							"direction": "input",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "MakeRotator"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "VectorAndRotation",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "Roll",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "float",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "Pitch",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "float",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "Yaw",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "float",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Rotator",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "MakeVector"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "X",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "Y",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "Z",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetStringLibrary",
+						"member": "Mid"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "StringAndName",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetStringLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetStringLibrary"
+						},
+						{
+							"name": "SourceString",
+							"direction": "input",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Start",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "Count",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "Multiply_DoubleDouble"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "Multiply_IntInt"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "IntegerAndScalar",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "Not_PreBool"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "IntegerAndScalar",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "false",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetSystemLibrary",
+						"member": "PrintString"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetSystemLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetSystemLibrary"
+						},
+						{
+							"name": "WorldContextObject",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Object",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "InString",
+							"direction": "input",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "Hello",
+							"defaultObject": ""
+						},
+						{
+							"name": "bPrintToScreen",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "true",
+							"defaultObject": ""
+						},
+						{
+							"name": "bPrintToLog",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "true",
+							"defaultObject": ""
+						},
+						{
+							"name": "TextColor",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.LinearColor",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",
+							"defaultObject": ""
+						},
+						{
+							"name": "Duration",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "float",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "2.000000",
+							"defaultObject": ""
+						},
+						{
+							"name": "Key",
+							"direction": "input",
+							"category": "name",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "None",
+							"defaultObject": "",
+							"defaultMaximumLength": 1023
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "SelectInt"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "IntegerAndScalar",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "bPickA",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "SelectString"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "IntegerAndScalar",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "bPickA",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.Actor",
+						"member": "SetActorScale3D"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "SelfActorOrientation",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.Actor",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "NewScale3D",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.SceneComponent",
+						"member": "SetWorldScale3D"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "SelfRootComponent",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"functionContext": "External-member SceneComponent call: self requires exactly one direct same-graph Actor.K2_GetRootComponent.ReturnValue; exact native SceneComponent object type; no object/string/text defaults or other sources",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.SceneComponent",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "NewScale",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "Subtract_DoubleDouble"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "IntegerAndScalar",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "1.000000",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "Subtract_IntInt"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "IntegerAndScalar",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "1",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "Subtract_VectorVector"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "VectorAndRotation",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "B",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_CallFunction",
+					"properties":
+					{
+						"owner": "/Script/Engine.KismetMathLibrary",
+						"member": "VSize"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "VectorAndRotation",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "/Script/Engine.KismetMathLibrary",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": "/Script/Engine.Default__KismetMathLibrary"
+						},
+						{
+							"name": "A",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "ReturnValue",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_Event",
+					"properties":
+					{
+						"owner": "/Script/Engine.Actor",
+						"member": "ReceiveBeginPlay"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "OutputDelegate",
+							"direction": "output",
+							"category": "delegate",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+					"properties":
+					{
+						"outputCount": 2
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExecutionSequence",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_0",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_1",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+					"properties":
+					{
+						"outputCount": 3
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExecutionSequence",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_0",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_1",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_2",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+					"properties":
+					{
+						"outputCount": 4
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExecutionSequence",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_0",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_1",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_2",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_3",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+					"properties":
+					{
+						"outputCount": 5
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExecutionSequence",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_0",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_1",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_2",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_3",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_4",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+					"properties":
+					{
+						"outputCount": 6
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExecutionSequence",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_0",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_1",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_2",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_3",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_4",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_5",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+					"properties":
+					{
+						"outputCount": 7
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExecutionSequence",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_0",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_1",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_2",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_3",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_4",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_5",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_6",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+					"properties":
+					{
+						"outputCount": 8
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExecutionSequence",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_0",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_1",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_2",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_3",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_4",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_5",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_6",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then_7",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_IfThenElse",
+					"properties":
+					{
+					},
+					"discovered": true,
+					"actionDatabaseMatch": true,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Condition",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "true",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "else",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_VariableGet",
+					"properties":
+					{
+						"variable": "Value"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "bool",
+					"pins": [
+						{
+							"name": "Value",
+							"direction": "output",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "{selfBlueprint}",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_VariableGet",
+					"properties":
+					{
+						"variable": "Value"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "float",
+					"pins": [
+						{
+							"name": "Value",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "{selfBlueprint}",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_VariableGet",
+					"properties":
+					{
+						"variable": "Value"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "MemberScalars",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "int",
+					"pins": [
+						{
+							"name": "Value",
+							"direction": "output",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "{selfBlueprint}",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_VariableGet",
+					"properties":
+					{
+						"variable": "Value"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "MemberScalars",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "name",
+					"pins": [
+						{
+							"name": "Value",
+							"direction": "output",
+							"category": "name",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "None",
+							"defaultObject": "",
+							"defaultMaximumLength": 1023
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "{selfBlueprint}",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_VariableGet",
+					"properties":
+					{
+						"variable": "Value"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "string",
+					"pins": [
+						{
+							"name": "Value",
+							"direction": "output",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "{selfBlueprint}",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_VariableGet",
+					"properties":
+					{
+						"variable": "Value"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "vector",
+					"pins": [
+						{
+							"name": "Value",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "{selfBlueprint}",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_VariableSet",
+					"properties":
+					{
+						"variable": "Value"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "bool",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Value",
+							"direction": "input",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "false",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "{selfBlueprint}",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Output_Get",
+							"direction": "output",
+							"category": "bool",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "false",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_VariableSet",
+					"properties":
+					{
+						"variable": "Value"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "float",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Value",
+							"direction": "input",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "{selfBlueprint}",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Output_Get",
+							"direction": "output",
+							"category": "real",
+							"subcategory": "double",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0.0",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_VariableSet",
+					"properties":
+					{
+						"variable": "Value"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "MemberScalars",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "int",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Value",
+							"direction": "input",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "{selfBlueprint}",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Output_Get",
+							"direction": "output",
+							"category": "int",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0",
+							"defaultObject": "",
+							"defaultMinimum": -2147483648,
+							"defaultMaximum": 2147483647,
+							"defaultIntegral": true
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_VariableSet",
+					"properties":
+					{
+						"variable": "Value"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "MemberScalars",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "name",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Value",
+							"direction": "input",
+							"category": "name",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "None",
+							"defaultObject": "",
+							"defaultMaximumLength": 1023
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "{selfBlueprint}",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Output_Get",
+							"direction": "output",
+							"category": "name",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "None",
+							"defaultObject": "",
+							"defaultMaximumLength": 1023
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_VariableSet",
+					"properties":
+					{
+						"variable": "Value"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "string",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Value",
+							"direction": "input",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "{selfBlueprint}",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Output_Get",
+							"direction": "output",
+							"category": "string",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						}
+					]
+				},
+				{
+					"class": "/Script/BlueprintGraph.K2Node_VariableSet",
+					"properties":
+					{
+						"variable": "Value"
+					},
+					"discovered": true,
+					"actionDatabaseMatch": false,
+					"constructible": true,
+					"family": "ExistingCore",
+					"supportState": "experimental",
+					"verified": "See regression evidence; discovery and instance construction do not imply compiled/runtime support",
+					"variableType": "vector",
+					"pins": [
+						{
+							"name": "execute",
+							"direction": "input",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "then",
+							"direction": "output",
+							"category": "exec",
+							"subcategory": "None",
+							"subtype": "",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Value",
+							"direction": "input",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": true,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						},
+						{
+							"name": "self",
+							"direction": "input",
+							"category": "object",
+							"subcategory": "None",
+							"subtype": "{selfBlueprint}",
+							"hidden": true,
+							"defaultWritable": false,
+							"defaultText": "",
+							"defaultObject": ""
+						},
+						{
+							"name": "Output_Get",
+							"direction": "output",
+							"category": "struct",
+							"subcategory": "None",
+							"subtype": "/Script/CoreUObject.Vector",
+							"hidden": false,
+							"defaultWritable": false,
+							"defaultText": "0, 0, 0",
+							"defaultObject": ""
+						}
+					]
+				}
+			],
+			"variablePinRule": "The sample Value pin is replaced by the exact declared member name; variableType controls actual pin type",
+			"connections": "Exact pin names and directions; MAKE only, no implicit conversions/replacements, cycles unsupported",
+			"defaults": "Unconnected visible input only; exact native bool/real/string/vector plus int32 integral range and name string shorter than NAME_SIZE. Rotators are connected from native MakeRotator; no raw rotator/object/container defaults.",
+			"supportStates": "discovered: native identity found; experimental: native instance/signature available, generation allowed in supported context; verified: consult exact per-function graph/compile/reopen/runtime evidence, never inferred from catalog construction",
+			"previousCatalogDigest": "cd5de7be8e3662c0ca769a729f64b844b359a25bc46d39a26c2d528bef0bb9e1",
+			"sequenceRule": "ExecutionSequence properties.outputCount is a required integral JSON number in 2..8. Each count has its own native instance signature. Native execute and then_0..then_N pins remain in execution order; unconnected outputs are preserved, declared edges are never skipped. No manual pins, cycles or latent-node support implied; earlier catalogs reject Sequence.",
+			"instanceFunctionContext": "Allowlisted native Actor functions target implicit self. SelfRootComponent family SceneComponent calls retain native external-member context and require exactly one direct same-graph Actor.K2_GetRootComponent.ReturnValue to self. No object defaults, variables, literals, casts, reroutes, arbitrary external objects or custom components."
+		},
+		"materialInstance":
+		{
+			"assetType": "MaterialInstance",
+			"nativeClass": "/Script/Engine.MaterialInstanceConstant",
+			"adapter": "NodeForgeMaterialInstance1",
+			"scope": "new ordinary constant instance; saved clean Surface Material parent; native global scalar/vector/Texture2D overrides only",
+			"schema": "nodes/edges empty; settings exactly parent,parentAssetSha256,scalarParameters,vectorParameters,textureParameters",
+			"discovery": "MaterialParameters inspects actual parent parameter names/types/defaults and saved bytes before import",
+			"verification": "native setters' bool is not success evidence in UE5.3.2; independently verify exact override arrays, effective values, shader inheritance, save/reopen",
+			"textureSamplingPolicy": "ordinary nonvirtual Texture2D; native recursive parameter expressions and VerifySamplerType for every matching sampler; missing signature or incompatible normal/color/sRGB rejected before creation"
+		}
+	},
+	"operationStatus": "passed",
+	"catalogDigest": "57b27415fee08ce08df3b734d9ea8fbd7a03678564f218007a0f770c3e478b7d"
+}

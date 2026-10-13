@@ -1,0 +1,125 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "scope": "Native selection/color family and targeted archived Blueprint/material compatibility; no UI or packaging claim",
+  "cases": [
+    {
+      "name": "ColorLimits",
+      "input": "ColorLimits.json",
+      "expected": "succeeded",
+      "category": "nativeColorSelection"
+    },
+    {
+      "name": "ColorLimitsChanged",
+      "input": "ColorLimitsChanged.json",
+      "expected": "succeeded",
+      "category": "nativeColorSelection"
+    },
+    {
+      "name": "ColorLimitsDefaults",
+      "input": "ColorLimitsDefaults.json",
+      "expected": "succeeded",
+      "category": "nativeColorSelection"
+    },
+    {
+      "name": "ColorSelect",
+      "input": "ColorSelect.json",
+      "expected": "succeeded",
+      "category": "nativeColorSelection"
+    },
+    {
+      "name": "ColorSelectChanged",
+      "input": "ColorSelectChanged.json",
+      "expected": "succeeded",
+      "category": "nativeColorSelection"
+    },
+    {
+      "name": "ColorSelectTopology",
+      "input": "ColorSelectTopology.json",
+      "expected": "succeeded",
+      "category": "nativeColorSelection"
+    },
+    {
+      "name": "ColorSelectShuffled",
+      "input": "ColorSelectShuffled.json",
+      "expected": "succeeded",
+      "category": "nativeColorSelection",
+      "compareLayoutWith": "ColorSelect"
+    },
+    {
+      "name": "ColorDesaturate",
+      "input": "ColorDesaturate.json",
+      "expected": "succeeded",
+      "category": "nativeColorSelection"
+    },
+    {
+      "name": "ColorDesaturateChanged",
+      "input": "ColorDesaturateChanged.json",
+      "expected": "succeeded",
+      "category": "nativeColorSelection"
+    },
+    {
+      "name": "ColorPulse",
+      "input": "ColorPulse.json",
+      "expected": "succeeded",
+      "category": "nativeColorSelection"
+    },
+    {
+      "name": "ColorOld44Compat",
+      "input": "ColorOld44Compat.json",
+      "expected": "succeeded",
+      "category": "nativeColorSelection",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "ColorRotatorCompat",
+      "input": "ColorRotatorCompat.json",
+      "expected": "succeeded",
+      "category": "nativeColorSelection",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SelectionMissingBranch",
+      "input": "SelectionMissingBranch.json",
+      "expected": "rejected",
+      "category": "nativeColorSelection"
+    },
+    {
+      "name": "SelectionBadPin",
+      "input": "SelectionBadPin.json",
+      "expected": "rejected",
+      "category": "nativeColorSelection"
+    },
+    {
+      "name": "SelectionBadProperty",
+      "input": "SelectionBadProperty.json",
+      "expected": "rejected",
+      "category": "nativeColorSelection"
+    },
+    {
+      "name": "SelectionOld44",
+      "input": "SelectionOld44.json",
+      "expected": "rejected",
+      "category": "nativeColorSelection",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "DesaturationMissingFraction",
+      "input": "DesaturationMissingFraction.json",
+      "expected": "rejected",
+      "category": "nativeColorSelection"
+    },
+    {
+      "name": "DesaturationBadColor",
+      "input": "DesaturationBadColor.json",
+      "expected": "rejected",
+      "category": "nativeColorSelection"
+    },
+    {
+      "name": "SelectionCollision",
+      "input": "SelectionCollision.json",
+      "expected": "rejected",
+      "category": "nativeColorSelection",
+      "requires": "ColorSelect"
+    }
+  ]
+}

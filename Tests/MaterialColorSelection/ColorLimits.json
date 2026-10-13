@@ -1,0 +1,88 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphColorLimits",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFColorLimits",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Signal",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Level",
+        "DefaultValue": 0.6
+      }
+    },
+    {
+      "id": "Lower",
+      "class": "/Script/Engine.MaterialExpressionMax",
+      "properties": {
+        "ConstB": 0.2
+      }
+    },
+    {
+      "id": "Upper",
+      "class": "/Script/Engine.MaterialExpressionMin",
+      "properties": {
+        "ConstB": 0.8
+      }
+    },
+    {
+      "id": "Tint",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "Tint",
+        "DefaultValue": [
+          0.1,
+          0.7,
+          0.25,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Mix",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "Signal",
+      "output": "0",
+      "to": "Lower",
+      "input": "A"
+    },
+    {
+      "from": "Lower",
+      "output": "0",
+      "to": "Upper",
+      "input": "A"
+    },
+    {
+      "from": "Upper",
+      "output": "0",
+      "to": "Mix",
+      "input": "A"
+    },
+    {
+      "from": "Tint",
+      "output": "0",
+      "to": "Mix",
+      "input": "B"
+    },
+    {
+      "from": "Mix",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "cases": [
+    {
+      "name": "MathRange",
+      "input": "MathRange.json",
+      "expected": "succeeded",
+      "category": "nativeMathInterpolation",
+      "requireLayout": true
+    },
+    {
+      "name": "MathChanged",
+      "input": "MathChanged.json",
+      "expected": "succeeded",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathTopology",
+      "input": "MathTopology.json",
+      "expected": "succeeded",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathShuffled",
+      "input": "MathShuffled.json",
+      "expected": "succeeded",
+      "category": "nativeMathInterpolation",
+      "requireLayout": true,
+      "compareLayoutWith": "MathRange",
+      "equivalentTo": "MathRange"
+    },
+    {
+      "name": "MathReduced",
+      "input": "MathReduced.json",
+      "expected": "succeeded",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathDegrees",
+      "input": "MathDegrees.json",
+      "expected": "succeeded",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathDegreesChanged",
+      "input": "MathDegreesChanged.json",
+      "expected": "succeeded",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathRotation",
+      "input": "MathRotation.json",
+      "expected": "succeeded",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathShortest",
+      "input": "MathShortest.json",
+      "expected": "succeeded",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathLinear",
+      "input": "MathLinear.json",
+      "expected": "succeeded",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathMember",
+      "input": "MathMember.json",
+      "expected": "succeeded",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathMaterialCompat",
+      "input": "MathMaterialCompat.json",
+      "expected": "succeeded",
+      "category": "nativeMathInterpolation",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "MathRotatorCompat",
+      "input": "MathRotatorCompat.json",
+      "expected": "succeeded",
+      "category": "nativeMathInterpolation",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "MathBadScalar",
+      "input": "MathBadScalar.json",
+      "expected": "rejected",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathBadPin",
+      "input": "MathBadPin.json",
+      "expected": "rejected",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathBadProperty",
+      "input": "MathBadProperty.json",
+      "expected": "rejected",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathUnsupported",
+      "input": "MathUnsupported.json",
+      "expected": "rejected",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathBadRotator",
+      "input": "MathBadRotator.json",
+      "expected": "rejected",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathConnectedDefault",
+      "input": "MathConnectedDefault.json",
+      "expected": "rejected",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathWrongConnection",
+      "input": "MathWrongConnection.json",
+      "expected": "rejected",
+      "category": "nativeMathInterpolation"
+    },
+    {
+      "name": "MathOld45",
+      "input": "MathOld45.json",
+      "expected": "rejected",
+      "category": "nativeMathInterpolation",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "MathOld44",
+      "input": "MathOld44.json",
+      "expected": "rejected",
+      "category": "nativeMathInterpolation",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "MathCollision",
+      "input": "MathCollision.json",
+      "expected": "rejected",
+      "category": "nativeMathInterpolation",
+      "requires": "MathRange"
+    }
+  ],
+  "catalogStatus": "Native Build46-bound templates; compatibility and rejection cases retain actual archived digests"
+}

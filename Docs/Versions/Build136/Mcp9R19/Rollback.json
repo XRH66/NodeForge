@@ -1,0 +1,10 @@
+{
+  "format": "NodeForgeInstallationRollback1",
+  "action": "Original explicit bind receipt + unchanged after SHA via PrepareNodeForgeInstallation --action rollback",
+  "preserveUnrelatedEdits": true,
+  "preserveCallsReports": true,
+  "stopIfActiveUnknown": true,
+  "sdkUnchanged": true,
+  "applicationAbi": 1,
+  "privateReceiptIncluded": false
+}

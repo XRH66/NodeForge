@@ -1,0 +1,119 @@
+{
+  "scope": "Build44 representative default/write/topology/reordered-array runtime; historical Build43 full run retained",
+  "cases": [
+    {
+      "case": "RotatorRead",
+      "expectedMessage": "Rotator applied",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        15,
+        40,
+        -25
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorStore",
+      "expectedMessage": "Rotator applied",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        -20,
+        65,
+        35
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorReordered",
+      "expectedMessage": "Rotator applied",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        15,
+        40,
+        -25
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorDirect",
+      "expectedMessage": "Rotator applied",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        22.5,
+        -55,
+        12.25
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorStoreDefault",
+      "expectedMessage": "Rotator applied",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        5.5,
+        -35.25,
+        -10.75
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "RotatorShuffled",
+      "expectedMessage": "Rotator applied",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        -20,
+        65,
+        35
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    }
+  ]
+}

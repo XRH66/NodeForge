@@ -1,0 +1,13 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "catalogStatus": "Real Catalog4; three differently directed/frequency/speed mathematical normal waves, no texture or material function dependency",
+  "cases": [
+    {
+      "name": "WaterWaves",
+      "input": "WaterWaves.json",
+      "expected": "succeeded",
+      "category": "multiDirectionAnimatedWater",
+      "requireLayout": true
+    }
+  ]
+}

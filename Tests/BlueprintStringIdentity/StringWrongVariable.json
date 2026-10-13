@@ -1,0 +1,28 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphStringWrongVariable",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFStringWrongVariable",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "ReadMessage",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "message"
+      }
+    }
+  ],
+  "edges": [],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": [
+      {
+        "name": "Message",
+        "type": "string",
+        "default": "AbC"
+      }
+    ]
+  }
+}

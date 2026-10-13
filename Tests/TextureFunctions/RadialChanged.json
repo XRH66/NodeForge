@@ -1,0 +1,110 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphRadialChanged",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphRadialChanged",
+  "catalogDigest": "340e22d25dbc9c24271c5e05c89c5043d366f765a5e8b9fc4bc40bd2080389d1",
+  "nodes": [
+    {
+      "id": "UV",
+      "class": "/Script/Engine.MaterialExpressionTextureCoordinate",
+      "properties": {}
+    },
+    {
+      "id": "Center",
+      "class": "/Script/Engine.MaterialExpressionConstant2Vector",
+      "properties": {
+        "R": 0.25,
+        "G": 0.6
+      }
+    },
+    {
+      "id": "Distance",
+      "class": "/Script/Engine.MaterialExpressionDistance",
+      "properties": {}
+    },
+    {
+      "id": "Feather",
+      "class": "/Script/Engine.MaterialExpressionSmoothStep",
+      "properties": {
+        "ConstMin": 0.12,
+        "ConstMax": 0.25
+      }
+    },
+    {
+      "id": "Invert",
+      "class": "/Script/Engine.MaterialExpressionOneMinus",
+      "properties": {}
+    },
+    {
+      "id": "Color",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "MaskColor",
+        "DefaultValue": [
+          1,
+          0.1,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Combine",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "UV",
+      "output": "0",
+      "to": "Distance",
+      "input": "A"
+    },
+    {
+      "from": "Center",
+      "output": "0",
+      "to": "Distance",
+      "input": "B"
+    },
+    {
+      "from": "Distance",
+      "output": "0",
+      "to": "Feather",
+      "input": "Value"
+    },
+    {
+      "from": "Feather",
+      "output": "0",
+      "to": "Invert",
+      "input": "Input"
+    },
+    {
+      "from": "Invert",
+      "output": "0",
+      "to": "Combine",
+      "input": "A"
+    },
+    {
+      "from": "Color",
+      "output": "0",
+      "to": "Combine",
+      "input": "B"
+    },
+    {
+      "from": "Combine",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}
+

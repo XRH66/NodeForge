@@ -1,0 +1,145 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "catalogStatus": "Real catalog digest and signature checks required before UE execution",
+  "cases": [
+    {
+      "name": "LayoutMaterialAuto",
+      "input": "LayoutMaterialAuto.json",
+      "expected": "succeeded",
+      "category": "materialNoPosition",
+      "requireLayout": true
+    },
+    {
+      "name": "LayoutMaterialAnchors",
+      "input": "LayoutMaterialAnchors.json",
+      "expected": "succeeded",
+      "category": "materialPartialAnchors",
+      "requireLayout": true
+    },
+    {
+      "name": "LayoutMaterialShuffled",
+      "input": "LayoutMaterialShuffled.json",
+      "expected": "succeeded",
+      "category": "materialOrderInvariant",
+      "requireLayout": true,
+      "requires": "LayoutMaterialAuto",
+      "equivalentTo": "LayoutMaterialAuto",
+      "compareLayoutWith": "LayoutMaterialAuto"
+    },
+    {
+      "name": "LayoutMaterialAnchorsShuffled",
+      "input": "LayoutMaterialAnchorsShuffled.json",
+      "expected": "succeeded",
+      "category": "materialAnchoredOrderInvariant",
+      "requireLayout": true,
+      "requires": "LayoutMaterialAnchors",
+      "equivalentTo": "LayoutMaterialAnchors",
+      "compareLayoutWith": "LayoutMaterialAnchors"
+    },
+    {
+      "name": "LayoutMaterialAnchorOverlap",
+      "input": "LayoutMaterialAnchorOverlap.json",
+      "expected": "succeeded",
+      "category": "materialPreservedAnchorOverlap",
+      "requireLayout": true
+    },
+    {
+      "name": "LayoutMaterialLong",
+      "input": "LayoutMaterialLong.json",
+      "expected": "succeeded",
+      "category": "materialLongParameterTitles",
+      "requireLayout": true
+    },
+    {
+      "name": "LayoutBlueprintAuto",
+      "input": "LayoutBlueprintAuto.json",
+      "expected": "succeeded",
+      "category": "blueprintNoPositionTwoBranches",
+      "requireLayout": true
+    },
+    {
+      "name": "LayoutBlueprintAnchors",
+      "input": "LayoutBlueprintAnchors.json",
+      "expected": "succeeded",
+      "category": "blueprintPartialAnchors",
+      "requireLayout": true
+    },
+    {
+      "name": "LayoutBlueprintShuffled",
+      "input": "LayoutBlueprintShuffled.json",
+      "expected": "succeeded",
+      "category": "blueprintOrderInvariant",
+      "requireLayout": true,
+      "requires": "LayoutBlueprintAuto",
+      "equivalentTo": "LayoutBlueprintAuto",
+      "compareLayoutWith": "LayoutBlueprintAuto"
+    },
+    {
+      "name": "LayoutBlueprintLong",
+      "input": "LayoutBlueprintLong.json",
+      "expected": "succeeded",
+      "category": "blueprintLongPinDefaults",
+      "requireLayout": true
+    },
+    {
+      "name": "LayoutWaterAuto",
+      "input": "LayoutWaterAuto.json",
+      "expected": "succeeded",
+      "category": "water33Nodes40Edges",
+      "requireLayout": true
+    },
+    {
+      "name": "LayoutWaterShuffled",
+      "input": "LayoutWaterShuffled.json",
+      "expected": "succeeded",
+      "category": "waterOrderInvariant",
+      "requireLayout": true,
+      "requires": "LayoutWaterAuto",
+      "equivalentTo": "LayoutWaterAuto",
+      "compareLayoutWith": "LayoutWaterAuto"
+    },
+    {
+      "name": "LayoutMaterialFractional",
+      "input": "LayoutMaterialFractional.json",
+      "expected": "rejected",
+      "category": "invalidPositionFractional"
+    },
+    {
+      "name": "LayoutMaterialOutOfBounds",
+      "input": "LayoutMaterialOutOfBounds.json",
+      "expected": "rejected",
+      "category": "invalidPositionOutOfBounds"
+    },
+    {
+      "name": "LayoutMaterialWrongLength",
+      "input": "LayoutMaterialWrongLength.json",
+      "expected": "rejected",
+      "category": "invalidPositionWrongLength"
+    },
+    {
+      "name": "LayoutBlueprintFractional",
+      "input": "LayoutBlueprintFractional.json",
+      "expected": "rejected",
+      "category": "invalidPositionFractional"
+    },
+    {
+      "name": "LayoutBlueprintOutOfBounds",
+      "input": "LayoutBlueprintOutOfBounds.json",
+      "expected": "rejected",
+      "category": "invalidPositionOutOfBounds"
+    },
+    {
+      "name": "LayoutBlueprintWrongLength",
+      "input": "LayoutBlueprintWrongLength.json",
+      "expected": "rejected",
+      "category": "invalidPositionWrongLength"
+    },
+    {
+      "name": "LayoutSameTarget",
+      "input": "LayoutSameTarget.json",
+      "expected": "rejected",
+      "category": "sameNameProtection",
+      "requires": "LayoutMaterialAuto"
+    }
+  ]
+}

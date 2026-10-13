@@ -1,0 +1,73 @@
+{
+  "added": [],
+  "removed": [],
+  "changed": [
+    {
+      "assetKind": "Material",
+      "class": "/Script/Engine.MaterialExpressionTextureObject"
+    },
+    {
+      "assetKind": "Material",
+      "class": "/Script/Engine.MaterialExpressionTextureObjectParameter"
+    },
+    {
+      "assetKind": "Material",
+      "class": "/Script/Engine.MaterialExpressionTextureSample"
+    },
+    {
+      "assetKind": "Material",
+      "class": "/Script/Engine.MaterialExpressionTextureSampleParameter2D"
+    }
+  ],
+  "previousDigest": "ff94bd6ad0895356478184a5a503fe829e8f8fe0d85007fdd3de8ca2c1390c10",
+  "currentDigest": "be97bf57d226778102038c261c556b89b262197c78158fe16ca293de709d8847",
+  "matching": "exact native identity, never ordinal pageId",
+  "meaning": "data/documentation difference, not new UE verification",
+  "operationNames": {
+    "previous": [
+      "operations.describe",
+      "session.hello",
+      "editor.getState",
+      "draft.get",
+      "draft.loadFile",
+      "draft.replace",
+      "draft.restore",
+      "draft.prepareCopy",
+      "graphs.preview",
+      "graphs.preflight",
+      "graphs.generate",
+      "rules.query",
+      "catalog.get",
+      "resources.inspect",
+      "graphs.export",
+      "calls.get",
+      "control.disable"
+    ],
+    "current": [
+      "operations.describe",
+      "session.hello",
+      "editor.getState",
+      "draft.get",
+      "draft.loadFile",
+      "draft.replace",
+      "draft.restore",
+      "draft.prepareCopy",
+      "graphs.preview",
+      "graphs.preflight",
+      "graphs.generate",
+      "rules.query",
+      "catalog.get",
+      "resources.inspect",
+      "resources.query",
+      "graphs.export",
+      "calls.get",
+      "control.disable"
+    ]
+  },
+  "newTools": [
+    "nodeforge_resources_query"
+  ],
+  "toolInputChanged": [
+    "nodeforge_resources_inspect"
+  ]
+}

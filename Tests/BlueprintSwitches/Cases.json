@@ -1,0 +1,249 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "cases": [
+    {
+      "name": "SwitchInt",
+      "input": "SwitchInt.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch",
+      "requireLayout": true
+    },
+    {
+      "name": "SwitchChanged",
+      "input": "SwitchChanged.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchTopology",
+      "input": "SwitchTopology.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchShuffled",
+      "input": "SwitchShuffled.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch",
+      "requireLayout": true,
+      "equivalentTo": "SwitchInt",
+      "compareLayoutWith": "SwitchInt"
+    },
+    {
+      "name": "SwitchOne",
+      "input": "SwitchOne.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchEight",
+      "input": "SwitchEight.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchNegativeStart",
+      "input": "SwitchNegativeStart.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchDefault",
+      "input": "SwitchDefault.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchNoDefault",
+      "input": "SwitchNoDefault.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchUnwiredMatch",
+      "input": "SwitchUnwiredMatch.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchMinInt",
+      "input": "SwitchMinInt.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchMaxSafe",
+      "input": "SwitchMaxSafe.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchName",
+      "input": "SwitchName.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchNameMember",
+      "input": "SwitchNameMember.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchNameDefault",
+      "input": "SwitchNameDefault.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchNameNoDefault",
+      "input": "SwitchNameNoDefault.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchNameRenamed",
+      "input": "SwitchNameRenamed.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchMathCompat",
+      "input": "SwitchMathCompat.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SwitchMaterialCompat",
+      "input": "SwitchMaterialCompat.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SwitchBranchCompat",
+      "input": "SwitchBranchCompat.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SwitchBadCount",
+      "input": "SwitchBadCount.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchOverflow",
+      "input": "SwitchOverflow.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchTooMany",
+      "input": "SwitchTooMany.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchFractional",
+      "input": "SwitchFractional.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchMissingSetting",
+      "input": "SwitchMissingSetting.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchDuplicateName",
+      "input": "SwitchDuplicateName.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchReservedName",
+      "input": "SwitchReservedName.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchEmptyNameCases",
+      "input": "SwitchEmptyNameCases.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchInvalidName",
+      "input": "SwitchInvalidName.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchBadNameValue",
+      "input": "SwitchBadNameValue.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchWrongSelection",
+      "input": "SwitchWrongSelection.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchAbsentPin",
+      "input": "SwitchAbsentPin.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchAbsentDefault",
+      "input": "SwitchAbsentDefault.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchHiddenContext",
+      "input": "SwitchHiddenContext.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchConnectedDefault",
+      "input": "SwitchConnectedDefault.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchOld46",
+      "input": "SwitchOld46.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SwitchCollision",
+      "input": "SwitchCollision.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch",
+      "requires": "SwitchInt"
+    },
+    {
+      "name": "SwitchNameCaseInsensitive",
+      "input": "SwitchNameCaseInsensitive.json",
+      "expected": "succeeded",
+      "category": "nativeDynamicSwitch"
+    },
+    {
+      "name": "SwitchWrongCasePin",
+      "input": "SwitchWrongCasePin.json",
+      "expected": "rejected",
+      "category": "nativeDynamicSwitch"
+    }
+  ],
+  "catalogStatus": "Native Build49 dynamic case adapter, exact instance signatures, preserved historical digests"
+}

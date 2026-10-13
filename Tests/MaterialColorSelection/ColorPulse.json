@@ -1,0 +1,157 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphColorPulse",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFColorPulse",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Clock",
+      "class": "/Script/Engine.MaterialExpressionTime",
+      "properties": {}
+    },
+    {
+      "id": "Wave",
+      "class": "/Script/Engine.MaterialExpressionSine",
+      "properties": {
+        "Period": 4
+      }
+    },
+    {
+      "id": "Lower",
+      "class": "/Script/Engine.MaterialExpressionMax",
+      "properties": {
+        "ConstB": -0.8
+      }
+    },
+    {
+      "id": "Upper",
+      "class": "/Script/Engine.MaterialExpressionMin",
+      "properties": {
+        "ConstB": 0.8
+      }
+    },
+    {
+      "id": "Threshold",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Threshold",
+        "DefaultValue": 0.1
+      }
+    },
+    {
+      "id": "Hot",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "Tint",
+        "DefaultValue": [
+          0.8,
+          0.2,
+          0.05,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Cold",
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "properties": {
+        "Constant": [
+          0.02,
+          0.2,
+          0.8,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Choose",
+      "class": "/Script/Engine.MaterialExpressionIf",
+      "properties": {
+        "EqualsThreshold": 0.0001
+      }
+    },
+    {
+      "id": "Fade",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Fade",
+        "DefaultValue": 0
+      }
+    },
+    {
+      "id": "Desat",
+      "class": "/Script/Engine.MaterialExpressionDesaturation",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "Clock",
+      "output": "0",
+      "to": "Wave",
+      "input": "Input"
+    },
+    {
+      "from": "Wave",
+      "output": "0",
+      "to": "Lower",
+      "input": "A"
+    },
+    {
+      "from": "Lower",
+      "output": "0",
+      "to": "Upper",
+      "input": "A"
+    },
+    {
+      "from": "Upper",
+      "output": "0",
+      "to": "Choose",
+      "input": "A"
+    },
+    {
+      "from": "Threshold",
+      "output": "0",
+      "to": "Choose",
+      "input": "B"
+    },
+    {
+      "from": "Hot",
+      "output": "0",
+      "to": "Choose",
+      "input": "AGreaterThanB"
+    },
+    {
+      "from": "Cold",
+      "output": "0",
+      "to": "Choose",
+      "input": "ALessThanB"
+    },
+    {
+      "from": "Choose",
+      "output": "0",
+      "to": "Desat",
+      "input": "Input"
+    },
+    {
+      "from": "Fade",
+      "output": "0",
+      "to": "Desat",
+      "input": "Fraction"
+    },
+    {
+      "from": "Desat",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

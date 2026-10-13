@@ -1,0 +1,8 @@
+# 保持源码与冻结资料的原始字节，避免改变版本绑定SHA256。
+* -text
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.zip binary
+*.dll binary

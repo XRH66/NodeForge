@@ -1,0 +1,203 @@
+{
+  "build": "Build46",
+  "catalogDigest": "aec5b1e30e736a0a16b069b7567817d23a8e9ca9a583aa951ee538e6e73c24c7",
+  "selectedBinarySha256": "4d0b3ac98ab1a9b9ecff5e3eb5fae7aaece62ac8138699c0084a2243a6b88910",
+  "nodes": [
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Abs"
+      },
+      "supportState": "verified",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "actionDatabaseMatch": true,
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/MathInterpolation1/MathRangeReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathChangedReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathTopologyReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathReducedReopen.json"
+      ],
+      "runtimeEvidence": [
+        "Reports/20261009UsableEditor/MathRuntime1/MathRangeRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathChangedRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathTopologyRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathReducedRuntime.json"
+      ],
+      "export": "Reports/20261009UsableEditor/MathExport1/Summary.json",
+      "scope": "Representative finite numeric inputs, exact native ports, Actor transforms and attributed messages; not all numeric domains",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "DegCos"
+      },
+      "supportState": "verified",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "actionDatabaseMatch": true,
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/MathInterpolation1/MathDegreesReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathDegreesChangedReopen.json"
+      ],
+      "runtimeEvidence": [
+        "Reports/20261009UsableEditor/MathRuntime1/MathDegreesRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathDegreesChangedRuntime.json"
+      ],
+      "export": "notRunForThisFunction",
+      "scope": "Representative finite numeric inputs, exact native ports, Actor transforms and attributed messages; not all numeric domains",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "DegSin"
+      },
+      "supportState": "verified",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "actionDatabaseMatch": true,
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/MathInterpolation1/MathDegreesReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathDegreesChangedReopen.json"
+      ],
+      "runtimeEvidence": [
+        "Reports/20261009UsableEditor/MathRuntime1/MathDegreesRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathDegreesChangedRuntime.json"
+      ],
+      "export": "notRunForThisFunction",
+      "scope": "Representative finite numeric inputs, exact native ports, Actor transforms and attributed messages; not all numeric domains",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "FMax"
+      },
+      "supportState": "verified",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "actionDatabaseMatch": false,
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/MathInterpolation1/MathRangeReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathChangedReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathTopologyReopen.json"
+      ],
+      "runtimeEvidence": [
+        "Reports/20261009UsableEditor/MathRuntime1/MathRangeRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathChangedRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathTopologyRuntime.json"
+      ],
+      "export": "Reports/20261009UsableEditor/MathExport1/Summary.json",
+      "scope": "Representative finite numeric inputs, exact native ports, Actor transforms and attributed messages; not all numeric domains",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "FMin"
+      },
+      "supportState": "verified",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "actionDatabaseMatch": false,
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/MathInterpolation1/MathRangeReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathChangedReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathTopologyReopen.json"
+      ],
+      "runtimeEvidence": [
+        "Reports/20261009UsableEditor/MathRuntime1/MathRangeRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathChangedRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathTopologyRuntime.json"
+      ],
+      "export": "Reports/20261009UsableEditor/MathExport1/Summary.json",
+      "scope": "Representative finite numeric inputs, exact native ports, Actor transforms and attributed messages; not all numeric domains",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Lerp"
+      },
+      "supportState": "verified",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "actionDatabaseMatch": true,
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/MathInterpolation1/MathRangeReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathChangedReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathTopologyReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathReducedReopen.json"
+      ],
+      "runtimeEvidence": [
+        "Reports/20261009UsableEditor/MathRuntime1/MathRangeRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathChangedRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathTopologyRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathReducedRuntime.json"
+      ],
+      "export": "Reports/20261009UsableEditor/MathExport1/Summary.json",
+      "scope": "Representative finite numeric inputs, exact native ports, Actor transforms and attributed messages; not all numeric domains",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "RLerp"
+      },
+      "supportState": "verified",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "actionDatabaseMatch": true,
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/MathInterpolation1/MathRotationReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathShortestReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathLinearReopen.json",
+        "Reports/20261008GraphV2/MathInterpolation1/MathMemberReopen.json"
+      ],
+      "runtimeEvidence": [
+        "Reports/20261009UsableEditor/MathRuntime1/MathRotationRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathShortestRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathLinearRuntime.json",
+        "Reports/20261009UsableEditor/MathRuntime1/MathMemberRuntime.json"
+      ],
+      "export": "Reports/20261009UsableEditor/MathExport1/Summary.json",
+      "scope": "Representative finite numeric inputs, exact native ports, Actor transforms and attributed messages; not all numeric domains",
+      "realUi": "notRun",
+      "externalAiOriginal": "notRun",
+      "noPluginDelivery": "notRun"
+    }
+  ],
+  "reports": {
+    "graphs": "Reports/20261008GraphV2/MathInterpolation1/Summary.json",
+    "runtime": "Reports/20261009UsableEditor/MathRuntime1/Summary.json",
+    "export": "Reports/20261009UsableEditor/MathExport1/Summary.json",
+    "rules": "Reports/20261009UsableEditor/MathRules1/Summary.json"
+  },
+  "limitations": [
+    "Raw catalog instance labels remain experimental; this overlay records representative runtime scope",
+    "RLerp Alpha native float; scalar math double, no invisible schema conversions",
+    "Earlier general scalar/vector relative comparison policy still needs precision review",
+    "No new family real UI, external-AI original, no-plugin packaging or full historical matrix claim"
+  ]
+}

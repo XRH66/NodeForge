@@ -1,0 +1,114 @@
+{
+  "description": "字符串与名称逐字完整性、精确原生身份及旧摘要兼容；expected仅为验收期望",
+  "executionStatus": "notRun",
+  "sourceCatalog": "Reports/20261009UsableEditor/SwitchExpansion1/Capture52/ActualCatalog.json",
+  "sourceCatalogSha256": "2d97f32e341761e627b01f78d334c7ce85b0bf953e0686ec7330d7691ed313ad",
+  "sourceCatalogDigest": "1ae2791da31e336b3d147d1ed20e173ddfe51e721d255df040c843c743171317",
+  "cases": [
+    {
+      "name": "StringPrintMixed",
+      "input": "StringPrintMixed.json",
+      "expected": "succeeded",
+      "category": "stringIdentity"
+    },
+    {
+      "name": "StringPrintLower",
+      "input": "StringPrintLower.json",
+      "expected": "succeeded",
+      "category": "stringIdentity"
+    },
+    {
+      "name": "StringMember",
+      "input": "StringMember.json",
+      "expected": "succeeded",
+      "category": "stringIdentity"
+    },
+    {
+      "name": "StringNameNone",
+      "input": "StringNameNone.json",
+      "expected": "succeeded",
+      "category": "stringIdentity"
+    },
+    {
+      "name": "StringCompose",
+      "input": "StringCompose.json",
+      "expected": "succeeded",
+      "category": "stringIdentity"
+    },
+    {
+      "name": "StringSwitch52Compat",
+      "input": "StringSwitch52Compat.json",
+      "expected": "succeeded",
+      "category": "stringIdentity",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "StringMaterial45Compat",
+      "input": "StringMaterial45Compat.json",
+      "expected": "succeeded",
+      "category": "stringIdentity",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "StringWrongOwner",
+      "input": "StringWrongOwner.json",
+      "expected": "rejected",
+      "category": "stringIdentity"
+    },
+    {
+      "name": "StringWrongMember",
+      "input": "StringWrongMember.json",
+      "expected": "rejected",
+      "category": "stringIdentity"
+    },
+    {
+      "name": "StringWrongClass",
+      "input": "StringWrongClass.json",
+      "expected": "rejected",
+      "category": "stringIdentity"
+    },
+    {
+      "name": "StringWrongParent",
+      "input": "StringWrongParent.json",
+      "expected": "rejected",
+      "category": "stringIdentity"
+    },
+    {
+      "name": "StringWrongType",
+      "input": "StringWrongType.json",
+      "expected": "rejected",
+      "category": "stringIdentity"
+    },
+    {
+      "name": "StringWrongVariable",
+      "input": "StringWrongVariable.json",
+      "expected": "rejected",
+      "category": "stringIdentity"
+    },
+    {
+      "name": "StringNameLowerNone",
+      "input": "StringNameLowerNone.json",
+      "expected": "rejected",
+      "category": "stringIdentity"
+    },
+    {
+      "name": "StringNameUpperNone",
+      "input": "StringNameUpperNone.json",
+      "expected": "rejected",
+      "category": "stringIdentity"
+    },
+    {
+      "name": "StringWrongPin",
+      "input": "StringWrongPin.json",
+      "expected": "rejected",
+      "category": "stringIdentity"
+    },
+    {
+      "name": "StringCollision",
+      "input": "StringCollision.json",
+      "expected": "rejected",
+      "category": "stringIdentity",
+      "requires": "StringPrintMixed"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphSpatialFamilyLegacy",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFSpatialFamilyLegacy",
+  "catalogDigest": "9703b92dac063c1a473c335d505d78d917fc97608a78501dc0c1d1f2491264ca",
+  "nodes": [
+    {
+      "id": "Rim",
+      "class": "/Script/Engine.MaterialExpressionFresnel",
+      "properties": {
+        "Exponent": 4
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Rim",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

@@ -1,0 +1,252 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphScalarSelection",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFGraphScalarSelection",
+  "catalogDigest": "6993743a0513489069423790f678c2cccd6bccc29435cd0dd98e4156248aa069",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Multiply",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Multiply_IntInt"
+      },
+      "defaults": {
+        "A": 3,
+        "B": 4
+      }
+    },
+    {
+      "id": "Subtract",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Subtract_IntInt"
+      },
+      "defaults": {
+        "B": 2
+      }
+    },
+    {
+      "id": "Equal",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "EqualEqual_IntInt"
+      },
+      "defaults": {
+        "B": 10
+      }
+    },
+    {
+      "id": "Not",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Not_PreBool"
+      }
+    },
+    {
+      "id": "Or",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "BooleanOR"
+      },
+      "defaults": {
+        "B": true
+      }
+    },
+    {
+      "id": "Select",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "SelectInt"
+      },
+      "defaults": {
+        "B": 99
+      }
+    },
+    {
+      "id": "Double",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Conv_IntToDouble"
+      }
+    },
+    {
+      "id": "Decrease",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Subtract_DoubleDouble"
+      },
+      "defaults": {
+        "B": 2
+      }
+    },
+    {
+      "id": "Divide",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Divide_DoubleDouble"
+      },
+      "defaults": {
+        "B": 4
+      }
+    },
+    {
+      "id": "Clamp",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "FClamp"
+      },
+      "defaults": {
+        "Min": 0,
+        "Max": 1
+      }
+    },
+    {
+      "id": "Vector",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "MakeVector"
+      },
+      "defaults": {
+        "Y": 0,
+        "Z": 0
+      }
+    },
+    {
+      "id": "Move",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "InString": "Scalar selection complete",
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Move",
+      "input": "execute"
+    },
+    {
+      "from": "Move",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "Multiply",
+      "output": "ReturnValue",
+      "to": "Subtract",
+      "input": "A"
+    },
+    {
+      "from": "Subtract",
+      "output": "ReturnValue",
+      "to": "Equal",
+      "input": "A"
+    },
+    {
+      "from": "Equal",
+      "output": "ReturnValue",
+      "to": "Not",
+      "input": "A"
+    },
+    {
+      "from": "Not",
+      "output": "ReturnValue",
+      "to": "Or",
+      "input": "A"
+    },
+    {
+      "from": "Or",
+      "output": "ReturnValue",
+      "to": "Select",
+      "input": "bPickA"
+    },
+    {
+      "from": "Subtract",
+      "output": "ReturnValue",
+      "to": "Select",
+      "input": "A"
+    },
+    {
+      "from": "Select",
+      "output": "ReturnValue",
+      "to": "Double",
+      "input": "InInt"
+    },
+    {
+      "from": "Double",
+      "output": "ReturnValue",
+      "to": "Decrease",
+      "input": "A"
+    },
+    {
+      "from": "Decrease",
+      "output": "ReturnValue",
+      "to": "Divide",
+      "input": "A"
+    },
+    {
+      "from": "Divide",
+      "output": "ReturnValue",
+      "to": "Clamp",
+      "input": "Value"
+    },
+    {
+      "from": "Clamp",
+      "output": "ReturnValue",
+      "to": "Vector",
+      "input": "X"
+    },
+    {
+      "from": "Vector",
+      "output": "ReturnValue",
+      "to": "Move",
+      "input": "NewLocation"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}
+

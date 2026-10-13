@@ -1,0 +1,184 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphMathShuffled",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFMathShuffled",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    },
+    {
+      "id": "Caption",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Concat_StrStr"
+      },
+      "defaults": {
+        "A": "math="
+      }
+    },
+    {
+      "id": "Text",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_DoubleToString"
+      }
+    },
+    {
+      "id": "Move",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Vector",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "MakeVector"
+      },
+      "defaults": {
+        "Y": 0,
+        "Z": 0
+      }
+    },
+    {
+      "id": "Blend",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Lerp"
+      },
+      "defaults": {
+        "B": 20,
+        "Alpha": 0.25
+      }
+    },
+    {
+      "id": "Maximum",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "FMax"
+      },
+      "defaults": {
+        "B": 3
+      }
+    },
+    {
+      "id": "Minimum",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "FMin"
+      },
+      "defaults": {
+        "B": 8
+      }
+    },
+    {
+      "id": "Absolute",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Abs"
+      },
+      "defaults": {
+        "A": -12
+      }
+    },
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Caption",
+      "output": "ReturnValue",
+      "to": "Print",
+      "input": "InString"
+    },
+    {
+      "from": "Text",
+      "output": "ReturnValue",
+      "to": "Caption",
+      "input": "B"
+    },
+    {
+      "from": "Blend",
+      "output": "ReturnValue",
+      "to": "Text",
+      "input": "InDouble"
+    },
+    {
+      "from": "Vector",
+      "output": "ReturnValue",
+      "to": "Move",
+      "input": "NewLocation"
+    },
+    {
+      "from": "Blend",
+      "output": "ReturnValue",
+      "to": "Vector",
+      "input": "X"
+    },
+    {
+      "from": "Maximum",
+      "output": "ReturnValue",
+      "to": "Blend",
+      "input": "A"
+    },
+    {
+      "from": "Minimum",
+      "output": "ReturnValue",
+      "to": "Maximum",
+      "input": "A"
+    },
+    {
+      "from": "Absolute",
+      "output": "ReturnValue",
+      "to": "Minimum",
+      "input": "A"
+    },
+    {
+      "from": "Move",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Move",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}

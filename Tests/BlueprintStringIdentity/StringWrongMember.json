@@ -1,0 +1,43 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphStringWrongMember",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFStringWrongMember",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "printString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true,
+        "InString": "AbC"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}

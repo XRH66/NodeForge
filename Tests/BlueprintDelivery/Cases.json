@@ -1,0 +1,72 @@
+{
+  "cases": [
+    {
+      "name": "DeliveryDirect",
+      "input": "DeliveryDirect.json",
+      "expected": "succeeded",
+      "category": "nativeLocationReadbackDelivery"
+    },
+    {
+      "name": "DeliveryChanged",
+      "input": "DeliveryChanged.json",
+      "expected": "succeeded",
+      "category": "nativeLocationReadbackDelivery"
+    },
+    {
+      "name": "DeliveryMade",
+      "input": "DeliveryMade.json",
+      "expected": "succeeded",
+      "category": "nativeLocationReadbackDelivery"
+    },
+    {
+      "name": "DeliveryShuffled",
+      "input": "DeliveryShuffled.json",
+      "expected": "succeeded",
+      "category": "nativeLocationReadbackDelivery",
+      "equivalentTo": "DeliveryMade",
+      "compareLayoutWith": "DeliveryMade"
+    },
+    {
+      "name": "DeliveryVariable",
+      "input": "DeliveryVariable.json",
+      "expected": "succeeded",
+      "category": "nativeLocationReadbackDelivery"
+    },
+    {
+      "name": "DeliveryWrite",
+      "input": "DeliveryWrite.json",
+      "expected": "succeeded",
+      "category": "nativeLocationReadbackDelivery"
+    },
+    {
+      "name": "DeliveryBreak",
+      "input": "DeliveryBreak.json",
+      "expected": "succeeded",
+      "category": "nativeLocationReadbackDelivery"
+    },
+    {
+      "name": "DeliveryReadback",
+      "input": "DeliveryReadback.json",
+      "expected": "succeeded",
+      "category": "nativeLocationReadbackDelivery"
+    },
+    {
+      "name": "DeliveryZero",
+      "input": "DeliveryZero.json",
+      "expected": "succeeded",
+      "category": "nativeLocationReadbackDelivery"
+    },
+    {
+      "name": "DeliveryExternalTarget",
+      "input": "DeliveryExternalTarget.json",
+      "expected": "rejected",
+      "category": "unsafeExternalActorTarget"
+    },
+    {
+      "name": "DeliveryWrongLink",
+      "input": "DeliveryWrongLink.json",
+      "expected": "rejected",
+      "category": "stringCannotConnectToVector"
+    }
+  ]
+}

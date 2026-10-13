@@ -1,0 +1,108 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "scope": "Actual own RootComponent native context; configuration, topology/order variation, old catalog preservation, strict negatives",
+  "cases": [
+    {
+      "name": "RootMotion",
+      "input": "RootMotion.json",
+      "expected": "succeeded",
+      "category": "selfRootComponent"
+    },
+    {
+      "name": "RootChanged",
+      "input": "RootChanged.json",
+      "expected": "succeeded",
+      "category": "selfRootComponent"
+    },
+    {
+      "name": "RootShuffled",
+      "input": "RootShuffled.json",
+      "expected": "succeeded",
+      "category": "selfRootComponent",
+      "compareLayoutWith": "RootMotion"
+    },
+    {
+      "name": "RootOffset",
+      "input": "RootOffset.json",
+      "expected": "succeeded",
+      "category": "selfRootComponent"
+    },
+    {
+      "name": "RootLegacyCount",
+      "input": "RootLegacyCount.json",
+      "expected": "succeeded",
+      "category": "selfRootComponent",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "RootMaterialLegacy",
+      "input": "RootMaterialLegacy.json",
+      "expected": "succeeded",
+      "category": "selfRootComponent",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "RootMissingSelf",
+      "input": "RootMissingSelf.json",
+      "expected": "rejected",
+      "category": "componentProtection"
+    },
+    {
+      "name": "RootLiteralSelf",
+      "input": "RootLiteralSelf.json",
+      "expected": "rejected",
+      "category": "componentProtection"
+    },
+    {
+      "name": "RootWrongSource",
+      "input": "RootWrongSource.json",
+      "expected": "rejected",
+      "category": "componentProtection"
+    },
+    {
+      "name": "RootMultipleSelf",
+      "input": "RootMultipleSelf.json",
+      "expected": "rejected",
+      "category": "componentProtection"
+    },
+    {
+      "name": "RootWrongOutput",
+      "input": "RootWrongOutput.json",
+      "expected": "rejected",
+      "category": "componentProtection"
+    },
+    {
+      "name": "RootNativeAlias",
+      "input": "RootNativeAlias.json",
+      "expected": "rejected",
+      "category": "componentProtection"
+    },
+    {
+      "name": "RootUnknownFunction",
+      "input": "RootUnknownFunction.json",
+      "expected": "rejected",
+      "category": "componentProtection"
+    },
+    {
+      "name": "RootOld699",
+      "input": "RootOld699.json",
+      "expected": "rejected",
+      "category": "componentProtection",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "RootOld340",
+      "input": "RootOld340.json",
+      "expected": "rejected",
+      "category": "componentProtection",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "RootCollision",
+      "input": "RootCollision.json",
+      "expected": "rejected",
+      "category": "componentProtection",
+      "requires": "RootMotion"
+    }
+  ]
+}

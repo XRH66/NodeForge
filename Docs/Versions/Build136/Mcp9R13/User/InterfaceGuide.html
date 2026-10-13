@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="theme-color" content="#141414"><title>界面与按钮 · NodeForge 文档</title><script>try{var t=new URLSearchParams(location.search).get('theme')||localStorage.getItem('nodeforge-docs-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script><link rel="icon" type="image/png" href="../Assets/NodeForgeDocs/Brand/BrandIcon.png"><link rel="stylesheet" href="../Assets/NodeForgeDocs/Theme.css"><link rel="stylesheet" href="../Assets/NodeForgeDocs/Blueprint.css"><script src="../Assets/NodeForgeDocs/Blueprint.js" data-blueprint-controller data-glass-finalized="true" defer></script><link rel="stylesheet" href="../Assets/NodeForgeDocs/Reading.css"><script src="../Assets/NodeForgeDocs/SearchIndex.js" defer></script><script src="../Assets/NodeForgeDocs/Theme.js" data-doc-root="../" defer></script></head>
+<body class="document-page" style="--hero-motion-duration:46s;--backdrop-blur:4px;--backdrop-veil:0.018;--frost-start:0%;--frost-end:1%;--card-blur:40px;--card-opacity:0.98"><a class="skip-link" href="#main">跳到正文</a><header class="site-header"><div class="topbar"><button type="button" class="mobile-menu-button" aria-label="打开文档导航"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><a class="brand" href="../Index.html" aria-label="NodeForge 节点熔炉文档首页"><img class="brand-icon" src="../Assets/NodeForgeDocs/Brand/BrandIcon.png" width="34" height="34" alt=""><img class="brand-wordmark brand-dark" src="../Assets/NodeForgeDocs/Brand/WordmarkDark.svg" width="253" height="33" alt="NodeForge · 节点熔炉"><img class="brand-wordmark brand-light" src="../Assets/NodeForgeDocs/Brand/WordmarkLight.svg" width="253" height="33" alt="NodeForge · 节点熔炉"></a><nav class="topnav" aria-label="手册分类"><a href="../Index.html">首页</a><a href="Readme.html" class="current" aria-current="page">使用手册</a><a href="../Ai/Readme.html">AI 调用</a><a href="../Developer/Readme.html">原理与开发</a><a href="../Version/Readme.html">版本说明</a></nav><div class="header-tools"><button type="button" class="search-trigger" aria-label="搜索整个文档站点"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span>搜索文档</span><kbd>Ctrl K</kbd></button><div class="theme-switch" role="group" aria-label="页面主题"><button type="button" data-set-theme="dark" aria-label="使用暗色模式" aria-pressed="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 15.5A8.6 8.6 0 0 1 8.5 3.7a8.6 8.6 0 1 0 11.8 11.8Z"/></svg><span>暗色</span></button><button type="button" data-set-theme="light" aria-label="使用亮色模式" aria-pressed="false"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><span>亮色</span></button></div></div></div></header>
+<div class="document-backdrop blueprint-surface" data-blueprint-scene aria-hidden="true"><div class="hero-scene" aria-hidden="true"><div class="blueprint-plane"><div class="blueprint-track"><svg class="blueprint-tile" viewBox="0 0 1800 1600" width="1800" height="1600" xmlns="http://www.w3.org/2000/svg" focusable="false"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/><g transform="translate(0 800)"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/></g></svg><svg class="blueprint-tile" viewBox="0 0 1800 1600" width="1800" height="1600" xmlns="http://www.w3.org/2000/svg" focusable="false"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/><g transform="translate(0 800)"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/></g></svg><svg class="blueprint-tile" viewBox="0 0 1800 1600" width="1800" height="1600" xmlns="http://www.w3.org/2000/svg" focusable="false"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/><g transform="translate(0 800)"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/></g></svg><svg class="blueprint-tile" viewBox="0 0 1800 1600" width="1800" height="1600" xmlns="http://www.w3.org/2000/svg" focusable="false"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/><g transform="translate(0 800)"><path class="bp-wire bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-signal bp-wire-exec" d="M0 236C70 236 0 209 70 209"/><path class="bp-wire bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-signal bp-wire-exec" d="M282 209C352 209 335 239 405 239"/><path class="bp-wire bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-signal bp-wire-exec" d="M617 239C844.04 239 862.96 264 1090 264"/><path class="bp-wire bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-signal bp-wire-exec" d="M1302 264C1372 264 1350 234 1420 234"/><path class="bp-wire bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-signal bp-wire-exec" d="M1632 234C1712.64 234 1719.36 236 1800 236"/><path class="bp-wire bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-signal bp-wire-value" d="M282 236C506.64 236 525.36 139 750 139"/><path class="bp-wire bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-signal bp-wire-value" d="M962 139C1032 139 1020 291 1090 291"/><path class="bp-wire bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-signal bp-wire-value" d="M432 529C502 529 500 489 570 489"/><path class="bp-wire bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-signal bp-wire-value" d="M432 556C675.84 556 696.16 569 940 569"/><path class="bp-wire bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-signal bp-wire-value" d="M782 489C857.84 489 864.16 596 940 596"/><path class="bp-wire bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-signal bp-wire-value" d="M1152 569C1247.04 569 1254.96 581 1350 581"/><path class="bp-wire bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-signal bp-wire-value" d="M1562 554C1676.24 554 1685.76 570 1800 570"/><path class="bp-wire bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-signal bp-wire-value" d="M0 570C105.6 570 114.4 529 220 529"/><path class="bp-wire bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><path class="bp-signal bp-wire-value" d="M782 489C962.96 489 224.04000000000002 266 405 266"/><g class="bp-node bp-tone-event" transform="translate(70 150)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Event BeginPlay</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Actor</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(405 180)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Branch</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Condition</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">True</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">False</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(750 80)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Get Actor Location</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1090 205)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Add Actor Offset</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Delta</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-event" transform="translate(1420 175)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Output</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-exec" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Exec</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Result</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(220 470)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Time</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Seconds</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="86" r="4"/><text class="bp-label" x="188" y="90" text-anchor="end">Delta</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-value" transform="translate(570 430)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Make Vector</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">X</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Y</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="113" r="4"/><text class="bp-label" x="24" y="117" text-anchor="start">Z</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Vector</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-flow" transform="translate(940 510)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Multiply</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">A</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">B</text></g><g><circle class="bp-pin bp-pin-value" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Value</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><g class="bp-node bp-tone-function" transform="translate(1350 495)"><rect class="bp-node-body" width="212" height="140" rx="9"/><rect class="bp-node-header" width="212" height="33" rx="9"/><rect class="bp-node-header" y="24" width="212" height="9"/><path class="bp-node-glyph" d="M15 11l8 5-8 5Z"/><text class="bp-title" x="31" y="21">Set Parameter</text><path class="bp-node-divider" d="M0 33H212"/><g><circle class="bp-pin bp-pin-value" cx="12" cy="59" r="4"/><text class="bp-label" x="24" y="63" text-anchor="start">Target</text></g><g><circle class="bp-pin bp-pin-value" cx="12" cy="86" r="4"/><text class="bp-label" x="24" y="90" text-anchor="start">Value</text></g><g><circle class="bp-pin bp-pin-exec" cx="200" cy="59" r="4"/><text class="bp-label" x="188" y="63" text-anchor="end">Exec</text></g><text class="bp-node-type" x="12" y="128">NODEFORGE</text></g><circle class="bp-reroute" cx="840" cy="395" r="6"/><circle class="bp-reroute" cx="1260" cy="410" r="6"/></g></svg></div></div></div><div class="document-background-frost"></div></div><div class="workspace"><aside class="sidebar reading-card"><div class="side-inner"><a class="sidebar-home" href="../Index.html"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m5-5-5 5 5 5"/></svg>文档首页</a><div class="side-caption"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H4V4Zm16 0h-5a2 2 0 0 0-2 2m0 15a4 4 0 0 1 4-2h3V4Z"/></svg>使用手册</div><nav class="side-links" aria-label="章节导航"><a href="Readme.html">阅读首页</a><a href="Overview.html">插件介绍</a><a href="GettingStarted.html">开始使用</a><a href="ManualWorkflows.html">手动操作</a><a href="AiWorkflows.html">使用 AI</a><a href="InterfaceGuide.html" class="current" aria-current="page">界面与按钮</a><a href="Troubleshooting.html">问题处理</a><a href="CopyPreview.html">修改已有图，生成一个新副本</a><a href="NodeCoverage.html">节点选择与支持层次</a><a href="Installation.html">解压、绑定工程与第一次打开</a></nav><div class="side-divider"></div><a class="side-resource" href="../Reference/FeatureMap.html">功能与支持范围<svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6L10 14M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a><a class="side-resource" href="../Version/KnownIssues.html">已知限制<svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6L10 14M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></a><div class="sidebar-bottom"><span class="version-badge"><span class="version-dot"></span>Build136-Mcp9R13</span><p class="offline-note">本地文档 · 离线可读</p></div></div></aside>
+<div class="reading"><main id="main" class="reading-card article"><nav class="breadcrumb" aria-label="当前位置"><a href="../Index.html">文档</a><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><a href="Readme.html">使用手册</a><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><span class="crumb-current">界面与按钮</span></nav><div class="article-hero"><div class="eyebrow">使用指南 / 06</div><h1 id="section-0">界面与按钮</h1><div class="article-meta"><span><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H4V4Zm16 0h-5a2 2 0 0 0-2 2m0 15a4 4 0 0 1 4-2h3V4Z"/></svg>使用手册</span><span class="meta-divider"></span><span>7 个章节</span><span class="meta-divider"></span><span><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>约 7 分钟</span></div></div><div class="article-content">
+<p>本页对应 Build136 Repair6 的实际控件。先找到按钮所在区域，再查看它使用哪份内容、何时可用、操作效果和下一步。已有安装可能是旧版本。</p>
+<h2 id="section-1">构图输入与生成</h2>
+<h3 id="section-2">恢复上次输入</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>服务保留的上一份可恢复输入。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲，且有可恢复的上次输入。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>恢复上一份服务保留输入，改变草稿/修订，不撤销磁盘资产</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>核恢复后的稿，重新检查；无恢复稿时禁用</td>
+</tr>
+</tbody></table>
+<h3 id="section-3">粘贴剪贴板</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>完整剪贴板文本。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲；需要完整的剪贴板文本。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>整框替换输入，不自动生成；Ctrl+V/右键仍按光标/选区编辑</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>核完整字节和新稿；超限/无效内容看诊断，不生成</td>
+</tr>
+</tbody></table>
+<h3 id="section-4">检查输入</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>点击时的当前输入快照。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲；检查当前输入是否符合规则。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>预检并出报告，不编译保存或预留名字</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>看原GraphPreflight；编辑后旧结论失效</td>
+</tr>
+</tbody></table>
+<h3 id="section-5">生成新资产</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>点击时的当前输入，以及新的资产目标和 requestId。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲时可点击；提交时还会核输入、新目标和当前输入修订。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>新建、编译、回读、保存资产/收据；同目标/request拒绝</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>保存后通常waitingPersistence（已保存，等待独立核验）；读完整报告并独立 Verify，未知停写</td>
+</tr>
+</tbody></table>
+<h3 id="section-6">载入 JSON 文件</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>文件选择器选中的完整 JSON 文件。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲；可以在文件选择器中取消。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>替换草稿/记录来源，不自动生成</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>取消不作生成；失败看诊断，成功检查新稿</td>
+</tr>
+</tbody></table>
+<h3 id="section-7">准备新副本</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>当前非空、完整的输入。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲且输入框非空；输入还须解析通过。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>只建议新资产目标和 requestId并载入稿；不写资产、不预留</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>核新身份再检查生成；连续未生成可能得到同建议，保存时再查冲突</td>
+</tr>
+</tbody></table>
+<h2 id="section-8">节点规则与资源查看</h2>
+<h3 id="section-9">查询材质规则</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>规则查询框中的文字，和构图输入框无关。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲；空查询词可读取全族规则。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>只读Material规则并出报告/复制缓存，不生成</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>空词全族，≤256字符/8词OR子串；失败清旧读取缓存</td>
+</tr>
+</tbody></table>
+<h3 id="section-10">查询蓝图规则</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>规则查询框中的文字。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲；空查询词可读取全族规则。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>只读Blueprint规则/报告</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>搜索不构图；规则限制与节点精确名需分清</td>
+</tr>
+</tbody></table>
+<h3 id="section-11">导出全部节点规则</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>本版完整原生节点目录。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>只读完整目录到报告/读取缓存，不导出选中资产图</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>用报告分段读节点，experimental不是全验</td>
+</tr>
+</tbody></table>
+<h3 id="section-12">读取选中材质 / 函数</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>内容浏览器中唯一选中的已保存普通材质或 MaterialFunction。 对象在 /Engine/ 或批准的测试目录。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲时可点击；必须只选一个符合范围的已保存资源。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>只读真实参数/函数GUID签名和源SHA，不修改源</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>实例/层/函数实例/多选拒绝；失败清旧数据。源需saved/clean及当前受控加载证明，无证明不自动重载</td>
+</tr>
+</tbody></table>
+<h3 id="section-13">复制读取内容</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>最近一次完整读取数据，可包含规则、签名或导出内容。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲，且最近一次读取已取得完整内容。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>复制完整规则/签名/导出数据，不是最近结果摘要</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>提示完整内容已复制；缺数据禁用</td>
+</tr>
+</tbody></table>
+<h2 id="section-14">已有构图与新副本</h2>
+<h3 id="section-15">只读导出选中构图</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>内容浏览器中唯一选中的已保存支持图。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲时可点击；只选一个已保存、无未保存改动且可完整表达的支持图。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>同共享服务读源、准备短的新身份和完整导出报告；当前稿修订仍匹配才后置载入/基线，不改源</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>不支持结构明确拒绝；失败清理只作用于仍匹配的旧基线，晚到结果不覆盖后来稿；另检查生成</td>
+</tr>
+</tbody></table>
+<h3 id="section-16">预览新副本差异</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>当前完整 v2 或 v3 输入，以及这份草稿绑定的可靠导出源资产和比较基线。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲，当前稿有可靠导出来源；比较时源资产和原报告还须有效。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>只读比较逻辑ID/属性/边/位置，不生成</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>草稿编辑使旧预览失效；源/基线不符停下重新确认</td>
+</tr>
+</tbody></table>
+<h3 id="section-17">按上次成功输入重排新副本</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>归档的上次成功输入及其原 SHA；不是当前无关草稿或后来手改的资产。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲，且已记录上次成功输入。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>去原坐标/新身份并调用同Import生成新资产，不修改原资产</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>不包括后改资产或无关当前稿；读派生输入/报告，另独立 Verify</td>
+</tr>
+</tbody></table>
+<h2 id="section-18">最近结果与报告</h2>
+<h3 id="section-19">定位资产</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>当前、未过期结果中的资产路径。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲，当前结果没有因输入修改而过期，且有有效资产路径。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>内容浏览器定位，不生成/验证</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>旧稿结果过期禁用；定位成功不提升验收层</td>
+</tr>
+</tbody></table>
+<h3 id="section-20">打开资产</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>当前、未过期结果中的资产路径。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲，当前结果没有因输入修改而过期，且有有效资产路径。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>打开UE资产编辑器，不生成/验证</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>仍按报告层级判断结果</td>
+</tr>
+</tbody></table>
+<h3 id="section-21">打开完整报告</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>当前已有的原报告路径。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲，且已有报告。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>显示完整原诊断，不提升资产状态</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>摘要不足时读原报告；文件缺失须查原证据</td>
+</tr>
+</tbody></table>
+<h3 id="section-22">复制完整报告</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用哪份内容</td>
+<td>当前已有的完整原报告。</td>
+</tr>
+<tr>
+<td>何时可用</td>
+<td>插件空闲，且已有报告。</td>
+</tr>
+<tr>
+<td>点击后的效果</td>
+<td>复制原完整报告，不复制有界摘要代替原结果</td>
+</tr>
+<tr>
+<td>下一步</td>
+<td>失败保留报告路径/证据，不重生成</td>
+</tr>
+</tbody></table>
+<h2 id="section-23">输入框与状态信息</h2>
+<table>
+<thead>
+<tr>
+<th>控件或提示</th>
+<th>如何使用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>构图输入框</td>
+<td>编辑完整 JSON。修改后，旧检查与旧结果不能证明当前输入。</td>
+</tr>
+<tr>
+<td>文件名与字节计数</td>
+<td>显示当前输入的来源与实际字节数，载入后先核内容是否完整。</td>
+</tr>
+<tr>
+<td>规则查询框</td>
+<td>只筛选规则；最多 256 字符、8 个空白分隔词，词间按 OR 子串匹配；空词查询全族。查询词不会自动成为构图输入。</td>
+</tr>
+<tr>
+<td>两个折叠区</td>
+<td>初始收起。展开后分别看到规则与资源按钮，或导出、预览与重排按钮。</td>
+</tr>
+<tr>
+<td>提示条</td>
+<td>查看最近操作与冲突提示；通用说明不代表当前已经发生名称冲突。</td>
+</tr>
+<tr>
+<td>最近结果</td>
+<td>提供摘要。完整诊断保存在报告中，需要判断各阶段时打开完整报告。</td>
+</tr>
+<tr>
+<td>只读查看视图</td>
+<td>用于查看内容，不提供生成操作。</td>
+</tr>
+</tbody></table>
+<h2 id="section-24">打开与关闭面板</h2>
+<p>在 <strong>Window（窗口）→ NodeForge</strong> 打开面板。关闭面板不会解除正在执行的操作归属。</p>
+<p>输入、检查快照、导出基线、上次成功输入和源资产各有用途。生成使用当前输入；重排使用上次成功输入；差异预览要求源资产与导出基线仍对应。</p>
+<h2 id="section-25">相关资料</h2>
+<ul>
+<li><a href="ManualWorkflows.html">手动操作路线</a></li>
+<li><a href="Troubleshooting.html">问题处理</a></li>
+<li><a href="AiWorkflows.html">使用 AI</a></li>
+<li><a href="../Ai/Preparation.html">AI 准备与正式控制入口</a></li>
+</ul>
+<p>详细 MCP 对应关系由 AI 专用手册维护。程序控制需要显式准备，面板不会自动启动它。</p>
+<p>改已有图的新副本完整步骤见<a href="CopyPreview.html">编辑新副本</a>；AI参数与结果配方见<a href="../Ai/CopyPreview.html">AiCopyPreview</a>。两个按钮和正式API共用共享服务，不把报告写出当草稿提交成功。</p>
+</div><nav class="page-pagination" aria-label="相邻章节"><a class="previous" href="AiWorkflows.html"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m5-5-5 5 5 5"/></svg><span><small>上一页</small><strong>使用 AI</strong></span></a><a class="next" href="Troubleshooting.html"><span><small>下一页</small><strong>问题处理</strong></span><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></nav><footer class="article-footer"><span>NodeForge · 节点熔炉 / Build136-Mcp9R13</span><span class="footer-links"><a href="InterfaceGuide.md">查看 Markdown</a><a href="../Reference/SourcesAndLicenses.html">资料来源</a></span></footer></main>
+<aside class="toc reading-card" aria-label="本页内容"><div class="toc-inner"><div class="toc-title"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>本页内容</div><nav><a class="level2" href="#section-1">构图输入与生成</a><a class="level3" href="#section-2">恢复上次输入</a><a class="level3" href="#section-3">粘贴剪贴板</a><a class="level3" href="#section-4">检查输入</a><a class="level3" href="#section-5">生成新资产</a><a class="level3" href="#section-6">载入 JSON 文件</a><a class="level3" href="#section-7">准备新副本</a><a class="level2" href="#section-8">节点规则与资源查看</a><a class="level3" href="#section-9">查询材质规则</a><a class="level3" href="#section-10">查询蓝图规则</a><a class="level3" href="#section-11">导出全部节点规则</a><a class="level3" href="#section-12">读取选中材质 / 函数</a><a class="level3" href="#section-13">复制读取内容</a><a class="level2" href="#section-14">已有构图与新副本</a><a class="level3" href="#section-15">只读导出选中构图</a><a class="level3" href="#section-16">预览新副本差异</a><a class="level3" href="#section-17">按上次成功输入重排新副本</a><a class="level2" href="#section-18">最近结果与报告</a><a class="level3" href="#section-19">定位资产</a><a class="level3" href="#section-20">打开资产</a><a class="level3" href="#section-21">打开完整报告</a><a class="level3" href="#section-22">复制完整报告</a><a class="level2" href="#section-23">输入框与状态信息</a><a class="level2" href="#section-24">打开与关闭面板</a><a class="level2" href="#section-25">相关资料</a></nav><div class="toc-footer"><button type="button" data-back-top><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg>回到顶部</button><div class="reading-progress" aria-hidden="true"><span></span></div></div></div></aside></div></div>
+<dialog class="search-dialog" aria-label="搜索文档"><div class="search-box"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><label class="sr-only" for="docs-search">搜索文档标题、章节或节点名称</label><input id="docs-search" class="search-input" type="search" placeholder="搜索文档、章节、节点…" autocomplete="off"><button type="button" class="dialog-close" data-close aria-label="关闭搜索"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><div class="search-summary" role="status"></div><ol class="search-results" aria-label="搜索结果"></ol><div class="search-bottom"><span>↑ ↓ 选择 · Enter 打开</span><span>Esc 关闭 · 本地搜索</span></div></dialog>
+<dialog class="navigation-dialog" aria-label="文档导航"><div class="navigation-head"><strong>文档导航</strong><button type="button" class="dialog-close" data-close aria-label="关闭导航"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><nav class="mobile-groups" aria-label="手册分类"><a href="../Index.html">首页</a><a href="Readme.html" class="current" aria-current="page">使用手册</a><a href="../Ai/Readme.html">AI 调用</a><a href="../Developer/Readme.html">原理与开发</a><a href="../Version/Readme.html">版本说明</a></nav><div class="side-caption">使用手册</div><nav class="side-links" aria-label="章节导航"><a href="Readme.html">阅读首页</a><a href="Overview.html">插件介绍</a><a href="GettingStarted.html">开始使用</a><a href="ManualWorkflows.html">手动操作</a><a href="AiWorkflows.html">使用 AI</a><a href="InterfaceGuide.html" class="current" aria-current="page">界面与按钮</a><a href="Troubleshooting.html">问题处理</a><a href="CopyPreview.html">修改已有图，生成一个新副本</a><a href="NodeCoverage.html">节点选择与支持层次</a><a href="Installation.html">解压、绑定工程与第一次打开</a></nav></dialog><div class="toast" role="status" aria-live="polite"></div></body></html>

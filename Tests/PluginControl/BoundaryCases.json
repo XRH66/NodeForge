@@ -1,0 +1,17 @@
+{
+  "cases": [
+    {"name":"MissingInput","operation":"graphs.generateFromFile","expectedExit":2,"errorCode":"NFCLI_MISSING_PARAMETER"},
+    {"name":"MissingFile","operation":"graphs.generateFromFile","input":"Tests/PluginControl/DoesNotExist.json","expectedExit":2,"errorCode":"NFCLI_FILE"},
+    {"name":"InvalidJson","operation":"graphs.generateFromFile","input":"Tests/PluginControl/InvalidJson.json","expectedExit":4,"nativeCode":"NFERR-PROTOTYPE-001"},
+    {"name":"OldUnknownPin","operation":"graphs.generateFromFile","input":"Tests/Invalid/UnknownPin.json","expectedExit":4,"nativeCode":"NFERR-PROTOTYPE-001"},
+    {"name":"OldDuplicateKey","operation":"graphs.generateFromFile","input":"Tests/Invalid/DuplicateKey.json","expectedExit":4,"nativeCode":"NFERR-PROTOTYPE-001"},
+    {"name":"ExistingTarget","operation":"graphs.generateFromFile","input":"Examples/GraphV2Samples/BlueprintConcat.json","expectedExit":4},
+    {"name":"ExistingPreflight","operation":"graphs.preflightFromFile","input":"Examples/GraphV2Samples/BlueprintConcat.json","expectedExit":4},
+    {"name":"MissingPrevious","operation":"graphs.verifySaved","input":"Examples/GraphV2Samples/BlueprintConcat.json","expectedExit":2,"errorCode":"NFCLI_MISSING_PARAMETER"},
+    {"name":"UnknownOperation","operation":"graphs.unknown","expectedExit":2,"errorCode":"NFCLI_UNKNOWN_OPERATION"},
+    {"name":"BadProject","operation":"graphs.generateFromFile","input":"Examples/GraphV2Samples/BlueprintConcat.json","overrideProject":"DevProject/NodeForgeDev.uproject","expectedExit":3,"errorCode":"NFCLI_ENVIRONMENT"},
+    {"name":"BadStage","operation":"graphs.generateFromFile","input":"Examples/GraphV2Samples/BlueprintConcat.json","overrideStage":"Plugins/NodeForge","expectedExit":3,"errorCode":"NFCLI_ENVIRONMENT"},
+    {"name":"UnsupportedParameter","operation":"graphs.generateFromFile","input":"Examples/GraphV2Samples/BlueprintConcat.json","param":"unknown=1","expectedExit":2,"errorCode":"NFCLI_PARAMETER"},
+    {"name":"BadTimeout","operation":"graphs.generateFromFile","input":"Examples/GraphV2Samples/BlueprintConcat.json","timeout":"nan","expectedExit":2,"errorCode":"NFCLI_TIMEOUT"}
+  ]
+}

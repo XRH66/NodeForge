@@ -1,0 +1,208 @@
+{
+  "build": "Build39",
+  "catalogDigest": "7dea96da738f0f1b526e7782ec08230a4e0d6d14e815db2538638693f2309326",
+  "selectedBinarySha256": "aafb078b09f2e69bcc701a00ce89f89574462d43b354d85bb9465f0d39bb5392",
+  "scope": "Seven SelfRootComponent signatures only; other catalog entries retain their own build-specific evidence",
+  "nodes": [
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "K2_GetComponentLocation"
+      },
+      "family": "SelfRootComponent",
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/RootComponents1/RootMotionReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootChangedReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootShuffledReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootOffsetReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/RootRuntime1/RootMotionRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootChangedRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootShuffledRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootOffsetRuntime.json"
+      ],
+      "scope": "Representative own default root component configurations, bSweep=false and bTeleport=true where present; no per-node execution trace or physics/collision guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "K2_GetComponentRotation"
+      },
+      "family": "SelfRootComponent",
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/RootComponents1/RootMotionReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootChangedReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootShuffledReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/RootRuntime1/RootMotionRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootChangedRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootShuffledRuntime.json"
+      ],
+      "scope": "Representative own default root component configurations, bSweep=false and bTeleport=true where present; no per-node execution trace or physics/collision guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "K2_GetComponentScale"
+      },
+      "family": "SelfRootComponent",
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/RootComponents1/RootMotionReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootChangedReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootShuffledReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/RootRuntime1/RootMotionRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootChangedRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootShuffledRuntime.json"
+      ],
+      "scope": "Representative own default root component configurations, bSweep=false and bTeleport=true where present; no per-node execution trace or physics/collision guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_GetRootComponent"
+      },
+      "family": "SelfRootComponent",
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/RootComponents1/RootMotionReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootChangedReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootShuffledReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootOffsetReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/RootRuntime1/RootMotionRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootChangedRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootShuffledRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootOffsetRuntime.json"
+      ],
+      "scope": "Representative own default root component configurations, bSweep=false and bTeleport=true where present; no per-node execution trace or physics/collision guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "K2_SetWorldLocation"
+      },
+      "family": "SelfRootComponent",
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/RootComponents1/RootMotionReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootChangedReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootShuffledReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootOffsetReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/RootRuntime1/RootMotionRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootChangedRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootShuffledRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootOffsetRuntime.json"
+      ],
+      "scope": "Representative own default root component configurations, bSweep=false and bTeleport=true where present; no per-node execution trace or physics/collision guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "K2_SetWorldRotation"
+      },
+      "family": "SelfRootComponent",
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/RootComponents1/RootMotionReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootChangedReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootShuffledReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/RootRuntime1/RootMotionRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootChangedRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootShuffledRuntime.json"
+      ],
+      "scope": "Representative own default root component configurations, bSweep=false and bTeleport=true where present; no per-node execution trace or physics/collision guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "SetWorldScale3D"
+      },
+      "family": "SelfRootComponent",
+      "nativeDiscovered": true,
+      "actionDatabaseMatch": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "Reports/20261008GraphV2/RootComponents1/RootMotionReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootChangedReopen.json",
+        "Reports/20261008GraphV2/RootComponents1/RootShuffledReopen.json"
+      ],
+      "runtimeSampleEvidence": [
+        "Reports/20261009UsableEditor/RootRuntime1/RootMotionRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootChangedRuntime.json",
+        "Reports/20261009UsableEditor/RootRuntime1/RootShuffledRuntime.json"
+      ],
+      "scope": "Representative own default root component configurations, bSweep=false and bTeleport=true where present; no per-node execution trace or physics/collision guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    }
+  ],
+  "graphMatrix": "Reports/20261008GraphV2/RootComponents1/Summary.json",
+  "runtime": "Reports/20261009UsableEditor/RootRuntime1/Summary.json",
+  "roundtrip": "Reports/20261009UsableEditor/RootExport1/Summary.json",
+  "rootGuard": "Reports/20261009UsableEditor/RootGuard1/Summary.json",
+  "evidenceSha256": {
+    "Catalog/UE532BlueprintComponents.json": "6b7b4844b15d3647f3a62b570190d28d48d6ab4c4de8500ad619a4e60217efc4",
+    "Reports/20261008GraphV2/RootComponents1/Summary.json": "ac7452615044c93a0e1e8cab9413c57a296b06d176cce330e38c7831b531b603",
+    "Reports/20261009UsableEditor/RootRuntime1/Summary.json": "86b84e7a7718284a199bc2069fb0c31f8ad85f60aea3e755628800b3bfcb25e2",
+    "Reports/20261009UsableEditor/RootExport1/Summary.json": "808c2b3e13257833dfe1aae3ffeba95d90f021311a5fcfa432298383ad3174ec",
+    "Reports/20261009UsableEditor/RootGuard1/Export.json": "9f275de211e141389be07a1466a1448bfd1e75c450161e5b1baf022af1987dbc",
+    "Reports/20261009UsableEditor/RootGuard1/Summary.json": "55375c9b39ad79231a5b6a102f37f886cdfc54bf955421479a02ca48c3c84e6b",
+    "Reports/20261009UsableEditor/Build39/BinaryEvidence.json": "19a67dcfd413ecd1ddb9169d146c4c600fcd7249d6cc1056e87cdebf05cc1ad7"
+  },
+  "limitations": [
+    "Native catalog remains discovered/experimental; this file supplies representative verification only",
+    "No arbitrary Actor/object/custom component creation, object variables or cast/reroute context",
+    "Saved-map PIE verifies original generated graphs; exported new copies compile/save/reopen, not additional runtime",
+    "No new-family real UI, external AI original output, packaging or root deployment; RC1 remains frozen"
+  ]
+}

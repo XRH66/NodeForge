@@ -1,0 +1,122 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphTransformLengthEnough",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFTransformLengthEnough",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "LeftText",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Left"
+      },
+      "defaults": {
+        "SourceString": "AbCdEf",
+        "Count": 4
+      }
+    },
+    {
+      "id": "Length",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Len"
+      }
+    },
+    {
+      "id": "Compare",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "GreaterEqual_IntInt"
+      },
+      "defaults": {
+        "B": 4
+      }
+    },
+    {
+      "id": "Branch",
+      "class": "/Script/BlueprintGraph.K2Node_IfThenElse",
+      "properties": {}
+    },
+    {
+      "id": "PrintTrue",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true,
+        "InString": "Length Enough"
+      }
+    },
+    {
+      "id": "PrintFalse",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true,
+        "InString": "Length Short"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Branch",
+      "input": "execute"
+    },
+    {
+      "from": "LeftText",
+      "output": "ReturnValue",
+      "to": "Length",
+      "input": "S"
+    },
+    {
+      "from": "Length",
+      "output": "ReturnValue",
+      "to": "Compare",
+      "input": "A"
+    },
+    {
+      "from": "Compare",
+      "output": "ReturnValue",
+      "to": "Branch",
+      "input": "Condition"
+    },
+    {
+      "from": "Branch",
+      "output": "then",
+      "to": "PrintTrue",
+      "input": "execute"
+    },
+    {
+      "from": "Branch",
+      "output": "else",
+      "to": "PrintFalse",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}

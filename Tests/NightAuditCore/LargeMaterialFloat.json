@@ -1,0 +1,31 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphLargeMaterialFloat",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFNightLargeMaterialFloat",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Value",
+      "class": "/Script/Engine.MaterialExpressionConstant",
+      "properties": {
+        "R": 999999.9
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Value",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

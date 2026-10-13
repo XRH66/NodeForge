@@ -1,0 +1,223 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphVectorBasis",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFGraphVectorBasis",
+  "catalogDigest": "6993743a0513489069423790f678c2cccd6bccc29435cd0dd98e4156248aa069",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Forward",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "GetActorForwardVector"
+      }
+    },
+    {
+      "id": "Right",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "GetActorRightVector"
+      }
+    },
+    {
+      "id": "Up",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "GetActorUpVector"
+      }
+    },
+    {
+      "id": "Cross",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Cross_VectorVector"
+      }
+    },
+    {
+      "id": "Add",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Add_VectorVector"
+      }
+    },
+    {
+      "id": "Subtract",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Subtract_VectorVector"
+      }
+    },
+    {
+      "id": "Dot",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Dot_VectorVector"
+      }
+    },
+    {
+      "id": "Size",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "VSize"
+      }
+    },
+    {
+      "id": "Number",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Conv_IntToDouble"
+      },
+      "defaults": {
+        "InInt": 7
+      }
+    },
+    {
+      "id": "Vector",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "MakeVector"
+      }
+    },
+    {
+      "id": "Move",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "defaults": {
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "InString": "Basis computed",
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Move",
+      "input": "execute"
+    },
+    {
+      "from": "Move",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "Forward",
+      "output": "ReturnValue",
+      "to": "Cross",
+      "input": "A"
+    },
+    {
+      "from": "Right",
+      "output": "ReturnValue",
+      "to": "Cross",
+      "input": "B"
+    },
+    {
+      "from": "Cross",
+      "output": "ReturnValue",
+      "to": "Add",
+      "input": "A"
+    },
+    {
+      "from": "Up",
+      "output": "ReturnValue",
+      "to": "Add",
+      "input": "B"
+    },
+    {
+      "from": "Add",
+      "output": "ReturnValue",
+      "to": "Subtract",
+      "input": "A"
+    },
+    {
+      "from": "Right",
+      "output": "ReturnValue",
+      "to": "Subtract",
+      "input": "B"
+    },
+    {
+      "from": "Cross",
+      "output": "ReturnValue",
+      "to": "Dot",
+      "input": "A"
+    },
+    {
+      "from": "Up",
+      "output": "ReturnValue",
+      "to": "Dot",
+      "input": "B"
+    },
+    {
+      "from": "Subtract",
+      "output": "ReturnValue",
+      "to": "Size",
+      "input": "A"
+    },
+    {
+      "from": "Dot",
+      "output": "ReturnValue",
+      "to": "Vector",
+      "input": "X"
+    },
+    {
+      "from": "Size",
+      "output": "ReturnValue",
+      "to": "Vector",
+      "input": "Y"
+    },
+    {
+      "from": "Number",
+      "output": "ReturnValue",
+      "to": "Vector",
+      "input": "Z"
+    },
+    {
+      "from": "Vector",
+      "output": "ReturnValue",
+      "to": "Move",
+      "input": "NewLocation"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}
+

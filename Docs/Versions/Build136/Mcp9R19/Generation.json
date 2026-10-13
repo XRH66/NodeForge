@@ -1,0 +1,108 @@
+{
+  "generator": {
+    "path": "Scripts/BuildNodeForgeUsageDocs.py",
+    "sha256": "156a75c72330b97ac4dfc11dc794bbbb5d400cbe2c6cf60800cc285e13b3978e",
+    "bytes": 126409
+  },
+  "input": {
+    "path": "Reports/InstallationUi1/Documentation/ReleaseInput19.json",
+    "sha256": "88e1926ca1674b066ff30d3f941baff2bd0eabfc9c87ec720fb81a81cf28b23c",
+    "bytes": 15210
+  },
+  "manifest": {
+    "path": "Docs/Versions/Build136/Mcp9R19/Manifest.json",
+    "sha256": "864add977d6476d2a4d9375900003d0b24ebb4ef8e5db844fc7a6a6dffb35890",
+    "bytes": 384023
+  },
+  "render": {
+    "renderedPages": 452,
+    "offline": true,
+    "externalAssets": 0,
+    "themeVersion": "2.4.1-preview",
+    "assets": [
+      {
+        "path": "Assets/NodeForgeDocs/Theme.css",
+        "sha256": "50851458e29c696a5f4a4d75ac7584ff2b35f270e0610f8006081c6a4ea49fbc",
+        "bytes": 38100
+      },
+      {
+        "path": "Assets/NodeForgeDocs/Theme.js",
+        "sha256": "96a5a462fdc956e4a3019e2b149834a0aa928719baec66441e684600012c809f",
+        "bytes": 15093
+      },
+      {
+        "path": "Assets/NodeForgeDocs/Blueprint.css",
+        "sha256": "b1bdbe36d61feb205e0b966b329ff7188f6257a44d18b344347c74e46e2ef512",
+        "bytes": 2780
+      },
+      {
+        "path": "Assets/NodeForgeDocs/Blueprint.js",
+        "sha256": "e644e5a8eaecf256566fa5fcb52c5905a9277f666ef1afaa219b42c46f9baa55",
+        "bytes": 2701
+      },
+      {
+        "path": "Assets/NodeForgeDocs/Home.css",
+        "sha256": "1bac1534d047b271fc2a6edb40eb29c6615f3a8635302cad71b3e1734460f4dd",
+        "bytes": 2238
+      },
+      {
+        "path": "Assets/NodeForgeDocs/Reading.css",
+        "sha256": "fb3afea6fd1fba07c93253a6bcb54a448f85e37bd3d3b8dc2fe8dc5fd0ac7e4e",
+        "bytes": 6151
+      },
+      {
+        "path": "Assets/NodeForgeDocs/Reading.js",
+        "sha256": "2ad37ae9989a54aa9cf2ebf093f025ee1b2baed6ca52aa409c85aa6e5d652fc1",
+        "bytes": 4605
+      },
+      {
+        "path": "Assets/NodeForgeDocs/Brand/WordmarkDark.svg",
+        "sha256": "9eafe87abf15f4336bbe4a324b37d116cb43358ba5d6df209898e319a021520e",
+        "bytes": 15361
+      },
+      {
+        "path": "Assets/NodeForgeDocs/Brand/WordmarkLight.svg",
+        "sha256": "d38a22bd16c3b821dedacd1da52ff2405a3f887b190c3c90865a01f1ac249fb8",
+        "bytes": 15361
+      },
+      {
+        "path": "Assets/NodeForgeDocs/Brand/BrandIcon.png",
+        "sha256": "fde4eae93f46c5728a0b01d739957c949e5778b1cc675e6b07b82cb8c23d803e",
+        "bytes": 686891
+      },
+      {
+        "path": "Assets/NodeForgeDocs/SearchIndex.js",
+        "sha256": "9d9d0b8cd5e79240f2d75b07f46dc0a0063b1af667e764927f4d87a7e9887f35",
+        "bytes": 193038
+      }
+    ],
+    "themeSourceFiles": [
+      "Home.mjs",
+      "Config.json",
+      "Theme.css",
+      "Theme.js",
+      "Renderer.mjs",
+      "Blueprint.mjs",
+      "Blueprint.css",
+      "Blueprint.js",
+      "Home.css",
+      "Reading.mjs",
+      "Reading.css",
+      "Reading.js",
+      "Brand/WordmarkDark.svg",
+      "Brand/WordmarkLight.svg",
+      "Brand/BrandIcon.png"
+    ],
+    "layoutManifest": {
+      "path": "Docs/Versions/Build136/Mcp9R19/LayoutManifest.json",
+      "sha256": "45255d6669bfe3b7b21581f9d2cb890d7779448e642c3ebb800294838e93290c",
+      "bytes": 194542
+    }
+  },
+  "pages": 452,
+  "nodePages": 398,
+  "tools": 20,
+  "ueStarted": false,
+  "assetsGenerated": false,
+  "status": "candidateRequiresReview"
+}

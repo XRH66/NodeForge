@@ -1,0 +1,179 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "scope": "Spatial inputs via native expressions; exact enums/revision boundaries and invalid native shader contexts; no UI/package claim",
+  "cases": [
+    {
+      "name": "WorldBands",
+      "input": "WorldBands.json",
+      "expected": "succeeded",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "WorldChanged",
+      "input": "WorldChanged.json",
+      "expected": "succeeded",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "WorldShuffled",
+      "input": "WorldShuffled.json",
+      "expected": "succeeded",
+      "category": "nativeSpatialInputs",
+      "compareLayoutWith": "WorldBands"
+    },
+    {
+      "name": "WorldHeight",
+      "input": "WorldHeight.json",
+      "expected": "succeeded",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "ObjectLocal",
+      "input": "ObjectLocal.json",
+      "expected": "succeeded",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "ObjectRelative",
+      "input": "ObjectRelative.json",
+      "expected": "succeeded",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "ViewFacing",
+      "input": "ViewFacing.json",
+      "expected": "succeeded",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "CameraDistance",
+      "input": "CameraDistance.json",
+      "expected": "succeeded",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "NormalMotion",
+      "input": "NormalMotion.json",
+      "expected": "succeeded",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "SpatialBaseLegacy",
+      "input": "SpatialBaseLegacy.json",
+      "expected": "succeeded",
+      "category": "nativeSpatialInputs",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SpatialTextureLegacy",
+      "input": "SpatialTextureLegacy.json",
+      "expected": "succeeded",
+      "category": "nativeSpatialInputs",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SpatialSequenceLegacy",
+      "input": "SpatialSequenceLegacy.json",
+      "expected": "succeeded",
+      "category": "nativeSpatialInputs",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SpatialFamilyLegacy",
+      "input": "SpatialFamilyLegacy.json",
+      "expected": "succeeded",
+      "category": "nativeSpatialInputs",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SpatialEnumUnknown",
+      "input": "SpatialEnumUnknown.json",
+      "expected": "rejected",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "SpatialEnumNumber",
+      "input": "SpatialEnumNumber.json",
+      "expected": "rejected",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "SpatialEnumSentinel",
+      "input": "SpatialEnumSentinel.json",
+      "expected": "rejected",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "SpatialProperty",
+      "input": "SpatialProperty.json",
+      "expected": "rejected",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "SpatialOutput",
+      "input": "SpatialOutput.json",
+      "expected": "rejected",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "SpatialInput",
+      "input": "SpatialInput.json",
+      "expected": "rejected",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "SpatialOld41",
+      "input": "SpatialOld41.json",
+      "expected": "rejected",
+      "category": "nativeSpatialInputs",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SpatialOld38",
+      "input": "SpatialOld38.json",
+      "expected": "rejected",
+      "category": "nativeSpatialInputs",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SpatialOldOriginal",
+      "input": "SpatialOldOriginal.json",
+      "expected": "rejected",
+      "category": "nativeSpatialInputs",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SpatialOldFunctions",
+      "input": "SpatialOldFunctions.json",
+      "expected": "rejected",
+      "category": "nativeSpatialInputs",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SpatialOldSamplers",
+      "input": "SpatialOldSamplers.json",
+      "expected": "rejected",
+      "category": "nativeSpatialInputs",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "SpatialCollision",
+      "input": "SpatialCollision.json",
+      "expected": "rejected",
+      "category": "nativeSpatialInputs",
+      "requires": "WorldBands"
+    },
+    {
+      "name": "SpatialPixelVertex",
+      "input": "SpatialPixelVertex.json",
+      "expected": "cleanupRequired",
+      "category": "nativeSpatialInputs"
+    },
+    {
+      "name": "SpatialPixelNormal",
+      "input": "SpatialPixelNormal.json",
+      "expected": "cleanupRequired",
+      "category": "nativeSpatialInputs"
+    }
+  ]
+}

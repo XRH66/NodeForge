@@ -1,0 +1,16 @@
+{
+  "map": "/Game/NodeForgeTests/NFSpatialRaisedVisualMap",
+  "material": "/Game/NodeForgeTests/NFNormalRaised",
+  "scalarChanges": {
+    "Speed": 0.8,
+    "Amplitude": 30
+  },
+  "vectorChanges": {
+    "Tint": [
+      0.9,
+      0.15,
+      0.03,
+      1
+    ]
+  }
+}

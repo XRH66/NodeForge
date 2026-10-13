@@ -1,0 +1,3987 @@
+{
+  "format": "NodeForgeCurrentCapabilityEvidence1",
+  "catalogDigest": "a6488c77da856b78bd72ac32d5c480008f34cdb897524c2296289f088893b786",
+  "binarySha256": "b5475c6feb8d6ac7f7011c29b65636aee7711f2a9919d80c5edeb7e5e8e8f7fe",
+  "sourceCatalog": "Reports/20261009UsableEditor/BlueprintMotionInspect3/Catalog17.json",
+  "entries": [
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionAbs",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionAbs",
+            "",
+            "",
+            ""
+          ],
+          "case": "DynamicPulse",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Input"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/DynamicPulseReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionAbs",
+            "",
+            "",
+            ""
+          ],
+          "case": "DynamicChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Input"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/DynamicChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionAdd",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionAdd",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionAdd",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionAdd",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionAdd",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionAdd",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionAdd",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionAppendVector",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionAppendVector",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionAppendVector",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionAppendVector",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionAppendVector",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionClamp",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionComponentMask",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionComponentMask",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Input"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionComponentMask",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Input"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionComponentMask",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Input"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionComponentMask",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Input"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionConstant",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionConstant",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionConstant",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionConstant",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionConstant",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionConstant2Vector",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionConstant3Vector",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionConstant3Vector",
+            "",
+            "",
+            ""
+          ],
+          "case": "MaterialDefaults",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/MaterialDefaultsReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionConstant3Vector",
+            "",
+            "",
+            ""
+          ],
+          "case": "Interpolation",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/InterpolationReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionConstant3Vector",
+            "",
+            "",
+            ""
+          ],
+          "case": "Interpolation",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/InterpolationReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionConstant3Vector",
+            "",
+            "",
+            ""
+          ],
+          "case": "DynamicPulse",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/DynamicPulseReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionConstant3Vector",
+            "",
+            "",
+            ""
+          ],
+          "case": "DynamicChanged",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/DynamicChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionConstant4Vector",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionCosine",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionCrossProduct",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionDivide",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionDotProduct",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionFloor",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionFrac",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionFresnel",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionLinearInterpolate",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionLinearInterpolate",
+            "",
+            "",
+            ""
+          ],
+          "case": "Interpolation",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "Alpha",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/InterpolationReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionMaterialFunctionCall",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "MaterialDefaults",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/MaterialDefaultsReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "StaticAdded",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/StaticAddedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "StaticTopology",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/StaticTopologyReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "StaticShuffled",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/StaticShuffledReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "DynamicPulse",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/DynamicPulseReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "DynamicChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/DynamicChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionMultiply",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionNormalize",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionNormalize",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "VectorInput"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionNormalize",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "VectorInput"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionOneMinus",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionPanner",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionPanner",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Coordinate",
+            "Time"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionPanner",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Coordinate",
+            "Time"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionPower",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionSaturate",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "StaticColor",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/StaticColorReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "StaticChanged",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/StaticChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "StaticAdded",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/StaticAddedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "StaticTopology",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/StaticTopologyReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "StaticShuffled",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/StaticShuffledReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionScalarParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionSine",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionSine",
+            "",
+            "",
+            ""
+          ],
+          "case": "DynamicPulse",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Input"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/DynamicPulseReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionSine",
+            "",
+            "",
+            ""
+          ],
+          "case": "DynamicChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Input"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/DynamicChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionSine",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Input"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionSine",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Input"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionSine",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Input"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionSine",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Input"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionSubtract",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionSubtract",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionSubtract",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "A",
+            "B"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionTextureCoordinate",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionTextureCoordinate",
+            "",
+            "",
+            ""
+          ],
+          "case": "TextureUv",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/TextureUvReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionTextureCoordinate",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionTextureCoordinate",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionTextureSample",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionTextureSample",
+            "",
+            "",
+            ""
+          ],
+          "case": "TextureUv",
+          "pinsConfiguredOrConnected": [
+            "0",
+            "Coordinates"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/TextureUvReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionTextureSampleParameter2D",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionTime",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionTime",
+            "",
+            "",
+            ""
+          ],
+          "case": "DynamicPulse",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/DynamicPulseReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionTime",
+            "",
+            "",
+            ""
+          ],
+          "case": "DynamicChanged",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/DynamicChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionTime",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionTime",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Material",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "binding": null,
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionVectorParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "StaticColor",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/StaticColorReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionVectorParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "StaticChanged",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/StaticChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionVectorParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "StaticAdded",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/StaticAddedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionVectorParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "StaticReduced",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/StaticReducedReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionVectorParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "StaticTopology",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/StaticTopologyReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionVectorParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "StaticShuffled",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/StaticShuffledReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionVectorParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "Water",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterReopen.json"
+        },
+        {
+          "signature": [
+            "Material",
+            "/Script/Engine.MaterialExpressionVectorParameter",
+            "",
+            "",
+            ""
+          ],
+          "case": "WaterChanged",
+          "pinsConfiguredOrConnected": [
+            "0"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/WaterChangedReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "binding": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Add_DoubleDouble"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "binding": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "BooleanAND"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "binding": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "BreakVector"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": true,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetMathLibrary",
+            "BreakVector",
+            ""
+          ],
+          "case": "MotionBreak",
+          "pinsConfiguredOrConnected": [
+            "InVec",
+            "X"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionBreakReopen.json"
+        }
+      ],
+      "runtimeEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetMathLibrary",
+            "BreakVector",
+            ""
+          ],
+          "case": "MotionBreak",
+          "pinsConfiguredOrConnected": [
+            "InVec",
+            "X"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionBreakRuntime.json"
+        }
+      ],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "binding": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Concat_StrStr"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetStringLibrary",
+            "Concat_StrStr",
+            ""
+          ],
+          "case": "BlueprintConcat",
+          "pinsConfiguredOrConnected": [
+            "A",
+            "B",
+            "ReturnValue"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintConcatReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "binding": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_DoubleToString"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "binding": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_VectorToString"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": true,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetStringLibrary",
+            "Conv_VectorToString",
+            ""
+          ],
+          "case": "MotionReadback",
+          "pinsConfiguredOrConnected": [
+            "InVec",
+            "ReturnValue"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionReadbackReopen.json"
+        }
+      ],
+      "runtimeEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetStringLibrary",
+            "Conv_VectorToString",
+            ""
+          ],
+          "case": "MotionReadback",
+          "pinsConfiguredOrConnected": [
+            "InVec",
+            "ReturnValue"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionReadbackRuntime.json"
+        }
+      ],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "binding": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Greater_DoubleDouble"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "binding": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_GetActorLocation"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": true,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_GetActorLocation",
+            ""
+          ],
+          "case": "MotionReadback",
+          "pinsConfiguredOrConnected": [
+            "ReturnValue"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionReadbackReopen.json"
+        }
+      ],
+      "runtimeEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_GetActorLocation",
+            ""
+          ],
+          "case": "MotionReadback",
+          "pinsConfiguredOrConnected": [
+            "ReturnValue"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionReadbackRuntime.json"
+        }
+      ],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "binding": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": true,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionDirect",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionDirectReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionChanged",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionMade",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionMadeReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionShuffled",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionShuffledReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionVariable",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionVariableReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionWrite",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionWriteReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionBreak",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionBreakReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionReadback",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionReadbackReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionZero",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionZeroReopen.json"
+        }
+      ],
+      "runtimeEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionDirect",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionDirectRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionChanged",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionChangedRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionMade",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionMadeRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionShuffled",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionShuffledRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionVariable",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionVariableRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionWrite",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionWriteRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionBreak",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionBreakRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionReadback",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionReadbackRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.Actor",
+            "K2_SetActorLocation",
+            ""
+          ],
+          "case": "MotionZero",
+          "pinsConfiguredOrConnected": [
+            "NewLocation",
+            "bSweep",
+            "bTeleport",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionZeroRuntime.json"
+        }
+      ],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "binding": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "MakeVector"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": true,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetMathLibrary",
+            "MakeVector",
+            ""
+          ],
+          "case": "MotionMade",
+          "pinsConfiguredOrConnected": [
+            "ReturnValue",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionMadeReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetMathLibrary",
+            "MakeVector",
+            ""
+          ],
+          "case": "MotionShuffled",
+          "pinsConfiguredOrConnected": [
+            "ReturnValue",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionShuffledReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetMathLibrary",
+            "MakeVector",
+            ""
+          ],
+          "case": "MotionBreak",
+          "pinsConfiguredOrConnected": [
+            "ReturnValue",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionBreakReopen.json"
+        }
+      ],
+      "runtimeEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetMathLibrary",
+            "MakeVector",
+            ""
+          ],
+          "case": "MotionMade",
+          "pinsConfiguredOrConnected": [
+            "ReturnValue",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionMadeRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetMathLibrary",
+            "MakeVector",
+            ""
+          ],
+          "case": "MotionShuffled",
+          "pinsConfiguredOrConnected": [
+            "ReturnValue",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionShuffledRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetMathLibrary",
+            "MakeVector",
+            ""
+          ],
+          "case": "MotionBreak",
+          "pinsConfiguredOrConnected": [
+            "ReturnValue",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionBreakRuntime.json"
+        }
+      ],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "binding": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Multiply_DoubleDouble"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "binding": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": true,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionDirect",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionDirectReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionChanged",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionMade",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionMadeReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionShuffled",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionShuffledReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionVariable",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionVariableReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionWrite",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionWriteReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionBreak",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionBreakReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionReadback",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionReadbackReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionZero",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionZeroReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "BlueprintConcat",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintConcatReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "BlueprintText",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintTextReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "BlueprintTextChanged",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintTextChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "BlueprintBranch",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintBranchReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "BlueprintBranch",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintBranchReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "BlueprintBranchFalse",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintBranchFalseReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "BlueprintBranchFalse",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintBranchFalseReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "BlueprintShuffled",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintShuffledReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "BlueprintShuffled",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintShuffledReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "BlueprintZeroDefaults",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintZeroDefaultsReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "BlueprintZeroDefaults",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintZeroDefaultsReopen.json"
+        }
+      ],
+      "runtimeEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionDirect",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionDirectRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionChanged",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionChangedRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionMade",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionMadeRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionShuffled",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionShuffledRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionVariable",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionVariableRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionWrite",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionWriteRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionBreak",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionBreakRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionReadback",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionReadbackRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_CallFunction",
+            "/Script/Engine.KismetSystemLibrary",
+            "PrintString",
+            ""
+          ],
+          "case": "MotionZero",
+          "pinsConfiguredOrConnected": [
+            "InString",
+            "bPrintToLog",
+            "bPrintToScreen",
+            "execute"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionZeroRuntime.json"
+        }
+      ],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "binding": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      },
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": true,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionDirect",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionDirectReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionChanged",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionMade",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionMadeReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionShuffled",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionShuffledReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionVariable",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionVariableReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionWrite",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionWriteReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionBreak",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionBreakReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionReadback",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionReadbackReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionZero",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionZeroReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "BlueprintConcat",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintConcatReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "BlueprintText",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintTextReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "BlueprintTextChanged",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintTextChangedReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "BlueprintBranch",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintBranchReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "BlueprintBranchFalse",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintBranchFalseReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "BlueprintShuffled",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintShuffledReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "BlueprintZeroDefaults",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintZeroDefaultsReopen.json"
+        }
+      ],
+      "runtimeEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionDirect",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionDirectRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionChanged",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionChangedRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionMade",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionMadeRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionShuffled",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionShuffledRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionVariable",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionVariableRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionWrite",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionWriteRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionBreak",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionBreakRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionReadback",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionReadbackRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_Event",
+            "/Script/Engine.Actor",
+            "ReceiveBeginPlay",
+            ""
+          ],
+          "case": "MotionZero",
+          "pinsConfiguredOrConnected": [
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionZeroRuntime.json"
+        }
+      ],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_IfThenElse",
+      "binding": {},
+      "variableType": "",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_IfThenElse",
+            "",
+            "",
+            ""
+          ],
+          "case": "BlueprintBranch",
+          "pinsConfiguredOrConnected": [
+            "Condition",
+            "else",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintBranchReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_IfThenElse",
+            "",
+            "",
+            ""
+          ],
+          "case": "BlueprintBranchFalse",
+          "pinsConfiguredOrConnected": [
+            "Condition",
+            "else",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintBranchFalseReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_IfThenElse",
+            "",
+            "",
+            ""
+          ],
+          "case": "BlueprintShuffled",
+          "pinsConfiguredOrConnected": [
+            "Condition",
+            "else",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintShuffledReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_IfThenElse",
+            "",
+            "",
+            ""
+          ],
+          "case": "BlueprintZeroDefaults",
+          "pinsConfiguredOrConnected": [
+            "Condition",
+            "else",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintZeroDefaultsReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "binding": {
+        "variable": "Value"
+      },
+      "variableType": "bool",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableGet",
+            "",
+            "",
+            "bool"
+          ],
+          "case": "BlueprintBranch",
+          "pinsConfiguredOrConnected": [
+            "Enabled"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintBranchReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableGet",
+            "",
+            "",
+            "bool"
+          ],
+          "case": "BlueprintBranchFalse",
+          "pinsConfiguredOrConnected": [
+            "Enabled"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintBranchFalseReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableGet",
+            "",
+            "",
+            "bool"
+          ],
+          "case": "BlueprintShuffled",
+          "pinsConfiguredOrConnected": [
+            "Enabled"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintShuffledReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableGet",
+            "",
+            "",
+            "bool"
+          ],
+          "case": "BlueprintZeroDefaults",
+          "pinsConfiguredOrConnected": [
+            "Enabled"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintZeroDefaultsReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "binding": {
+        "variable": "Value"
+      },
+      "variableType": "float",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "binding": {
+        "variable": "Value"
+      },
+      "variableType": "string",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableGet",
+            "",
+            "",
+            "string"
+          ],
+          "case": "BlueprintBranch",
+          "pinsConfiguredOrConnected": [
+            "Message"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintBranchReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableGet",
+            "",
+            "",
+            "string"
+          ],
+          "case": "BlueprintBranchFalse",
+          "pinsConfiguredOrConnected": [
+            "Message"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintBranchFalseReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableGet",
+            "",
+            "",
+            "string"
+          ],
+          "case": "BlueprintShuffled",
+          "pinsConfiguredOrConnected": [
+            "Message"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintShuffledReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableGet",
+            "",
+            "",
+            "string"
+          ],
+          "case": "BlueprintZeroDefaults",
+          "pinsConfiguredOrConnected": [
+            "Message"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintZeroDefaultsReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "binding": {
+        "variable": "Value"
+      },
+      "variableType": "vector",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": true,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableGet",
+            "",
+            "",
+            "vector"
+          ],
+          "case": "MotionVariable",
+          "pinsConfiguredOrConnected": [
+            "TargetPosition"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionVariableReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableGet",
+            "",
+            "",
+            "vector"
+          ],
+          "case": "MotionWrite",
+          "pinsConfiguredOrConnected": [
+            "TargetPosition"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionWriteReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableGet",
+            "",
+            "",
+            "vector"
+          ],
+          "case": "MotionZero",
+          "pinsConfiguredOrConnected": [
+            "TargetPosition"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionZeroReopen.json"
+        }
+      ],
+      "runtimeEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableGet",
+            "",
+            "",
+            "vector"
+          ],
+          "case": "MotionVariable",
+          "pinsConfiguredOrConnected": [
+            "TargetPosition"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionVariableRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableGet",
+            "",
+            "",
+            "vector"
+          ],
+          "case": "MotionWrite",
+          "pinsConfiguredOrConnected": [
+            "TargetPosition"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionWriteRuntime.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableGet",
+            "",
+            "",
+            "vector"
+          ],
+          "case": "MotionZero",
+          "pinsConfiguredOrConnected": [
+            "TargetPosition"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionZeroRuntime.json"
+        }
+      ],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "binding": {
+        "variable": "Value"
+      },
+      "variableType": "bool",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "binding": {
+        "variable": "Value"
+      },
+      "variableType": "float",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": false,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "binding": {
+        "variable": "Value"
+      },
+      "variableType": "string",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": false,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableSet",
+            "",
+            "",
+            "string"
+          ],
+          "case": "BlueprintBranch",
+          "pinsConfiguredOrConnected": [
+            "Message",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintBranchReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableSet",
+            "",
+            "",
+            "string"
+          ],
+          "case": "BlueprintBranchFalse",
+          "pinsConfiguredOrConnected": [
+            "Message",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintBranchFalseReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableSet",
+            "",
+            "",
+            "string"
+          ],
+          "case": "BlueprintShuffled",
+          "pinsConfiguredOrConnected": [
+            "Message",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintShuffledReopen.json"
+        },
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableSet",
+            "",
+            "",
+            "string"
+          ],
+          "case": "BlueprintZeroDefaults",
+          "pinsConfiguredOrConnected": [
+            "Message",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/MotionCoreRegression1/BlueprintZeroDefaultsReopen.json"
+        }
+      ],
+      "runtimeEvidence": [],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    },
+    {
+      "assetType": "Blueprint",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "binding": {
+        "variable": "Value"
+      },
+      "variableType": "vector",
+      "discovered": true,
+      "constructible": true,
+      "compileSaveIndependentReopenVerified": true,
+      "runtimeVerifiedInNamedCases": true,
+      "compileEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableSet",
+            "",
+            "",
+            "vector"
+          ],
+          "case": "MotionWrite",
+          "pinsConfiguredOrConnected": [
+            "TargetPosition",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261008GraphV2/BlueprintMotion2/MotionWriteReopen.json"
+        }
+      ],
+      "runtimeEvidence": [
+        {
+          "signature": [
+            "Blueprint",
+            "/Script/BlueprintGraph.K2Node_VariableSet",
+            "",
+            "",
+            "vector"
+          ],
+          "case": "MotionWrite",
+          "pinsConfiguredOrConnected": [
+            "TargetPosition",
+            "execute",
+            "then"
+          ],
+          "evidence": "Reports/20261009UsableEditor/BlueprintMotionRuntime2/MotionWriteRuntime.json"
+        }
+      ],
+      "scope": "Only named fixture bindings/properties/ports/topologies; not every pin, parameter or combination"
+    }
+  ],
+  "evidenceSha256": {
+    "Reports/20261009UsableEditor/BlueprintMotionRuntime2/Summary.json": "493a1f9571a7fe1a136b441aca802aef63519dea3a16d7db3f7f51046f25fedd",
+    "Reports/20261008GraphV2/BlueprintMotion2/Summary.json": "692cb778889739f00aacd595d68a4a8eb31f8a70253d2980cd7c7e45dc48a44a",
+    "Reports/20261008GraphV2/MotionCoreRegression1/Summary.json": "fe1ded6241fbab9ec565dd05dcec3151c31fa89d06abc678f064fd6ffae1441e"
+  },
+  "limitations": "No material GPU/no-plugin packaging on17 inferred from14; real UI not verified; runtime only nine Actor/vector cases; function calls require separately bound native signatures"
+}

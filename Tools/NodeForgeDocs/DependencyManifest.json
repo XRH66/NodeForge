@@ -1,0 +1,19 @@
+{
+  "name": "marked",
+  "version": "17.0.5",
+  "license": "MIT",
+  "source": "existing bundled runtime; no installation/download",
+  "upstream": "https://github.com/markedjs/marked/tree/v17.0.5",
+  "files": [
+    {
+      "path": "Tools/NodeForgeDocs/Marked.mjs",
+      "sha256": "0b4487359ce6b85108708e7a532e1242a27f4718241e7b2de109ac6cd307d2dc",
+      "bytes": 41661
+    },
+    {
+      "path": "Tools/NodeForgeDocs/License.md",
+      "sha256": "8e3a3f82f59a60958f56ca08f445647c32a4733dc7ca6c2c46f6eb898471ab9c",
+      "bytes": 2942
+    }
+  ]
+}

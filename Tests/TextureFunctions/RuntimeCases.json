@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "case": "BlueprintFamilyLegacy",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        90,
+        0
+      ],
+      "expectedScale": [
+        2,
+        1,
+        1
+      ],
+      "expectedMessage": "count=5"
+    }
+  ],
+  "scope": "Affected blueprint regression on material increment, including previous699 catalog compatibility"
+}
+

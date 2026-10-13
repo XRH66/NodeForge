@@ -1,0 +1,13 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "catalogStatus": "Catalog4 actual signatures; data-only stronger default normal slope and softer highlights; older default remains archived",
+  "cases": [
+    {
+      "name": "WaterWavesVisible",
+      "input": "WaterWavesVisible.json",
+      "expected": "succeeded",
+      "category": "visibleMultiDirectionWater",
+      "requireLayout": true
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphTextureParameterShuffle",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphTextureParameterShuffle",
+  "catalogDigest": "9703b92dac063c1a473c335d505d78d917fc97608a78501dc0c1d1f2491264ca",
+  "nodes": [
+    {
+      "id": "Color",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {}
+    },
+    {
+      "id": "Tint",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "TintColor",
+        "DefaultValue": [
+          0.1,
+          0.4,
+          0.8,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Image",
+      "class": "/Script/Engine.MaterialExpressionTextureSampleParameter2D",
+      "properties": {
+        "Texture": "/Engine/EngineResources/DefaultTexture.DefaultTexture",
+        "ParameterName": "SurfaceTexture"
+      }
+    },
+    {
+      "id": "UV",
+      "class": "/Script/Engine.MaterialExpressionTextureCoordinate",
+      "properties": {
+        "UTiling": 6,
+        "VTiling": 3
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Color",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    },
+    {
+      "from": "Tint",
+      "output": "0",
+      "to": "Color",
+      "input": "B"
+    },
+    {
+      "from": "Image",
+      "output": "0",
+      "to": "Color",
+      "input": "A"
+    },
+    {
+      "from": "UV",
+      "output": "0",
+      "to": "Image",
+      "input": "Coordinates"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

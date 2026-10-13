@@ -1,0 +1,133 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphSequenceFanout",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFSequenceFanout",
+  "catalogDigest": "57b27415fee08ce08df3b734d9ea8fbd7a03678564f218007a0f770c3e478b7d",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Sequence",
+      "class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+      "properties": {
+        "outputCount": 3
+      }
+    },
+    {
+      "id": "ReadFinal",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "Trace"
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    },
+    {
+      "id": "Store0",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "properties": {
+        "variable": "Trace"
+      },
+      "defaults": {
+        "Trace": "A"
+      }
+    },
+    {
+      "id": "Store1",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "properties": {
+        "variable": "Trace"
+      }
+    },
+    {
+      "id": "Read1",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "Trace"
+      }
+    },
+    {
+      "id": "Join1",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Concat_StrStr"
+      },
+      "defaults": {
+        "B": "B"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Sequence",
+      "input": "execute"
+    },
+    {
+      "from": "ReadFinal",
+      "output": "Trace",
+      "to": "Print",
+      "input": "InString"
+    },
+    {
+      "from": "Sequence",
+      "output": "then_0",
+      "to": "Store0",
+      "input": "execute"
+    },
+    {
+      "from": "Sequence",
+      "output": "then_1",
+      "to": "Store1",
+      "input": "execute"
+    },
+    {
+      "from": "Read1",
+      "output": "Trace",
+      "to": "Join1",
+      "input": "A"
+    },
+    {
+      "from": "Join1",
+      "output": "ReturnValue",
+      "to": "Store1",
+      "input": "Trace"
+    },
+    {
+      "from": "Sequence",
+      "output": "then_0",
+      "to": "Print",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": [
+      {
+        "name": "Trace",
+        "type": "string",
+        "default": "Init"
+      }
+    ]
+  }
+}

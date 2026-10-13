@@ -1,0 +1,157 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "scope": "Actual parent discovery, native factory/typed overrides, inherited shaders, save/independent reopen, no parent asset writes",
+  "cases": [
+    {
+      "name": "InstanceWaterParent",
+      "input": "InstanceWaterParent.json",
+      "expected": "succeeded",
+      "category": "savedParentSeed",
+      "requireLayout": true
+    },
+    {
+      "name": "InstanceTextureParent",
+      "input": "InstanceTextureParent.json",
+      "expected": "succeeded",
+      "category": "savedParentSeed",
+      "requireLayout": true
+    },
+    {
+      "name": "InstanceWater",
+      "input": "InstanceWater.json",
+      "expected": "succeeded",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceWaterParent",
+      "parentHashFromCase": "InstanceWaterParent"
+    },
+    {
+      "name": "InstanceWaterBlue",
+      "input": "InstanceWaterBlue.json",
+      "expected": "succeeded",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceWaterParent",
+      "parentHashFromCase": "InstanceWaterParent"
+    },
+    {
+      "name": "InstanceInherited",
+      "input": "InstanceInherited.json",
+      "expected": "succeeded",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceWaterParent",
+      "parentHashFromCase": "InstanceWaterParent"
+    },
+    {
+      "name": "InstanceExplicitDefault",
+      "input": "InstanceExplicitDefault.json",
+      "expected": "succeeded",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceWaterParent",
+      "parentHashFromCase": "InstanceWaterParent"
+    },
+    {
+      "name": "InstanceTexture",
+      "input": "InstanceTexture.json",
+      "expected": "succeeded",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceTextureParent",
+      "parentHashFromCase": "InstanceTextureParent"
+    },
+    {
+      "name": "InstanceUnknownScalar",
+      "input": "InstanceUnknownScalar.json",
+      "expected": "rejected",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceWaterParent",
+      "parentHashFromCase": "InstanceWaterParent"
+    },
+    {
+      "name": "InstanceWrongKind",
+      "input": "InstanceWrongKind.json",
+      "expected": "rejected",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceWaterParent",
+      "parentHashFromCase": "InstanceWaterParent"
+    },
+    {
+      "name": "InstanceBadVector",
+      "input": "InstanceBadVector.json",
+      "expected": "rejected",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceWaterParent",
+      "parentHashFromCase": "InstanceWaterParent"
+    },
+    {
+      "name": "InstanceBadScalar",
+      "input": "InstanceBadScalar.json",
+      "expected": "rejected",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceWaterParent",
+      "parentHashFromCase": "InstanceWaterParent"
+    },
+    {
+      "name": "InstanceScalarRange",
+      "input": "InstanceScalarRange.json",
+      "expected": "rejected",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceWaterParent",
+      "parentHashFromCase": "InstanceWaterParent"
+    },
+    {
+      "name": "InstanceStaleParent",
+      "input": "InstanceStaleParent.json",
+      "expected": "rejected",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceWaterParent",
+      "parentHashFromCase": "InstanceWaterParent",
+      "staleParentHash": true
+    },
+    {
+      "name": "InstanceMissingParent",
+      "input": "InstanceMissingParent.json",
+      "expected": "rejected",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceWaterParent",
+      "parentHashFromCase": "InstanceWaterParent"
+    },
+    {
+      "name": "InstanceParentIsInstance",
+      "input": "InstanceParentIsInstance.json",
+      "expected": "rejected",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceWater",
+      "parentHashFromCase": "InstanceWaterParent"
+    },
+    {
+      "name": "InstanceHasGraph",
+      "input": "InstanceHasGraph.json",
+      "expected": "rejected",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceWaterParent",
+      "parentHashFromCase": "InstanceWaterParent"
+    },
+    {
+      "name": "InstanceExtraSetting",
+      "input": "InstanceExtraSetting.json",
+      "expected": "rejected",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceWaterParent",
+      "parentHashFromCase": "InstanceWaterParent"
+    },
+    {
+      "name": "InstanceMissingTexture",
+      "input": "InstanceMissingTexture.json",
+      "expected": "rejected",
+      "category": "typedNativeMaterialInstance",
+      "requires": "InstanceTextureParent",
+      "parentHashFromCase": "InstanceTextureParent"
+    },
+    {
+      "name": "InstanceSameTarget",
+      "input": "InstanceSameTarget.json",
+      "expected": "rejected",
+      "category": "sameNameProtection",
+      "requires": "InstanceWater",
+      "parentHashFromCase": "InstanceWaterParent"
+    }
+  ]
+}

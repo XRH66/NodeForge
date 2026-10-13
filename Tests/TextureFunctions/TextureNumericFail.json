@@ -1,0 +1,32 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphTextureNumericFail",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphTextureNumericFail",
+  "catalogDigest": "340e22d25dbc9c24271c5e05c89c5043d366f765a5e8b9fc4bc40bd2080389d1",
+  "nodes": [
+    {
+      "id": "Texture",
+      "class": "/Script/Engine.MaterialExpressionTextureObject",
+      "properties": {
+        "Texture": "/Engine/EngineResources/DefaultTexture.DefaultTexture"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Texture",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}
+

@@ -1,0 +1,6 @@
+{
+  "cases": [
+    {"name":"ExistingRun","operation":"graphs.generateFromFile","input":"Examples/GraphV2Samples/BlueprintConcat.json","overrideRun":"Reports/20261010PluginControl/M2/Cases/BlueprintConcat/Generate","expectedExit":2,"errorCode":"NFCLI_RUN_EXISTS"},
+    {"name":"BlockedReport","operation":"graphs.generateFromFile","input":"Examples/GraphV2Samples/BlueprintConcat.json","blockedReport":true,"expectedExit":3,"errorCode":"NFCLI_REPORT_WRITE"}
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "catalogStatus": "Bind only an actual current native catalog; raw templates retained",
+  "cases": [
+    {
+      "name": "MotionDirect",
+      "input": "MotionDirect.json",
+      "expected": "succeeded",
+      "category": "nativeActorVectorGraph"
+    },
+    {
+      "name": "MotionChanged",
+      "input": "MotionChanged.json",
+      "expected": "succeeded",
+      "category": "nativeActorVectorGraph"
+    },
+    {
+      "name": "MotionMade",
+      "input": "MotionMade.json",
+      "expected": "succeeded",
+      "category": "nativeActorVectorGraph"
+    },
+    {
+      "name": "MotionShuffled",
+      "input": "MotionShuffled.json",
+      "expected": "succeeded",
+      "category": "nativeActorVectorGraph",
+      "compareLayoutWith": "MotionMade"
+    },
+    {
+      "name": "MotionVariable",
+      "input": "MotionVariable.json",
+      "expected": "succeeded",
+      "category": "nativeActorVectorGraph"
+    },
+    {
+      "name": "MotionWrite",
+      "input": "MotionWrite.json",
+      "expected": "succeeded",
+      "category": "nativeActorVectorGraph"
+    },
+    {
+      "name": "MotionBreak",
+      "input": "MotionBreak.json",
+      "expected": "succeeded",
+      "category": "nativeActorVectorGraph"
+    },
+    {
+      "name": "MotionReadback",
+      "input": "MotionReadback.json",
+      "expected": "succeeded",
+      "category": "nativeActorVectorGraph"
+    },
+    {
+      "name": "MotionZero",
+      "input": "MotionZero.json",
+      "expected": "succeeded",
+      "category": "nativeActorVectorGraph"
+    },
+    {
+      "name": "MotionShortVector",
+      "input": "MotionShortVector.json",
+      "expected": "rejected",
+      "category": "invalidVectorDefault"
+    },
+    {
+      "name": "MotionWrongVector",
+      "input": "MotionWrongVector.json",
+      "expected": "rejected",
+      "category": "invalidVectorDefault"
+    },
+    {
+      "name": "MotionHugeVector",
+      "input": "MotionHugeVector.json",
+      "expected": "rejected",
+      "category": "invalidVectorDefault"
+    },
+    {
+      "name": "MotionStringPart",
+      "input": "MotionStringPart.json",
+      "expected": "rejected",
+      "category": "invalidVectorDefault"
+    },
+    {
+      "name": "MotionUnknownCall",
+      "input": "MotionUnknownCall.json",
+      "expected": "rejected",
+      "category": "unsupportedActorFunction"
+    },
+    {
+      "name": "MotionUnknownPin",
+      "input": "MotionUnknownPin.json",
+      "expected": "rejected",
+      "category": "exactPinIdentity"
+    },
+    {
+      "name": "MotionExternalTarget",
+      "input": "MotionExternalTarget.json",
+      "expected": "rejected",
+      "category": "unsafeExternalActorTarget"
+    },
+    {
+      "name": "MotionWrongLink",
+      "input": "MotionWrongLink.json",
+      "expected": "rejected",
+      "category": "stringCannotConnectToVector"
+    },
+    {
+      "name": "MotionOldCatalog",
+      "input": "MotionOldCatalog.json",
+      "expected": "rejected",
+      "category": "oldCatalogCannotClaimNewFunctions",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "MotionOldVector",
+      "input": "MotionOldVector.json",
+      "expected": "rejected",
+      "category": "oldCatalogCannotClaimVectorVariables",
+      "preserveCatalogDigest": true
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphDesaturationMissingFraction",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFDesaturationMissingFraction",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Tint",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "Tint",
+        "DefaultValue": [
+          0.8,
+          0.2,
+          0.05,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Desat",
+      "class": "/Script/Engine.MaterialExpressionDesaturation",
+      "properties": {
+        "LuminanceFactors": [
+          0.3,
+          0.59,
+          0.11,
+          0
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Tint",
+      "output": "0",
+      "to": "Desat",
+      "input": "Input"
+    },
+    {
+      "from": "Desat",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

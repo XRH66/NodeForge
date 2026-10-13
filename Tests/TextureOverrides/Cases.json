@@ -1,0 +1,56 @@
+{
+  "cases": [
+    {
+      "name": "SamplerColorParent",
+      "input": "SamplerColorParent.json",
+      "expected": "succeeded",
+      "category": "nativeTextureSamplerCompatibility"
+    },
+    {
+      "name": "SamplerNormalParent",
+      "input": "SamplerNormalParent.json",
+      "expected": "succeeded",
+      "category": "nativeTextureSamplerCompatibility"
+    },
+    {
+      "name": "ColorToWhite",
+      "input": "ColorToWhite.json",
+      "expected": "succeeded",
+      "category": "nativeTextureSamplerCompatibility",
+      "requires": "SamplerColorParent",
+      "parentHashFromCase": "SamplerColorParent"
+    },
+    {
+      "name": "NormalToNormal",
+      "input": "NormalToNormal.json",
+      "expected": "succeeded",
+      "category": "nativeTextureSamplerCompatibility",
+      "requires": "SamplerNormalParent",
+      "parentHashFromCase": "SamplerNormalParent"
+    },
+    {
+      "name": "NormalExplicitDefault",
+      "input": "NormalExplicitDefault.json",
+      "expected": "succeeded",
+      "category": "nativeTextureSamplerCompatibility",
+      "requires": "SamplerNormalParent",
+      "parentHashFromCase": "SamplerNormalParent"
+    },
+    {
+      "name": "ColorToNormal",
+      "input": "ColorToNormal.json",
+      "expected": "rejected",
+      "category": "nativeTextureSamplerCompatibility",
+      "requires": "SamplerColorParent",
+      "parentHashFromCase": "SamplerColorParent"
+    },
+    {
+      "name": "NormalToColor",
+      "input": "NormalToColor.json",
+      "expected": "rejected",
+      "category": "nativeTextureSamplerCompatibility",
+      "requires": "SamplerNormalParent",
+      "parentHashFromCase": "SamplerNormalParent"
+    }
+  ]
+}

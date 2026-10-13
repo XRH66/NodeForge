@@ -1,0 +1,67 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphDesaturationBadColor",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFDesaturationBadColor",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {
+      "id": "Tint",
+      "class": "/Script/Engine.MaterialExpressionVectorParameter",
+      "properties": {
+        "ParameterName": "Tint",
+        "DefaultValue": [
+          0.8,
+          0.2,
+          0.05,
+          1
+        ]
+      }
+    },
+    {
+      "id": "Fade",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Fade",
+        "DefaultValue": 0.4
+      }
+    },
+    {
+      "id": "Desat",
+      "class": "/Script/Engine.MaterialExpressionDesaturation",
+      "properties": {
+        "LuminanceFactors": [
+          1,
+          0
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Tint",
+      "output": "0",
+      "to": "Desat",
+      "input": "Input"
+    },
+    {
+      "from": "Fade",
+      "output": "0",
+      "to": "Desat",
+      "input": "Fraction"
+    },
+    {
+      "from": "Desat",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

@@ -1,0 +1,17 @@
+/* One vector field and one clock for home and document pages. */
+.blueprint-surface{--bp-node:#202a31;--bp-border:#3c4b56;--bp-ink:#dfebe9;--bp-label:#aabec6;--bp-exec:#bbc2bf;--bp-value:#54aab7;pointer-events:none}
+[data-theme="light"] .blueprint-surface{--bp-node:#faf9f5;--bp-border:#b1bfc1;--bp-ink:#2d464d;--bp-label:#5b777c;--bp-exec:#667e84;--bp-value:#478f9c}
+.hero-scene{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.blueprint-plane{position:absolute;left:-140px;top:-70px;width:5400px;height:1600px;transform:perspective(1400px) rotateX(24deg) rotateZ(-12deg) scale(.95);transform-origin:0 35%;background-image:linear-gradient(#81999910 1px,transparent 1px),linear-gradient(90deg,#81999910 1px,transparent 1px);background-size:30px 30px}
+.blueprint-track{display:flex;width:7200px;animation:blueprintDrift var(--hero-motion-duration,46s) linear infinite;will-change:transform}
+.blueprint-tile{display:block;flex:none;overflow:visible}
+.bp-node-body{fill:var(--bp-node);stroke:var(--bp-border);stroke-width:1.3}
+.bp-node-header{fill:#32566a}.bp-tone-event .bp-node-header{fill:#713c40}.bp-tone-flow .bp-node-header{fill:#524b72}.bp-tone-value .bp-node-header{fill:#4a604b}
+[data-theme="light"] .bp-node-header{fill:#bcd7dd}[data-theme="light"] .bp-tone-event .bp-node-header{fill:#e1bfba}[data-theme="light"] .bp-tone-flow .bp-node-header{fill:#cbc3de}[data-theme="light"] .bp-tone-value .bp-node-header{fill:#cbd7be}
+.bp-title{fill:var(--bp-ink);font:600 13px var(--sans)}.bp-label{fill:var(--bp-label);font:11px var(--mono)}.bp-node-type{fill:var(--bp-label);opacity:.35;font:8px var(--mono);letter-spacing:1px}.bp-node-glyph{fill:var(--bp-ink);opacity:.6}.bp-node-divider{stroke:var(--bp-border)}
+.bp-pin-exec{fill:var(--bp-exec)}.bp-pin-value{fill:var(--bp-value)}.bp-wire{fill:none;stroke-width:2;opacity:.42}.bp-wire-exec{stroke:var(--bp-exec)}.bp-wire-value{stroke:var(--bp-value)}.bp-signal{fill:none;stroke-width:2.4;stroke-dasharray:10 240;stroke-linecap:round;opacity:.8;animation:blueprintSignal 5s linear infinite}.bp-reroute{fill:var(--bp-node);stroke:var(--bp-value);stroke-width:2}
+[data-blueprint-motion="paused"] .blueprint-track,[data-blueprint-motion="paused"] .bp-signal{animation-play-state:paused}
+@keyframes blueprintDrift{to{transform:translate3d(-1800px,0,0)}}
+@keyframes blueprintSignal{to{stroke-dashoffset:-250}}
+@media(max-width:700px){.blueprint-plane{left:-160px;top:-50px;transform:perspective(1300px) rotateX(24deg) rotateZ(-13deg) scale(.8)}}
+@media(prefers-reduced-motion:reduce){[data-blueprint-motion="playing"] .blueprint-track{animation:blueprintDrift var(--hero-motion-duration,46s) linear infinite!important}[data-blueprint-motion="playing"] .bp-signal{animation:blueprintSignal 5s linear infinite!important}}

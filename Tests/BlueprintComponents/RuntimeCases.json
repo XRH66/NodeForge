@@ -1,0 +1,100 @@
+{
+  "scope": "Independent saved-map PIE; own Actor world transform and attributed messages. Component getters are consumed by Actor setter nodes before final assertions.",
+  "cases": [
+    {
+      "case": "RootMotion",
+      "expectedLocation": [
+        120,
+        -40,
+        15
+      ],
+      "expectedRotation": [
+        0,
+        90,
+        0
+      ],
+      "expectedScale": [
+        2,
+        1,
+        1
+      ],
+      "expectedMessage": "Root motion A"
+    },
+    {
+      "case": "RootChanged",
+      "expectedLocation": [
+        -15,
+        22,
+        8
+      ],
+      "expectedRotation": [
+        0,
+        -45,
+        0
+      ],
+      "expectedScale": [
+        0.5,
+        3,
+        2
+      ],
+      "expectedMessage": "Root motion B"
+    },
+    {
+      "case": "RootShuffled",
+      "expectedLocation": [
+        120,
+        -40,
+        15
+      ],
+      "expectedRotation": [
+        0,
+        90,
+        0
+      ],
+      "expectedScale": [
+        2,
+        1,
+        1
+      ],
+      "expectedMessage": "Root motion A"
+    },
+    {
+      "case": "RootOffset",
+      "expectedLocation": [
+        15,
+        20,
+        32
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ],
+      "expectedMessage": "Root offset applied"
+    },
+    {
+      "case": "RootLegacyCount",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        90,
+        0
+      ],
+      "expectedScale": [
+        2,
+        1,
+        1
+      ],
+      "expectedMessage": "count=5"
+    }
+  ]
+}

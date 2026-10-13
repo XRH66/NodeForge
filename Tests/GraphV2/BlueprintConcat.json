@@ -1,0 +1,18 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphBlueprintConcat",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFGraphBlueprintConcat",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {"id": "Begin", "class": "/Script/BlueprintGraph.K2Node_Event", "properties": {"owner": "/Script/Engine.Actor", "member": "ReceiveBeginPlay"}},
+    {"id": "Join", "class": "/Script/BlueprintGraph.K2Node_CallFunction", "properties": {"owner": "/Script/Engine.KismetStringLibrary", "member": "Concat_StrStr"}, "defaults": {"A": "Data-driven ", "B": "function output"}},
+    {"id": "Print", "class": "/Script/BlueprintGraph.K2Node_CallFunction", "properties": {"owner": "/Script/Engine.KismetSystemLibrary", "member": "PrintString"}, "defaults": {"bPrintToScreen": false, "bPrintToLog": true}}
+  ],
+  "edges": [
+    {"from": "Begin", "output": "then", "to": "Print", "input": "execute"},
+    {"from": "Join", "output": "ReturnValue", "to": "Print", "input": "InString"}
+  ],
+  "settings": {"parentClass": "/Script/Engine.Actor", "variables": []}
+}

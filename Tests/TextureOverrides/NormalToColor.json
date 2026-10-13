@@ -1,0 +1,19 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "assetType": "MaterialInstance",
+  "nodes": [],
+  "edges": [],
+  "settings": {
+    "parent": "/Game/NodeForgeTests/NFGraphSamplerNormalParent.NFGraphSamplerNormalParent",
+    "parentAssetSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "scalarParameters": {},
+    "vectorParameters": {},
+    "textureParameters": {
+      "SurfaceTexture": "/Engine/EngineResources/WhiteSquareTexture.WhiteSquareTexture"
+    }
+  },
+  "requestId": "GraphNormalToColor",
+  "assetPath": "/Game/NodeForgeTests/NFGraphNormalToColor",
+  "catalogDigest": "1b12e94c89af0c2e18d3dbbf362222754473f341d3a353eff24ca6abc8809dc1"
+}

@@ -1,0 +1,23 @@
+{
+  "cases": [
+    {
+      "case": "SpatialSequenceLegacy",
+      "expectedMessage": "ABC",
+      "expectedLocation": [
+        0,
+        0,
+        0
+      ],
+      "expectedRotation": [
+        0,
+        0,
+        0
+      ],
+      "expectedScale": [
+        1,
+        1,
+        1
+      ]
+    }
+  ]
+}

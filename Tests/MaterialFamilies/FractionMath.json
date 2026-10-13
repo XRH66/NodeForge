@@ -1,0 +1,78 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphFractionMath",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphFractionMath",
+  "catalogDigest": "9703b92dac063c1a473c335d505d78d917fc97608a78501dc0c1d1f2491264ca",
+  "nodes": [
+    {
+      "id": "Value",
+      "class": "/Script/Engine.MaterialExpressionScalarParameter",
+      "properties": {
+        "ParameterName": "Threshold",
+        "DefaultValue": 3.6
+      }
+    },
+    {
+      "id": "Fraction",
+      "class": "/Script/Engine.MaterialExpressionFrac",
+      "properties": {}
+    },
+    {
+      "id": "Gain",
+      "class": "/Script/Engine.MaterialExpressionMultiply",
+      "properties": {
+        "ConstB": 3
+      }
+    },
+    {
+      "id": "Integer",
+      "class": "/Script/Engine.MaterialExpressionFloor",
+      "properties": {}
+    },
+    {
+      "id": "Bound",
+      "class": "/Script/Engine.MaterialExpressionSaturate",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "Value",
+      "output": "0",
+      "to": "Fraction",
+      "input": "Input"
+    },
+    {
+      "from": "Fraction",
+      "output": "0",
+      "to": "Gain",
+      "input": "A"
+    },
+    {
+      "from": "Gain",
+      "output": "0",
+      "to": "Integer",
+      "input": "Input"
+    },
+    {
+      "from": "Integer",
+      "output": "0",
+      "to": "Bound",
+      "input": "Input"
+    },
+    {
+      "from": "Bound",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}

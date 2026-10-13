@@ -1,0 +1,209 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "catalogStatus": "Templates require digest injection and verification against the actual GraphCatalog before UE execution",
+  "cases": [
+    {
+      "name": "MaterialDefaults",
+      "input": "MaterialDefaults.json",
+      "expected": "succeeded",
+      "category": "unconnectedDefaultValue"
+    },
+    {
+      "name": "TextureUv",
+      "input": "TextureUv.json",
+      "expected": "succeeded",
+      "category": "nativeTextureAndUv"
+    },
+    {
+      "name": "Interpolation",
+      "input": "Interpolation.json",
+      "expected": "succeeded",
+      "category": "interpolation"
+    },
+    {
+      "name": "BlueprintConcat",
+      "input": "BlueprintConcat.json",
+      "expected": "succeeded",
+      "category": "blueprintFunctionDataFlow"
+    },
+    {
+      "name": "StaticColor",
+      "input": "StaticColor.json",
+      "expected": "succeeded",
+      "category": "coloredStatic"
+    },
+    {
+      "name": "StaticChanged",
+      "input": "StaticChanged.json",
+      "expected": "succeeded",
+      "category": "propertyVariation"
+    },
+    {
+      "name": "StaticAdded",
+      "input": "StaticAdded.json",
+      "expected": "succeeded",
+      "category": "nodeAddition"
+    },
+    {
+      "name": "StaticReduced",
+      "input": "StaticReduced.json",
+      "expected": "succeeded",
+      "category": "nodeReduction"
+    },
+    {
+      "name": "StaticTopology",
+      "input": "StaticTopology.json",
+      "expected": "succeeded",
+      "category": "topologyVariation"
+    },
+    {
+      "name": "StaticShuffled",
+      "input": "StaticShuffled.json",
+      "expected": "succeeded",
+      "category": "nodeOrderVariation",
+      "equivalentTo": "StaticAdded",
+      "requires": "StaticAdded"
+    },
+    {
+      "name": "DynamicPulse",
+      "input": "DynamicPulse.json",
+      "expected": "succeeded",
+      "category": "timeDynamic"
+    },
+    {
+      "name": "DynamicChanged",
+      "input": "DynamicChanged.json",
+      "expected": "succeeded",
+      "category": "timeAndColorVariation"
+    },
+    {
+      "name": "Water",
+      "input": "Water.json",
+      "expected": "succeeded",
+      "category": "water"
+    },
+    {
+      "name": "WaterChanged",
+      "input": "WaterChanged.json",
+      "expected": "succeeded",
+      "category": "waterParameterVariation"
+    },
+    {
+      "name": "BlueprintText",
+      "input": "BlueprintText.json",
+      "expected": "succeeded",
+      "category": "blueprintText"
+    },
+    {
+      "name": "BlueprintTextChanged",
+      "input": "BlueprintTextChanged.json",
+      "expected": "succeeded",
+      "category": "blueprintTextVariation"
+    },
+    {
+      "name": "BlueprintBranch",
+      "input": "BlueprintBranch.json",
+      "expected": "succeeded",
+      "category": "blueprintVariablesAndBranch"
+    },
+    {
+      "name": "BlueprintBranchFalse",
+      "input": "BlueprintBranchFalse.json",
+      "expected": "succeeded",
+      "category": "blueprintBranchInputVariation"
+    },
+    {
+      "name": "BlueprintShuffled",
+      "input": "BlueprintShuffled.json",
+      "expected": "succeeded",
+      "category": "blueprintNodeOrderVariation",
+      "equivalentTo": "BlueprintBranch",
+      "requires": "BlueprintBranch"
+    },
+    {
+      "name": "UnknownClass",
+      "input": "UnknownClass.json",
+      "expected": "rejected",
+      "category": "invalidNode"
+    },
+    {
+      "name": "UnknownProperty",
+      "input": "UnknownProperty.json",
+      "expected": "rejected",
+      "category": "invalidProperty"
+    },
+    {
+      "name": "UnknownInput",
+      "input": "UnknownInput.json",
+      "expected": "rejected",
+      "category": "invalidInput"
+    },
+    {
+      "name": "UnknownOutput",
+      "input": "UnknownOutput.json",
+      "expected": "rejected",
+      "category": "invalidOutput"
+    },
+    {
+      "name": "UnknownNodeId",
+      "input": "UnknownNodeId.json",
+      "expected": "rejected",
+      "category": "invalidLogicalId"
+    },
+    {
+      "name": "DuplicateInput",
+      "input": "DuplicateInput.json",
+      "expected": "rejected",
+      "category": "invalidConnection"
+    },
+    {
+      "name": "Cycle",
+      "input": "Cycle.json",
+      "expected": "rejected",
+      "category": "invalidCycle"
+    },
+    {
+      "name": "UnknownBlueprintPin",
+      "input": "UnknownBlueprintPin.json",
+      "expected": "rejected",
+      "category": "invalidBlueprintPin"
+    },
+    {
+      "name": "BlueprintTypeMismatch",
+      "input": "BlueprintTypeMismatch.json",
+      "expected": "rejected",
+      "category": "invalidBlueprintConnection"
+    },
+    {
+      "name": "UnknownBlueprintProperty",
+      "input": "UnknownBlueprintProperty.json",
+      "expected": "rejected",
+      "category": "invalidBlueprintProperty"
+    },
+    {
+      "name": "SameTarget",
+      "input": "SameTarget.json",
+      "expected": "rejected",
+      "category": "sameNameProtection",
+      "requires": "StaticColor"
+    },
+    {
+      "name": "UnsupportedVersion",
+      "input": "UnsupportedVersion.json",
+      "expected": "rejected",
+      "category": "versionHandling"
+    },
+    {
+      "name": "DisconnectedInvalidChain",
+      "input": "DisconnectedInvalidChain.json",
+      "expected": "rejected",
+      "category": "disconnectedExpressionProtection"
+    },
+    {
+      "name": "BlueprintZeroDefaults",
+      "input": "BlueprintZeroDefaults.json",
+      "expected": "succeeded",
+      "category": "blueprintZeroCdoDefaults"
+    }
+  ]
+}

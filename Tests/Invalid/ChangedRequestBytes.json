@@ -1,0 +1,36 @@
+{
+  "format": "NodeForgePrototype",
+  "version": 1,
+  "requestId": "BlueprintRun1",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFMinimalBlueprint",
+  "catalogDigest": "b0e510f2affbf6dd59e60bd60fc42c728cfcbf90ef35cfab82f09f2b2f1817d6",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "owner": "/Script/Engine.Actor",
+      "member": "ReceiveBeginPlay"
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "owner": "/Script/Engine.KismetSystemLibrary",
+      "member": "PrintString"
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "InString": "NodeForge Blueprint Runtime OK",
+    "bPrintToScreen": false,
+    "bPrintToLog": true
+  }
+}
+

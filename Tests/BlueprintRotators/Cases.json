@@ -1,0 +1,149 @@
+{
+  "format": "NodeForgeGraphRegression1",
+  "catalogStatus": "新能力输入为模板，运行器绑定实际新目录；兼容/门槛用例保留各自真实摘要。",
+  "cases": [
+    {
+      "name": "RotatorRead",
+      "input": "RotatorRead.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults",
+      "requireLayout": true
+    },
+    {
+      "name": "RotatorChanged",
+      "input": "RotatorChanged.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorStore",
+      "input": "RotatorStore.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults",
+      "requireLayout": true
+    },
+    {
+      "name": "RotatorReordered",
+      "input": "RotatorReordered.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorDirect",
+      "input": "RotatorDirect.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorStoreDefault",
+      "input": "RotatorStoreDefault.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorShuffled",
+      "input": "RotatorShuffled.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults",
+      "requireLayout": true,
+      "compareLayoutWith": "RotatorStore",
+      "equivalentTo": "RotatorStore"
+    },
+    {
+      "name": "RotatorVectorLegacy",
+      "input": "RotatorVectorLegacy.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "RotatorIntLegacy",
+      "input": "RotatorIntLegacy.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "RotatorNameLegacy",
+      "input": "RotatorNameLegacy.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "RotatorSequenceLegacy",
+      "input": "RotatorSequenceLegacy.json",
+      "expected": "succeeded",
+      "category": "rotatorMembersAndDefaults",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "RotatorArray",
+      "input": "RotatorArray.json",
+      "expected": "rejected",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorString",
+      "input": "RotatorString.json",
+      "expected": "rejected",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorMissingAxis",
+      "input": "RotatorMissingAxis.json",
+      "expected": "rejected",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorExtraAxis",
+      "input": "RotatorExtraAxis.json",
+      "expected": "rejected",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorBooleanAxis",
+      "input": "RotatorBooleanAxis.json",
+      "expected": "rejected",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorHugeAxis",
+      "input": "RotatorHugeAxis.json",
+      "expected": "rejected",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorPinArray",
+      "input": "RotatorPinArray.json",
+      "expected": "rejected",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorPinStringAxis",
+      "input": "RotatorPinStringAxis.json",
+      "expected": "rejected",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorWrongType",
+      "input": "RotatorWrongType.json",
+      "expected": "rejected",
+      "category": "rotatorMembersAndDefaults"
+    },
+    {
+      "name": "RotatorOld42Member",
+      "input": "RotatorOld42Member.json",
+      "expected": "rejected",
+      "category": "rotatorMembersAndDefaults",
+      "preserveCatalogDigest": true
+    },
+    {
+      "name": "RotatorOld42Default",
+      "input": "RotatorOld42Default.json",
+      "expected": "rejected",
+      "category": "rotatorMembersAndDefaults",
+      "preserveCatalogDigest": true
+    }
+  ]
+}

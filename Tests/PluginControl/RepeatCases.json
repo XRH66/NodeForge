@@ -1,0 +1,6 @@
+{
+  "cases": [
+    {"name": "BlueprintConcat", "input": "Examples/GraphV2Samples/BlueprintConcat.json"},
+    {"name": "DynamicPulse", "input": "Examples/GraphV2Samples/DynamicPulse.json"}
+  ]
+}

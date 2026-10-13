@@ -1,0 +1,20 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphWorldInstance",
+  "assetType": "MaterialInstance",
+  "assetPath": "/Game/NodeForgeTests/NFGraphWorldInstance",
+  "catalogDigest": "340e22d25dbc9c24271c5e05c89c5043d366f765a5e8b9fc4bc40bd2080389d1",
+  "nodes": [],
+  "edges": [],
+  "settings": {
+    "parent": "/Game/NodeForgeTests/NFGraphWorldParameter.NFGraphWorldParameter",
+    "parentAssetSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "scalarParameters": {},
+    "vectorParameters": {},
+    "textureParameters": {
+      "SurfaceTexture": "/Engine/EngineResources/WhiteSquareTexture.WhiteSquareTexture"
+    }
+  }
+}
+

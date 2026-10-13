@@ -1,0 +1,90 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphSequenceTwo",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFSequenceTwo",
+  "catalogDigest": "57b27415fee08ce08df3b734d9ea8fbd7a03678564f218007a0f770c3e478b7d",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Sequence",
+      "class": "/Script/BlueprintGraph.K2Node_ExecutionSequence",
+      "properties": {
+        "outputCount": 2
+      }
+    },
+    {
+      "id": "ReadFinal",
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "Trace"
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    },
+    {
+      "id": "Store0",
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "properties": {
+        "variable": "Trace"
+      },
+      "defaults": {
+        "Trace": "A"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Sequence",
+      "input": "execute"
+    },
+    {
+      "from": "ReadFinal",
+      "output": "Trace",
+      "to": "Print",
+      "input": "InString"
+    },
+    {
+      "from": "Sequence",
+      "output": "then_1",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "Sequence",
+      "output": "then_0",
+      "to": "Store0",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": [
+      {
+        "name": "Trace",
+        "type": "string",
+        "default": "Init"
+      }
+    ]
+  }
+}

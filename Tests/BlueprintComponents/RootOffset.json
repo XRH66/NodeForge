@@ -1,0 +1,145 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphRootOffset",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFGraphRootOffset",
+  "catalogDigest": "7dea96da738f0f1b526e7782ec08230a4e0d6d14e815db2538638693f2309326",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      }
+    },
+    {
+      "id": "Root",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_GetRootComponent"
+      }
+    },
+    {
+      "id": "Initial",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "K2_SetWorldLocation"
+      },
+      "defaults": {
+        "NewLocation": [
+          10,
+          20,
+          30
+        ],
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Read",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "K2_GetComponentLocation"
+      }
+    },
+    {
+      "id": "Add",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Add_VectorVector"
+      },
+      "defaults": {
+        "B": [
+          5,
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "id": "Offset",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.SceneComponent",
+        "member": "K2_SetWorldLocation"
+      },
+      "defaults": {
+        "bSweep": false,
+        "bTeleport": true
+      }
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "defaults": {
+        "InString": "Root offset applied",
+        "bPrintToScreen": false,
+        "bPrintToLog": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Root",
+      "output": "ReturnValue",
+      "to": "Initial",
+      "input": "self"
+    },
+    {
+      "from": "Root",
+      "output": "ReturnValue",
+      "to": "Read",
+      "input": "self"
+    },
+    {
+      "from": "Root",
+      "output": "ReturnValue",
+      "to": "Offset",
+      "input": "self"
+    },
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Initial",
+      "input": "execute"
+    },
+    {
+      "from": "Initial",
+      "output": "then",
+      "to": "Offset",
+      "input": "execute"
+    },
+    {
+      "from": "Offset",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    },
+    {
+      "from": "Read",
+      "output": "ReturnValue",
+      "to": "Add",
+      "input": "A"
+    },
+    {
+      "from": "Add",
+      "output": "ReturnValue",
+      "to": "Offset",
+      "input": "NewLocation"
+    }
+  ],
+  "settings": {
+    "parentClass": "/Script/Engine.Actor",
+    "variables": []
+  }
+}

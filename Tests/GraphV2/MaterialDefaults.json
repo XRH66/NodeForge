@@ -1,0 +1,17 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphMaterialDefaults",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphMaterialDefaults",
+  "catalogDigest": "CATALOG_DIGEST_FROM_REAL_ENGINE",
+  "nodes": [
+    {"id": "Color", "class": "/Script/Engine.MaterialExpressionConstant3Vector", "properties": {"Constant": [0.2, 0.65, 0.9, 1]}},
+    {"id": "Dim", "class": "/Script/Engine.MaterialExpressionMultiply", "properties": {}, "defaults": {"B": 0.4}}
+  ],
+  "edges": [
+    {"from": "Color", "output": "0", "to": "Dim", "input": "A"},
+    {"from": "Dim", "output": "0", "to": "Material", "input": "EmissiveColor"}
+  ],
+  "settings": {"domain": "Surface", "blend": "Opaque", "shading": "Unlit", "twoSided": false}
+}

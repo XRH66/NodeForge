@@ -1,0 +1,1148 @@
+{
+  "format": "NodeForgeCurrentCapabilityEvidence2",
+  "catalogDigest": "6993743a0513489069423790f678c2cccd6bccc29435cd0dd98e4156248aa069",
+  "binarySha256": "799902583894dc830322bc87f9ad239e276794fd92709f97ddb104ce3453e8f0",
+  "sourceCatalog": "Reports/20261009UsableEditor/CapabilityExpansion2/ActualCatalog.json",
+  "domain": "Blueprint",
+  "entries": [
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Add_DoubleDouble"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Add_IntInt"
+      },
+      "family": "IntegerAndScalar",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "CountTrue",
+        "CountFalse",
+        "CountShuffled"
+      ],
+      "runtimeSampleEvidence": [
+        "CountFalse",
+        "CountShuffled",
+        "CountTrue"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Add_VectorVector"
+      },
+      "family": "VectorAndRotation",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "VectorBasis"
+      ],
+      "runtimeSampleEvidence": [
+        "VectorBasis"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "BooleanAND"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "BooleanOR"
+      },
+      "family": "IntegerAndScalar",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "ScalarSelection"
+      ],
+      "runtimeSampleEvidence": [
+        "ScalarSelection"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "BreakRotator"
+      },
+      "family": "VectorAndRotation",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "BreakVector"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Concat_StrStr"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "CountTrue",
+        "CountFalse",
+        "CountShuffled",
+        "TextKnown",
+        "TextAbsent"
+      ],
+      "runtimeSampleEvidence": [
+        "CountFalse",
+        "CountShuffled",
+        "CountTrue",
+        "TextAbsent",
+        "TextKnown"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Contains"
+      },
+      "family": "StringAndName",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "TextKnown",
+        "TextAbsent"
+      ],
+      "runtimeSampleEvidence": [
+        "TextAbsent",
+        "TextKnown"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_BoolToString"
+      },
+      "family": "StringAndName",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_DoubleToString"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Conv_IntToDouble"
+      },
+      "family": "IntegerAndScalar",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "VectorBasis",
+        "ScalarSelection"
+      ],
+      "runtimeSampleEvidence": [
+        "ScalarSelection",
+        "VectorBasis"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_IntToString"
+      },
+      "family": "StringAndName",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "CountTrue",
+        "CountFalse",
+        "CountShuffled",
+        "TextKnown",
+        "TextAbsent"
+      ],
+      "runtimeSampleEvidence": [
+        "CountFalse",
+        "CountShuffled",
+        "CountTrue",
+        "TextAbsent",
+        "TextKnown"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_NameToString"
+      },
+      "family": "StringAndName",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "TextKnown",
+        "TextAbsent"
+      ],
+      "runtimeSampleEvidence": [
+        "TextAbsent",
+        "TextKnown"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_RotatorToString"
+      },
+      "family": "StringAndName",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Conv_VectorToString"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Cross_VectorVector"
+      },
+      "family": "VectorAndRotation",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "VectorBasis"
+      ],
+      "runtimeSampleEvidence": [
+        "VectorBasis"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Divide_DoubleDouble"
+      },
+      "family": "IntegerAndScalar",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "ScalarSelection"
+      ],
+      "runtimeSampleEvidence": [
+        "ScalarSelection"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Dot_VectorVector"
+      },
+      "family": "VectorAndRotation",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "VectorBasis"
+      ],
+      "runtimeSampleEvidence": [
+        "VectorBasis"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "EqualEqual_IntInt"
+      },
+      "family": "IntegerAndScalar",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "ScalarSelection"
+      ],
+      "runtimeSampleEvidence": [
+        "ScalarSelection"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "FClamp"
+      },
+      "family": "IntegerAndScalar",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "ScalarSelection"
+      ],
+      "runtimeSampleEvidence": [
+        "ScalarSelection"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "GetActorForwardVector"
+      },
+      "family": "SelfActorOrientation",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "VectorBasis"
+      ],
+      "runtimeSampleEvidence": [
+        "VectorBasis"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "GetActorRightVector"
+      },
+      "family": "SelfActorOrientation",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "VectorBasis"
+      ],
+      "runtimeSampleEvidence": [
+        "VectorBasis"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "GetActorScale3D"
+      },
+      "family": "SelfActorOrientation",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "GetActorUpVector"
+      },
+      "family": "SelfActorOrientation",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "VectorBasis"
+      ],
+      "runtimeSampleEvidence": [
+        "VectorBasis"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Greater_DoubleDouble"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "GreaterEqual_IntInt"
+      },
+      "family": "IntegerAndScalar",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "CountTrue",
+        "CountFalse",
+        "CountShuffled"
+      ],
+      "runtimeSampleEvidence": [
+        "CountFalse",
+        "CountShuffled",
+        "CountTrue"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_GetActorLocation"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_GetActorRotation"
+      },
+      "family": "SelfActorOrientation",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorLocation"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "VectorBasis",
+        "ScalarSelection"
+      ],
+      "runtimeSampleEvidence": [
+        "ScalarSelection",
+        "VectorBasis"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "K2_SetActorRotation"
+      },
+      "family": "SelfActorOrientation",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "CountTrue",
+        "CountFalse",
+        "CountShuffled"
+      ],
+      "runtimeSampleEvidence": [
+        "CountFalse",
+        "CountShuffled",
+        "CountTrue"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Len"
+      },
+      "family": "StringAndName",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "TextKnown",
+        "TextAbsent"
+      ],
+      "runtimeSampleEvidence": [
+        "TextAbsent",
+        "TextKnown"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "MakeRotator"
+      },
+      "family": "VectorAndRotation",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "CountTrue",
+        "CountFalse",
+        "CountShuffled"
+      ],
+      "runtimeSampleEvidence": [
+        "CountFalse",
+        "CountShuffled",
+        "CountTrue"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "MakeVector"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "VectorBasis",
+        "ScalarSelection"
+      ],
+      "runtimeSampleEvidence": [
+        "ScalarSelection",
+        "VectorBasis"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetStringLibrary",
+        "member": "Mid"
+      },
+      "family": "StringAndName",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "TextKnown",
+        "TextAbsent"
+      ],
+      "runtimeSampleEvidence": [
+        "TextAbsent",
+        "TextKnown"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Multiply_DoubleDouble"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Multiply_IntInt"
+      },
+      "family": "IntegerAndScalar",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "ScalarSelection"
+      ],
+      "runtimeSampleEvidence": [
+        "ScalarSelection"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Not_PreBool"
+      },
+      "family": "IntegerAndScalar",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "ScalarSelection"
+      ],
+      "runtimeSampleEvidence": [
+        "ScalarSelection"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetSystemLibrary",
+        "member": "PrintString"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "CountTrue",
+        "CountFalse",
+        "CountShuffled",
+        "TextKnown",
+        "TextAbsent",
+        "VectorBasis",
+        "ScalarSelection"
+      ],
+      "runtimeSampleEvidence": [
+        "CountFalse",
+        "CountShuffled",
+        "CountTrue",
+        "ScalarSelection",
+        "TextAbsent",
+        "TextKnown",
+        "VectorBasis"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "SelectInt"
+      },
+      "family": "IntegerAndScalar",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "ScalarSelection"
+      ],
+      "runtimeSampleEvidence": [
+        "ScalarSelection"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "SelectString"
+      },
+      "family": "IntegerAndScalar",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "TextKnown",
+        "TextAbsent"
+      ],
+      "runtimeSampleEvidence": [
+        "TextAbsent",
+        "TextKnown"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "SetActorScale3D"
+      },
+      "family": "SelfActorOrientation",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "CountTrue",
+        "CountFalse",
+        "CountShuffled"
+      ],
+      "runtimeSampleEvidence": [
+        "CountFalse",
+        "CountShuffled",
+        "CountTrue"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Subtract_DoubleDouble"
+      },
+      "family": "IntegerAndScalar",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "ScalarSelection"
+      ],
+      "runtimeSampleEvidence": [
+        "ScalarSelection"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Subtract_IntInt"
+      },
+      "family": "IntegerAndScalar",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "ScalarSelection"
+      ],
+      "runtimeSampleEvidence": [
+        "ScalarSelection"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "Subtract_VectorVector"
+      },
+      "family": "VectorAndRotation",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "VectorBasis"
+      ],
+      "runtimeSampleEvidence": [
+        "VectorBasis"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "properties": {
+        "owner": "/Script/Engine.KismetMathLibrary",
+        "member": "VSize"
+      },
+      "family": "VectorAndRotation",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "VectorBasis"
+      ],
+      "runtimeSampleEvidence": [
+        "VectorBasis"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "properties": {
+        "owner": "/Script/Engine.Actor",
+        "member": "ReceiveBeginPlay"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "CountTrue",
+        "CountFalse",
+        "CountShuffled",
+        "TextKnown",
+        "TextAbsent",
+        "VectorBasis",
+        "ScalarSelection"
+      ],
+      "runtimeSampleEvidence": [
+        "CountFalse",
+        "CountShuffled",
+        "CountTrue",
+        "ScalarSelection",
+        "TextAbsent",
+        "TextKnown",
+        "VectorBasis"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_IfThenElse",
+      "properties": {},
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "compileSaveIndependentReopen": [
+        "CountTrue",
+        "CountFalse",
+        "CountShuffled"
+      ],
+      "runtimeSampleEvidence": [
+        "CountFalse",
+        "CountShuffled",
+        "CountTrue"
+      ],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "Value"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun",
+      "variableType": "bool"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "Value"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun",
+      "variableType": "float"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "Value"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun",
+      "variableType": "string"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableGet",
+      "properties": {
+        "variable": "Value"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun",
+      "variableType": "vector"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "properties": {
+        "variable": "Value"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun",
+      "variableType": "bool"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "properties": {
+        "variable": "Value"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun",
+      "variableType": "float"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "properties": {
+        "variable": "Value"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun",
+      "variableType": "string"
+    },
+    {
+      "class": "/Script/BlueprintGraph.K2Node_VariableSet",
+      "properties": {
+        "variable": "Value"
+      },
+      "family": "ExistingCore",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "experimental",
+      "compileSaveIndependentReopen": [],
+      "runtimeSampleEvidence": [],
+      "scope": "Representative sample evidence; no per-node execution trace or complete configuration guarantee",
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun",
+      "variableType": "vector"
+    }
+  ],
+  "evidenceSha256": {
+    "Reports/20261009UsableEditor/CapabilityExpansion2/ActualCatalog.json": "a54e65a81eec194ecfc0cff0aef7e1c74ab11ec6f64f99cc55ad5eddb84f4628",
+    "Reports/20261008GraphV2/BlueprintFamilies2/Summary.json": "69c10075d8e50d2825b0c7eacabb57c5082088227077bc54a8574a0618258b45",
+    "Reports/20261009UsableEditor/BPFamiliesRuntime1/Summary.json": "46cce253f565571ba68d01d45773b5c2c7abdf29ad5a40af07e4e382ec03e138",
+    "Reports/20261009UsableEditor/Build36/BinaryEvidence.json": "82e82a2aab58b97c9d4b369d49df7bc4cdf31ec830dd4ab849714e6adf33e771"
+  },
+  "limitations": [
+    "Native catalog marks constructible signatures experimental; this separate evidence distinguishes verified representative configurations",
+    "Unlisted configurations remain experimental; dynamic pins, external object/component targets, int/name/rotator members and raw rotator defaults are unsupported",
+    "Real new-family UI and standalone packaging not run on36; frozen RC1 remains unchanged",
+    "Affected layout/legacy checks running separately; no inherited whole-matrix pass",
+    "First failed matrix retained at Reports/20261008GraphV2/BlueprintFamilies1/Summary.json"
+  ],
+  "laterStatusCorrections": [
+    {
+      "date": "2026-10-09",
+      "build": "Build36",
+      "correction": "Earlier running limitation retained as historical wording; these existing batches subsequently reached passed terminal status. No new UI or package claim.",
+      "passedEvidence": [
+        "Reports/20261008GraphV2/BPFamiliesLayout1/Summary.json",
+        "Reports/20261008UsablePrototype/BPFamiliesLegacy1/Summary.json",
+        "Reports/20261009UsableEditor/BPFamiliesLegacyNeg1/Summary.json",
+        "Reports/20261009UsableEditor/BPFamiliesExport2/Summary.json"
+      ]
+    }
+  ]
+}

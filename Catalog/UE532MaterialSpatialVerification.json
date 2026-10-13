@@ -1,0 +1,162 @@
+{
+  "build": "Build42",
+  "catalogDigest": "588f572606053d53eebe80b3461b0e01baac2326f30e778c2cdbc3f03e4e2801",
+  "selectedBinarySha256": "4c3c85a69a62bceee1c811b36635ad822c780aa61f858569d540fb0066d8f229",
+  "scope": "Six spatial classes with representative supported configurations; verified layers and context limits are explicit",
+  "nodes": [
+    {
+      "class": "/Script/Engine.MaterialExpressionWorldPosition",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "verifiedLayers": [
+        "construction",
+        "compile",
+        "save",
+        "independentReopen"
+      ],
+      "representativeEvidence": [
+        "Reports/20261008GraphV2/Spatial1/WorldBandsReopen.json",
+        "Reports/20261008GraphV2/Spatial1/WorldChangedReopen.json",
+        "Reports/20261008GraphV2/Spatial1/WorldShuffledReopen.json",
+        "Reports/20261008GraphV2/Spatial1/WorldHeightReopen.json",
+        "Reports/20261008GraphV2/Spatial1/ObjectLocalReopen.json",
+        "Reports/20261008GraphV2/Spatial1/ObjectRelativeReopen.json",
+        "Reports/20261008GraphV2/Spatial1/CameraDistanceReopen.json"
+      ],
+      "visualEvidence": [
+        "Reports/20261008GraphUpgrade/SpatialVisual1/VisualCheck.json"
+      ],
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun",
+      "verifiedEnumValues": [
+        "WPT_Default",
+        "WPT_ExcludeAllShaderOffsets",
+        "WPT_CameraRelativeNoOffsets"
+      ],
+      "unverifiedEnumValues": [
+        "WPT_CameraRelative"
+      ]
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionObjectPositionWS",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "verifiedLayers": [
+        "construction",
+        "compile",
+        "save",
+        "independentReopen"
+      ],
+      "representativeEvidence": [
+        "Reports/20261008GraphV2/Spatial1/ObjectLocalReopen.json",
+        "Reports/20261008GraphV2/Spatial1/ObjectRelativeReopen.json"
+      ],
+      "visualEvidence": [],
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun",
+      "verifiedEnumValues": [
+        "Absolute",
+        "CameraRelative"
+      ]
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionCameraPositionWS",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "verifiedLayers": [
+        "construction",
+        "compile",
+        "save",
+        "independentReopen"
+      ],
+      "representativeEvidence": [
+        "Reports/20261008GraphV2/Spatial1/CameraDistanceReopen.json"
+      ],
+      "visualEvidence": [],
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionCameraVectorWS",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "verifiedLayers": [
+        "construction",
+        "compile",
+        "save",
+        "independentReopen"
+      ],
+      "representativeEvidence": [
+        "Reports/20261008GraphV2/Spatial1/ViewFacingReopen.json"
+      ],
+      "visualEvidence": [],
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionPixelNormalWS",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "verifiedLayers": [
+        "construction",
+        "compile",
+        "save",
+        "independentReopen"
+      ],
+      "representativeEvidence": [
+        "Reports/20261008GraphV2/Spatial1/ViewFacingReopen.json"
+      ],
+      "visualEvidence": [],
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun"
+    },
+    {
+      "class": "/Script/Engine.MaterialExpressionVertexNormalWS",
+      "nativeDiscovered": true,
+      "nativeConstructible": true,
+      "supportState": "verified",
+      "verifiedLayers": [
+        "construction",
+        "compile",
+        "save",
+        "independentReopen"
+      ],
+      "representativeEvidence": [
+        "Reports/20261008GraphV2/Spatial1/NormalMotionReopen.json",
+        "Reports/20261008GraphV2/SpatialMotion2/NormalRaisedReopen.json"
+      ],
+      "visualEvidence": [
+        "Reports/20261008GraphUpgrade/SpatialRaisedVisual1/VisualCheck.json",
+        "Reports/20261008GraphUpgrade/SpatialRaisedVisual1/VisualInspection.json"
+      ],
+      "realUi": "notRun",
+      "noPluginDelivery": "notRun",
+      "visualFailurePreserved": "Reports/20261008GraphUpgrade/SpatialNormalVisual1/VisualInspection.json"
+    }
+  ],
+  "evidenceSha256": {
+    "Catalog/UE532MaterialSpatial.json": "761c12e404c7bdaacb7eb67982259709fa37a7243371a5a0d64d42d9ebb712c8",
+    "Reports/20261008GraphV2/Spatial1/Summary.json": "63b9fb720baf0de1c04e71b70c636ffff1852077c6273cc4fd380cf42282d18a",
+    "Reports/20261008GraphV2/SpatialMotion2/Summary.json": "3b7f88dd69faed790dee91409053615783c014ea331f808b466523cf50a670a4",
+    "Reports/20261009UsableEditor/SpatialBpRuntime1/Summary.json": "8202dc6a3ce14e5e72ffc0e24878518264b518eb9bafb738ffb97729dcab2d70",
+    "Reports/20261009UsableEditor/SpatialExport1/Summary.json": "ab4f33f595c44bc9aaf5de368e585ac3b55b3a429df8c1972bb34ca40fd1aba5",
+    "Reports/20261008GraphUpgrade/SpatialVisual1/Summary.json": "7f2acfb055825e8988573dc6865d581ea8c1153fab8d70f790cd2c00b1dd4407",
+    "Reports/20261008GraphUpgrade/SpatialNormalVisual1/VisualInspection.json": "28f9f8cfabee09a293416afbcf72c46c859ec8417c7b0455eee7447f2d219708",
+    "Reports/20261008GraphUpgrade/SpatialRaisedVisual1/Summary.json": "75167a11fcdc0bc31c02c8b96df9325a175e7c5401f1f5052a8721085c43f4dc",
+    "Reports/20261008GraphUpgrade/SpatialRaisedVisual1/VisualInspection.json": "c83f88ab5dc46be1b77316a1aaeda787d256e70a3302504062ea82e2b18f78c5",
+    "Reports/20261009UsableEditor/Build42/BinaryEvidence.json": "e4714c8607750dfeae88a34fd0a324273ecefe5c05880306878ecc2ae3aed61c"
+  },
+  "limitations": [
+    "Only WorldBands and corrected NormalRaised have GPU visual/parameter evidence; other spatial materials compile/save/reopen only",
+    "Original NormalMotion pixel-difference test passed but visual surface visibility failed; preserved, not promoted to visual success",
+    "CameraVectorWS and PixelNormalWS are pixel-stage inputs; PixelNormalWS cannot feed Normal or vertex WPO; actual two compile negatives write no target asset",
+    "No tangent-space conversion or arbitrary mesh/instance context guarantee",
+    "Exported copies have compile/save/reopen only; no additional visual/PIE of those copies",
+    "No Build42 real UI, new external AI original output or new package; frozen RC1/root unchanged"
+  ]
+}

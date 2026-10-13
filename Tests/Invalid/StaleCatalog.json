@@ -1,0 +1,35 @@
+{
+  "format": "NodeForgePrototype",
+  "version": 1,
+  "requestId": "StaleCatalog",
+  "assetType": "Blueprint",
+  "assetPath": "/Game/NodeForgeTests/NFRejectedCatalog",
+  "catalogDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+  "nodes": [
+    {
+      "id": "Begin",
+      "class": "/Script/BlueprintGraph.K2Node_Event",
+      "owner": "/Script/Engine.Actor",
+      "member": "ReceiveBeginPlay"
+    },
+    {
+      "id": "Print",
+      "class": "/Script/BlueprintGraph.K2Node_CallFunction",
+      "owner": "/Script/Engine.KismetSystemLibrary",
+      "member": "PrintString"
+    }
+  ],
+  "edges": [
+    {
+      "from": "Begin",
+      "output": "then",
+      "to": "Print",
+      "input": "execute"
+    }
+  ],
+  "settings": {
+    "InString": "NodeForge Blueprint Runtime OK",
+    "bPrintToScreen": false,
+    "bPrintToLog": true
+  }
+}

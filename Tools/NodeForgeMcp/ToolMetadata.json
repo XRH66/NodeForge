@@ -1,0 +1,254 @@
+{
+  "format": "NodeForgeToolMetadata1",
+  "defaultAiExposure": "deny",
+  "definitionSource": "Plugins/NodeForge/Source/NodeForgeEditor/Private/NodeForgeControlOperations.cpp",
+  "instructions": "NodeForge把受控JSON转换为可编辑UE资产。先调用nodeforge_docs_index，再用nodeforge_docs_read读取Readme、AiQuickStart和FeatureMap，确认bundle/Build/桥/DLL/目录身份。资料无需UE；业务需要操作者显式准备并注册当前专用编辑器，再connect。只开放契约中的工具，不支持全部UE节点、循环、数组或生产写入。调用完成和资产最终核验不同；waitingPersistence需原CLI新PID Verify。pending/unknown立即停写，查询原calls.get，不换ID重发。开发原理/源码/扩展/发布见DeveloperReadme。",
+  "fields": {
+    "handle": "connect返回的当前桥会话opaque handle；不得复用历史值。",
+    "arguments": "精确操作参数；无参数也必须传空对象。",
+    "callId": "首次提交前保存的新调用ID，ASCII字母数字和连字符1–64；查询/恢复用原ID。",
+    "expectedDraftRevision": "draft.get返回的当前uint64十进制字符串；busy/staleRevision停下查询，不自动改修订重试。",
+    "pageId": "docs_index或节点族索引列出的精确pageId，1–128字符；不能传任意文件路径。",
+    "reportId": "当前handle已登记的64位小写hex报告ID，来自原业务返回reports。",
+    "pointer": "RFC6901 JSON pointer，最多1024字符；空串选择整报告，超限用返回导航逐段读。 /exportedRequest按64KiB完整Graph专用配方取得原text及sourceRef。"
+  },
+  "tools": {
+    "nodeforge_operations_describe": {
+      "operation": "operations.describe",
+      "purpose": "读取当前正式操作、参数、host和dispatch定义。",
+      "preconditions": "先connect取得handle；不要求新callId或修订。",
+      "effects": "只读缓存，不修改草稿或资产。",
+      "success": "原CLI/native返回保持；确认当前定义与准确版本一致。",
+      "guides": [
+        "AiApiReference",
+        "FeatureMap"
+      ]
+    },
+    "nodeforge_editor_getState": {
+      "operation": "editor.getState",
+      "purpose": "读取当前busy、草稿修订、结果状态和调用现场。",
+      "preconditions": "当前handle；不猜PID或历史状态。",
+      "effects": "只读缓存，不改变业务状态。",
+      "success": "从nativeSummary.response.result读真实状态，未验证资产保持未验。",
+      "guides": [
+        "AiResultsAndRecovery",
+        "DeveloperArchitecture"
+      ]
+    },
+    "nodeforge_draft_get": {
+      "operation": "draft.get",
+      "purpose": "取得当前输入及准确字符串draftRevision，为后续检查或写草稿准备。",
+      "preconditions": "当前handle；无参传arguments:{}。",
+      "effects": "只读；输入有大小及可读性边界。",
+      "success": "使用真实返回的修订和字节摘要，旧检查不用于后来编辑的草稿。",
+      "guides": [
+        "AiQuickStart",
+        "GraphAuthoring"
+      ]
+    },
+    "nodeforge_draft_loadFile": {
+      "operation": "draft.loadFile",
+      "purpose": "把准入JSON文件载入当前草稿。",
+      "preconditions": "新callId及准确修订；arguments.path是已准入文件绝对路径。 导出来源载入时，arguments.exportReportPath与exportReportSha256必须同时给出，引用原报告，text/path内容必须是原完整导出结果（只允许格式差异）。",
+      "effects": "修改草稿和修订；不生成、不预留资产。 无关载入清掉旧导出基线；同源编辑／恢复按真实稿关联保留来源；普通JSON可不附导出引用。",
+      "success": "读原调用和新草稿修订；加载成功后再预检。",
+      "guides": [
+        "AiTaskRecipes",
+        "AiApiReference",
+        "AiAssetRead"
+      ]
+    },
+    "nodeforge_draft_replace": {
+      "operation": "draft.replace",
+      "purpose": "载入完整JSON，或显式保留当前可信导出来源编辑草稿。",
+      "preconditions": "新callId及当前准确修订；完整UTF-8 text≤65536字节。初次载入原导出须成对exportReportPath/exportReportSha256且语义原样。编辑已载入来源时明确retainExportOrigin:true，禁止同时给任一新来源字段；省略/false仍走原严格Replace。",
+      "effects": "只改草稿，true保留匹配原文/来源/准备/恢复关系并核真实源与原报告。无关Replace清来源；实际文本变化才revision+1，旧结果stale，不自动预检/生成。",
+      "success": "读原call及draft.get完整稿/新修订；失败原稿保持。无来源不能retain，unknown/pending先查原call，不重发。",
+      "guides": [
+        "AiQuickStart",
+        "Examples",
+        "AiAssetRead",
+        "AiCopyPreview"
+      ]
+    },
+    "nodeforge_draft_restore": {
+      "operation": "draft.restore",
+      "purpose": "恢复服务保留的上一份可恢复输入。",
+      "preconditions": "新callId及准确修订；必须有可恢复草稿。",
+      "effects": "修改草稿/修订，不恢复资产磁盘或重放生成。",
+      "success": "读恢复后的真实草稿；旧结果不归给新稿。",
+      "guides": [
+        "AiResultsAndRecovery",
+        "UserInterfaceGuide"
+      ]
+    },
+    "nodeforge_draft_prepareCopy": {
+      "operation": "draft.prepareCopy",
+      "purpose": "为当前受控Material/Actor Blueprint草稿正式准备新副本，并提交完整派生稿。",
+      "preconditions": "新callId、准确expectedDraftRevision、arguments:{}；当前合法Graph v2两族。源稿已导出载入时沿当前可信来源核报告/实际saved source。",
+      "effects": "仅改requestId/assetPath并写准备记录，提交成功revision+1；不预约、不生成资产或收据，原资产/输入文件保持。完整稿由draft.get读取。",
+      "success": "核原nativeSummary、draftApplied=true、前后revision与copyPreparation，再draft.get核完整稿及真实新身份；不能把native报告写出当提交成功。unknown/pending停写查原call/draft；生成仍须preflight再核目标。",
+      "guides": [
+        "AiCopyPreview",
+        "UserCopyPreview",
+        "AiResultsAndRecovery"
+      ]
+    },
+    "nodeforge_graphs_preview": {
+      "operation": "graphs.preview",
+      "purpose": "比较当前草稿与其已绑定可信源图，读取精确结构与布局差异。",
+      "preconditions": "新callId、当前expectedDraftRevision、arguments:{}；当前draft有可靠ExportOrigin，不能另传previousReport。",
+      "effects": "写原报告并更新展示；不改稿/revision/准备关系或资产，不预约目标；差异不证明编译、运行或画面。",
+      "success": "原CLI及native operationStatus=passed；从reports登记reportId，report_read /graphDifference及子树取得完整差异。源/原报告/目标冲突拒绝，编辑后旧结果stale；unknown/pending停写查原call。",
+      "guides": [
+        "AiCopyPreview",
+        "UserCopyPreview",
+        "AiResultsAndRecovery",
+        "AiAssetSettings"
+      ]
+    },
+    "nodeforge_graphs_preflight": {
+      "operation": "graphs.preflight",
+      "purpose": "检查当前受控图JSON、对象、节点和目标是否可生成。",
+      "preconditions": "已准备唯一目标/request的新草稿；新callId及准确修订。",
+      "effects": "只检查/出报告；不生成、编译、保存或预留名称。",
+      "success": "原GraphPreflight预检结论及诊断；通过后才明确generate。",
+      "guides": [
+        "AiTaskRecipes",
+        "GraphAuthoring",
+        "AiAssetSettings"
+      ]
+    },
+    "nodeforge_graphs_generate": {
+      "operation": "graphs.generate",
+      "purpose": "从当前已预检的同一草稿新建可编辑Material、Actor Blueprint或受限MaterialInstance。",
+      "preconditions": "操作者分配唯一身份、工程独占与真实依赖；新callId及准确修订。实例MCP实测未做。",
+      "effects": "新建、编译、保存新资产及请求收据；同完整目标/request拒绝，原资产不覆盖。",
+      "success": "finished仅CLI终态；原Import通常waitingPersistence，必须看checks/readback并另做新PID Verify。",
+      "guides": [
+        "AiTaskRecipes",
+        "AiResultsAndRecovery",
+        "AiPreparation",
+        "AiAssetSettings"
+      ]
+    },
+    "nodeforge_rules_query": {
+      "operation": "rules.query",
+      "purpose": "按assetKind=Material或Blueprint查询本插件实际生成规则。",
+      "preconditions": "当前handle、新callId/修订；query为空查全族，最多256字符，大小写无关OR子串。",
+      "effects": "GT串行只读查询/报告，不把词转成图，不改变草稿。",
+      "success": "读原GraphRules报告/规则；不支持实例参数查询。",
+      "guides": [
+        "AiTaskRecipes",
+        "Material",
+        "Blueprint"
+      ]
+    },
+    "nodeforge_catalog_get": {
+      "operation": "catalog.get",
+      "purpose": "发现当前目录digest、精确节点/函数签名、引脚及限制。",
+      "preconditions": "当前handle、新callId及准确修订；arguments:{}。",
+      "effects": "GT串行查询/报告，不修改草稿或资产；节点变化沿同工具发现。",
+      "success": "摘要和reports给有界导航；用report_read看真实节点，experimental不是全部实测。",
+      "guides": [
+        "MaterialNodeIndex",
+        "BlueprintNodeIndex",
+        "DeveloperNodeExtension"
+      ]
+    },
+    "nodeforge_calls_get": {
+      "operation": "calls.get",
+      "purpose": "查询原callId的状态和收据，处理未知/晚到结果。",
+      "preconditions": "当前handle；arguments.callId必须原调用ID；不重新提交业务。",
+      "effects": "只读查询并收集原结果；不允许换ID重放或自动清锁。",
+      "success": "原调用终态仍须检查原报告及部分写入；pending/unknown继续停后续GT。",
+      "guides": [
+        "AiResultsAndRecovery"
+      ]
+    },
+    "nodeforge_connect": {
+      "operation": null,
+      "purpose": "绑定操作者已注册的当前专用编辑器，取得opaque handle。",
+      "preconditions": "先读AiPreparation；准确Config/当前SessionPublic和DLL，必须有UE活动会话。资料读取不需要它。",
+      "effects": "建立业务lease和身份，不启动UE、不抢占现有连接、不生成资产。",
+      "success": "status=connected及handle；environmentBlocked请定位准备/占用，不自动清锁。",
+      "guides": [
+        "AiPreparation",
+        "AiQuickStart"
+      ]
+    },
+    "nodeforge_docs_index": {
+      "operation": null,
+      "purpose": "第一入口：离线发现准确版本、Build/DLL/桥/API、能力数量及读者/指南/节点族索引。完整维护清单留在本机Manifest与专用资料页。",
+      "preconditions": "无需UE或handle；参数空对象。",
+      "effects": "只读已批准资料，发现摘要最多32768字节；节点细页按族索引取，不输出整包源码证据清单。",
+      "success": "status=passed，manifest.bundleId/bridgeVersion及docsManifestSha256对应当前包。维护依据见SourcesAndLicenses/DeveloperSourceMap。",
+      "guides": [
+        "Readme",
+        "AiReadme",
+        "DeveloperReadme",
+        "UserReadme"
+      ]
+    },
+    "nodeforge_docs_read": {
+      "operation": null,
+      "purpose": "通过精确pageId读取已绑定版次的完整UTF-8资料。",
+      "preconditions": "无需UE/handle；从索引获取pageId，禁止猜任意本机文件。",
+      "effects": "只读受控页，每页最多65536字节，核SHA/bytes。",
+      "success": "status=passed，bundleId/pageId/text/sha256/docsManifestSha256；先AiQuickStart或DeveloperReadme。",
+      "guides": [
+        "Readme"
+      ]
+    },
+    "nodeforge_report_read": {
+      "operation": null,
+      "purpose": "从当前会话原报告按pointer取得可核验的原生子树。",
+      "preconditions": "handle、已登记reportId、RFC6901 pointer；无需新callId/修订。",
+      "effects": "只读原报告，最大1MiB；普通pointer选择32768字节，/exportedRequest专用分支交付完整原Graph text（UTF-8最大65536字节）与来源引用；不截断或让用户拼字段。",
+      "success": "passed给value；/exportedRequest额外给原text、payloadSha256和sourceRef，显式载入只取text及其中两个报告引用字段；其它超限给navigation/selectionReturned=false。",
+      "guides": [
+        "AiResultsAndRecovery",
+        "AiApiReference",
+        "AiAssetRead"
+      ]
+    },
+    "nodeforge_resources_inspect": {
+      "operation": "resources.inspect",
+      "purpose": "按准确对象路径读取普通材质全局参数、MaterialFunction原生签名或Texture2D真实采样属性/原字段片段。",
+      "preconditions": "当前handle、新callId和准确revision；kind=MaterialParameters|MaterialFunction|Texture2D，source完整Package.Asset。当前读取范围来自显式安装绑定，旧目录按原档案。源须已保存、clean且由正式链建立本进程保存来源；预加载无证明仍拒绝，不reload/resave。",
+      "effects": "共用GT只读协调，写原报告；不改草稿／origin／revision／LastSuccess／生成收据／导出基线，不保存或编译源。",
+      "success": "原CLI finished/code0及operationStatus=passed/overallStatus=succeeded；report_read取/parameters、/functionSignature和/nodeTemplate，或/texture的尺寸/sRGB/compression/nativeSamplerType及properties.Texture/SamplerType。片段不能当完整Graph；读取/采样资格不替代最终原生编译。",
+      "guides": [
+        "AiResources",
+        "AiAssetRead",
+        "AiResultsAndRecovery",
+        "Material"
+      ]
+    },
+    "nodeforge_graphs_export": {
+      "operation": "graphs.export",
+      "purpose": "从一个已知普通Material或Actor Blueprint导出完整受控Graph v2/v3，formatVersion遗漏默认2，新配方显式3；指定首次确定的新requestId／assetPath。",
+      "preconditions": "当前handle、新callId和准确revision；assetKind为Material或Blueprint，formatVersion可选整数2/3；源Package.Asset，允许根、saved/clean，蓝图compiled；目标与项目request未占用，源与目标不同。先读AiAssetRead，不搜索枚举。",
+      "effects": "只读原图，沿共享Exporter拒绝无法完整表达的语义；不改当前稿／基线／revision／LastSuccess，不预留或生成目标。",
+      "success": "读取原reports的reportId，再report_read pointer=/exportedRequest取得完整text/value/payloadSha256/sourceRef；用原text和sourceRef.exportReportPath/exportReportSha256显式draft.replace，预检、生成、新PID原CLI Verify分开。",
+      "guides": [
+        "AiAssetRead",
+        "AiPreparation",
+        "AiResultsAndRecovery",
+        "AiAssetSettings"
+      ]
+    },
+    "nodeforge_resources_query": {
+      "operation": "resources.query",
+      "purpose": "在显式允许的内容子目录有界查找Texture2D、MaterialFunction或Material的登记元数据，返回准确对象路径。",
+      "preconditions": "当前handle、新callId及准确revision；kind与directory必需；其余参数、默认值和上限从本版native argumentsSchema消费。拒绝根级全库扫描。",
+      "effects": "原GT共享Service只访问有界文件/磁盘AssetRegistry元数据，写原报告，不加载对象、不建立来源证明、不改草稿/origin/revision/资产。",
+      "success": "原CLI/code0只证明本次查询返回；必须另看resourceQuery.complete、registryScanning、truncated、nextAfter及incompleteReason。未完成没有续页游标，缩小目录；完整页按精确路径游标，目录变化可能重复/遗漏。report_read的/resourceQuery/rows取得实际行，发现/政策允许、精确inspect与图可导出分别判断。",
+      "guides": [
+        "AiResources",
+        "AiPreparation",
+        "AiResultsAndRecovery"
+      ]
+    }
+  }
+}

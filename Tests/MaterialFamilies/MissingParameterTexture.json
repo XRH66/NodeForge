@@ -1,0 +1,45 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 2,
+  "requestId": "GraphMissingParameterTexture",
+  "assetType": "Material",
+  "assetPath": "/Game/NodeForgeTests/NFGraphMissingParameterTexture",
+  "catalogDigest": "9703b92dac063c1a473c335d505d78d917fc97608a78501dc0c1d1f2491264ca",
+  "nodes": [
+    {
+      "id": "UV",
+      "class": "/Script/Engine.MaterialExpressionTextureCoordinate",
+      "properties": {
+        "UTiling": 2,
+        "VTiling": 3
+      }
+    },
+    {
+      "id": "Image",
+      "class": "/Script/Engine.MaterialExpressionTextureSampleParameter2D",
+      "properties": {
+        "ParameterName": "SurfaceTexture"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "UV",
+      "output": "0",
+      "to": "Image",
+      "input": "Coordinates"
+    },
+    {
+      "from": "Image",
+      "output": "0",
+      "to": "Material",
+      "input": "EmissiveColor"
+    }
+  ],
+  "settings": {
+    "domain": "Surface",
+    "blend": "Opaque",
+    "shading": "Unlit",
+    "twoSided": false
+  }
+}
