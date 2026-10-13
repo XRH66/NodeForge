@@ -177,7 +177,7 @@ def install_verified(args, manifest, project, engine, target):
             save()
         _, _, _, _, product = installation_product(target, engine)
         if product['binarySha256'] != manifest['binarySha256'] or product != manifest['installationManifest']:
-            raise ValueError('coreVersionMismatch: matching Build137 Repair5 ordinary plugin required')
+            raise ValueError('coreVersionMismatch: plugin and AI package versions must match')
         planned = []
         for row in manifest['files']:
             relative = row['path']

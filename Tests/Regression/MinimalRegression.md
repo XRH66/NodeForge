@@ -1,14 +1,23 @@
 # 固定最小回归
 
-2026-10-08冻结原始夹具和当时完整两组证据。当前按[Workflow](../../Docs/Workflow.md#后续能力扩展优先级2026-10-09)及明确阶段授权选择受影响回归，集中验收再核完整范围，不要求每次局部补强机械重跑历史包；不能覆盖已存在目标/报告、删失败或把subset说成完整通过。该历史阶段和实际构建见[夜间记录](../../Reports/20261010NightAudit/Readme.md)。 当前项目状态见[ProjectStatus](../../ProjectStatus.md)与[第二阶段最终报告](../../Reports/PluginControlStageTwo/EditorControl1/S5/FinalReport.md)；本页原构建/夜间证据仍限定于各自时点，不因此继承新版全部验收。
+本组保留两个最小输入和固定拒绝例，用于检查基础解析、生成、保存及错误处理。它使用 `NodeForgePrototype` 固定格式，不能代替当前 NodeForgeGraph v2/v3 的完整测试。
 
-下面保留2026-10-08旧安装调用模板。当前调用必须显式给RunPrototypeRegression的 `--plugin-directory <Reports内实际NodeForge stage>`、ValidatePrototype的 `--project <对应RegressionRuns非RC1工程>`；省略时分别沿用根插件与DevProject默认，不适用于本夜。新工程、目录和报告均须由主任务核实，不直接照抄旧名称执行。
+## 文件与运行器
 
-1. `python Scripts/RunPrototypeRegression.py --run 新的字母数字名称`：原样读取[MinimalBlueprint](../Valid/MinimalBlueprint.json)、[MinimalMaterialReady](../Valid/MinimalMaterialReady.json)，创建独立RegressionRuns工程；各自生成、独立进程重开、固定关卡、实际PIE打印一次及最小Slate面板。所有七步骤需通过。入口、实际命令和摘要写入Reports/20261008UsablePrototype/该名称。
-2. `python Scripts/ValidatePrototype.py --report-dir Reports/新的目录`：严格重放[11项清单](PrototypeCases.json)。要求全部拒绝符合预期，已有开发/验收测试资产字节不变；未知标识/引脚、错误类型/摘要/重复键/深度/未知字段、同名及请求字节变更均须保留。
+- [MinimalBlueprint.json](../Valid/MinimalBlueprint.json)：最小蓝图输入。
+- [MinimalMaterialReady.json](../Valid/MinimalMaterialReady.json)：最小材质输入。
+- [PrototypeCases.json](PrototypeCases.json)：错误类型、未知标识或引脚、摘要、重复键、深度、未知字段、同名及请求内容冲突等拒绝预期。
+- [RunPrototypeRegression.py](../../Scripts/RunPrototypeRegression.py)：创建专用空工程，依次生成、独立重开、创建固定场景、检查 PIE 和最小面板。
+- [ValidatePrototype.py](../../Scripts/ValidatePrototype.py)：在指定专用工程中执行固定拒绝用例。
 
-固定夹具内容不能随实现改写。2026-10-08本轮最终[正例](../../Reports/20261008UsablePrototype/Regression5/Summary.json)和[负例](../../Reports/20261008UsablePrototype/Negative3/Summary.json)通过；两原始正例及11反例的SHA在本轮最终完整性报告复核。以后新能力需追加测试，不替换本组。
+## 执行前提
 
-实际工具链以[Build8](../../Reports/20261008UsablePrototype/Build8/BinaryEvidence.json)及其Build.log为准：MSVC14.34.31948、安装目录14.34.31933、SDK10.0.22621.0。[构建脚本](../../Scripts/BuildPrototype.ps1)固定目录/SDK并核对实际日志。无C++纯蓝图Win64包采用引擎预编译UnrealGame，不把UAT命令参数误当另一轮MSVC编译证据。
+按[开发测试说明](../TestPlan.md)准备匹配的引擎和插件。RunPrototypeRegression 使用新的 `--run` 和显式 `--plugin-directory`；ValidatePrototype 使用新的 `--report-dir` 与明确的 `--project`。不要依赖脚本中的默认开发工程或固定引擎位置。
 
-面板烟测只检查真实Slate构造，不替代原生文件框/粘贴的[交互检查](../../Reports/20261008UsablePrototype/UiChecks.json)。视觉、无插件工程/包运行和外部AI数据另存对应报告；本组不能覆盖全Schema/故障注入/并发锁/通用节点。
+两个运行器不会为测试编译插件。所选插件必须已经构建，输入中的目录要求也需匹配。报告、工程和目标名称不得与已有运行冲突。
+
+## 检查范围
+
+固定用例和预期应保持不变。正例检查实际结构、编译、保存和独立重开；负例应明确拒绝且不修改已有资产。若只运行部分检查，应在结果中列出选定范围。
+
+最小面板检查覆盖 Slate 构造，不代替文件选择、粘贴等真实交互。材质画面、停用插件后的使用、打包和其他格式或节点需要对应的单独检查。

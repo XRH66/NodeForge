@@ -1,12 +1,23 @@
-# Sequence 输入与运行检查
+# Sequence 测试
 
-数据来自Build41本机原生目录，结果见[功能说明](../../Docs/BlueprintSequence.md)。同一导入器按节点/属性/连接逐项构图，插件无样例专用分支；准备代码在Reports/20261009UsableEditor/SequenceExpansion1/PrepareFixtures.py，仅生成测试JSON。
+本目录包含 24 项构图或拒绝用例。这里记录输入与预期，实际结果由每次运行产生的报告决定。运行环境与通用规则见[开发测试说明](../TestPlan.md)。
 
-- SequenceTwo、SequenceThree：2/3输出分别按序写入A、追加B、最后输出，预期A或AB。
-- SequenceChanged只改数据得到XY；SequenceSwapped只交换两个执行输出连接，先追加后覆盖，最终A；SequenceShuffled打乱nodes/edges仍AB且布局一致。
-- SequenceEight：七组状态写入/追加再输出，预期1234567，涵盖8输出上界。
-- SequenceNested：外层3输出的中间分支使用内层2输出追加B和C，最后输出ABC。
-- 三个旧摘要图覆盖int成员、name成员及根组件，保持本来的范围。
-- 关键负例：数量低/高/非整数/字符串/缺失，未知属性/类，错误或越界输出，执行默认值，循环和执行输出扇出，旧40目录及同名目标。
+## 检查内容
 
-Cases.json包含24例，RuntimeCases.json为8个实际保存关卡/PIE样例。测试个数不是通过声明；以原生报告、独立重开、实际消息及保护证据为准。未验证配置继续为实验支持，真实UI/外部AI原始输出/打包另行验收。
+- SequenceTwo/Three：按输出顺序写入或追加文本，预期为 `A` 或 `AB`。
+- SequenceChanged：改变文本得到 `XY`；SequenceSwapped：交换执行连接后得到 `A`。
+- SequenceShuffled：节点与边乱序后仍为 `AB`，布局应一致。
+- SequenceEight：检查 8 输出上限，预期 `1234567`。
+- SequenceNested：嵌套顺序执行，预期 `ABC`。
+- 拒绝错误数量、类型或缺失配置、未知输出、执行默认值、环路、执行输出扇出和同名目标。
+
+执行次序由 Sequence 输出与连线决定，不由 JSON 节点数组顺序决定。
+
+## 文件与运行
+
+- [Cases.json](Cases.json)：构图与拒绝用例。
+- [RuntimeCases.json](RuntimeCases.json)：运行预期。
+
+构图用例由 [RunGraphRegression.py](../../Scripts/RunGraphRegression.py) 的 `--fixtures Tests/BlueprintSequence` 选择；提供实际节点目录、匹配插件和新的运行名称。包含目录或资源摘要占位符的模板不能直接粘贴生成，固定摘要的拒绝或兼容用例应保留原值。
+
+运行检查使用 [RunBlueprintMotionChecks.py](../../Scripts/RunBlueprintMotionChecks.py)，消费本组构图结果和对应专用工程。先确认前置生成与保存结果完整，再检查实际变换和消息。

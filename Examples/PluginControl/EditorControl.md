@@ -1,92 +1,51 @@
-# 活动编辑器调用示例（Build118 / Editor API 1.0）
+# 调用正在运行的编辑器
 
-适用[实际契约](../../Contracts/EditorControlProtocol.md)，最终stage为[Build118](../../Reports/PluginControlStageTwo/EditorControl1/Build118/PluginStage/NodeForge/NodeForge.uplugin)。已准备空的专用[NFCExample118工程](../../ValidationProject/RegressionRuns/NFCExample118/NFCExample118.uproject)和[注册模板](EditorRegistration118.json)，没有启动它或生成资产。以下配方的相同CLI/方法/字段已有实际证据；本例用户目录尚未执行，不冒充新增运行结果。使用同一个专用editor顺序生成两图，既有目标/报告拒绝覆盖，重复配方要新独立工程和新注册根。
+本页介绍 Editor API 1.0 的操作顺序。执行前先按 [AI 安装指南](../../Docs/AiInstallation.md) 准备工程，并使用安装工具的 `-Connect` 启动和连接。
 
-## 在第一个PowerShell终端启动专用工程
+## 准备参数
 
-此段只启动该示例editor，保持这个终端；在第二个终端调用后端。使用官方本机5.3.2和准确stage，不替换根/RC1/DLL。启动正常成功后公共SessionPublic.json才会出现；无该文件就读注册根的日志/身份拒绝，不能猜旧session。
+从本次安装结果及会话信息取得：
 
-```powershell
-$NfPython = 'C:\Users\13179\AppData\Local\Programs\Python\Python312\python.exe'
-$NfEditor = 'X:\UnrealEngine\UE_5.3\Engine\Binaries\Win64\UnrealEditor.exe'
-$NfProject = 'X:\NodeForge\ValidationProject\RegressionRuns\NFCExample118\NFCExample118.uproject'
-$NfStage = 'X:\NodeForge\Reports\PluginControlStageTwo\EditorControl1\Build118\PluginStage\NodeForge'
-$NfPublic = 'X:\NodeForge\Reports\PluginControlStageTwo\UserExamples\Editor118First'
-if (Test-Path -LiteralPath $NfPublic) { throw '报告根已存在，请为重复运行准备新的独立工程和注册根。' }
-$NfBinary = Join-Path $NfStage 'Binaries\Win64\UnrealEditor-NodeForgeEditor.dll'
-if ((Get-FileHash -LiteralPath $NfBinary -Algorithm SHA256).Hash.ToLowerInvariant() -ne 'bb76d52d56a6aa14a9d4b834a74cb61723558f6eeb3b6bd2bba6eb59e1449e3a') { throw 'DLL与本例不匹配。' }
-New-Item -ItemType Directory -Path $NfPublic -ErrorAction Stop | Out-Null
-$NfRegistration = Join-Path $NfPublic 'Registration.json'
-Copy-Item -LiteralPath 'X:\NodeForge\Examples\PluginControl\EditorRegistration118.json' -Destination $NfRegistration -ErrorAction Stop
-& $NfEditor $NfProject '-NFControlEnable' "-NFControlRegistration=$NfRegistration" '-NoLiveCoding' '-d3d11' '-nop4'
+- 当前 `.uproject` 的完整路径。
+- 当前插件目录。
+- 本次运行的会话文件位置。
+- 用于保存客户端结果的新目录。
+
+CLI 会核对工程、模块和进程信息。会话文件含连接信息，传递路径即可，不要把文件内容贴到聊天或写入示例文档。
+
+CLI 命令的一般形式如下，尖括号表示必须换成自己准备结果中的值：
+
+```text
+<Python> <NodeForgeControl.py> editor-call --operation <操作名> --call-id <新编号> --session-file <会话文件> --project <工程文件> --plugin-directory <插件目录> --run-directory <新结果目录>
 ```
 
-## 在第二个终端读取状态并顺序生成
+需要参数时增加 `--arguments-file <参数JSON文件>`；依赖草稿时增加 `--expected-revision <当前修订号>`。可用参数以该版本 CLI 的 `editor-call --help` 为准。
 
-不传凭据值。客户端从当前public定位受限session文件，自己核OS身份并完成hello。session来自当前注册根，不使用交付包里停止后的历史identity。
+## 读取并生成
 
-```powershell
-$NfPython = 'C:\Users\13179\AppData\Local\Programs\Python\Python312\python.exe'
-$NfCli = 'X:\NodeForge\Scripts\NodeForgeControl.py'
-$NfProject = 'X:\NodeForge\ValidationProject\RegressionRuns\NFCExample118\NFCExample118.uproject'
-$NfStage = 'X:\NodeForge\Reports\PluginControlStageTwo\EditorControl1\Build118\PluginStage\NodeForge'
-$NfPublic = 'X:\NodeForge\Reports\PluginControlStageTwo\UserExamples\Editor118First'
-$NfPublicIdentity = Get-Content -LiteralPath (Join-Path $NfPublic 'SessionPublic.json') -Raw -Encoding utf8 | ConvertFrom-Json
-$NfSessionFile = $NfPublicIdentity.sessionFile
-$NfCommon = @('--session-file', $NfSessionFile, '--project', $NfProject, '--plugin-directory', $NfStage, '--timeout-seconds', '180')
-$NfClientRoot = Join-Path $NfPublic 'Client'
+1. 调用 `editor.getState` 确认工程状态。
+2. 调用 `draft.get`，读取当前草稿及 `draftRevision`。
+3. 将完整图 JSON 保存到允许访问的位置，用 `draft.loadFile` 载入；参数文件包含 `{"path":"输入文件的完整路径"}`。
+4. 从载入结果取得新的 `draftRevision`。
+5. 使用该修订号调用 `graphs.preflight`，读取检查报告。
+6. 检查通过后调用 `graphs.generate`，保存返回的输入快照与原生报告位置。
 
-function Invoke-NfEditor {
-    param([string]$Label, [string]$Operation, [string]$ArgumentsFile, [string]$Revision)
-    $NfArgs = @('editor-call') + $NfCommon + @('--run-directory', (Join-Path $NfClientRoot $Label), '--operation', $Operation, '--call-id', $Label)
-    if ($ArgumentsFile) { $NfArgs += @('--arguments-file', $ArgumentsFile) }
-    if ($Revision -ne '') { $NfArgs += @('--expected-revision', $Revision) }
-    $NfText = & $NfPython $NfCli @NfArgs
-    $NfCode = $LASTEXITCODE
-    $NfValue = ($NfText -join [Environment]::NewLine) | ConvertFrom-Json
-    if ($NfCode -ne 0) { throw "调用 $Label 返回 $NfCode。保留原run/call，只读查证后处理，不自动生成重试。" }
-    return $NfValue
-}
-$NfState = Invoke-NfEditor -Label 'InitialState1' -Operation 'editor.getState' -Revision ''
-$NfDraft = Invoke-NfEditor -Label 'InitialDraft1' -Operation 'draft.get' -Revision ''
-$NfRevision = [string]$NfDraft.response.result.draftRevision
-$NfGenerations = @()
-$NfCases = @(
-    @{ Name='Blueprint'; Arguments='X:\NodeForge\Examples\PluginControl\BlueprintLoad.json' },
-    @{ Name='Material'; Arguments='X:\NodeForge\Examples\PluginControl\MaterialLoad.json' }
-)
-foreach ($NfCase in $NfCases) {
-    $NfLoaded = Invoke-NfEditor -Label ($NfCase.Name+'Load1') -Operation 'draft.loadFile' -ArgumentsFile $NfCase.Arguments -Revision $NfRevision
-    $NfRevision = [string]$NfLoaded.response.result.result.draft.draftRevision
-    $NfPreflight = Invoke-NfEditor -Label ($NfCase.Name+'Preflight1') -Operation 'graphs.preflight' -Revision $NfRevision
-    $NfGenerated = Invoke-NfEditor -Label ($NfCase.Name+'Generate1') -Operation 'graphs.generate' -Revision $NfRevision
-    $NfReceipt = $NfGenerated.response.result.result
-    $NfNative = Get-Content -LiteralPath $NfReceipt.nativeReport.path -Raw -Encoding utf8 | ConvertFrom-Json
-    if ($NfNative.overallStatus -ne 'waitingPersistence') { throw '未取得预期保存终态，停止后续写入。' }
-    $NfGenerations += [pscustomobject]@{ Name=$NfCase.Name; Input=$NfReceipt.inputSnapshot; Native=$NfReceipt.nativeReport.path }
-}
+每一步先检查退出值和具体操作结果，再执行下一步。读取查询报告不等于草稿已经载入，输入检查通过也不等于资产已经保存。
+
+界面中编辑草稿会改变修订号。遇到修订不匹配时，重新读取当前输入并确认要做的修改，不要直接用新编号重发未知的生成操作。
+
+## 查询已提交的操作
+
+```text
+<Python> <NodeForgeControl.py> editor-status --call-id <原调用编号> --session-file <会话文件> --project <工程文件> --plugin-directory <插件目录> --run-directory <新的查询结果目录>
 ```
 
-UI可以显示同一稿/结果，但示例执行期间若你改稿，旧revision会正确拒绝，不能偷偷改成最新revision重发生成。保存后、停止通道前，可用下面的只读查询读取原Call。查询非零时同样先保留现场，不继续停止/生成步骤。
+`pending` 或 `unknown` 时先查原调用，保留已有文件和报告。不要反复更换资产名称或请求编号来重试。
 
-```powershell
-& $NfPython $NfCli editor-status @NfCommon --call-id 'BlueprintGenerate1' --run-directory (Join-Path $NfClientRoot 'BlueprintOldCallQuery1')
-if ($LASTEXITCODE -ne 0) { throw '旧call尚无确定终态，保留原run并只读查证。' }
-$NfStopped = Invoke-NfEditor -Label 'Disable1' -Operation 'control.disable' -Revision ''
-```
+## 结束连接与检查保存
 
-如发生5/pending/unknown，请保留发生时的callId，用当前仍有效session只读查询旧call，不能重新执行上面的foreach或换ID重跑。成功disable后旧session失效，改查已保存的客户端run与原生报告。
+使用安装记录提供的停止命令调用 `control.disable`，确认连接服务已停止，再正常关闭这次启动的编辑器。这个操作不等于关闭其他 UE 工程。
 
-## 正常关闭该editor后独立Verify
+需要检查保存结果时，在新的编辑器进程中使用 `graphs.verifySaved`，提供原输入和原生成报告。完整参数与结果说明见 [准备和检查](../../Docs/Versions/v0.1.0/Ai/Preparation.md)。
 
-control.disable只关通道，不退出UE。仅正常关闭这一个专用editor，确认第一个终端返回，再在原第二终端运行下段；客户端的工程独占守卫会拦住尚在运行的同工程editor，不放宽它。保留 $NfGenerations，或从两个Generate客户端原Summary恢复准确 inputSnapshot/nativeReport 引用。
-
-```powershell
-$NfCmdDescription = 'X:\NodeForge\Reports\PluginControlStageTwo\EditorControl1\S5\CommandletOperations.json'
-foreach ($NfSaved in $NfGenerations) {
-    & $NfPython $NfCli execute --operation graphs.verifySaved --input $NfSaved.Input --generation-report $NfSaved.Native --project $NfProject --plugin-directory $NfStage --description-file $NfCmdDescription --run-directory (Join-Path $NfClientRoot ($NfSaved.Name+'Verify1')) --timeout-seconds 180
-    if ($LASTEXITCODE -ne 0) { throw '独立重开失败或尚无确定终态，保留原结果，不重Import。' }
-}
-```
-
-预检/生成/Verify语法来自现有正式CLI和实际[程序双图](../../Reports/PluginControlStageTwo/EditorControl1/S3/ReviewBC.json)、[最终118旧CLI](../../Reports/PluginControlStageTwo/EditorControl1/S4/ReviewCompatibility120.json)；不同版本证据的准确源码连续性沿[影响审计](../../Reports/PluginControlStageTwo/EditorControl1/S4/StateImpactReview120.json)。本示例新工程没有运行/画面验收。草稿replace可用UTF-8对象 `{"text":"..."}` 的arguments-file，restore为无arguments调用且必须有当前revision；它们的实际正负例见S2C报告，不自动执行第二轮示例。
+保存检查会读取已生成资产，不重复生成或保存。材质画面、蓝图运行和打包仍需要各自的实际检查。

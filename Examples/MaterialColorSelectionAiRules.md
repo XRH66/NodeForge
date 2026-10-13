@@ -1,18 +1,23 @@
-# 给外部AI的条件选色与去色规则
+# 材质条件选色与去色
 
-仅适用于UE5.3.2、Build45或明确兼容版本；根Build2/冻结RC1不具备此能力。使用[GraphProtocol](../Contracts/GraphProtocol.md)的NodeForgeGraph version2九字段；catalogDigest必须为`96c9459d583fd0c5156842882d5ba68a259db91e5b3db8d495f77be79cfee8c7`。完整签名见[真实目录](../Catalog/UE532MaterialColorSelection.json)，不能用本文件猜测其它节点。
+本页说明 NodeForge v0.1.0 的 Graph JSON v2 写法。先读取[通用规则](GraphAiRules.md)和[当前节点目录](../Docs/Versions/v0.1.0/Catalog.json)，从实际目录取得 `catalogDigest`、节点类、属性和引脚。
 
-| class完整路径 | 输入名 | 属性 |
+以下类路径都以 `/Script/Engine.MaterialExpression` 开头。
+
+| 类后缀 | 输入 | 属性 |
 | --- | --- | --- |
-| /Script/Engine.MaterialExpressionMin | A、B；均允许未连接时defaults中的数字 | ConstA、ConstB |
-| /Script/Engine.MaterialExpressionMax | A、B；同上 | ConstA、ConstB |
-| /Script/Engine.MaterialExpressionIf | A必连；B可连或default；AGreaterThanB、ALessThanB必连；AEqualsB可选 | ConstB、EqualsThreshold |
-| /Script/Engine.MaterialExpressionDesaturation | Input、Fraction在本适配中均必连 | LuminanceFactors，RGBA四有限数字数组 |
+| `Min`、`Max` | `A`、`B` | `ConstA`、`ConstB` |
+| `If` | `A`、`B`、`AGreaterThanB`、`ALessThanB`、`AEqualsB` | `ConstB`、`EqualsThreshold` |
+| `Desaturation` | `Input`、`Fraction` | `LuminanceFactors` |
 
-输出使用真实数字字符串`"0"`，不是DisplayName None。defaults仅用于目录声明的未连数值输入，不给已连输入同时设default；属性与同一default不能重复赋值。建议Fraction在0..1和EqualsThreshold非负；不要求导入器自动钳位或归一权重。所有节点须到达已启用材质输出，未用分支的数据节点不能孤立放置。
+`If.A`、`AGreaterThanB` 和 `ALessThanB` 必须连接，`AEqualsB` 可选；`B` 是否连接或填写默认值按目录规则处理。Desaturation 的 `Input` 和 `Fraction` 在当前适配中都需要连接。
 
-测试设置为Surface/Opaque/Unlit，输出接Material.EmissiveColor。它用于清晰观察数学颜色，不自动替换成光照水面或更改项目设置。已有材质设置的其它合法组合按真实目录使用，不由本文件扩大支持范围。
+输出使用数字字符串 `"0"`。默认值只用于目录允许的未连接输入，不要同时填写等价的 Const 属性和 defaults。
 
-已绑定完整样例：[条件选色](../Reports/20261008GraphV2/ColorSelection1/Inputs/ColorSelect.json)、[去色](../Reports/20261008GraphV2/ColorSelection1/Inputs/ColorDesaturate.json)、[时间和参数组合](../Reports/20261008GraphV2/ColorSelection1/Inputs/ColorPulse.json)。输入全部节点、属性与边逐项决定实际图；更换合法拓扑无须重编译。已有测试目标存在，再试须更换requestId和assetPath，不覆盖原资产。
+`LuminanceFactors` 使用四个有限数字的 RGBA 数组。Fraction 通常取 0–1，EqualsThreshold 通常取非负值；插件不会自动把权重归一或把数值夹回建议区间。
 
-这些是项目自写验证数据，不能称为外部AI原始输出；新族真实UI闭环未测。实际分层支持和限制见[功能说明](../Docs/MaterialColorSelection.md)。
+所有节点需要连接到当前材质模式允许的输出。想查看纯数学颜色，可以使用 Unlit 材质并连接 EmissiveColor；最终效果仍需在自己的场景中查看。
+
+结构示例见[颜色选择测试数据](../Tests/MaterialColorSelection/Readme.md)。
+
+本文链接的测试 JSON 用于阅读结构，可能含目录摘要或资源占位值，不能保证原样导入当前版本。请核对当前规则、填写真实资源，并使用新的请求编号和资产名。第一次使用推荐插件包附带的 `Examples/FirstMaterial.json`，见[入门教程](../Docs/GettingStarted.md)。

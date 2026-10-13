@@ -1,39 +1,34 @@
-# 正式程序调用例子
+# 程序调用示例
 
-A已交付Build122的两查询及工程复用流程见[RulesCatalog](RulesCatalog.md)/[最终报告](../../Reports/PluginControlStageTwo/RulesCatalog1/P3/FinalReport.md)。本页以下Build118/80配方保留对应版本，其“新空工程/重复正例新工程”是旧隔离策略；本期和以后常规测试默认复用登记工程、预分配批次短身份并累计保护，不按case/重试新建。旧配方没有新增查询，不应以它改写已登记工程或重跑A。
+程序调用适合需要自动化操作 NodeForge 的工具或 AI。普通使用从 [面板入门](../../Docs/GettingStarted.md) 开始；使用 MCP 时先按 [AI 安装指南](../../Docs/AiInstallation.md) 配置客户端。
 
-当前活动editor使用[Build118可复制例子](EditorControl.md)：短名专用空工程、显式注册、读取/载入/预检/生成/查旧call/disable及正常退出后的独立Verify。新例子仅静态检查，方法实际证据见[交付](../../Reports/PluginControlStageTwo/EditorControl1/S5/FinalReport.md)。下方Build80独立Commandlet配方继续保留。
+## 选择接口
 
-适用本机UE5.3.2/已验证Build80，[契约](../../Contracts/ControlProtocol.md)及[真实证明](../../Reports/20261010PluginControl/Readme.md)。以下PowerShell参数都指向已有路径。ControlExamples80是本阶段新建空工程，仅执行过只读预检，尚无资产。UserRuns路径在交付时未创建；每次必须新run，重复先status，不覆盖旧结果。
+| 需求 | 接口 |
+| --- | --- |
+| 在已运行的 UE 中读状态、编辑输入和生成 | [编辑器控制示例](EditorControl.md) |
+| 查询节点规则和完整目录 | [目录查询示例](RulesCatalog.md) |
+| 通过 MCP 调用 | [AI 调用手册](../../Docs/Versions/v0.1.0/Ai/Readme.md) |
+| 检查已保存资产 | [结果与恢复](../../Docs/Versions/v0.1.0/Ai/ResultsAndRecovery.md) |
 
-```powershell
-$NfPython = 'C:\Users\13179\AppData\Local\Programs\Python\Python312\python.exe'
-$NfCli = 'X:\NodeForge\Scripts\NodeForgeControl.py'
-$NfProject = 'X:\NodeForge\ValidationProject\RegressionRuns\ControlExamples80\NodeForgeControl.uproject'
-$NfStage = 'X:\NodeForge\Reports\20261010PluginControl\Build80\PluginStage\NodeForge'
-$NfDescription = 'X:\NodeForge\Reports\20261010PluginControl\M4\Operations.json'
-$NfInput = 'X:\NodeForge\Examples\GraphV2Samples\BlueprintConcat.json'
-& $NfPython $NfCli --help
-& $NfPython $NfCli execute --help
-& $NfPython $NfCli describe --project $NfProject --plugin-directory $NfStage --run-directory 'X:\NodeForge\Reports\PluginControlUserRuns\Describe1' --timeout-seconds 180
-& $NfPython $NfCli execute --operation graphs.preflightFromFile --input $NfInput --project $NfProject --plugin-directory $NfStage --description-file $NfDescription --run-directory 'X:\NodeForge\Reports\PluginControlUserRuns\Blueprint1\Preflight' --timeout-seconds 180
-```
+CLI 为 `Scripts/NodeForgeControl.py`。AI 包的 Python 位于安装插件目录的 `Tools/NodeForgeMcp/Runtime/python.exe`；参数可以从 CLI 的 `--help`、`editor-call --help` 和 `execute --help` 查看。
 
-先读退出值/机器结果，前一步终态满足约定才运行下一步；preflight只检查，不预留/生成。生成0且waitingPersistence仍须不同PID的Verify。
+## 先准备当前工程
 
-```powershell
-& $NfPython $NfCli execute --operation graphs.generateFromFile --input $NfInput --project $NfProject --plugin-directory $NfStage --description-file $NfDescription --run-directory 'X:\NodeForge\Reports\PluginControlUserRuns\Blueprint1\Generate' --timeout-seconds 180
-& $NfPython $NfCli execute --operation graphs.verifySaved --input $NfInput --generation-report 'X:\NodeForge\Reports\PluginControlUserRuns\Blueprint1\Generate\Native.json' --project $NfProject --plugin-directory $NfStage --description-file $NfDescription --run-directory 'X:\NodeForge\Reports\PluginControlUserRuns\Blueprint1\Verify' --timeout-seconds 180
-& $NfPython $NfCli status --run-directory 'X:\NodeForge\Reports\PluginControlUserRuns\Blueprint1\Generate'
-```
+用安装包中的 `InstallNodeForgeAi.ps1` 指定真实 `.uproject`，需要启动和连接时添加 `-Connect`。安装结果会提供配置、记录及后续命令的位置。
 
-材质用原[StaticColor](../GraphV2Samples/StaticColor.json)和另一新run族，操作相同；[DynamicPulse](../GraphV2Samples/DynamicPulse.json)也有本次结构/编译/保存/新PIDVerify证据，动画/视觉未另验证。重复正例需新隔离工程，不自动换ID/名字或覆盖。
+后续调用使用本次准备结果中的项目、插件目录和会话文件。不要复制另一个工程的配置或把示例中的注册记录当成正在运行的会话。
 
-下面已有结果可以现在只读查询：
+## 调用结果
 
-```powershell
-& $NfPython $NfCli status --run-directory 'X:\NodeForge\Reports\20261010PluginControl\M2\Cases\BlueprintConcat\Generate'
-& $NfPython $NfCli status --run-directory 'X:\NodeForge\Reports\20261010PluginControl\M2\Cases\StaticColor\Verify'
-```
+每个修改操作使用新的调用编号，并保留输入、输出和报告。依赖草稿的操作应提交当前 `draftRevision`；如果用户在界面中编辑了输入，先重新读取并确认内容，再继续。
 
-最终CLI/共享run_client/空工程的实际预检见[ExampleCheck](../../Reports/20261010PluginControl/M4/ExampleCheck.json)；同样生成/Verify语法已在[M2两例](../../Reports/20261010PluginControl/M2/Cases/Checks.json)及[M3重复/第三图](../../Reports/20261010PluginControl/M3/RepeatCases/Checks.json)实跑。UserRuns配方尚未执行，不冒充已有产物；每份run保留原输入SHA、PID/模块、收据与终态。
+`waitingPersistence` 表示资产已保存。需要检查重启后的内容时，用原输入和原生成报告执行保存检查，不重新生成。遇到 `pending` 或 `unknown`，先查询同一个调用编号。
+
+## 本目录 JSON 文件
+
+`BlueprintLoad.json`、`MaterialLoad.json` 和 `EditorRegistration118.json` 是开发时保留的参数结构示例，可能包含只在维护者环境有效的路径、版本或目录摘要。它们不是 v0.1.0 的即用配置，不要复制后直接启动。
+
+新配置由安装工具创建；新输入使用当前目录规则。仓库没有附带这些示例对应的 UE 工程。
+
+[CLI 协议](../../Contracts/ControlProtocol.md) · [编辑器协议](../../Contracts/EditorControlProtocol.md)

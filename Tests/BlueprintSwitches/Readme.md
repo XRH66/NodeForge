@@ -1,20 +1,22 @@
-# 原生多路选择数据回归
+# 整数与名称 Switch 测试
 
-39项模板由Build49真实实例签名生成；随后在首次保存批次前补原生名称语义和精确引脚负例，最终以Build52重新采集目录及实际DLL运行。此前Build49/50守卫失败保留，不等于已运行这些保存模板。
+本目录包含 39 项构图或拒绝用例。这里记录输入与预期，实际结果由每次运行产生的报告决定。运行环境与通用规则见[开发测试说明](../TestPlan.md)。
 
-Cases.json有21正例、18拒绝；RuntimeCases.json有14代表性原生执行期望。未连执行case保留，独立Sequence消息证明事件已执行，Actor位置证明分支选择，而不是把没打印消息当运行成功。
+## 检查内容
 
-| 数据变化 | 模板及预期 |
-| --- | --- |
-| Selection/属性 | SwitchInt→SwitchChanged，X20→10 |
-| 改连线 | SwitchTopology仍选1但连至第一目标，X10 |
-| 数量与起点 | SwitchOne/八分支SwitchEight/负起点SwitchNegativeStart；另含MIN与最大安全末case保存重开 |
-| 顺序 | SwitchShuffled与SwitchInt实际结构/自动布局一致 |
-| 默认及未连接 | SwitchDefault X100；无Default的未匹配与有Default的未连命中保持X0 |
-| 名称 | Idle/Active、canonical name成员、Selection=active原生匹配；引脚active替代Active拒绝 |
-| 版本兼容 | 46数学、45材质、早期Branch图保持其旧摘要通过；旧46声明Switch拒绝 |
-| 保护 | 类型/数量/溢出/名字重复和保留/未知引脚/隐藏上下文/连接同时默认/同名拒绝 |
+- 改变 Selection、分支配置或连线，检查实际 Actor 位置由正确分支决定。
+- 覆盖一个、八个分支、负起点和 int32 安全边界。
+- 检查 Default、未匹配且无 Default、命中但未连线等情况；未连的匹配分支不能落入 Default。
+- 检查 FName 的运行匹配与引脚标识的大小写规则，两者不能混淆。
+- 拒绝数量或类型错误、整数溢出、名称重复或保留名、未知引脚、隐藏上下文、默认值与连线并存及同名目标。
 
-实际构图/编译/保存/重开终态在[Switches1](../../Reports/20261008GraphV2/Switches1/Summary.json)，39项/60步通过。后续14图/28步实际运行、三图导出及五拒绝、原33/旧v1/11负例/规则全部终态，见[最终汇总](../../Reports/20261009UsableEditor/SwitchExpansion1/FinalSummary.json)。20行原生瞬态异常源守卫通过，历史失败原因及更正保留于[阶段日志](../../WorkLogs/2026-10-09-蓝图多路选择扩展.md)。[AI规则](../../Examples/BlueprintSwitchesAiRules.md)说明目录/端口与边界；新族UI/外部AI/打包未测。
+未连分支用例还使用独立 Sequence 消息证明事件确实执行过，不能把没有打印消息当作通过。
 
-这些模板不能直接粘贴导入：CATALOG_DIGEST_FROM_REAL_ENGINE须由实际加载插件导出的摘要替换；requestId和新目标应唯一。运行器另存绑定后的Inputs，不改变原模板；拒绝例不是使用说明。测试期间源码和DLL必须保持不变，不安装工具、修改生产或根/RC1。
+## 文件与运行
+
+- [Cases.json](Cases.json)：构图与拒绝用例。
+- [RuntimeCases.json](RuntimeCases.json)：运行预期。
+
+构图用例由 [RunGraphRegression.py](../../Scripts/RunGraphRegression.py) 的 `--fixtures Tests/BlueprintSwitches` 选择；提供实际节点目录、匹配插件和新的运行名称。包含目录或资源摘要占位符的模板不能直接粘贴生成，固定摘要的拒绝或兼容用例应保留原值。
+
+运行检查使用 [RunBlueprintMotionChecks.py](../../Scripts/RunBlueprintMotionChecks.py)，消费本组构图结果和对应专用工程。先确认前置生成与保存结果完整，再检查实际变换和消息。

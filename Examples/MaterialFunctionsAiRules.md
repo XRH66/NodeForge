@@ -1,23 +1,32 @@
-# 原生材质函数的 AI 输入规则
+# 调用材质函数
 
-适用于[函数真实目录](../Catalog/UE532MaterialFunctions.json)的32材质类/15蓝图签名及原生实例。构建至少Build14；根安装Build2尚未部署该能力，不能把新数据交给旧面板宣称支持。
+本页说明 NodeForge v0.1.0 的 Graph JSON v2 写法。先读取[通用规则](GraphAiRules.md)和[当前节点目录](../Docs/Versions/v0.1.0/Catalog.json)，从实际目录取得 `catalogDigest`、节点类、属性和引脚。
 
-NodeForgeGraph version2基本结构沿用[协议](../Contracts/GraphProtocol.md)，当前实际catalogDigest为`7d11f08760383d7b4704eab618fb098447f2558d9b456955139fbd818b7851e2`。节点class为`/Script/Engine.MaterialExpressionMaterialFunctionCall`；properties必须恰有MaterialFunction和FunctionAssetSha256。路径必须是实际存在、已保存、干净普通MaterialFunction的canonical object path，只接受/Engine或/Game/NodeForgeTests；不接受FunctionInstance或层/混合函数。
+## 先读取函数
 
-先用只读MaterialFunction操作检查具体资源，配置恰为`{"function":"完整对象路径"}`；读取返回functionSignature的properties、inputs、outputs，禁止猜引脚名或抄另一个版本的GUID。连接的input使用实际`name`，output使用实际十进制`index`。GUID用于回读身份核验，由原生节点保存，不作为替代引脚名的JSON连接字段。
+材质函数的输入输出取决于具体资源。先在面板中选择已保存的普通 MaterialFunction，点击 **读取选中材质 / 函数**；AI 可以使用对应的资源读取工具。
 
-节点类未绑定时目录中的空输入/输出只是未绑定状态，不是完整节点签名。FunctionAssetSha256来自实际函数文件，必须匹配当前文件，不能用目录摘要替代。哈希只锁定直接函数文件；嵌套函数/纹理暂不递归锁定，不能声称整个依赖闭包冻结。
+读取结果包含真实路径、文件 SHA256、输入输出和节点模板。不能直接使用未绑定函数节点的空引脚表，也不能从另一个函数复制 GUID 或输入名。
 
-函数调用节点不支持defaults自定义值。需要设置调用值时创建受支持的Constant/Parameter等节点并连接；必需输入不连会拒绝。可选输入未连接时沿用函数原生preview默认值，其值和使用规则记录在实际签名里，插件不会偷偷补常量节点。
+## 填写调用节点
 
-本机SmoothStep实际输入为`Alpha (S)`、`Min (S)`、`Max (S)`，均原生可选；输出`0`/Result。Overlay实际输入为`Base (V3)`和`Blend (V3)`，两者必接；输出`0`/Result。来源：[SmoothStep实际签名](../Reports/20261009UsableEditor/FunctionInspect3/SmoothStep.json)、[Overlay实际签名](../Reports/20261009UsableEditor/FunctionInspect3/Overlay.json)。其它函数必须另行实际读取和验证，不能把两项通过推广到所有引擎函数。
+类为 `/Script/Engine.MaterialExpressionMaterialFunctionCall`，`properties` 包含：
 
-样例在[函数组合用例](../Tests/MaterialFunctions/)，未绑定目录的能力发现不是编译通过。各测试结果由[当前实测报告](../Reports/20261009UsableEditor.md)维护；外部AI原始输出真实UI导入仍待完成，不把这里的项目自写样例当外部AI证据。
+- `MaterialFunction`：读取结果中的完整对象路径。
+- `FunctionAssetSha256`：该函数文件的实际 SHA256。
 
-## 选中函数导出（Build18）
+连接的 `input` 使用真实输入名，`output` 使用十进制索引字符串。GUID 用于内部检查，不代替 JSON 的引脚名称。
 
-Build18面板“读取选中材质 / 函数”沿用同一个原生MaterialFunction后端；操作与证据见[资源选择说明](../Docs/ResourceSelection.md)。成功报告新增 `nodeTemplate`：实际MaterialExpressionMaterialFunctionCall类及同一函数路径/SHA，id可在完整图内改成唯一逻辑ID；这是单节点片段，不是完整导入JSON。不复制未绑定目录的空端口，也不把输出名当规范十进制索引。
+函数节点不接受自定义 defaults。需要传值时，创建支持的常量或参数节点并连接；必填输入必须连接，可选输入未连接时使用函数定义的预览默认值。
 
-当前新构建目录以[Catalog18原生输出](../Reports/20261009UsableEditor/ResourceSelection1/Catalog18.json)为准，摘要 `a6488c77da856b78bd72ac32d5c480008f34cdb897524c2296289f088893b786`；上文7d11是保留的Build14兼容摘要，新输入优先使用实际已加载构建的当前摘要。新签名见[SmoothStep](../Reports/20261009UsableEditor/ResourceSelection1/Smooth.json)及[Overlay](../Reports/20261009UsableEditor/ResourceSelection1/Overlay.json)，报告包含实际DLL指纹。根安装2仍未部署此入口，人工点击/剪贴板及外部AI原文闭环不得据后台测试宣称完成。
+## 限制
 
-后续Build19已实际导出[当前目录](../Reports/20261009UsableEditor/ResourceSelection2/ActualCatalog.json)，摘要相同；[当前SmoothStep](../Reports/20261009UsableEditor/ResourceSelection2/Smooth.json)和[当前Overlay](../Reports/20261009UsableEditor/ResourceSelection2/Overlay.json)各记录实际19 DLL。任务规则子集是NodeForgeTaskRules，详[查询说明](../Docs/ResourceSelection.md#按任务检索规则build19)，不是可直接导入的资产JSON；不得用子集摘要替代完整catalogDigest。Build18两函数图构图/保存/重开仍只关联18收据，19只读检查不自动把它升级。
+只支持允许读取目录中、已保存且没有未保存改动的普通 MaterialFunction，不支持函数实例、材质层或混合函数。
+
+文件哈希只对应直接引用的函数，不会递归锁定它引用的其他函数和纹理。函数文件发生变化后，应重新读取参数和哈希。
+
+读取返回的 `nodeTemplate` 是单个节点片段，不是可直接生成的完整图。需要为它分配图内唯一的 id，并补齐完整请求、其他节点与连线。
+
+结构示例见[材质函数测试数据](../Tests/MaterialFunctions/)，资源读取步骤见[资源说明](../Docs/Versions/v0.1.0/Ai/Resources.md)。
+
+本文链接的测试 JSON 用于阅读结构，可能含目录摘要或资源占位值，不能保证原样导入当前版本。请核对当前规则、填写真实资源，并使用新的请求编号和资产名。第一次使用推荐插件包附带的 `Examples/FirstMaterial.json`，见[入门教程](../Docs/GettingStarted.md)。

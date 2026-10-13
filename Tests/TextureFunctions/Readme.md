@@ -1,14 +1,25 @@
-# 纹理与原生函数组合回归
+# 贴图对象与材质函数测试
 
-以[Build38实际目录](../../Reports/20261009UsableEditor/TextureFunctionExpansion2/ActualCatalog.json)及[WorldAlignedTexture实际签名](../../Reports/20261009UsableEditor/TextureFunctionExpansion2/WorldAlignedTexture.json)为准，不使用研究fixture接口。
+本目录包含 19 项构图或拒绝用例。这里记录输入与预期，实际结果由每次运行产生的报告决定。运行环境与通用规则见[开发测试说明](../TestPlan.md)。
 
-- WorldTexture / WorldParameter / WorldShuffled：TextureObject或TextureObjectParameter连接原生WorldAlignedTexture的真实T2d输入，输出XYZ世界对齐纹理；反转数组后图/布局仍一致。
-- WorldInstance：对已保存WorldParameter父材质的SurfaceTexture作实际Texture2D覆盖，父SHA从本轮真实收据绑定，源模板不写成伪历史哈希。
-- RotatingTexture：TextureObject→TextureSample，UV经Rotator，Time乘SpinSpeed决定旋转，Tint决定着色；与世界对齐图结构不同。
-- RadialMask / RadialChanged：UV与Center的Distance经SmoothStep/OneMinus成柔边遮罩，输入改变圆心、范围和颜色。
-- StepBands：UV分量、Frac、Step、两颜色Lerp组成条纹。
-- BlueprintFamilyLegacy：以此前699目录数据在新构建生成原整数阈值旋转/缩放图，防止材质扩展破坏旧蓝图能力。
+## 检查内容
 
-九项验证拒绝与一项编译失败预期分别记录。TextureNumericFail的目标是确认原生texture对象误连EmissiveColor后在compile阶段失败且不保存，不把它称为成功材质。ObjectIgnoredUv确认实际存在却不被UE编译消费的继承引脚被适配器拒绝，而非丢掉连接。
+- WorldTexture/Parameter/Shuffled：TextureObject 或 TextureObjectParameter 连接 WorldAlignedTexture 的实际 T2d 输入，读取 XYZ Texture 输出。
+- WorldInstance：对实际保存父材质中的 SurfaceTexture 做 Texture2D 覆盖。
+- RotatingTexture：TextureObject→TextureSample，UV 经 Rotator，Time 与 SpinSpeed 控制旋转。
+- RadialMask/Changed：Distance、SmoothStep 和 OneMinus 组合柔边遮罩。
+- StepBands：UV、Frac、Step 和 Lerp 组合条纹。
+- TextureNumericFail：纹理对象误接数值颜色输出应在 compile 阶段失败且不保存。
+- ObjectIgnoredUv：TextureObjectParameter 不消费的继承 UV 输入必须拒绝，不能默默丢弃连接。
 
-RunGraphRegression.py使用显式--function-signature绑定同DLL实际函数签名；RuntimeCases.json只验受影响蓝图；VisualConfig.json检查旋转纹理真实时间及参数画面。当前终态见[功能文档](../../Docs/MaterialTextureFunctions.md)与[项目状态](../../ProjectStatus.md)。全部使用同一通用构图器，不修改插件即可换数据。
+运行器需要 `--function-signature` 指定同插件的实际函数检查结果。实例父 SHA 也从实际保存文件取得；画面检查与蓝图运行检查分别使用对应配置。
+
+## 文件与运行
+
+- [Cases.json](Cases.json)：构图与拒绝用例。
+- [RuntimeCases.json](RuntimeCases.json)：运行预期。
+- [VisualConfig.json](VisualConfig.json)：画面检查配置。
+
+构图用例由 [RunGraphRegression.py](../../Scripts/RunGraphRegression.py) 的 `--fixtures Tests/TextureFunctions` 选择；提供实际节点目录、匹配插件和新的运行名称。包含目录或资源摘要占位符的模板不能直接粘贴生成，固定摘要的拒绝或兼容用例应保留原值。
+
+运行检查使用 [RunBlueprintMotionChecks.py](../../Scripts/RunBlueprintMotionChecks.py)，消费本组构图结果和对应专用工程。先确认前置生成与保存结果完整，再检查实际变换和消息。

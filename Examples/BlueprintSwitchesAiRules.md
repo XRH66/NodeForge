@@ -1,24 +1,35 @@
-# 外部AI：整数和名称多路分支规则
+# 整数与名称多路分支
 
-仅用于实际加载Build52或同签名后续版本的NodeForge，Windows/UE5.3.2。必须先从插件导出规则确认catalogDigest；当前实测摘要为`1ae2791da31e336b3d147d1ed20e173ddfe51e721d255df040c843c743171317`。根安装2和冻结RC1不自动支持本批。输出只包含JSON，不携带代码、脚本或任意类反射指令。
+本页说明 NodeForge v0.1.0 的 Graph JSON v2 写法。先读取[通用规则](GraphAiRules.md)和[当前节点目录](../Docs/Versions/v0.1.0/Catalog.json)，从实际目录取得 `catalogDigest`、节点类、属性和引脚。
 
-顶层恰为format/version/requestId/assetType/assetPath/catalogDigest/nodes/edges/settings九字段：format=NodeForgeGraph，version=2，assetType=Blueprint；requestId用唯一ASCII字母数字标识；assetPath使用独立验证目录/Game/NodeForgeTests下尚不存在的新资产名称；settings为parentClass=/Script/Engine.Actor及variables数组。节点逻辑ID稳定唯一；nodes数组顺序无执行含义；edges以from/output/to/input逐项明确连接，不用数字索引代替真实蓝图引脚名。
+## 整数 Switch
 
-## 新增原生节点
+节点类为 `/Script/BlueprintGraph.K2Node_SwitchInteger`。配置示例：
 
-- `/Script/BlueprintGraph.K2Node_SwitchInteger`：properties恰为`{"startIndex":0,"caseCount":3,"hasDefault":true}`。输入execute(exec)、Selection(int)；输出"0"、"1"、"2"与Default。caseCount为整数1..8，startIndex在int32内，且startIndex+caseCount≤2147483647。可以负起点；不能用不连续标签数组。
-- `/Script/BlueprintGraph.K2Node_SwitchName`：properties恰为`{"cases":["Idle","Active"],"hasDefault":true}`。输入execute(exec)、Selection(name)；输出Idle、Active与Default。case标识ASCII字母起头，其后字母数字，≤64字符，1..8个，以原生FName忽略大小写的身份排重，不能用None/Default/execute/Selection/NotEqual_NameName/NotEqual_IntInt等保留身份。
+```json
+{"startIndex":0,"caseCount":3,"hasDefault":true}
+```
 
-hasDefault=false时禁止连接Default。名称引脚按原拼写区分大小写，不能将Active写成active；Selection的name值由UE运行时忽略大小写比较。不连接Selection时可显式defaults：如`{"Selection":1}`或`{"Selection":"Active"}`；连接变量输出后必须删除该defaults字段。禁止设置隐藏比较函数上下文、隐藏引脚或其它未声明属性。
+输入为 `execute` 和整数 `Selection`；该配置的输出为 `0`、`1`、`2`、`Default`。`caseCount` 为 1–8，起点和终点必须满足目录中的 int32 范围检查。整数分支连续排列，不支持任意标签数组。
 
-匹配一个未连的case时结束该条执行链，不会自动转Default。只有没有命中任何case时才走存在且已连线的Default。
+## 名称 Switch
 
-## 可组合的已有能力与真实样例
+节点类为 `/Script/BlueprintGraph.K2Node_SwitchName`。配置示例：
 
-BeginPlay：K2Node_Event，properties owner=/Script/Engine.Actor、member=ReceiveBeginPlay，输出then。Sequence：K2Node_ExecutionSequence，properties outputCount=2..8，输入execute，输出then_0..then_N。Actor.K2_SetActorLocation：K2Node_CallFunction，properties owner=/Script/Engine.Actor、member=K2_SetActorLocation；输入execute、NewLocation(vector)、bSweep(bool)、bTeleport(bool)，输出then等真实签名见目录。PrintString：owner=/Script/Engine.KismetSystemLibrary、member=PrintString，常用defaults InString、bPrintToScreen、bPrintToLog；其余端口以当前目录为准。
+```json
+{"cases":["Idle","Active"],"hasDefault":true}
+```
 
-可声明int/name成员再用K2Node_VariableGet/Set，properties仅variable=成员名；成员实际输出以其声明名命名。类型/default约束沿用[整数/名称规则](BlueprintMemberScalarsAiRules.md)，不随意增加对象类型或转换。
+输入为 `execute` 和名称 `Selection`；输出使用准确拼写的 `Idle`、`Active`、`Default`。分支数为 1–8，标识以 ASCII 字母开头，后接字母数字，最长 64 字符。不能使用目录中的保留名称，也不能添加只在大小写上不同的重复分支。
 
-[SwitchName](../Tests/BlueprintSwitches/SwitchName.json)示例由BeginPlay→Sequence分两条：第一条按Active/Idle选择Actor位置，第二条打印独立消息。[SwitchEight](../Tests/BlueprintSwitches/SwitchEight.json)用8个整数出口。[SwitchUnwiredMatch](../Tests/BlueprintSwitches/SwitchUnwiredMatch.json)保留未连的匹配case。都是相同导入器读取节点/属性/连线，没有专用菜单或状态机配方。示例模板摘要占位符须先替换，requestId及新目标必须唯一。
+## 连接规则
 
-只生成声明支持的图。不存在的类/属性/引脚、不兼容连接、连接同时赋默认、同名资产都应失败；不减少节点或改成固定简单图来掩盖缺口。当前新族真实外部AI→UI闭环未测，不能把这些人工编写测试JSON称为AI一次成功。
+`hasDefault=false` 时不能连接 `Default`。未连接的 `Selection` 可以填写默认值，连接变量后必须删除同一输入的默认值。
+
+命中一个没有连线的分支时，执行链结束，不会自动转到 Default。只有没有命中任何分支时，才会执行存在且已连接的 Default。
+
+分支出口名称需要精确拼写，运行时 name 值的比较则遵循 UE 的 FName 语义。不要设置隐藏的比较函数上下文或隐藏引脚。
+
+结构示例：[名称分支](../Tests/BlueprintSwitches/SwitchName.json)、[八个整数分支](../Tests/BlueprintSwitches/SwitchEight.json)、[命中未连分支](../Tests/BlueprintSwitches/SwitchUnwiredMatch.json)。
+
+本文链接的测试 JSON 用于阅读结构，可能含目录摘要或资源占位值，不能保证原样导入当前版本。请核对当前规则、填写真实资源，并使用新的请求编号和资产名。第一次使用推荐插件包附带的 `Examples/FirstMaterial.json`，见[入门教程](../Docs/GettingStarted.md)。

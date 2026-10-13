@@ -1,0 +1,50 @@
+{
+  "format": "NodeForgeReleaseManifest1",
+  "version": "0.1.0",
+  "releaseTag": "v0.1.0",
+  "releaseUrl": "https://github.com/XRH66/NodeForge/releases/tag/v0.1.0",
+  "engineVersion": "5.3.2",
+  "platform": "Windows x64",
+  "pluginVersion": "0.1.0",
+  "aiVersion": "0.1.0",
+  "matchingPluginVersionRequired": "0.1.0",
+  "sharedPluginCore": true,
+  "aiPackageIncludesCore": false,
+  "aiRuntime": {
+    "pythonVersion": "3.12.4",
+    "mcpSdkVersion": "2.3.0",
+    "bridgeVersion": "0.3.6",
+    "systemPythonRequired": false
+  },
+  "binarySha256": "88f805cd0461138570c00b653982c423ace693f380717b97f5c7c20b64b38b80",
+  "source": {
+    "repository": "https://github.com/XRH66/NodeForge",
+    "tag": "v0.1.0"
+  },
+  "guides": {
+    "installation": "https://github.com/XRH66/NodeForge/blob/v0.1.0/Docs/Installation.md",
+    "gettingStarted": "https://github.com/XRH66/NodeForge/blob/v0.1.0/Docs/GettingStarted.md",
+    "aiInstallation": "https://github.com/XRH66/NodeForge/blob/v0.1.0/Docs/AiInstallation.md",
+    "changelog": "https://github.com/XRH66/NodeForge/blob/v0.1.0/CHANGELOG.md"
+  },
+  "assets": [
+    {
+      "name": "NodeForge-0.1.0-UE5.3.2-Windows.zip",
+      "kind": "plugin",
+      "version": "0.1.0",
+      "bytes": 1760515,
+      "sha256": "b41e36cca73635dbf0b10e3060d61e80f7df5d499fed9ea5003329338fa24267",
+      "downloadUrl": "https://github.com/XRH66/NodeForge/releases/download/v0.1.0/NodeForge-0.1.0-UE5.3.2-Windows.zip",
+      "apiUrl": "https://api.github.com/repos/XRH66/NodeForge/releases/assets/636181589"
+    },
+    {
+      "name": "NodeForge-AI-0.1.0-Windows.zip",
+      "kind": "ai",
+      "version": "0.1.0",
+      "bytes": 27569711,
+      "sha256": "5d635f68bde6762c2e54329b9c8921a7d7b21159e9dcc5f1d168aa64c8d890fc",
+      "downloadUrl": "https://github.com/XRH66/NodeForge/releases/download/v0.1.0/NodeForge-AI-0.1.0-Windows.zip",
+      "apiUrl": "https://api.github.com/repos/XRH66/NodeForge/releases/assets/636194892"
+    }
+  ]
+}

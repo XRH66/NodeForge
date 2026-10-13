@@ -1,17 +1,46 @@
-# 普通插件安装指南
+# 安装 NodeForge
 
-当前 **Build137 Repair5** 支持Windows x64、官方UE5.3.2，普通使用无需Python或MCP。
+本指南适用于 **NodeForge v0.1.0、Windows 64 位、官方 UE 5.3.2**。普通使用无需安装 Python 或配置 AI。
 
-1. 从[同版Release](https://github.com/XRH66/NodeForge/releases/tag/build137-repair5)下载 `NodeForgeBuild137Repair5PluginCandidate.zip`，按Checksums核对。
-2. 正常关闭目标UE工程，将ZIP中的整个NodeForge文件夹复制到工程Plugins目录；没有Plugins则创建。
-3. 打开工程并启用NodeForge；若UE提示重开，按提示正常重开。
-4. 从Window菜单打开NodeForge，核对首次页面识别的工程、引擎和插件，点击“确认当前工程并开始使用”。
-5. 进入原功能页；同一工程重开免重复确认。
+## 1. 下载插件
 
-目标为 `<工程>/Plugins/NodeForge/NodeForge.uplugin`，旁边包含Binaries中的准确DLL和 `.modules`。GitHub源码ZIP不含编译文件。
+下载 [NodeForge 插件 ZIP](https://github.com/XRH66/NodeForge/releases/download/v0.1.0/NodeForge-0.1.0-UE5.3.2-Windows.zip)，解压后可以看到 `NodeForge` 文件夹。
 
-`Examples/FirstMaterial.json` 可作参考；实际生成使用新的requestId和目标资产名，当前写根为 `/Game/NodeForgeTests` 子目录，原资产受保护。完整功能资料见[Mcp9R19用户指南](Versions/Build136/Mcp9R19/User/Readme.md)，安装章节区分137普通和136历史AI候选。
+Release 页的 `Source code` 是源码压缩包，安装时请选择上面的插件 ZIP。
 
-已有其它版本时先核原绑定/回退说明，不叠放第二个插件，不删除原资产绕过冲突；已运行编辑器不能借此切换引擎。匹配`Build137Repair5Ai1`可后续补装，见[AI安装](AiInstallation.md)。
+## 2. 放入工程
 
-当前仓库私有，下载与指南需要访问权限；公开安装入口尚未开放。
+关闭准备安装插件的 UE 工程，把整个 `NodeForge` 文件夹复制到工程的 `Plugins` 文件夹。如果没有 `Plugins`，新建一个。
+
+安装后的目录应如下所示：
+
+```text
+你的工程/
+├─ 你的工程.uproject
+└─ Plugins/
+   └─ NodeForge/
+      ├─ NodeForge.uplugin
+      ├─ Binaries/
+      ├─ Examples/
+      └─ ...
+```
+
+注意不要多套一层 `NodeForge` 文件夹。
+
+## 3. 启用插件
+
+打开工程，在插件管理器中搜索并启用 **NodeForge**。如果 UE 提示重启编辑器，按提示重启。
+
+从 **窗口（Window）→ NodeForge** 打开插件面板。首次打开时，核对自动识别的工程和引擎位置，点击 **确认当前工程并开始使用**。同一工程以后打开时无需重复确认。
+
+## 4. 试用附带示例
+
+按 [入门教程](GettingStarted.md) 生成第一个材质。之后如果想用 AI 操作插件，继续阅读 [连接 AI](AiInstallation.md)。
+
+## 安装遇到问题
+
+**窗口菜单中没有 NodeForge。** 检查插件是否启用，以及 `NodeForge.uplugin` 是否位于上面的目录。
+
+**UE 提示模块缺失或引擎版本不匹配。** 检查下载的是插件 ZIP，并确认使用官方 UE 5.3.2。这个下载包不适用于其他 UE 版本或定制引擎。
+
+**已经装过 NodeForge。** 先关闭工程，再检查现有安装。不要在工程和引擎目录中各放一份插件；AI 接入可以在现有插件上补装。

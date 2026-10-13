@@ -1,11 +1,17 @@
-# 普通材质实例回归
+# 材质实例测试
 
-**2026-10-10 夜间阶段历史入口**：以下19项是本目录历史矩阵和绑定规则，当时实际构建/父资源/通过范围见[夜间审计记录](../../Reports/20261010NightAudit/Readme.md)。原模板及过期父SHA反例保持；当前同DLL原生参数与实际保存父字节须重新核对，不能从旧目录或旧结果推断新构建全部通过。执行按[Workflow](../../Docs/Workflow.md#后续能力扩展优先级2026-10-09)选择受影响范围。 当前项目状态见[ProjectStatus](../../ProjectStatus.md)与[第二阶段最终报告](../../Reports/PluginControlStageTwo/EditorControl1/S5/FinalReport.md)；本页原构建/夜间证据仍限定于各自时点，不因此继承新版全部验收。
+本目录包含 19 项构图或拒绝用例。这里记录输入与预期，实际结果由每次运行产生的报告决定。运行环境与通用规则见[开发测试说明](../TestPlan.md)。
 
-使用[真实目录](../../Catalog/UE532MaterialInstances.json)、[协议](../../Contracts/GraphProtocol.md)和[AI规则](../../Examples/MaterialInstancesAiRules.md)。本目录19项：两个父材质种子+五个实例正例（两组水面参数、全继承、显式原生默认、纹理参数覆盖），12个拒绝例（名称/类型/值范围/颜色维数、父SHA/父不存在/实例父、节点非空、未知设置、纹理不存在、同名）。
+## 检查内容
 
-原始实例JSON包含全零父SHA占位，是测试模板。现有RunGraphRegression.py首先生成并独立重开父材质，再执行原生只读MaterialParameters，写独立InputTemplates、实际Inputs与InputBinding。只绑定实测父SHA；故意过期例保留零值。模板、源SHA和执行输入SHA分别留证，不改原始模板冒充可直接导入文件。
+用例包括父材质种子、参数覆盖、全部继承、显式默认值和贴图覆盖；负例检查未知参数、类型和值范围、颜色维数、父摘要、父类型、非空节点、未知设置和同名目标。
 
-矩阵不编译插件。统一代理选定同一冻结构建串行执行；检查实例真实nativeClass、完整override键/值/有效值、父字节、继承shader、保存及新进程重开。每个拒绝案例前后整个独立Content资产集合/字节必须相同。父参数名称从原生报告核对，不使用fixture节点百科。
+模板中的全零父 SHA 不能直接执行。运行器先生成并独立重开父材质，再通过 MaterialParameters 读取实际保存文件摘要，写入单独的执行输入。故意使用过期摘要的拒绝例保留原值。
 
-实际运行状态见[日常报告](../../Reports/20261009UsableEditor.md)，不把有清单当作测试通过。用户面板、最终美术质量、无插件打包均单独测试，不由本矩阵代替。
+检查 nativeClass、覆盖参数的完整键值、有效值、父文件是否未变、shader 继承以及独立重开。每个拒绝例前后还需比较专用工程的资产集合，不能只看 setter 返回值。
+
+## 文件与运行
+
+- [Cases.json](Cases.json)：构图与拒绝用例。
+
+构图用例由 [RunGraphRegression.py](../../Scripts/RunGraphRegression.py) 的 `--fixtures Tests/MaterialInstances` 选择；提供实际节点目录、匹配插件和新的运行名称。包含目录或资源摘要占位符的模板不能直接粘贴生成，固定摘要的拒绝或兼容用例应保留原值。

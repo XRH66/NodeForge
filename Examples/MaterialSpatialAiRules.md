@@ -1,22 +1,26 @@
-# 空间输入：给外部AI的规则
+# 材质空间位置与法线
 
-本页适用于Windows、UE5.3.2、Build42隔离插件，真实目录为[UE532MaterialSpatial](../Catalog/UE532MaterialSpatial.json)，摘要`588f572606053d53eebe80b3461b0e01baac2326f30e778c2cdbc3f03e4e2801`。遵循[Graph v2协议](../Contracts/GraphProtocol.md)及[已有纹理/函数规则](TextureFunctionsAiRules.md)。加载的插件必须匹配本目录；根工程和RC1尚未升级。当前测试进度及未测限制见[空间输入说明](../Docs/MaterialSpatialInputs.md)。
+本页说明 NodeForge v0.1.0 的 Graph JSON v2 写法。先读取[通用规则](GraphAiRules.md)和[当前节点目录](../Docs/Versions/v0.1.0/Catalog.json)，从实际目录取得 `catalogDigest`、节点类、属性和引脚。
 
-输出是NodeForgeGraph version2的九字段JSON，不输出脚本或材质代码。使用新requestId、新`/Game/NodeForgeTests/`目标；nodes按声明逐项生成，所有节点必须到达启用的材质输出。真实属性/引脚/参数值均以目录为准，不凭显示名称猜测。节点的`position`可省略以使用自动布局；提供时为`[x,y]`两整数，连接不依赖nodes数组顺序。
+类路径前缀为 `/Script/Engine.MaterialExpression`。
 
-新增节点均用`/Script/Engine.MaterialExpression`前缀：
-
-| 后缀 | 属性及输出 |
+| 类后缀 | 用途与注意事项 |
 | --- | --- |
-| WorldPosition | `WorldPositionShaderOffset`取目录中精确WPT_*名称；输出`0`是XYZ、`1`是XY、`2`是Z。 |
-| ObjectPositionWS | `OriginType`为`Absolute`或`CameraRelative`；输出`0`为原生物体位置，不能冒充任意Actor引用，实例化网格的具体语义由UE决定。 |
-| CameraPositionWS | 无可写属性/输入，输出`0`为摄像机世界位置。 |
-| CameraVectorWS | 无可写属性/输入，输出`0`为原生像素到摄像机方向；本机编译器限制为像素/计算阶段，不用于顶点WorldPositionOffset。 |
-| VertexNormalWS | 无可写属性/输入，输出`0`为原生顶点世界法线。 |
-| PixelNormalWS | 无可写属性/输入，输出`0`为原生像素世界法线；不可用于Normal输入或顶点WorldPositionOffset。 |
+| `WorldPosition` | 世界位置；`WorldPositionShaderOffset` 使用目录列出的枚举。输出 0/1/2 分别为 XYZ/XY/Z |
+| `ObjectPositionWS` | 物体位置；`OriginType` 为目录允许的绝对或摄像机相对原点 |
+| `CameraPositionWS` | 摄像机世界位置 |
+| `CameraVectorWS` | 像素指向摄像机的方向，不能用于顶点 WorldPositionOffset |
+| `VertexNormalWS` | 顶点的世界空间法线 |
+| `PixelNormalWS` | 像素的世界空间法线，不能连接到 Normal 或顶点 WorldPositionOffset |
 
-枚举只能写目录精确字符串，不能写数字、中文别名、MAX或臆造值。空间向量不会自动变换为切线空间；本轮未新增坐标变换表达式。相减比较时必须保持坐标原点一致，例如WorldPosition的CameraRelativeNoOffsets与ObjectPositionWS.CameraRelative配对。包含/排除WPO的选项按原生语义处理；不同坐标原点混用不保证效果正确。
+输出编号在 JSON 中写作字符串，例如 `"0"`。枚举也使用准确字符串，不能改成数字或中文别名。
 
-使用现有Math/Time/Parameter节点组合：世界坐标→分量→Scale→与Time×Speed相加→Sine→颜色插值，可得到动态世界坐标条纹；对象位置相减可形成相对中心的颜色；Normal与CameraVector做Dot/Abs可形成视角着色。这些只是数据样例，没有效果专用导入分支。参考[输入集合](../Tests/MaterialSpatial/Readme.md)，不得把这些项目自制测试数据声称为外部AI原始输出。
+做相减、点积或比较前，确认两个向量位于同一坐标空间和同一原点。世界空间向量不会自动转换为切线空间；绝对世界位置与摄像机相对位置也不能直接混算。
 
-旧Build41及更早摘要不能获得新空间节点权限，旧受支持范围保留。原生着色器阶段限制可能在编译时失败，不能将生成或着色器请求提交写成整体成功；保存独立重开、运行/画面、真实UI、无插件交付分别依据证据确认。
+可以使用位置分量、Time、参数和数学节点组合条纹、相对中心颜色或视角变化效果。JSON 只描述节点与连线，插件没有专门的“空间效果”开关。
+
+材质着色阶段可能进一步限制某些连接。输入检查后仍需编译并查看实际画面。
+
+结构示例见[空间节点测试数据](../Tests/MaterialSpatial/Readme.md)。
+
+本文链接的测试 JSON 用于阅读结构，可能含目录摘要或资源占位值，不能保证原样导入当前版本。请核对当前规则、填写真实资源，并使用新的请求编号和资产名。第一次使用推荐插件包附带的 `Examples/FirstMaterial.json`，见[入门教程](../Docs/GettingStarted.md)。

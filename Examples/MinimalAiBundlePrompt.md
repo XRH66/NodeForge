@@ -1,11 +1,15 @@
-# 可交给任意外部AI的提示词
+# 最小示例提示词
 
-2026-10-10说明：以下保留首次v1两样例闭环的历史提示词，不是本夜扩大/修改功能的指令。新构图任务请使用[Graph v2规则](GraphAiRules.md)和匹配实际DLL的目录；原始AI输出与后续修订须分开保存。
+这段提示词用于理解 `NodeForgePrototype` v1 的固定模板格式。新建实际节点图，请使用 [Graph 编写规则](GraphAiRules.md)，并提供当前插件导出的节点目录。
 
-请依据随附真实目录和两样例实际规则生成两个全新的JSON文件内容。只生成数据，不给代码/脚本，不调用工具或第三方服务。一个文件一个对象，不添加说明字段。先自检字段、类型、节点和边的顺序、唯一名称及范围。
+## 模板练习
 
-蓝图文件：requestId=`ExternalAiBlueprintRun1`、assetPath=`/Game/NodeForgeTests/NFExternalAiBlueprint`，其余完全遵守BlueprintTemplate和规则。此最小版本必须保留固定打印字符串及false/true设置。
+> 请阅读随附的 BlueprintTemplate.json、MaterialTemplate.json 和 MinimalAiBundleRules.md。分别输出两份完整 JSON，不合并成数组。
+>
+> 蓝图保持模板定义的 BeginPlay 和 PrintString 结构。材质保持两个常量相乘并连接自发光输出，常量分别使用 0.75 和 0.5。
+>
+> 保留模板的格式、字段和节点顺序。如果没有取得目录或规则，指出缺少哪份资料，不猜测字段、节点或摘要。
 
-材质文件：requestId=`ExternalAiMaterialRun1`、assetPath=`/Game/NodeForgeTests/NFExternalAiMaterial`，First.value=0.75、Second.value=0.5，Multiply连EmissiveColor，Surface/Opaque/Unlit，严格遵守MaterialTemplate/规则。预期线性输出0.375。
+所需文件：[规则](MinimalAiBundleRules.md)、[蓝图模板](MinimalAiBundle/BlueprintTemplate.json)、[材质模板](MinimalAiBundle/MaterialTemplate.json)、[配套目录](MinimalAiBundle/RealCatalog.json)。
 
-请分别以标题Blueprint.json和Material.json的代码块输出，不能合并为顶层数组。规则包不包含凭据、正式工程或用户私人资料。使用[实际规则](MinimalAiBundleRules.md)和[目录](MinimalAiBundle/RealCatalog.json)；若你无法读取附件，明确指出缺材料，不凭记忆猜节点。
+这个练习只产生输入数据，不负责安装或生成资产。模板中的请求编号与资产路径不能假定在自己的工程中尚未使用；不要把输出直接当作 v0.1.0 已验证的生成结果。

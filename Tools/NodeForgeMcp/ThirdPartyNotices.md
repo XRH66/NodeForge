@@ -1,8 +1,8 @@
-# NodeForge MCP第三方声明
+# AI 接入包第三方声明
 
-2026-10-10；仅Python桥依赖，不加入UE DLL或根/RC1安装。官方SDK mcp==2.3.0（MIT），固定提交2118f14f8a19bc158d8a1cf90af58d85d187f849；原协议/stdio代码通过已锁定轮子原样安装，没有复制UE业务。
+连接服务使用 MCP Python SDK 2.3.0（MIT），固定提交 `2118f14f8a19bc158d8a1cf90af58d85d187f849`。协议和 stdio 通信由该 SDK 提供。
 
-全部29项依赖的版本/轮子SHA及原许可文件位置/SHA见[DependencyManifest](DependencyManifest.json)，原轮子在Packages保存，可按原路径核验全文。许可检查不等于全源码或安全审计；未启用HTTP/OAuth/遥测。项目机器边界适配与文档为本库新增；原NodeForge第三方声明保持。
+全部依赖的版本、wheel 文件哈希及许可文件位置见 [DependencyManifest.json](DependencyManifest.json)。AI 接入包内各依赖的原始许可保存在 `Runtime/Lib/site-packages` 对应的包目录或 `.dist-info/licenses` 目录；Python 的许可保存在 `Runtime/LICENSE.txt`。源码仓库不附带 wheel 或运行环境，请从 Release 下载完整 AI 接入包。
 
 ## 官方SDK MIT原文
 

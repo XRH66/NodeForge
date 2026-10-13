@@ -1,4 +1,4 @@
-"""Assemble Build137 Ai1 from the frozen ordinary ZIP and hash-locked runtime inputs."""
+"""Assemble the matching AI package with its fixed runtime and published documentation."""
 import argparse
 import hashlib
 import json
@@ -9,8 +9,8 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = 'Build137Repair5Ai1'
-DOCS = 'Docs/Versions/Build137/Mcp10R1'
+VERSION = '0.1.0'
+DOCS = 'Docs/Versions/v0.1.0'
 EMBED_SHA = '15fea3c9367653a85086fe37216b4d1a1c78688fa5e1587e1db0b0f658856564'
 
 
@@ -31,7 +31,7 @@ def ref(root, path):
     return {'path': path.relative_to(root).as_posix(), 'bytes': path.stat().st_size, 'sha256': sha(path)}
 
 
-def assemble(out, embed):
+def assemble(out, embed, plugin, plugin_asset_id):
     if out.exists():
         raise ValueError('New output directory required; existing candidates are preserved')
     if sha(embed) != EMBED_SHA:
@@ -86,56 +86,34 @@ def assemble(out, embed):
         shutil.copyfile(ROOT / 'Tools/NodeForgeMcp' / name, out / 'Tools/NodeForgeMcp' / name)
     (out / 'Metadata').mkdir()
     shutil.copyfile(ROOT / 'Metadata/Operations.json', out / 'Metadata/Operations.json')
-    old_root = ROOT / 'Docs/Versions/Build136/Mcp9R19'
-    source = load(old_root / 'Manifest.json')
+    source = load(ROOT / DOCS / 'Manifest.json')
     new_root = out / DOCS
     new_root.mkdir(parents=True)
     pages = []
-    for old in source['pages']:
-        original = ROOT / old['path']
-        relative = original.relative_to(old_root)
-        destination = new_root / relative
+    for page in source['pages']:
+        original = ROOT / page['path']
+        destination = out / page['path']
         destination.parent.mkdir(parents=True, exist_ok=True)
-        text = original.read_text(encoding='utf-8-sig')
-        # Keep historical evidence identities explicit. Do not relabel old runtime tests as 137 tests.
-        if old.get('kind') != 'node':
-            text = ('> 当前接入身份：Build137 Repair5 / Ai1 / Mcp10R1；Windows x64官方UE5.3.2。'
-                '正文功能说明继承Mcp9R19；Build136、原stage/PID/验收路径只表示历史证据。'
-                '当前安装和连接统一见[AI安装](' + '../' * (len(relative.parts) - 1)
-                + 'User/AiInstallation.md)。不要复制历史本机路径或环境配置。\n\n') + text
-        text = text.replace('.html)', '.md)')
-        destination.write_text(text, encoding='utf-8', newline='\n')
-        pages.append({**old, **ref(out, destination)})
-    # Current operational instructions replace inherited setup pages in this new bundle only.
-    current = (ROOT / 'Docs/AiInstallation.md').read_text(encoding='utf-8')
-    for page in pages:
-        if page['pageId'] in ['UserAiInstallation', 'UserInstallation', 'AiPreparation']:
-            destination = out / page['path']
-            destination.write_text(current, encoding='utf-8', newline='\n')
-            page.update(ref(out, destination))
-    contract = load(ROOT / 'Tools/NodeForgeMcp/ToolContract.json')
-    contract.update(bundleId='NodeForge-Build137-Mcp10R1', docsManifest=DOCS + '/Manifest.json')
+        shutil.copyfile(original, destination)
+        pages.append({**page, **ref(out, destination)})
+    contract = load(ROOT / 'Releases/0.1.0/ToolContract.json')
     save(out / 'Tools/NodeForgeMcp/ToolContract.json', contract)
     artifacts = []
     for name in ['Catalog.json', 'Operations.json', 'GraphRequestSchema.json']:
-        if name == 'Catalog.json':
-            with zipfile.ZipFile(ROOT / 'Deliverables/NodeForgeBuild137Repair5PluginCandidate.zip') as ordinary:
-                (new_root / name).write_bytes(ordinary.read('NodeForge/Metadata/Catalog.json'))
-        else:
-            shutil.copyfile(old_root / name, new_root / name)
+        shutil.copyfile(ROOT / DOCS / name, new_root / name)
         artifacts.append(ref(out, new_root / name))
-    # Installation-only matching docs: existing node/product evidence stays historical.
-    installation = load(ROOT / 'Releases/Build137Repair5/InstallationManifest.json')
+    installation = load(ROOT / 'Releases/0.1.0/InstallationManifest.json')
+    with zipfile.ZipFile(plugin) as ordinary:
+        if json.loads(ordinary.read('NodeForge/InstallationManifest.json')) != installation:
+            raise ValueError('Plugin installation metadata does not match this release')
     manifest = {key: source[key] for key in ['format', 'engine', 'adapter', 'graphProtocolVersion',
         'acceptedGraphVersions', 'counts', 'catalogDigest', 'readerEntrypoints']}
-    manifest.update(bundleId=contract['bundleId'], buildId='Build137 Repair5', aiVersion=VERSION,
+    manifest.update(bundleId=contract['bundleId'], buildId=VERSION, aiVersion=VERSION,
         bridgeVersion='0.3.6', binarySha256=installation['binarySha256'], editorApiVersion='1.0',
         profile='nodeforge.editor.v1', installationSchemaVersion=1, stage='.',
-        reportNamespace='Reports/PluginControlStageTwo/AiAddon1', publicationStatus='candidateInstallation',
+        reportNamespace='Reports/PluginControlStageTwo/NodeForge', publicationStatus='released',
         fullUsagePackageComplete=True, validationOnly=False, pages=pages, artifacts=artifacts,
         authoringSources=[], htmlArtifacts=[], developerKnowledgeComplete=True,
-        inheritedContentBundle=source['bundleId'], inheritedContentEvidence='Historical Build136 finite product checks; not relabeled as Build137 business checks',
-        actualCodexBusinessAcceptance='notRunForThisAddon; real SDK installation check required',
         cliFiles={str(p.relative_to(out)).replace('\\', '/'): sha(p) for p in (out / 'Scripts').glob('*.py')
             if p.name in ['NodeForgeControl.py', 'NodeForgeEditorTransport.py', 'RunProcessGuard.py', 'PrepareNodeForgeInstallation.py']},
         bindings=[ref(out, p) for p in (out / 'Scripts').glob('*.py')
@@ -149,20 +127,27 @@ def assemble(out, embed):
         'isolatedPth': True, 'systemPythonRequired': False,
         'files': [ref(out, p) for p in sorted(runtime.rglob('*')) if p.is_file()]}
     save(out / 'Tools/NodeForgeMcp/RuntimeManifest.json', runtime_manifest)
-    # Remove pip's relocation-specific record entries; package files themselves are hash-bound.
-    plugin = ROOT / 'Deliverables/NodeForgeBuild137Repair5PluginCandidate.zip'
-    if sha(plugin) != '3a7143bcf208b8e7cc7279c2a919950b30d2448d358abed70714c60d3d44bf7e':
-        raise ValueError('Frozen ordinary plugin changed')
-    addon = {'format': 'NodeForgeAiAddon1', 'aiVersion': VERSION, 'buildId': 'Build137 Repair5',
+    (out / 'AiReadme.md').write_text(
+        '# NodeForge AI 接入 v0.1.0\n\n'
+        '适用于 Windows 64 位、官方 Unreal Engine 5.3.2。包内已包含 Python，'
+        '无需单独安装运行环境。\n\n'
+        '先保存并关闭目标 UE 工程，再按照[安装指南]('
+        'Docs/Versions/v0.1.0/User/AiInstallation.md)运行 '
+        '`Scripts/InstallNodeForgeAi.ps1`，指定工程和客户端配置文件。'
+        '尚未安装插件时，工具会下载同版插件；已有插件时可以补装 AI 部分。\n\n'
+        '[用户手册](Docs/Versions/v0.1.0/User/Readme.md) · '
+        '[AI 调用流程](Docs/Versions/v0.1.0/Ai/QuickStart.md)\n',
+        encoding='utf-8', newline='\n')
+    addon = {'format': 'NodeForgeAiAddon1', 'aiVersion': VERSION, 'buildId': VERSION,
         'binarySha256': installation['binarySha256'], 'installationManifest': installation,
         'engineVersion': '5.3.2', 'platform': 'Windows x64', 'bridgeVersion': '0.3.6', 'sdkVersion': '2.3.0',
         'docsBundle': contract['bundleId'], 'sharedCoreIncluded': False, 'fixedRuntimeIncluded': True,
         'pluginAsset': {'name': plugin.name, 'sha256': sha(plugin),
-            'url': 'https://github.com/XRH66/NodeForge/releases/download/build137-repair5/' + plugin.name,
-            'apiUrl': 'https://api.github.com/repos/XRH66/NodeForge/releases/assets/635869031'},
+            'url': 'https://github.com/XRH66/NodeForge/releases/download/v' + VERSION + '/' + plugin.name,
+            'apiUrl': 'https://api.github.com/repos/XRH66/NodeForge/releases/assets/' + str(plugin_asset_id)},
         'files': [ref(out, p) for p in sorted(out.rglob('*')) if p.is_file()]}
     save(out / 'AiPackageManifest.json', addon)
-    archive = out.with_suffix('.zip')
+    archive = out.with_name(out.name + '.zip')
     with zipfile.ZipFile(archive, 'x', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as z:
         for p in sorted(out.rglob('*')):
             if p.is_file():
@@ -175,5 +160,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', required=True)
     parser.add_argument('--embed', required=True)
+    parser.add_argument('--plugin-zip', required=True)
+    parser.add_argument('--plugin-asset-id', required=True, type=int)
     args = parser.parse_args()
-    print(json.dumps(assemble(Path(args.out).resolve(), Path(args.embed).resolve())))
+    print(json.dumps(assemble(Path(args.out).resolve(), Path(args.embed).resolve(), Path(args.plugin_zip).resolve(), args.plugin_asset_id)))

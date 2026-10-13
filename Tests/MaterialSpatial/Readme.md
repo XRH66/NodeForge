@@ -1,15 +1,24 @@
-# 空间输入回归与样例
+# 材质空间输入测试
 
-这些JSON由项目的[数据准备脚本](../../Reports/20261009UsableEditor/SpatialExpansion1/PrepareFixtures.py)基于实际Build42目录产生，供同一个通用导入器处理；不是外部AI原始输出。结果及精确状态见[功能记录](../../Docs/MaterialSpatialInputs.md)。
+本目录包含 27 项构图或拒绝用例。这里记录输入与预期，实际结果由每次运行产生的报告决定。运行环境与通用规则见[开发测试说明](../TestPlan.md)。
 
-- WorldBands/WorldChanged/WorldShuffled：世界X坐标、时间和颜色参数组合；只改数据和顺序，保存结构及布局比较。
-- WorldHeight：原生Z输出驱动高度颜色插值。
-- ObjectLocal/ObjectRelative：世界位置减物体中心，包含普通和摄像机相对原点；验证两类原生枚举。
-- ViewFacing/CameraDistance：法线与视角、摄像机与像素距离的不同拓扑。
-- NormalMotion：顶点法线乘时间波形接WPO，可调速度/幅度。
-- 四个旧摘要样例覆盖原始材质、Fresnel扩展、纹理采样及Sequence蓝图；保留旧版本语义。
-- 关键负例覆盖未知/数字/MAX枚举、未知属性/输入/输出、旧目录不获得新族、同名保护；PixelNormalWS用于顶点或Normal输入必须产生真实编译失败并且不保存目标。
+## 检查内容
 
-Cases.json为27项；RuntimeCases.json仅旧Sequence实际PIE，VisualConfig.json仅WorldBands保存场景的时间与参数画面检查。未执行的画面、UI或包不由测试文件存在推断通过。普通与原生枚举读回、源字节和同DLL保护由现有统一运行器验证，不另写构图实现。
+- WorldBands/Changed/Shuffled：世界位置、时间和颜色参数；乱序不改变结构和布局。
+- WorldHeight：世界 Z 驱动颜色；ObjectLocal/Relative：世界位置减物体中心，并检查原点枚举。
+- ViewFacing/CameraDistance：法线、视角与距离的组合。
+- NormalMotion：顶点法线、时间波形与 WorldPositionOffset。
+- 拒绝未知、数值或 MAX 枚举、错误字段和端口；PixelNormalWS 用于顶点或 Normal 输出应编译失败且不保存。
 
-终态补充：27项通过，WorldBands画面通过。NormalVisualConfig.json对应初轮NormalMotion，其像素变化通过但可见性失败；修正数据另存[MaterialSpatialMotion](../MaterialSpatialMotion/)，增加基准高度和新目标，原数据保留。修正后实际画面及可见性检查通过，详功能记录，不把初轮失败改成成功。
+WorldBands 与 NormalMotion 的画面配置分别检查时间、参数和可见性。像素发生变化不等于对象可见，也不等于美术效果合格；位移场景还要检查对象是否被地面遮挡。
+
+## 文件与运行
+
+- [Cases.json](Cases.json)：构图与拒绝用例。
+- [RuntimeCases.json](RuntimeCases.json)：运行预期。
+- [VisualConfig.json](VisualConfig.json)：画面检查配置。
+- [NormalVisualConfig.json](NormalVisualConfig.json)：位移画面检查配置。
+
+构图用例由 [RunGraphRegression.py](../../Scripts/RunGraphRegression.py) 的 `--fixtures Tests/MaterialSpatial` 选择；提供实际节点目录、匹配插件和新的运行名称。包含目录或资源摘要占位符的模板不能直接粘贴生成，固定摘要的拒绝或兼容用例应保留原值。
+
+运行检查使用 [RunBlueprintMotionChecks.py](../../Scripts/RunBlueprintMotionChecks.py)，消费本组构图结果和对应专用工程。先确认前置生成与保存结果完整，再检查实际变换和消息。

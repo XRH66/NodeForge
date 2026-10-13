@@ -1,7 +1,19 @@
-# 材质函数组合回归
+# 材质函数调用测试
 
-Cases.json当前16项：8正例含原生可选默认、显式三输入、节点乱序、时间函数、Overlay/交换拓扑、双函数串联、速度参数动画；8负例含不存在输入/输出、过期/缺失哈希、错误资源类、额外属性、旧目录使用新函数节点、必需引脚未连接。所有数据通过同一材质构图器，无函数/效果专用分支。
+本目录包含 16 项构图或拒绝用例。这里记录输入与预期，实际结果由每次运行产生的报告决定。运行环境与通用规则见[开发测试说明](../TestPlan.md)。
 
-源函数properties取自实际只读签名，原始模板目录摘要由回归脚本另存到Inputs后使用当前真实目录，不覆盖源数据。RunGraphRegression.py要求--function-signature报告，报告必须实测成功并具有所选DLL的实际加载指纹；成功回读另与该签名比较GUID、默认策略和properties，不能通过类的未绑定空目录跳过检查。
+## 检查内容
 
-MaterialFunctions1（Build13）15项中FunctionSmoothDefault回读出现虚假边，历史Inputs/报告保留；修复原生CachedInputs视图生命周期后Build14验证MaterialFunctions2。成功与否以Summary.json为准，不以源码说明标通过。VisualConfig.json指定独立固定网格场景和Speed变化；视觉须另执行原生GPU检查。
+- 正例涵盖原生可选输入、显式三输入、数组乱序、时间函数、Overlay、拓扑交换、双函数串联和速度参数。
+- 负例涵盖不存在的输入输出、过期或缺失文件摘要、错误资源类型、额外属性和必需输入未连接。
+
+运行前通过实际插件读取函数，给 RunGraphRegression 提供 `--function-signature`。签名报告须匹配所选 DLL，并包含实际 GUID、引脚顺序、默认策略及资源摘要；不能使用未绑定函数的空引脚列表。
+
+画面检查使用 VisualConfig，按固定场景比较时间和参数变化。编译通过不替代这一步。
+
+## 文件与运行
+
+- [Cases.json](Cases.json)：构图与拒绝用例。
+- [VisualConfig.json](VisualConfig.json)：画面检查配置。
+
+构图用例由 [RunGraphRegression.py](../../Scripts/RunGraphRegression.py) 的 `--fixtures Tests/MaterialFunctions` 选择；提供实际节点目录、匹配插件和新的运行名称。包含目录或资源摘要占位符的模板不能直接粘贴生成，固定摘要的拒绝或兼容用例应保留原值。

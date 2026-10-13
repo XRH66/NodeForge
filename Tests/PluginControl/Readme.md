@@ -1,14 +1,28 @@
-# 程序控制验收运行器
+# 程序控制测试
 
-第二阶段实际入口为[RunEditorChecks](RunEditorChecks.py)，既有参数化phase及原CLI/独立比较器共用，证据见[最终报告](../../Reports/PluginControlStageTwo/EditorControl1/S5/FinalReport.md)、[ST01–ST18映射](../../Reports/PluginControlStageTwo/EditorControl1/S5/AcceptanceAudit.json)和[16入口影响](../../Reports/PluginControlStageTwo/EditorControl1/S4/StateImpactReview120.json)。阶段全验收与低影响变更分开：已有相关证据/源码未变则引用，不因编号更新整批重跑。断连/unknown只查原call，不再Generate；每批显式加入全部累计SavedAssetProtection地图。下方原M运行器说明保留首阶段范围。
+本目录的运行器调用正式 CLI，并读取实际编辑器结果，检查接口、身份、草稿、超时和错误恢复。协议说明见[CLI](../../Contracts/ControlProtocol.md)与[编辑器控制](../../Contracts/EditorControlProtocol.md)，环境准备见[开发测试说明](../TestPlan.md)。
 
-范围与出口见[FirstStagePlan](../../Docs/PluginControl/FirstStagePlan.md)，反馈见[ControlProtocol](../../Contracts/ControlProtocol.md)，真实结果见[实施报告](../../Reports/20261010PluginControl/Readme.md)。脚本仅调用正式CLI和独立检查，不另造UE资产/业务。
+## 运行器
 
-- RunCases消费Cases/RepeatCases，顺序预检→生成→不同PIDVerify，复用readback_errors与validate_terminal_step，固定预期和真实保存字节。pending/失败停后例，原输入重复正例用新工程。
-- RunBoundaries消费Boundary/Supplement/IdentityCases，共用RunCases.run_client。身份变化只在明确负例副本，不改原输入，不为正例换名。
-- RunProcessChecks使用真实自有短child和readonly UE，核创建ticks、截止/observer异常不kill、只读status/错误身份/晚到结果；所有等待有限，原LiveProcess保留。
-- InvalidJson是故意坏输入。预期pending batch的failed/notRun原样保留，ExpectedPendingCheck及事前SHA Review证明正确停批次，不删失败制造成功。
+| 脚本 | 检查内容 |
+| --- | --- |
+| [RunCases.py](RunCases.py) | 按 Cases/RepeatCases 顺序预检、生成、在不同进程 Verify；pending 或失败后停止后续用例 |
+| [RunBoundaries.py](RunBoundaries.py) | 参数、文件、身份与错误输入，使用独立负例副本 |
+| [RunProcessChecks.py](RunProcessChecks.py) | 创建时间、超时、只读状态查询、错误进程身份和晚到结果 |
+| [RunEditorChecks.py](RunEditorChecks.py) | 活动编辑器的状态、UI、协议、草稿、业务调用、资源查询及生命周期 |
 
-三个运行器均有--help，显式project/plugin-directory/report-directory；正负例另需同DLL的description-file。report目录必须新；RunCases/RunBoundaries可选manifest，RunCases可设timeout。真实命令数组存在每个ClientCommand.json，CLI例子见[使用说明](../../Examples/PluginControl/Readme.md)。
+InvalidJson 是故意无效的 JSON。expected 字段描述预期，不能把用例文件本身当作执行结果。失败批次中未执行的后续项目应保持 notRun。
 
-本轮没改共享解析/构图/编译/保存，按影响测旧Smoke、unknownPin/duplicateKey、查重和guard；完整旧11矩阵未重跑。GUI接线不变，M06使用原源码SHA及同Execute调用链静态证明，真实GUI/运行/视觉不继承API结果。
+## 参数与前提
+
+前三个运行器提供 `--help`，使用显式 `--project`、`--plugin-directory`、`--report-directory`；涉及操作描述时还需要匹配 DLL 的 `--description-file`。RunCases 和 RunBoundaries 可以指定 manifest，RunCases 可指定等待时长。
+
+RunEditorChecks 使用 `--phase`、`--project-name`、`--plugin-directory` 和 `--report-directory`；需要保护已有测试资产时，通过 `--asset-protection` 指定实际清单。不同 phase 的输入和编辑器前提不同，执行前先查看对应源码分支。
+
+所有运行目录必须新建。脚本仍依赖开发工作区的路径规则和专用 UE 工程，不能直接把文档中的名称当作自己已有的工程。
+
+## 判断结果
+
+进程必须与指定工程、创建时间和加载 DLL 匹配；只收到 accepted 不算完成。unknown、断连或超时后查询原 callId，不重新 Generate。读取原报告、输入快照、实际保存文件和退出记录，再判断结果。
+
+程序调用、真实面板操作、独立保存检查和实际运行分别记录。某个接口检查通过不代表其他入口也已执行。

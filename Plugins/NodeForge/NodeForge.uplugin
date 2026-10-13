@@ -1,9 +1,9 @@
 {
   "FileVersion": 3,
   "Version": 1,
-  "VersionName": "0.1.0-prototype",
+  "VersionName": "0.1.0",
   "FriendlyName": "NodeForge",
-  "Description": "Local fixed-data Blueprint and Material prototype",
+  "Description": "Create editable Unreal Engine Blueprints and Materials from JSON.",
   "Category": "Editor",
   "CreatedBy": "NodeForge",
   "CanContainContent": false,

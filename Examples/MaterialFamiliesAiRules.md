@@ -1,28 +1,22 @@
-# 扩展材质目录的AI输入规则
+# 常用材质节点规则
 
-2026-10-09，Windows、UE5.3.2。本规则配合[真实目录](../Catalog/UE532MaterialFamilies.json)，由[独立Build4](../Reports/20261009UsableEditor/Build4/BinaryEvidence.json)导出。当前根安装/已打开面板仍为Build2，不能用旧面板导入这些新节点；构建部署与测试状态见[当前实测](../Reports/20261009UsableEditor.md)。发现/可创建不是任意组合全部通过。
+本页说明 NodeForge v0.1.0 的 Graph JSON v2 写法。先读取[通用规则](GraphAiRules.md)和[当前节点目录](../Docs/Versions/v0.1.0/Catalog.json)，从实际目录取得 `catalogDigest`、节点类、属性和引脚。
 
-将本文、实际目录以及具体需求交给AI。输出一个UTF-8 JSON对象，保留[协议](../Contracts/GraphProtocol.md)的九根字段、格式NodeForgeGraph、version2、节点ID、受控属性、默认值、连接和资产保护规则。当前扩展目录digest为：
+类路径前缀为 `/Script/Engine.MaterialExpression`。此表列出常用参数节点、数学节点与引脚，完整配置以当前目录为准。
 
-```text
-9703b92dac063c1a473c335d505d78d917fc97608a78501dc0c1d1f2491264ca
-```
+| 类后缀 | 常用属性 | 输入 |
+| --- | --- | --- |
+| `TextureSampleParameter2D` | `Texture`、`ParameterName`，可选 `SamplerType`、`ConstCoordinate` | `Coordinates`、`Apply View MipBias` |
+| `Fresnel` | `Exponent`、`BaseReflectFraction` | `ExponentIn`、`BaseReflectFractionIn`、`Normal` |
+| `Saturate`、`Floor`、`Frac` | 无 | `Input` |
+| `DotProduct`、`CrossProduct` | 无 | `A`、`B` |
 
-目录是报告包装，读取根`catalogDigest`、`catalog.material.nodes`和`catalog.blueprint.nodes`。文件SHA与目录摘要不同。仅使用真实目录支持的节点、端口、属性；不能写脚本、HLSL、猜测资源、使用任意对象属性或复制整图配方。旧24类材质及15蓝图签名规则沿用[原AI规则](GraphAiRules.md)，下列七类为本构建增量，须使用本构建新摘要。
+纹理参数的 `Texture` 和 `ParameterName` 需要显式提供。其输出索引 0–5 分别为 RGB、R、G、B、A、RGBA；JSON 中写成字符串。它没有普通 TextureSample 的完整输入集合，不要直接复制另一个节点的引脚。
 
-类路径前缀均为`/Script/Engine.MaterialExpression`：
+纹理必须是实际存在、允许读取的非虚拟 Texture2D。通常可省略 SamplerType，让 UE 根据资源推断；显式提供时必须与资源一致。法线采样需要真实的法线纹理和匹配采样器，不能只根据文件名判断。
 
-| 类后缀 | properties | 实际输入名 | 输入默认写入 |
-| --- | --- | --- | --- |
-| TextureSampleParameter2D | Texture、ParameterName必须显式；可选SamplerType、ConstCoordinate | Coordinates、Apply View MipBias | Coordinates对应整数UV通道0–7 |
-| Fresnel | Exponent、BaseReflectFraction | ExponentIn、BaseReflectFractionIn、Normal | 前两输入对应同名配置的原生默认字段 |
-| Saturate、Floor、Frac | 空对象 | Input，必须连接 | 无 |
-| DotProduct、CrossProduct | 空对象 | A、B，必须连接 | 无 |
+参数名需要唯一并符合目录命名规则。所有数学节点都应连接到有效输出，不要留下与结果无关的节点。
 
-Fresnel与普通数学输出索引是字符串`"0"`；TextureSampleParameter2D输出0–5分别为RGB、R、G、B、A、RGBA，其真实实例没有TextureObject输入，不要照抄普通TextureSample的完整引脚表。节点参数名必须显式、唯一，遵守FName大小写不敏感限制。
+结构示例见[材质节点测试数据](../Tests/MaterialFamilies/Cases.json)，更多写法见[纹理与 UV](TextureFunctionsAiRules.md)。
 
-Texture必须引用调用者确认存在的非虚拟UTexture2D精确对象路径，当前只接受`/Engine/`或`/Game/NodeForgeTests/`；不下载、不导入贴图。省略SamplerType由引擎根据贴图推断并回读；显式值必须匹配。Normal采样需要确实为法线的资源与正确采样器，不能凭颜色/名称猜。参数节点即使有引擎默认贴图，输入也不能省略Texture。
-
-旧digest只兼容原24类及未改变蓝图签名，不能搭配新增类；未知digest失败。原始AI响应和人工修订分别保存，不手工替换原输出的摘要再声称AI原样一次成功。
-
-实际不同拓扑示例见[测试清单](../Tests/MaterialFamilies/Cases.json)：TextureParameter/Tint/Shuffle、FractionMath、VectorProducts、FacingColor/Defaults、WaterFacing。这些是输入数据，经同一个导入器处理；没有新增水面专用构建器。具体编译/保存/重开/视觉状态仍以实测报告为准。
+本文链接的测试 JSON 用于阅读结构，可能含目录摘要或资源占位值，不能保证原样导入当前版本。请核对当前规则、填写真实资源，并使用新的请求编号和资产名。第一次使用推荐插件包附带的 `Examples/FirstMaterial.json`，见[入门教程](../Docs/GettingStarted.md)。

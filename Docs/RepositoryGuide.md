@@ -1,19 +1,78 @@
-# 源码仓库开发说明
+# 源码仓库说明
 
-当前native源码对应Build137 Repair5，AI1接入包使用相同核心。根Tools/NodeForgeMcp/ToolContract仍保留原136开发服务绑定，保护现有服务；发布契约位于Releases/Build137Repair5/Ai1/ToolContract.json，由PackageNodeForgeAi工具放入接入包的准确位置。不要直接拿根开发配置混装137。
+普通使用请从 [安装插件](Installation.md) 开始。本页面向需要阅读源码、编译插件或制作发行包的开发者。
 
-插件Editor模块在 `Plugins/NodeForge/Source/NodeForgeEditor/`，可放入自己的官方UE5.3.2开发工程编译。新的编译DLL需要准确安装清单与资料，不能套旧哈希。已验137发行物清单保存在 `Releases/Build137Repair5/`。
+## 目录
 
-原 `BuildPrototype.ps1` 使用本机引擎与 `DevProject/NodeForgeDev.uproject`；历史测试工具也有专用工程/报告/权限前提。验证工程不随仓库分发，克隆后不能直接重现全部历史流程。插件Readme中的旧Build/PID/报告为本机历史，实际使用以根README及当前Release为准。
+| 路径 | 内容 |
+| --- | --- |
+| `Plugins/NodeForge/Source/NodeForgeEditor` | UE 编辑器模块，包含构图、资产读取、安装面板和控制服务 |
+| `Scripts` | CLI、MCP 服务、安装和打包工具 |
+| `Contracts` | JSON 与控制接口协议 |
+| `Catalog` | 节点目录数据及说明 |
+| `Examples` | JSON 结构示例和编写规则 |
+| `Tests` | 测试脚本、输入数据和预期规则 |
+| `Docs/Versions/v0.1.0` | v0.1.0 用户、AI 和开发文档，以及配套节点目录 |
+| `Releases/0.1.0` | v0.1.0 安装清单、插件描述和 AI 接口契约 |
+| `Tools/NodeForgeMcp` | 固定依赖清单和第三方许可 |
+| `Tools/NodeForgeDocs` | 文档生成、网页主题及相关工具 |
 
-CLI、Transport、RunProcessGuard和native Service复用同核心。PrepareNodeForgeInstallation验证安装/环境并生成准备回执和客户端参数。Tools/NodeForgeMcp保存锁定依赖、来源与许可，没有提交venv、系统Python、wheel缓存、客户端配置或会话。
+仓库不包含 UE 工程、编译产物、Python 运行环境或依赖 wheel 文件。普通插件和 AI 接入所需的运行文件通过 [Release](https://github.com/XRH66/NodeForge/releases/tag/v0.1.0) 提供。
 
-Docs/PluginControl/DocumentationSources保存正文；Tools/NodeForgeDocs保存渲染/主题。Build135 Reference的六份文档为现有编写依赖，按原路径保留。保留136/R13实际AI资料与R19阅读资料；新核心需要新资料身份，不修改旧Manifest冒充新验收。历史发布输入留本机，从克隆仓库重建所有历史冻结站点不是本次承诺。
+## 编译插件
 
-托管站点后续展示更新的源码在HeroPreview/Runtime及BuildTheme.mjs。生成入口为 `node Tools/NodeForgeDocs/HeroPreview/BuildTheme.mjs --output <目标目录>`。Sites内嵌Git仓库留本机，不作为本仓库子模块。
+需要官方 UE 5.3.2，以及该引擎版本要求的 Windows C++ 工具链。
 
-Tests、native Checks和JSON保留；实际UE验证按目标创建/选择本机专用工程，保护原资产，不复制私人绑定。本次只核上传文件、源码/发行物对应、ZIP/哈希、私有配置排除及远端提交/附件，不重跑既有产品整批。
+1. 创建或选用自己的 UE 5.3.2 C++ 工程，关闭正在运行的编辑器。
+2. 把本仓库的 `Plugins/NodeForge` 放入工程的 `Plugins` 目录。
+3. 生成工程文件，在 IDE 中构建该工程的 Editor 目标，配置为 Development Editor / Win64。
+4. 打开工程并启用 NodeForge。编译后的模块位于所选工程或插件的输出目录，以本次构建结果为准。
 
-AI包通过`PackageNodeForgeAi.py`显式组装到新目录；依赖wheel仅从本机按锁定清单校验后离线安装，运行时使用固定官方嵌入ZIP。克隆仓库不包含wheel和运行时，普通/AI使用从Release取包。固定Python官方输入URL/SHA及每个运行文件见AI1的RuntimeManifest；Source/AI包/普通包身份分开记录，旧核心Release标签保持原提交。
+[BuildPrototype.ps1](../Scripts/BuildPrototype.ps1) 是维护者使用的构建脚本，其中固定了引擎位置、工程名和工具链版本。它依赖仓库未附带的开发工程，克隆后不能直接运行。外部开发者应使用自己的 C++ 工程进行编译。
 
-AI1新增统一安装、固定环境、配置和只读连接检查；有限验收包括无系统Python路径下的全新安装、普通后补装、版本/客户端冲突拒绝与正常关闭，不重跑旧产品业务整批。公开引导的待办见[Release方案](GitHubReleaseDeliveryPlan.md)。
+发行包的安装清单会核对模块文件、引擎版本和节点目录。自己编译得到的 DLL 不能冒用发布包的 SHA256；要接入自动安装或 AI，必须为这套产物生成匹配的安装信息和文档。
+
+## 制作普通插件包
+
+[PackageNodeForgePlugin.py](../Scripts/PackageNodeForgePlugin.py) 使用已有的编译插件 ZIP 作为输入，更新 v0.1.0 的插件描述、安装信息和用户说明。它不负责调用 UE 编译。
+
+```text
+python Scripts/PackageNodeForgePlugin.py --base <已有编译插件ZIP> --out <新的输出ZIP>
+```
+
+输入 ZIP 应包含 `NodeForge/Binaries/Win64/UnrealEditor-NodeForgeEditor.dll`，其 SHA256 必须与 [InstallationManifest.json](../Releases/0.1.0/InstallationManifest.json) 一致。输出路径必须尚不存在。
+
+## 制作 AI 接入包
+
+[PackageNodeForgeAi.py](../Scripts/PackageNodeForgeAi.py) 组装固定 Python 运行环境、连接服务、安装工具和当前版本文档。准备以下输入：
+
+- 官方 Python 3.12.4 的 Windows amd64 嵌入式 ZIP；工具会检查固定 SHA256。
+- [DependencyManifest.json](../Tools/NodeForgeMcp/DependencyManifest.json) 中列出的全部 wheel 文件，放在各条目 `wheel` 指定的位置，文件和许可证哈希须匹配。
+- 同版普通插件 ZIP，以及上传后得到的 GitHub 附件 ID。
+- [Releases/0.1.0/ToolContract.json](../Releases/0.1.0/ToolContract.json) 与 [v0.1.0 文档清单](Versions/v0.1.0/Manifest.json)。
+
+```text
+python Scripts/PackageNodeForgeAi.py --out <新的输出目录> --embed <Python嵌入ZIP> --plugin-zip <同版插件ZIP> --plugin-asset-id <GitHub附件ID>
+```
+
+工具从本地 wheel 离线安装依赖，不会替你下载它们。输出目录和同名 ZIP 都应为新路径。运行时文件的来源与哈希记录在生成的 `RuntimeManifest.json` 中；普通插件下载地址与哈希记录在 `AiPackageManifest.json` 中。
+
+发布工具读取 `Releases/0.1.0` 的契约，不使用维护者本机的客户端配置或会话文件。详细附件规则见 [发布说明](GitHubReleaseDeliveryPlan.md)。
+
+## 文档与示例
+
+v0.1.0 的公开手册位于 [版本文档](Versions/v0.1.0/Readme.md)，用户、AI 和开发者文档都在该目录维护。AI 打包工具直接读取这里的正文和清单。修改后应同步文档清单中的文件信息，并检查相对链接。
+
+网页共享资源的生成入口为：
+
+```text
+node Tools/NodeForgeDocs/HeroPreview/BuildTheme.mjs --output <目标目录>
+```
+
+[Examples](../Examples/GraphAiRules.md) 中的部分 JSON 来自开发时保存的结构样例，可能含不同的目录摘要或资源占位值。使用前需要读取当前插件目录，并核对输入；第一次使用推荐插件包附带的 `Examples/FirstMaterial.json`。
+
+## 修改后检查什么
+
+编译后先确认实际加载的是本次模块，再检查与修改相关的功能。普通 JSON 示例不证明任意组合都能运行，保存资产也不等于已经检查游戏行为或材质效果。测试需要自己的 UE 工程和真实资源；本仓库没有可直接打开的测试工程。
+
+[开发手册](Versions/v0.1.0/Developer/Readme.md) · [插件源码](../Plugins/NodeForge/Readme.md) · [第三方许可](../Plugins/NodeForge/ThirdPartyNotices.md)

@@ -1,14 +1,23 @@
-# 给外部AI的蓝图数学与插值规则
+# 数学与插值函数
 
-用于UE5.3.2开发Build46及明确兼容后续构建；根Build2、RC1不能使用本增量。输出JSON对象，format=NodeForgeGraph、version=2；全部根字段为format/version/requestId/assetType/assetPath/catalogDigest/nodes/edges/settings。不输出执行代码或额外说明字段。
+本页说明 NodeForge v0.1.0 的 Graph JSON v2 写法。先读取[通用规则](GraphAiRules.md)和[当前节点目录](../Docs/Versions/v0.1.0/Catalog.json)，从实际目录取得 `catalogDigest`、节点类、属性和引脚。
 
-- assetType为Blueprint；assetPath必须是`/Game/NodeForgeTests/`下直接接1–64位ASCII字母数字的新资产名，不允许子目录、空格、下划线或对象后缀，详[路径契约](../Contracts/GraphProtocol.md)；不覆盖。requestId使用新ASCII字母数字标识。catalogDigest为`aec5b1e30e736a0a16b069b7567817d23a8e9ca9a583aa951ee538e6e73c24c7`。
-- settings为`{"parentClass":"/Script/Engine.Actor","variables":[]}`；需要成员时按[协议](../Contracts/GraphProtocol.md)声明类型/default。节点必须有唯一id、class、properties，可有defaults/position。
-- 新函数class均为`/Script/BlueprintGraph.K2Node_CallFunction`；properties恰含owner=`/Script/Engine.KismetMathLibrary`与member。member使用Abs、FMin、FMax、Lerp、DegSin、DegCos、RLerp，不能用显示标题。
-- Abs/DegSin/DegCos输入A；FMin/FMax输入A、B；Lerp输入A、B、Alpha。上述输入与ReturnValue均double。DegSin/DegCos明确为度，不能当弧度Sin/Cos。
-- RLerp输入A/B为`{"pitch":数字,"yaw":数字,"roll":数字}`，角度单位为度；Alpha原生float，bShortestPath为JSON布尔，ReturnValue为Rotator。对象恰含三键，每分量有限、abs≤1e12；测试Alpha建议0..1，插件不隐式夹值。
-- 每条edges恰为from/output/to/input，引用节点id及真实引脚；输出用ReturnValue，不猜测Result/Value。连接与defaults不可同时作用于一个输入，不添加隐式转换。
-- 其它函数、BeginPlay、Actor位置/旋转及成员从[真实目录](../Catalog/UE532BlueprintMathInterpolation.json)挑选。ReceiveBeginPlay输出then；Actor使用implicit self；K2_SetActorLocation输入NewLocation，K2_SetActorRotation输入NewRotation。
-- position可省略，显式值为[x,y]整数；nodes数组顺序无执行语义。不要输出未知属性/引脚、任意对象或未适配的动态配置；已适配Sequence/Switch须遵守各自专题及实际目录，不从本页推断所有混合图已验证。
+这些函数使用 `/Script/BlueprintGraph.K2Node_CallFunction`，`owner` 为 `/Script/Engine.KismetMathLibrary`。
 
-[样例](../Tests/BlueprintMathInterpolation/Readme.md)的运行器绑定Inputs可用于导入。这份规则与数据由项目编写，不是外部AI一次成功证据；AI原始输出和人工修订须分别保存。
+| member | 输入 | 输出 |
+| --- | --- | --- |
+| `Abs` | `A` | `ReturnValue` |
+| `FMin`、`FMax` | `A`、`B` | `ReturnValue` |
+| `Lerp` | `A`、`B`、`Alpha` | `ReturnValue` |
+| `DegSin`、`DegCos` | `A`，单位为度 | `ReturnValue` |
+| `RLerp` | `A`、`B`、`Alpha`、`bShortestPath` | `ReturnValue`，类型为 rotator |
+
+`RLerp` 的 `A` 和 `B` 默认值是含 `pitch`、`yaw`、`roll` 的对象，单位为度；`Alpha` 的实际类型为 float，`bShortestPath` 为布尔。其他函数的精确类型以本版目录为准。
+
+插值比例通常取 0–1；插件不会替你把超出范围的值夹回这个区间。角度函数 `DegSin` 和 `DegCos` 接受度数，不要与弧度函数混用。
+
+可把插值结果连接到目录允许的 Actor 位置或旋转函数。执行连接与数值连接分别填写，不能把 `ReturnValue` 猜成 `Result`，也不能自动增加隐式类型转换。
+
+结构示例见[数学与插值测试数据](../Tests/BlueprintMathInterpolation/Readme.md)。
+
+本文链接的测试 JSON 用于阅读结构，可能含目录摘要或资源占位值，不能保证原样导入当前版本。请核对当前规则、填写真实资源，并使用新的请求编号和资产名。第一次使用推荐插件包附带的 `Examples/FirstMaterial.json`，见[入门教程](../Docs/GettingStarted.md)。
