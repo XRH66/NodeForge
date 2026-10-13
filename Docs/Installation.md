@@ -12,6 +12,6 @@
 
 `Examples/FirstMaterial.json` 可作参考；实际生成使用新的requestId和目标资产名，当前写根为 `/Game/NodeForgeTests` 子目录，原资产受保护。完整功能资料见[Mcp9R19用户指南](Versions/Build136/Mcp9R19/User/Readme.md)，安装章节区分137普通和136历史AI候选。
 
-已有其它版本时先核原绑定/回退说明，不叠放第二个插件，不删除原资产绕过冲突；已运行编辑器不能借此切换引擎。匹配AI补装包尚未提供，见[AI状态](AiInstallation.md)。
+已有其它版本时先核原绑定/回退说明，不叠放第二个插件，不删除原资产绕过冲突；已运行编辑器不能借此切换引擎。匹配`Build137Repair5Ai1`可后续补装，见[AI安装](AiInstallation.md)。
 
 当前仓库私有，下载与指南需要访问权限；公开安装入口尚未开放。

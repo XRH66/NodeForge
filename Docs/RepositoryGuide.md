@@ -1,6 +1,6 @@
 # 源码仓库开发说明
 
-当前native源码对应Build137 Repair5，现有AI桥及ToolContract仍绑定136/Mcp9R13。普通用户使用Release编译包；源码与桥存在不表示137 AI接入已经交付。
+当前native源码对应Build137 Repair5，AI1接入包使用相同核心。根Tools/NodeForgeMcp/ToolContract仍保留原136开发服务绑定，保护现有服务；发布契约位于Releases/Build137Repair5/Ai1/ToolContract.json，由PackageNodeForgeAi工具放入接入包的准确位置。不要直接拿根开发配置混装137。
 
 插件Editor模块在 `Plugins/NodeForge/Source/NodeForgeEditor/`，可放入自己的官方UE5.3.2开发工程编译。新的编译DLL需要准确安装清单与资料，不能套旧哈希。已验137发行物清单保存在 `Releases/Build137Repair5/`。
 
@@ -14,4 +14,6 @@ Docs/PluginControl/DocumentationSources保存正文；Tools/NodeForgeDocs保存�
 
 Tests、native Checks和JSON保留；实际UE验证按目标创建/选择本机专用工程，保护原资产，不复制私人绑定。本次只核上传文件、源码/发行物对应、ZIP/哈希、私有配置排除及远端提交/附件，不重跑既有产品整批。
 
-统一AI交付和公开引导的待办见[Release方案](GitHubReleaseDeliveryPlan.md)。
+AI包通过`PackageNodeForgeAi.py`显式组装到新目录；依赖wheel仅从本机按锁定清单校验后离线安装，运行时使用固定官方嵌入ZIP。克隆仓库不包含wheel和运行时，普通/AI使用从Release取包。固定Python官方输入URL/SHA及每个运行文件见AI1的RuntimeManifest；Source/AI包/普通包身份分开记录，旧核心Release标签保持原提交。
+
+AI1新增统一安装、固定环境、配置和只读连接检查；有限验收包括无系统Python路径下的全新安装、普通后补装、版本/客户端冲突拒绝与正常关闭，不重跑旧产品业务整批。公开引导的待办见[Release方案](GitHubReleaseDeliveryPlan.md)。

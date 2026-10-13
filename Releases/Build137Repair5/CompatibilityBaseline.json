@@ -2,7 +2,7 @@
   "format": "NodeForgeCompatibilityBaseline1",
   "product": "NodeForge",
   "releaseTag": "build137-repair5",
-  "releaseStatus": "ordinaryPluginPrerelease",
+  "releaseStatus": "ordinaryAndAiAddonPrerelease",
   "pluginCore": {
     "buildId": "Build137 Repair5",
     "engineVersion": "5.3.2",
@@ -20,11 +20,11 @@
     "archiveBytes": 1791792
   },
   "aiIntegration": {
-    "status": "notAvailable",
-    "matchingVersion": null,
+    "status": "availablePrivatePrerelease",
+    "matchingVersion": "Build137Repair5Ai1",
     "requiredCoreBinarySha256": "88f805cd0461138570c00b653982c423ace693f380717b97f5c7c20b64b38b80",
-    "fixedRuntimeIncluded": false,
-    "oneStepInstallerAvailable": false,
+    "fixedRuntimeIncluded": true,
+    "oneStepInstallerAvailable": true,
     "technicalReference": {
       "bridgeVersion": "0.3.6",
       "sdkVersion": "2.3.0",
@@ -36,12 +36,22 @@
       "buildId": "Build136 Repair6",
       "binarySha256": "2453cf2fb843021aee347b2c1403680a8787579f189751b6e69bdd42159ce05b",
       "isAddonForCurrentCore": false
-    }
+    },
+    "archive": "NodeForgeBuild137Repair5Ai1.zip",
+    "archiveSha256": "7b3d7db8e22901d37ab7c4696193051db35dee36aaa4bf756a67e41d8bce0099",
+    "archiveBytes": 27944807,
+    "pythonVersion": "3.12.4",
+    "supportedClientConfigFormats": [
+      "mcp-json",
+      "codex-toml"
+    ],
+    "realSdkConnectionVerified": true,
+    "allClientsAutomaticallyConfigured": false
   },
   "documentation": {
     "readingBundle": "NodeForge-Build136-Mcp9R19",
-    "currentAiRuntimeBundle": "NodeForge-Build136-Mcp9R13",
-    "isMatching137AiDocumentation": false,
+    "currentAiRuntimeBundle": "NodeForge-Build137-Mcp10R1",
+    "isMatching137AiDocumentation": true,
     "hostedSiteVisibility": "owner-only",
     "publicInstallationGuideAvailable": false
   },
@@ -49,6 +59,6 @@
     "repositoryVisibility": "private",
     "twoInstallationEntrypointsConfirmedDesign": true,
     "validationProjectsIncluded": false,
-    "sharedCoreAiIntegrationVerified": false
+    "sharedCoreAiIntegrationVerified": true
   }
 }
