@@ -34,7 +34,7 @@
   "pages": [
     {
       "pageId": "Readme",
-      "title": "NodeForge v1.1.0",
+      "title": "NodeForge v1.1.1",
       "path": "Docs/Versions/v1.1.1/Readme.md",
       "sha256": "734782877278a55693a50af9d492efee761b1a629ef5cd9167efe699a7e88683",
       "bytes": 1263,
@@ -8287,8 +8287,8 @@
       "pageId": "SourcesAndLicenses",
       "title": "来源与第三方许可",
       "path": "Docs/Versions/v1.1.1/Reference/SourcesAndLicenses.md",
-      "sha256": "7bf5671c8713b6c8ef88ff52aeac56d9b604b081a41f1729c800cc596a353ba7",
-      "bytes": 1547,
+      "sha256": "bff7ca1fa0a0be14f7df2a27fb02567c0af73f97ee5c71810681055e8c2d520b",
+      "bytes": 16909,
       "kind": "guide",
       "topics": [
         "Sources",

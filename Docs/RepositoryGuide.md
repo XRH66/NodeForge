@@ -61,7 +61,7 @@ python Scripts/PackageNodeForgeAi.py --version 1.1.1 --out <新的输出目录> 
 
 ## 文档与示例
 
-v1.1.1 的公开手册位于 [版本文档](Versions/v1.1.1/Readme.md)，用户、AI 和开发者文档都在该目录维护。AI 打包工具直接读取这里的正文和清单。修改后应同步文档清单中的文件信息，并检查相对链接。
+v1.1.1 的公开手册位于 [版本文档](Versions/v1.1.1/Readme.md)，用户、AI 和开发者文档都在该目录维护。正式网站为 [nodeforge.cn](https://nodeforge.cn/)，当前分支与官网同步维护正文及[来源与第三方许可](Versions/v1.1.1/Reference/SourcesAndLicenses.md)。发行标签与已上传的安装包保留发布时快照；后续文字和许可补全不替换既有附件或移动标签。AI 打包工具直接读取这里的正文和清单。修改后应同步文档清单中的文件信息，并检查相对链接。
 
 网页共享资源的生成入口为：
 
