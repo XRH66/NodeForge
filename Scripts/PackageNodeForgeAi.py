@@ -10,8 +10,8 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '1.1.0'
-DOCS = 'Docs/Versions/v1.1.0'
+VERSION = '1.1.1'
+DOCS = 'Docs/Versions/v1.1.1'
 EMBED_SHA = '15fea3c9367653a85086fe37216b4d1a1c78688fa5e1587e1db0b0f658856564'
 
 

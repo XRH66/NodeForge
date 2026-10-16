@@ -23,7 +23,7 @@ HOME = ROOT / 'Tools/NodeForgeMcp'
 REPORTS = ROOT / 'Reports/PluginControlStageTwo/McpDocs1'
 CONTROL_REPORTS = ROOT / 'Reports/PluginControlStageTwo'
 CLIENT_CONFIG = REPORTS / 'Client/Config.json'
-VERSION = '0.4.3'
+VERSION = '0.4.4'
 MAX_REPORT = 1048576
 MAX_SELECTED = 32768
 MAX_GRAPH = 65536
@@ -1111,7 +1111,7 @@ class Bridge:
         self._bound(params['handle'], retained_recovery)
         definition = tool['nativeDefinition']; operation = tool['operation']
         arguments = params['arguments']; revision = params.get('expectedDraftRevision')
-        gt = definition['expectedDraftRevisionRequired']
+        gt = definition['expectedDraftRevisionRequired'] or operation == 'calls.releaseCompleted'
         if revision is not None and int(revision) > 18446744073709551615: raise BridgeError('NFMCP_REVISION_UINT64')
         if operation == 'draft.replace' and not 0 < len(arguments['text'].encode('utf-8')) <= 65536:
             raise BridgeError('NFMCP_GRAPH_BYTES')
@@ -1124,7 +1124,7 @@ class Bridge:
                     if self.calls[call_id]['fingerprint'] != fingerprint: raise BridgeError('NFMCP_CALL_CONFLICT')
                     return self.business(self.tools['nodeforge_calls_get'],
                                          {'handle': params['handle'], 'arguments': {'callId': call_id}})
-                if self.unknown: raise BridgeError('NFMCP_UNRESOLVED_CALL', 'unknown')
+                if self.has_unresolved(): raise BridgeError('NFMCP_UNRESOLVED_CALL', 'unknown')
                 row = {'callId': call_id, 'controlSessionId': self.identity['controlSessionId'],
                        'fingerprint': fingerprint, 'operation': operation, 'arguments': arguments,
                        'expectedDraftRevision': revision, 'state': 'submitted'}
@@ -1202,7 +1202,7 @@ class Bridge:
                 context = self.contexts.get(params.get('handle'))
                 if context is None: raise BridgeError('NFMCP_HANDLE', 'environmentBlocked')
                 self.unknown = set().union(*(c.unknown for c in self.contexts.values()))
-                if tool['operation'] not in (None, 'calls.get') and tool.get('nativeDefinition', {}).get('dispatch') == 'gameThread':
+                if tool['operation'] not in (None, 'calls.get') and (tool.get('nativeDefinition', {}).get('dispatch') == 'gameThread' or tool['operation'] == 'calls.releaseCompleted'):
                     if any(c.has_unresolved() for c in self.contexts.values()):
                         raise BridgeError('NFMCP_UNRESOLVED_CALL', 'unknown')
                 value = context.call(name, params, retained_recovery=retained_recovery)

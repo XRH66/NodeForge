@@ -388,7 +388,7 @@ def execute(args,summary,root,digest,write_new,engine_processes,process_uses_pro
             request={'method':method,'callId':call_id,'expectedDraftRevision':revision,'argumentsDigest':__import__('hashlib').sha256(json.dumps(arguments,ensure_ascii=False,sort_keys=True).encode('utf-8')).hexdigest()}
             write_new(out/'Request.json',request)
             response=session.request(method,arguments,call_id,revision)
-            if definitions[0]['dispatch']=='gameThread':
+            if definitions[0]['dispatch']=='gameThread' or method=='calls.releaseCompleted':
                 summary.update(callId=call_id,pid=session.data['pid'],controlSessionId=session.data['controlSessionId'],executionState='unknown')
                 write_new(out/'FirstResponse.json',response)
                 query=0;delay=0.25
@@ -433,7 +433,7 @@ def execute(args,summary,root,digest,write_new,engine_processes,process_uses_pro
             rpc=response['error'].get('code');detail=response['error'].get('data',{}).get('code')
             code=3 if rpc==-32010 else 5 if detail in ('unknownCall','registrationPending') or rpc==-32603 else 2
             execution='unknown' if code==5 else 'environmentBlocked' if code==3 else 'rejected'
-        elif method=='calls.get' or (args.action=='editor-call' and definitions[0]['dispatch']=='gameThread'):
+        elif method in ('calls.get','calls.releaseCompleted') or (args.action=='editor-call' and definitions[0]['dispatch']=='gameThread'):
             state=response['result'].get('state')
             if state in ('accepted','queued','running'):code=5;execution='pending'
             elif state=='unknown':code=5;execution='unknown'

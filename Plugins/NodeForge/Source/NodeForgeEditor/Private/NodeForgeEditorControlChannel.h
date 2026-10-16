@@ -27,6 +27,7 @@ public:
     void SetBeforeDrainProbeForChecks(TFunction<void()> Probe);
 #endif
 private:
+    friend class FNodeForgeCallCapacityTest;
     struct FImpl;
     TUniquePtr<FImpl> Impl;
 };

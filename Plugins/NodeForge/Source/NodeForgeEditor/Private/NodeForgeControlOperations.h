@@ -7,7 +7,7 @@ class FJsonObject;
 namespace NodeForgeControlOperations
 {
     enum class EHost : uint8 { Commandlet = 1, ActiveEditor = 2 };
-    enum class EArguments : uint8 { None, Path, Text, CallId, Hello, Query, Resource, ResourceQuery, Export };
+    enum class EArguments : uint8 { None, Path, Text, CallId, ReleaseCompleted, Hello, Query, Resource, ResourceQuery, Export };
     enum class EDispatch : uint8 { ReadOnly, GameThread, Management, Handshake };
     enum class EEditorFeature : uint8 { Read = 1, Draft = 2, Graph = 4, Stop = 8 };
     // Shared metadata access; Commandlet describe/dispatch continue using this same table.

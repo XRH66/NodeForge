@@ -448,6 +448,28 @@
       }
     },
     {
+      "name": "calls.releaseCompleted",
+      "implementationStatus": "implemented",
+      "resultKind": "callCleanupReceipt",
+      "sideEffect": "archiveCompletedCallsKeepEvidence",
+      "expectedDraftRevisionRequired": false,
+      "dispatch": "management",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "maxCount": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 128
+          }
+        },
+        "required": [
+          "maxCount"
+        ]
+      }
+    },
+    {
       "name": "calls.get",
       "implementationStatus": "implemented",
       "resultKind": "callRecord",

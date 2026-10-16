@@ -1,14 +1,14 @@
 # 安装 NodeForge
 
-本指南适用于 **NodeForge v1.1.0、Windows 64 位、官方 UE 5.3.2**。普通使用无需安装 Python 或配置 AI。
+本指南适用于 **NodeForge v1.1.1、Windows 64 位、官方 UE 5.3.2**。普通使用无需安装 Python 或配置 AI。
 
 ## 1. 下载插件
 
-下载 [NodeForge 插件 ZIP](https://github.com/XRH66/NodeForge/releases/download/v1.1.0/NodeForge-1.1.0-UE5.3.2-Windows.zip)，解压后可以看到 `NodeForge` 文件夹。
+下载 [NodeForge 插件 ZIP](https://github.com/XRH66/NodeForge/releases/download/v1.1.1/NodeForge-1.1.1-UE5.3.2-Windows.zip)，解压后可以看到 `NodeForge` 文件夹。
 
 Release 页的 `Source code` 是源码压缩包，安装时请选择上面的插件 ZIP。
 
-GitHub 仓库目前为私有：下载前需要登录有仓库访问权的账号。看到 404 时，先确认账号权限，再从 [v1.1.0 Release](https://github.com/XRH66/NodeForge/releases/tag/v1.1.0) 查看附件。
+GitHub 仓库目前为私有：下载前需要登录有仓库访问权的账号。看到 404 时，先确认账号权限，再从 [v1.1.1 Release](https://github.com/XRH66/NodeForge/releases/tag/v1.1.1) 查看附件。
 
 ## 2. 复制到引擎
 
@@ -43,8 +43,10 @@ UE_5.3/
 
 **UE 提示模块缺失或引擎版本不匹配。** 检查下载的是插件 ZIP，并确认使用官方 UE 5.3.2。这个下载包不适用于其他 UE 版本或定制引擎。
 
-**已经装过 NodeForge。** 先关闭工程，再检查现有安装。不要在工程和引擎目录中各放一份插件；AI 接入可以在同一安装位置补装。旧版迁移见[升级说明](Versions/v1.1.0/Version/CompatibilityAndMigration.md)。
+**已经装过 NodeForge。** 先关闭工程，再检查现有安装。不要在工程和引擎目录中各放一份插件；AI 接入可以在同一安装位置补装。旧版迁移见[升级说明](Versions/v1.1.1/Version/CompatibilityAndMigration.md)。
 
 ## 高级：只安装到一个工程
 
 同一个 ZIP 也可以把 `NodeForge` 放入工程的 `Plugins/NodeForge`。引擎直接目录 `Engine/Plugins/NodeForge` 同样支持。选择其中一个位置即可；同一工程发现多份同名插件时会报告冲突，不会替你删除旧副本。工程级 AI 补装需额外传 `-Project` 和准确 `-PluginDirectory`，见[AI 安装指南](AiInstallation.md)。
+
+批量 AI 任务请按[调用回收说明](Versions/v1.1.1/Reference/CallCapacity.md)每 50 次业务调用释放已完成记录。

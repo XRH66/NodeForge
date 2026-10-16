@@ -1,0 +1,49 @@
+{
+  "format": "NodeForgeRelease1",
+  "product": "NodeForge",
+  "version": "1.1.1",
+  "tag": "v1.1.1",
+  "sourceRef": "v1.1.1",
+  "releaseId": 414922275,
+  "engineVersion": "5.3.2",
+  "platform": "Windows x64",
+  "installationSchemaVersion": 1,
+  "layouts": [
+    "engineMarketplace",
+    "enginePlugin",
+    "projectPlugin"
+  ],
+  "binarySha256": "6f83381330218fbb8973cd9518684392dacadc64e916967b0ac1ac97ae50517f",
+  "bridgeVersion": "0.4.4",
+  "sdkVersion": "2.3.0",
+  "pythonVersion": "3.12.4",
+  "abi": 1,
+  "catalogDigest": "5531e81860370f04bd0e79bd4363d766a483eee3e4e59944bee7c2c47b43bd00",
+  "tools": 22,
+  "documentationPages": 458,
+  "docsBundle": "NodeForge-1.1.1",
+  "assets": [
+    {
+      "id": 647221445,
+      "name": "NodeForge-1.1.1-UE5.3.2-Windows.zip",
+      "kind": "plugin",
+      "version": "1.1.1",
+      "bytes": 2535383,
+      "sha256": "87c4496096b8ea8059530e8716d876189734909f753a4304bc25a89ad8a668b9",
+      "url": "https://github.com/XRH66/NodeForge/releases/download/v1.1.1/NodeForge-1.1.1-UE5.3.2-Windows.zip",
+      "apiUrl": "https://api.github.com/repos/XRH66/NodeForge/releases/assets/647221445"
+    },
+    {
+      "id": 647223519,
+      "name": "NodeForge-AI-1.1.1-Windows.zip",
+      "kind": "ai",
+      "version": "1.1.1",
+      "bytes": 27609601,
+      "sha256": "82121f2f5b1665f4895e15b747eb6cc723ce0f74eaa27929cb7de2f06df2c274",
+      "url": "https://github.com/XRH66/NodeForge/releases/download/v1.1.1/NodeForge-AI-1.1.1-Windows.zip",
+      "apiUrl": "https://api.github.com/repos/XRH66/NodeForge/releases/assets/647223519"
+    }
+  ],
+  "matchingPluginAndAiRequired": true,
+  "aiIncludesPluginCore": false
+}

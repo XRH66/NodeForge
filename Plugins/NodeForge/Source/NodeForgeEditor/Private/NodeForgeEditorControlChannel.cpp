@@ -67,7 +67,7 @@ bool ReadObject(const FString& Path, TSharedPtr<FJsonObject>& Json, uint32 Limit
     FString FinalPath(Final); FinalPath.RemoveFromStart(TEXT("\\\\?\\"));
     if (!FinalSize || FinalSize >= UE_ARRAY_COUNT(Final) || !Full(FinalPath).Equals(Full(Path), ESearchCase::IgnoreCase)) return false;
     TArray<uint8> Bytes; Bytes.SetNumUninitialized(static_cast<int32>(Size.QuadPart)); DWORD Read = 0;
-    return ReadFile(File.Value, Bytes.GetData(), Bytes.Num(), &Read, nullptr) && Read == static_cast<DWORD>(Bytes.Num()) && NodeForgeEditorControl::ParseObject(Bytes, Json);
+    return ReadFile(File.Value, Bytes.GetData(), Bytes.Num(), &Read, nullptr) && Read == static_cast<DWORD>(Bytes.Num()) && NodeForgeEditorControl::ParseObject(Bytes, Json, Limit);
 }
 bool TokenBytes(HANDLE Token, TOKEN_INFORMATION_CLASS Kind, TArray<uint8>& Bytes)
 {
@@ -369,6 +369,13 @@ struct FNodeForgeEditorControlChannel::FImpl
                         if (Sent) ObserveClientClose(ReplyDeadline);
                         --Owner.ManagementReplies; break;
                     }
+                    else if (Request.Method == TEXT("calls.releaseCompleted"))
+                    {
+                        TSharedPtr<FJsonObject> Receipt;
+                        if (!Owner.ReleaseCompleted(Request, Receipt, Error))
+                        { if (!Send(Failure(Error), ReplyDeadline)) break; continue; }
+                        Response = Receipt.ToSharedRef();
+                    }
                     else if (Request.Definition->Dispatch == NodeForgeControlOperations::EDispatch::GameThread
                         || Request.Method == TEXT("calls.get"))
                     {
@@ -391,6 +398,7 @@ struct FNodeForgeEditorControlChannel::FImpl
                             Response->SetObjectField(TEXT("identity"), LocalIdentity.ToSharedRef());
                             Response->SetStringField(TEXT("state"), Owner.bStopping.load() ? TEXT("stopping") : Owner.Gate->IsBusy() ? TEXT("busy") : TEXT("idle"));
                             FScopeLock Lock(&Owner.RegistryLock);
+                            Response->SetObjectField(TEXT("callCapacity"), Owner.Capacity());
                             Response->SetStringField(TEXT("activeCallId"), Owner.ActiveCall.IsEmpty() ? Owner.PendingCall : Owner.ActiveCall);
                             Response->SetStringField(TEXT("lastPublishedRevision"), Response->GetStringField(TEXT("draftRevision")));
                         }
@@ -456,6 +464,118 @@ struct FNodeForgeEditorControlChannel::FImpl
         if (Request.Method == TEXT("draft.replace")) Json->SetStringField(TEXT("textDigest"), NodeForgePrototype::TextSha256(Request.Arguments->GetStringField(TEXT("text"))));
         return Json; // No credential, entire draft, or arbitrary client report fields.
     }
+    // RegistryLock protects every caller of these helpers. No UObject or game-thread work.
+    bool Reclaimable(const FCall& Call) const
+    {
+        if (Call.bPublishing) return false;
+        TSharedPtr<FJsonObject> Row;
+        if (!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Call.Cache), Row) || !Row) return false;
+        FString State; double Code = 5; bool Review = false;
+        Row->TryGetStringField(TEXT("state"), State); Row->TryGetNumberField(TEXT("cliExitCode"), Code);
+        Row->TryGetBoolField(TEXT("requiresReview"), Review);
+        return !Review && ((State == TEXT("completed") && Code == 0)
+            || ((State == TEXT("rejected") || State == TEXT("cancelled")) && Code == 2));
+    }
+    TSharedRef<FJsonObject> Capacity() const
+    {
+        auto Value = MakeShared<FJsonObject>(); int32 Eligible = 0;
+        for (const auto& Pair : Calls) if (Reclaimable(Pair.Value)) ++Eligible;
+        Value->SetNumberField(TEXT("retained"), Calls.Num());
+        Value->SetNumberField(TEXT("available"), NodeForgeEditorControl::MaxBusinessCalls - Calls.Num());
+        Value->SetNumberField(TEXT("capacity"), NodeForgeEditorControl::MaxBusinessCalls);
+        Value->SetNumberField(TEXT("reclaimable"), Eligible);
+        return Value;
+    }
+    bool ReadHistory(const FString& Id, TSharedPtr<FJsonObject>& Row, bool& Exists) const
+    {
+        using namespace NodeForgeControlWindows;
+        const FString Base = PublicDirectory / TEXT("Calls") / Id;
+        const FString ArchivePath = Base + TEXT("Archived.json");
+        const FString Maintenance = Base + (IFileManager::Get().FileExists(*(Base + TEXT("MaintenanceFinished.json"))) ? TEXT("MaintenanceFinished.json") : TEXT("MaintenanceAccepted.json"));
+        Exists = IFileManager::Get().FileExists(*ArchivePath) || IFileManager::Get().FileExists(*Maintenance)
+            || IFileManager::Get().FileExists(*(Base + TEXT("Accepted.json"))) || IFileManager::Get().FileExists(*(Base + TEXT("Finished.json")));
+        if (!Exists) return true;
+        TSharedPtr<FJsonObject> Marker;
+        if (IFileManager::Get().FileExists(*Maintenance))
+        {
+            if (!SafePath(Maintenance, PublicDirectory) || !ReadObject(Maintenance, Row, NodeForgeEditorControl::MaxReportBytes)) return false;
+        }
+        else
+        {
+            const FString Finished = Base + TEXT("Finished.json"), Accepted = Base + TEXT("Accepted.json");
+            if (!SafePath(ArchivePath, PublicDirectory) || !SafePath(Finished, PublicDirectory) || !SafePath(Accepted, PublicDirectory)
+                || !ReadObject(ArchivePath, Marker, 4096)
+                || Marker->GetStringField(TEXT("controlSessionId")) != Session || Marker->GetStringField(TEXT("callId")) != Id
+                || NodeForgePrototype::FileSha256(Finished) != Marker->GetStringField(TEXT("finishedSha256"))
+                || NodeForgePrototype::FileSha256(Accepted) != Marker->GetStringField(TEXT("acceptedSha256"))
+                || !ReadObject(Finished, Row, NodeForgeEditorControl::MaxReportBytes)) return false;
+        }
+        return Row && Row->GetStringField(TEXT("controlSessionId")) == Session && Row->GetStringField(TEXT("callId")) == Id
+            && Row->HasTypedField<EJson::String>(TEXT("fingerprint"));
+    }
+    bool ReleaseCompleted(const NodeForgeEditorControl::FRequest& Request, TSharedPtr<FJsonObject>& Response, NodeForgeEditorControl::FProtocolError& Error)
+    {
+        using namespace NodeForgeControlWindows;
+        auto Reject = [&](int32 Rpc, const TCHAR* Code) { Error.RpcCode = Rpc; Error.Code = Code; return false; };
+        const FString Hash = NodeForgeEditorControl::Fingerprint(Request);
+        FScopeLock Lock(&RegistryLock);
+        if (const FCall* Existing = Calls.Find(Request.Id))
+        {
+            if (Existing->Fingerprint != Hash) return Reject(-32013, TEXT("callConflict"));
+            return Reject(-32015, TEXT("registrationPending"));
+        }
+        bool Exists = false;
+        if (!ReadHistory(Request.Id, Response, Exists)) return Reject(-32603, TEXT("callArchiveInvalid"));
+        if (Exists) return Response->GetStringField(TEXT("fingerprint")) == Hash ? true : Reject(-32013, TEXT("callConflict"));
+        if (bStopping.load()) return Reject(-32017, TEXT("stopping"));
+        if (!PendingCall.IsEmpty() || !ActiveCall.IsEmpty() || Gate->IsBusy()) return Reject(-32011, TEXT("busy"));
+        TArray<FString> Ids;
+        for (const auto& Pair : Calls)
+        {
+            // Refuse the whole cleanup if any native operation still needs reconciliation.
+            if (!Reclaimable(Pair.Value)) return Reject(-32015, TEXT("unresolvedCalls"));
+            Ids.Add(Pair.Key);
+        }
+        Ids.Sort(); Ids.SetNum(FMath::Min(Ids.Num(), static_cast<int32>(Request.Arguments->GetNumberField(TEXT("maxCount")))));
+        if (!Gate->ReserveControl()) return Reject(-32011, TEXT("busy"));
+        // Journal intent first. A lost response is queried using this same callId, never replayed.
+        const FString ReceiptPath = PublicDirectory / TEXT("Calls") / (Request.Id + TEXT("MaintenanceAccepted.json"));
+        Response = Record(Request, Hash, TEXT("unknown")); Response->SetNumberField(TEXT("cliExitCode"), 5);
+        Response->SetStringField(TEXT("code"), TEXT("cleanupIncomplete"));
+        auto Failed = [&]() { bStopping.store(true); Gate->EndControl(); return Reject(-32603, TEXT("cleanupRegistrationFailed")); };
+        if (!SafePath(ReceiptPath, PublicDirectory) || !NodeForgePrototype::WriteJson(Response.ToSharedRef(), ReceiptPath)) return Failed();
+        TArray<TSharedPtr<FJsonValue>> Archived;
+        for (const FString& Id : Ids)
+        {
+            const FCall& Call = Calls.FindChecked(Id);
+            const FString Base = PublicDirectory / TEXT("Calls") / Id;
+            const FString Finished = Base + TEXT("Finished.json"), Accepted = Base + TEXT("Accepted.json"), Archive = Base + TEXT("Archived.json");
+            TSharedPtr<FJsonObject> Final, Initial, Cached;
+            if (!SafePath(Finished, PublicDirectory) || !SafePath(Accepted, PublicDirectory) || !SafePath(Archive, PublicDirectory)
+                || !ReadObject(Finished, Final, NodeForgeEditorControl::MaxReportBytes) || !ReadObject(Accepted, Initial, NodeForgeEditorControl::MaxReportBytes)
+                || !FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Call.Cache), Cached) || !Cached
+                || NodeForgeEditorControl::SemanticDigest(Final.ToSharedRef()) != NodeForgeEditorControl::SemanticDigest(Cached.ToSharedRef())
+                || Initial->GetStringField(TEXT("fingerprint")) != Call.Fingerprint
+                || Initial->GetStringField(TEXT("controlSessionId")) != Session || Initial->GetStringField(TEXT("callId")) != Id) return Failed();
+            auto Marker = MakeShared<FJsonObject>(); Marker->SetStringField(TEXT("controlSessionId"), Session); Marker->SetStringField(TEXT("callId"), Id);
+            Marker->SetStringField(TEXT("finishedSha256"), NodeForgePrototype::FileSha256(Finished));
+            Marker->SetStringField(TEXT("acceptedSha256"), NodeForgePrototype::FileSha256(Accepted));
+            if (!NodeForgePrototype::WriteJson(Marker, Archive)) return Failed();
+            Archived.Add(MakeShared<FJsonValueString>(Id));
+        }
+        auto Payload = MakeShared<FJsonObject>(); Payload->SetStringField(TEXT("state"), TEXT("completed")); Payload->SetNumberField(TEXT("cliExitCode"), 0);
+        Payload->SetNumberField(TEXT("released"), Ids.Num()); Payload->SetNumberField(TEXT("retained"), Calls.Num() - Ids.Num());
+        Payload->SetNumberField(TEXT("available"), NodeForgeEditorControl::MaxBusinessCalls - Calls.Num() + Ids.Num());
+        Payload->SetNumberField(TEXT("capacity"), NodeForgeEditorControl::MaxBusinessCalls); Payload->SetBoolField(TEXT("recordsPreserved"), true);
+        Payload->SetArrayField(TEXT("archivedCallIds"), Archived);
+        auto Finished = Record(Request, Hash, TEXT("completed")); Finished->SetNumberField(TEXT("cliExitCode"), 0); Finished->SetObjectField(TEXT("result"), Payload);
+        if (!NodeForgePrototype::WriteJson(Finished, PublicDirectory / TEXT("Calls") / (Request.Id + TEXT("MaintenanceFinished.json")))) return Failed();
+        // No fallible work after the committed receipt. Registry lock prevents observing intermediate counts.
+        for (const FString& Id : Ids) Calls.Remove(Id);
+        Calls.Compact(); Calls.Shrink();
+        Response = Finished; Gate->EndControl(); return true;
+    }
+
     bool Call(const NodeForgeEditorControl::FRequest& Request, TSharedPtr<FJsonObject>& Response, NodeForgeEditorControl::FProtocolError& Error)
     {
         auto Reject = [&](int32 Rpc, const TCHAR* Code) { Error.RpcCode = Rpc; Error.Code = Code; return false; };
@@ -463,7 +583,9 @@ struct FNodeForgeEditorControlChannel::FImpl
         {
             FString Cached;
             { FScopeLock Lock(&RegistryLock); const FCall* Found = Calls.Find(Request.Arguments->GetStringField(TEXT("callId")));
-                if (!Found) return Reject(-32018, TEXT("unknownCall")); if (Found->bPublishing) return Reject(-32015, TEXT("registrationPending")); Cached = Found->Cache; }
+                if (!Found) { bool Exists = false; if (!ReadHistory(Request.Arguments->GetStringField(TEXT("callId")), Response, Exists)) return Reject(-32603, TEXT("callArchiveInvalid"));
+                    return Exists ? true : Reject(-32018, TEXT("unknownCall")); }
+                if (Found->bPublishing) return Reject(-32015, TEXT("registrationPending")); Cached = Found->Cache; }
             return FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Cached), Response) && Response.IsValid();
         }
         const FString Hash = NodeForgeEditorControl::Fingerprint(Request); FString OldCache;
@@ -477,6 +599,9 @@ struct FNodeForgeEditorControlChannel::FImpl
             }
             else
             {
+                bool Exists = false;
+                if (!ReadHistory(Request.Id, Response, Exists)) return Reject(-32603, TEXT("callArchiveInvalid"));
+                if (Exists) return Response->GetStringField(TEXT("fingerprint")) == Hash ? true : Reject(-32013, TEXT("callConflict"));
                 if (bStopping.load()) return Reject(-32017, TEXT("stopping"));
                 if (Calls.Num() >= NodeForgeEditorControl::MaxBusinessCalls) return Reject(-32014, TEXT("callCapacity"));
                 if (!Gate->ReserveControl()) return Reject(-32011, TEXT("busy"));
@@ -893,3 +1018,5 @@ bool FNodeForgeSessionContainerLifetimeTest::RunTest(const FString&)
     return !HasAnyErrors();
 }
 #endif
+
+#include "NodeForgeCallCapacityChecks.inl"

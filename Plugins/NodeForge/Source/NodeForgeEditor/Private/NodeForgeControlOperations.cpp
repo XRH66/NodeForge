@@ -38,6 +38,7 @@ const FOperationDefinition Operations[] = {
     {TEXT("resources.inspect"), nullptr, false, false, TEXT("resourceReceipt"), TEXT("queryReportAndDisplayOnly"), 2, EArguments::Resource, EDispatch::GameThread, true, EEditorFeature::Graph},
     {TEXT("resources.query"), TEXT("ResourceQuery"), true, false, TEXT("resourceQueryReceipt"), TEXT("metadataQueryReportOnly"), 3, EArguments::ResourceQuery, EDispatch::GameThread, true, EEditorFeature::Read},
     {TEXT("graphs.export"), nullptr, false, false, TEXT("exportReceipt"), TEXT("queryReportAndDisplayOnly"), 2, EArguments::Export, EDispatch::GameThread, true, EEditorFeature::Graph},
+    {TEXT("calls.releaseCompleted"), nullptr, false, false, TEXT("callCleanupReceipt"), TEXT("archiveCompletedCallsKeepEvidence"), 2, EArguments::ReleaseCompleted, EDispatch::Management, false, EEditorFeature::Draft},
     {TEXT("calls.get"), nullptr, false, false, TEXT("callRecord"), TEXT("none"), 2, EArguments::CallId, EDispatch::ReadOnly, false, EEditorFeature::Draft},
     {TEXT("control.disable"), nullptr, false, false, TEXT("stoppingRequested"), TEXT("stopChannel"), 2, EArguments::None, EDispatch::Management, false, EEditorFeature::Stop}
 };
@@ -187,6 +188,11 @@ TSharedRef<FJsonObject> ArgumentsSchema(const FOperationDefinition& Definition)
         Properties->GetObjectField(TEXT("formatVersion"))->SetNumberField(TEXT("default"),2);
         Properties->GetObjectField(TEXT("assetKind"))->SetArrayField(TEXT("enum"),
             {MakeShared<FJsonValueString>(TEXT("Material")), MakeShared<FJsonValueString>(TEXT("Blueprint"))});
+        break;
+    case EArguments::ReleaseCompleted:
+        Parameter(TEXT("maxCount"), TEXT("integer"));
+        Properties->GetObjectField(TEXT("maxCount"))->SetNumberField(TEXT("minimum"), 1);
+        Properties->GetObjectField(TEXT("maxCount"))->SetNumberField(TEXT("maximum"), 128);
         break;
     case EArguments::CallId: Parameter(TEXT("callId"), TEXT("string")); break;
     case EArguments::Query:

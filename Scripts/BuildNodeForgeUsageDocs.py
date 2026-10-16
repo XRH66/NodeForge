@@ -120,6 +120,16 @@ def build_tool_contract(base, operations, metadata, bundle_id, bridge_version, m
             original = {'name': name, 'operation': None, 'inputSchema': {
                 'type': 'object', 'properties': {'handle': {'type': 'string', 'minLength': 1}},
                 'required': ['handle'], 'additionalProperties': False}}
+        if original is None and name == 'nodeforge_calls_releaseCompleted' and operation == 'calls.releaseCompleted':
+            definition = native.get(operation, {})
+            if (definition.get('dispatch') != 'management' or definition.get('expectedDraftRevisionRequired') is not False
+                    or definition.get('sideEffect') != 'archiveCompletedCallsKeepEvidence'):
+                raise ValueError('Unreviewed call cleanup definition')
+            original = copy.deepcopy(next(t for t in base['tools'] if t['name'] == 'nodeforge_calls_get'))
+            original.update(name=name, operation=operation, nativeDefinition=copy.deepcopy(definition))
+            original['inputSchema']['properties']['arguments'] = copy.deepcopy(definition['argumentsSchema'])
+            original['inputSchema']['properties']['callId'] = {'type': 'string', 'pattern': '^[A-Za-z0-9-]{1,64}$'}
+            original['inputSchema']['required'].append('callId')
         if original is None:
             if (name!='nodeforge_resources_query' or operation!='resources.query'
                     or native.get(operation,{}).get('dispatch')!='gameThread'

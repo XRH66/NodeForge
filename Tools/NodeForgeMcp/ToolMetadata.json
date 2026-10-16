@@ -262,6 +262,18 @@
         "SessionHandoff",
         "AiResultsAndRecovery"
       ]
+    },
+    "nodeforge_calls_releaseCompleted": {
+      "operation": "calls.releaseCompleted",
+      "purpose": "回收已完成调用的UE内存名额，保留原报告和旧ID防重放。",
+      "preconditions": "本客户端handle和新callId；maxCount整数1–128；不传revision；先按原ID收尾pending/unknown和未退出CLI。",
+      "effects": "满128条仍可进入共享维护入口；业务忙或存在未解决调用拒绝；不删除证据、不改变草稿或资产。",
+      "success": "finished/code0，nativeSummary.response.result.result含released、retained、available、capacity、recordsPreserved和archivedCallIds；未知查询原calls.get，不换ID重发。",
+      "guides": [
+        "CallCapacity",
+        "SessionHandoff",
+        "AiResultsAndRecovery"
+      ]
     }
   }
 }

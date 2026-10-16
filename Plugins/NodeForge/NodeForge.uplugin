@@ -1,7 +1,7 @@
 {
   "FileVersion": 3,
-  "Version": 110,
-  "VersionName": "1.1.0",
+  "Version": 111,
+  "VersionName": "1.1.1",
   "FriendlyName": "NodeForge",
   "Description": "Create editable Unreal Engine Blueprints and Materials from JSON.",
   "Category": "Editor",
