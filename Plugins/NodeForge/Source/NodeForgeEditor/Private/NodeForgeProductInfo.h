@@ -4,7 +4,7 @@
 // Product destinations shared by the panel, settings and installation help.
 namespace NodeForgeProductInfo
 {
-    inline const TCHAR* Website() { return TEXT("https://nodeforge-docs-xrh66.yellowcarp128.chatgpt.site/"); }
+    inline const TCHAR* Website() { return TEXT("https://nodeforge.cn/"); }
     inline FString Manual() { return FString(Website()) + TEXT("User/Readme.html"); }
     inline FString AiGuide() { return FString(Website()) + TEXT("User/AiInstallation.html"); }
     inline const TCHAR* Repository() { return TEXT("https://github.com/XRH66/NodeForge"); }

@@ -522,7 +522,10 @@ private:
             Content->AddSlot().AutoHeight()[SNew(STextBlock).Tag(TEXT("NodeForge.AboutName")).Text(FText::FromString(NodeForgeProductInfo::Name()))];
             Content->AddSlot().AutoHeight().Padding(0,6)[SNew(STextBlock).AutoWrapText(true).Text(FText::FromString(NodeForgeProductInfo::Description()))];
             Content->AddSlot().AutoHeight()[SNew(STextBlock).Tag(TEXT("NodeForge.AboutVersion")).Text(FText::FromString(TEXT("版本：")+(Plugin?Plugin->GetDescriptor().VersionName:TEXT("不可读"))))];
-            Content->AddSlot().AutoHeight().Padding(0,6)[TextAction(TEXT("GitHub 项目"),TEXT("NodeForge.AboutGithub"),WeakClick([](SNodeForgePanel& P){return P.OpenUrl(NodeForgeProductInfo::Repository());}),[](){return true;})];
+            Content->AddSlot().AutoHeight().Padding(0,6)
+                [SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(12,4))
+                    +SWrapBox::Slot()[TextAction(TEXT("官网"),TEXT("NodeForge.AboutWebsite"),WeakClick([](SNodeForgePanel& P){return P.OpenUrl(NodeForgeProductInfo::Website());}),[](){return true;})]
+                    +SWrapBox::Slot()[TextAction(TEXT("GitHub 项目"),TEXT("NodeForge.AboutGithub"),WeakClick([](SNodeForgePanel& P){return P.OpenUrl(NodeForgeProductInfo::Repository());}),[](){return true;})]];
         }
         else if(Page==TEXT("general"))
         {
