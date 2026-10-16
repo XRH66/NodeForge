@@ -1,8 +1,9 @@
 # NodeForgeGraph JSON 协议
 
-本协议适用于 NodeForge v0.1.0、Windows 64 位和官方 UE 5.3.2。`NodeForgeGraph` 支持 v2 和 v3 两种 JSON 格式，使用相同的材质、蓝图和实例生成逻辑。新请求建议使用 v3；格式版本不等于产品版本。
 
-完整机器定义见 [GraphRequestSchema.json](../Docs/Versions/v0.1.0/GraphRequestSchema.json)，操作示例见[JSON 编写说明](../Docs/Versions/v0.1.0/Reference/GraphAuthoring.md)和[完整 v3 示例](../Docs/Versions/v0.1.0/Ai/JsonArchitectureExamples.md)。
+本协议适用于 NodeForge v1.1.0、Windows 64 位和官方 UE 5.3.2。`NodeForgeGraph` 支持 v2 和 v3 两种 JSON 格式，使用相同的材质、蓝图和实例生成逻辑。新请求建议使用 v3；格式版本不等于产品版本。
+
+完整机器定义见 [GraphRequestSchema.json](../Docs/Versions/v1.1.0/GraphRequestSchema.json)，操作示例见[JSON 编写说明](../Docs/Versions/v1.1.0/Reference/GraphAuthoring.md)和[完整 v3 示例](../Docs/Versions/v1.1.0/Ai/JsonArchitectureExamples.md)。
 
 ## 编码、编号和目标路径
 
@@ -28,7 +29,7 @@
 
 ## v2 根对象
 
-v2 恰好使用 `format`、`version`、`requestId`、`assetType`、`assetPath`、`catalogDigest`、`nodes`、`edges`、`settings` 九个字段，`version=2`。资产路径、设置和节点放在根对象中；函数、事件与变量绑定写入节点的 `properties`。具体请求见[v2 完整示例](../Docs/Versions/v0.1.0/Reference/Examples.md)。
+v2 恰好使用 `format`、`version`、`requestId`、`assetType`、`assetPath`、`catalogDigest`、`nodes`、`edges`、`settings` 九个字段，`version=2`。资产路径、设置和节点放在根对象中；函数、事件与变量绑定写入节点的 `properties`。具体请求见[v2 完整示例](../Docs/Versions/v1.1.0/Reference/Examples.md)。
 
 导出时可选 `formatVersion=2|3`，默认是 2。准备副本、差异预览和重排会保留输入格式。输入文件 SHA、导出内容 SHA 和报告 SHA 分别计算，不因解析成同一个图结构而互相替代。
 
@@ -63,7 +64,7 @@ v2 恰好使用 `format`、`version`、`requestId`、`assetType`、`assetPath`�
 
 材质函数须先通过 `resources.inspect` 取得实际路径、直接文件 SHA、输入输出和 GUID。函数未绑定时的空引脚列表不能用于构图。不支持函数调用默认值、函数实例、材质层、任意对象导入或嵌套依赖的递归 SHA 保护。
 
-世界空间方向不会自动转换到切线空间。PixelNormalWS 不能接 Normal 或顶点位移输出；其他着色阶段限制由实际编译检查。当前不支持 Custom HLSL、Material Attributes 或未列入目录的表达式。详情见[材质参考](../Docs/Versions/v0.1.0/Reference/Material.md)。
+世界空间方向不会自动转换到切线空间。PixelNormalWS 不能接 Normal 或顶点位移输出；其他着色阶段限制由实际编译检查。当前不支持 Custom HLSL、Material Attributes 或未列入目录的表达式。详情见[材质参考](../Docs/Versions/v1.1.0/Reference/Material.md)。
 
 ## Actor 蓝图
 
@@ -79,7 +80,7 @@ v2 恰好使用 `format`、`version`、`requestId`、`assetType`、`assetPath`�
 
 Sequence 的 `outputCount` 为 2–8。SwitchInteger 恰含 `startIndex/caseCount/hasDefault`，caseCount 为 1–8 且 `startIndex+caseCount<=2147483647`。SwitchName 恰含 `cases/hasDefault`，cases 为 1–8 个字母起头、仅字母数字且最长 64 的名称，按 FName 去重并排除保留名。隐藏比较函数上下文不能配置。未连的匹配分支不会落入 Default；没有匹配且无 Default 时执行结束。
 
-类名、成员名、类型、变量引用、逻辑 ID 和引脚区分大小写；string 值与 name 显示拼写也按原文保留。FName 的运行比较仍遵守 UE 自身规则。当前不支持自定义父类、多图、宏、Timeline、额外组件、循环、容器和任意结构体。详情见[蓝图参考](../Docs/Versions/v0.1.0/Reference/Blueprint.md)。
+类名、成员名、类型、变量引用、逻辑 ID 和引脚区分大小写；string 值与 name 显示拼写也按原文保留。FName 的运行比较仍遵守 UE 自身规则。当前不支持自定义父类、多图、宏、Timeline、额外组件、循环、容器和任意结构体。详情见[蓝图参考](../Docs/Versions/v1.1.0/Reference/Blueprint.md)。
 
 ## 材质实例
 

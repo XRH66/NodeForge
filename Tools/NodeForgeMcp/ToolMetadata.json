@@ -251,6 +251,17 @@
         "AiPreparation",
         "AiResultsAndRecovery"
       ]
+    },
+    "nodeforge_disconnect": {
+      "operation": null,
+      "purpose": "正常释放本客户端一个准确handle的连接和租约，供另一对话重新连接。",
+      "preconditions": "本客户端connect返回的当前handle；先核对自己的原调用，无pending/unknown、requiresReview或未退出CLI。",
+      "effects": "复用共享close核心，只释放PID和instance匹配的自有租约并使该handle失效；不停止UE、不结束AI服务、不删原调用或报告。没有force参数。",
+      "success": "finished且released/leaseReleased/handleInvalidated=true，recordsPreserved=true；未解决调用返回unknown并保留原handle和租约；他人handle或租约明确拒绝。另一客户端随后显式connect取得自己的新handle。",
+      "guides": [
+        "SessionHandoff",
+        "AiResultsAndRecovery"
+      ]
     }
   }
 }

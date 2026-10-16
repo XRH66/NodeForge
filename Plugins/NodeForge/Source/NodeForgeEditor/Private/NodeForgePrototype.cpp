@@ -644,6 +644,10 @@ int32 Execute(const FString& Mode,const FString& InputPath,const FString& Report
             Report->SetStringField(TEXT("sourceValidationFailure"),Reason);
         }
         Report->SetStringField(TEXT("phase"),Status==TEXT("waitingPersistence")?TEXT("waitingPersistence"):TEXT("finished")); Report->SetStringField(TEXT("overallStatus"),Status);
+        // A late source/evidence failure must not leave an earlier "passed"
+        // operation field that the UI or a machine reader could trust alone.
+        if (Code && StringIs(Report,TEXT("operationStatus"),TEXT("passed")))
+            Report->SetStringField(TEXT("operationStatus"),Status==TEXT("unknown")?TEXT("unknown"):TEXT("failed"));
         Report->SetStringField(TEXT("nextAction"),Reason);
         if (Code) { Check(Stage,TEXT("failed"),Reason); if(!Report->HasField(TEXT("errorCode")))Report->SetStringField(TEXT("errorCode"),TEXT("NFERR-PROTOTYPE-001")); Report->SetStringField(TEXT("failedStage"),Stage); }
         FObject Residue=MakeShared<FJsonObject>(); Residue->SetStringField(TEXT("candidate"),Candidate); Residue->SetStringField(TEXT("target"),Target);
@@ -1016,8 +1020,6 @@ int32 Execute(const FString& Mode,const FString& InputPath,const FString& Report
     }
     if(Mode==TEXT("GraphPreflight"))
     {
-        if(Request.Version<2)
-            return Finish(1,TEXT("rejected"),TEXT("Generation preflight requires NodeForgeGraph v2/v3; legacy imports remain separately supported"));
         const FString PreflightConflict=ConflictReason();
         if(!PreflightConflict.IsEmpty())return Finish(1,TEXT("rejected"),PreflightConflict);
         // ReadRequest above is the same parser/domain validator used by Import.
@@ -1027,7 +1029,19 @@ int32 Execute(const FString& Mode,const FString& InputPath,const FString& Report
         TArray<TSharedPtr<FJsonValue>> Identities;
         int32 DefaultCount=0,ExplicitPositionCount=0;
         int32 EdgeCount=0;
-        const auto Projection=NodeForgeGraphCodec::Encode(Request.Document,2);
+        const auto Projection=Request.Version>=2?NodeForgeGraphCodec::Encode(Request.Document,2):Request.Json;
+        if(Request.Version<2)
+        {
+            // Preserve the already-supported fixed v1 vocabulary. Do not turn
+            // it into a modern graph or invent properties during a read-only check.
+            for(const auto& Value:Request.Json->GetArrayField(TEXT("nodes")))
+            {
+                const auto Node=Value->AsObject();const FString Class=Node->GetStringField(TEXT("class"));
+                double Count=0;Classes->TryGetNumberField(Class,Count);Classes->SetNumberField(Class,Count+1);
+                Identities.Add(Value);
+            }
+            EdgeCount=Request.Json->GetArrayField(TEXT("edges")).Num();
+        }
         for(const auto& Graph:Request.Document.Graphs)
         {
             EdgeCount+=Graph.Edges.Num();
@@ -1045,7 +1059,8 @@ int32 Execute(const FString& Mode,const FString& InputPath,const FString& Report
         Summary->SetNumberField(TEXT("plannedEdgeCount"),EdgeCount);
         Summary->SetNumberField(TEXT("explicitDefaultCount"),DefaultCount);Summary->SetNumberField(TEXT("explicitPositionCount"),ExplicitPositionCount);
         Summary->SetObjectField(TEXT("nodeClassCounts"),Classes);Summary->SetArrayField(TEXT("nodeIdentities"),Identities);
-        Summary->SetObjectField(TEXT("settings"),NodeForgeGraphCodec::Encode(Request.Document,2)->GetObjectField(TEXT("settings")));
+        Summary->SetObjectField(TEXT("settings"),Projection->GetObjectField(TEXT("settings")));
+        Summary->SetNumberField(TEXT("inputProtocolVersion"),Request.Version);
         Summary->SetBoolField(TEXT("targetAvailableAtCheck"),true);Summary->SetBoolField(TEXT("requestAvailableAtCheck"),true);Summary->SetBoolField(TEXT("requestReserved"),false);
         Summary->SetStringField(TEXT("scope"),TEXT("Same Import parser/domain validation and collision checks; native catalog/resource inspection may use transient instances. No target construction, compilation, reservation, publication or save. Availability may change; Import always validates again."));
         Report->SetStringField(TEXT("reportVersion"),TEXT("NodeForgeGraphPreflight1"));

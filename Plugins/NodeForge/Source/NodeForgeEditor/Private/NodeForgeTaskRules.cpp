@@ -38,7 +38,16 @@ bool NodeForgeTaskRules::Select(const TSharedPtr<FJsonObject>& Config,const TSha
         for(const FString& Term:Terms) Match |= Identity.Contains(Term,ESearchCase::IgnoreCase);
         if(Match) Selected.Add(Node);
     }
-    if(Selected.IsEmpty()) {Error=TEXT("GraphRules found no supported native node identity matching the query; no replacement or guessed node returned");return false;}
+    bool AssetFieldMatch=false;
+    if(Kind==TEXT("Material"))
+    {
+        for(const auto& Input:Section->GetArrayField(TEXT("materialInputs")))
+            for(const FString& Term:Terms) AssetFieldMatch |= Input->AsString().Contains(Term,ESearchCase::IgnoreCase);
+        for(const auto& Setting:Section->GetObjectField(TEXT("settings"))->Values)
+            if(Setting.Value->Type==EJson::String)
+                for(const FString& Term:Terms) AssetFieldMatch |= (Setting.Key+TEXT(" ")+Setting.Value->AsString()).Contains(Term,ESearchCase::IgnoreCase);
+    }
+    if(Selected.IsEmpty() && !AssetFieldMatch) {Error=TEXT("GraphRules found no supported native node identity or asset field matching the query; no replacement or guessed node returned");return false;}
     auto Subset=MakeShared<FJsonObject>();Subset->Values=Section->Values;
     Subset->SetArrayField(TEXT("nodes"),Selected);
     Bundle=MakeShared<FJsonObject>();
@@ -50,8 +59,9 @@ bool NodeForgeTaskRules::Select(const TSharedPtr<FJsonObject>& Config,const TSha
     Bundle->SetStringField(TEXT("assetKind"),Kind);Bundle->SetStringField(TEXT("query"),Query);
     Bundle->SetStringField(TEXT("catalogDigest"),FullDigest);
     Bundle->SetNumberField(TEXT("sourceNodeCount"),Nodes.Num());Bundle->SetNumberField(TEXT("matchedNodeCount"),Selected.Num());
+    Bundle->SetBoolField(TEXT("assetFieldMatch"),AssetFieldMatch);
     Bundle->SetObjectField(TEXT("capabilities"),Subset);
-    Bundle->SetStringField(TEXT("searchPolicy"),TEXT("case-insensitive OR substring over actual class, function owner/member or variable type; empty query returns one full family; stable native catalog order; no asset-name/effect recipes"));
+    Bundle->SetStringField(TEXT("searchPolicy"),TEXT("case-insensitive OR substring over actual class, function owner/member, variable type or material setting/root field; a field-only match returns settings/root rules with zero guessed nodes; empty query returns one full family; stable native catalog order; no asset-name/effect recipes"));
     Bundle->SetStringField(TEXT("usage"),TEXT("Read-only rules, not an import request. Use full catalogDigest above; never hash this subset as an import catalog. Combine with GraphProtocol and resource signatures. Search does not prove compilation/runtime; mandatory scaffolds and needed connected nodes must be explicitly included in the final JSON. Unbound MaterialFunction entry requires native resource inspection before using dynamic pins."));
     return true;
 }

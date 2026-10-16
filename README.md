@@ -10,13 +10,13 @@
 </p>
 <h3 align="center">Unreal Engine 蓝图与材质生成插件</h3>
 <p align="center">把 JSON 节点描述变成可编辑的 UE 资产，也可以让 AI 帮你完成。</p>
-<p align="center"><strong>v1.0.0 · Unreal Engine 5.3.2 · Windows 64 位</strong></p>
+<p align="center"><strong>v1.1.0 · Unreal Engine 5.3.2 · Windows 64 位</strong></p>
 <p align="center">
-  <a href="https://github.com/XRH66/NodeForge/releases/tag/v1.0.0">下载 v1.0.0</a> ·
+  <a href="https://github.com/XRH66/NodeForge/releases/tag/v1.1.0">下载 v1.1.0</a> ·
   <a href="Docs/Installation.md">安装</a> ·
   <a href="Docs/GettingStarted.md">开始使用</a> ·
   <a href="Docs/AiInstallation.md">连接 AI</a> ·
-  <a href="Docs/Versions/v1.0.0/User/Readme.md">用户手册</a> ·
+  <a href="Docs/Versions/v1.1.0/User/Readme.md">用户手册</a> ·
   <a href="CHANGELOG.md">更新日志</a>
 </p>
 
@@ -27,16 +27,17 @@ NodeForge 可以把 JSON 中描述的节点和连线生成为 UE 蓝图或材质
 - **生成节点图**：从 JSON 创建材质和 Actor 蓝图，生成前检查节点、参数与连线。
 - **读取已有资源**：查询资源信息，将支持的蓝图和材质导出为 JSON。
 - **创建新副本**：以已有节点图为起点修改，先查看差异，再生成新资产。
+- **材质设置**：支持清漆、各向异性与 IOR 折射，字段可读取并导出。
 - **连接 AI**：让支持 MCP 的 AI 客户端查询节点规则、读取资源和调用插件。
 
 ## 下载安装
 
-**v1.0.0 · Windows 64 位 · 官方 Unreal Engine 5.3.2**
+**v1.1.0 · Windows 64 位 · 官方 Unreal Engine 5.3.2**
 
 | 你想怎样使用 | 下载 | 下一步 |
 | --- | --- | --- |
-| 在 UE 中使用插件 | [插件 ZIP](https://github.com/XRH66/NodeForge/releases/download/v1.0.0/NodeForge-1.0.0-UE5.3.2-Windows.zip) | [安装插件](Docs/Installation.md) |
-| 让 AI 安装并连接插件 | [AI 接入 ZIP](https://github.com/XRH66/NodeForge/releases/download/v1.0.0/NodeForge-AI-1.0.0-Windows.zip) | [连接 AI](Docs/AiInstallation.md) |
+| 在 UE 中使用插件 | [插件 ZIP](https://github.com/XRH66/NodeForge/releases/download/v1.1.0/NodeForge-1.1.0-UE5.3.2-Windows.zip) | [安装插件](Docs/Installation.md) |
+| 让 AI 安装并连接插件 | [AI 接入 ZIP](https://github.com/XRH66/NodeForge/releases/download/v1.1.0/NodeForge-AI-1.1.0-Windows.zip) | [连接 AI](Docs/AiInstallation.md) |
 
 普通插件无需安装 Python。AI 包也已包含所需运行环境；如果已经安装插件，可以随后补装 AI 接入部分。请使用此处同一版本的两个包。
 
@@ -53,7 +54,7 @@ NodeForge 可以把 JSON 中描述的节点和连线生成为 UE 蓝图或材质
 
 当前支持材质和单个 EventGraph 的 Actor 蓝图，暂不支持任意 UE 节点、蓝图多图或新增组件。可在插件面板中查询支持的节点。
 
-插件创建新资产；需要调整已有内容时，通过新副本完成。当前生成目录为 `Content/NodeForgeTests`。更多操作见 [使用手册](Docs/Versions/v1.0.0/User/Readme.md)。
+插件创建新资产；需要调整已有内容时，通过新副本完成。当前生成目录为 `Content/NodeForgeTests`。更多操作见 [使用手册](Docs/Versions/v1.1.0/User/Readme.md)。
 
 ## 问题反馈
 

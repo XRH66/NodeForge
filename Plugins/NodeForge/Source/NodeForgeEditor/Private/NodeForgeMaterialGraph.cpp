@@ -152,7 +152,9 @@ const TArray<TPair<FString, EMaterialProperty>>& MaterialInputs()
     static const TArray<TPair<FString, EMaterialProperty>> Values = {
         {TEXT("BaseColor"), MP_BaseColor}, {TEXT("EmissiveColor"), MP_EmissiveColor},
         {TEXT("Metallic"), MP_Metallic}, {TEXT("Normal"), MP_Normal}, {TEXT("Opacity"), MP_Opacity}, {TEXT("OpacityMask"), MP_OpacityMask},
-        {TEXT("Roughness"), MP_Roughness}, {TEXT("Specular"), MP_Specular}, {TEXT("WorldPositionOffset"), MP_WorldPositionOffset}
+        {TEXT("Roughness"), MP_Roughness}, {TEXT("Specular"), MP_Specular}, {TEXT("WorldPositionOffset"), MP_WorldPositionOffset},
+        {TEXT("ClearCoat"), MP_CustomData0}, {TEXT("ClearCoatRoughness"), MP_CustomData1},
+        {TEXT("Anisotropy"), MP_Anisotropy}, {TEXT("Tangent"), MP_Tangent}, {TEXT("Refraction"), MP_Refraction}
     };
     return Values;
 }
@@ -169,7 +171,12 @@ bool Settings(UMaterial* Material, const FMaterialDefinition& Settings, FString&
     if (!NodeForgeAssetDefinitions::MaterialSettingsValid(Settings)) return Fail(Error, TEXT("unsupported material settings"));
     Material->MaterialDomain = MD_Surface;
     Material->BlendMode = Settings.Blend == TEXT("Opaque") ? BLEND_Opaque : Settings.Blend == TEXT("Masked") ? BLEND_Masked : BLEND_Translucent;
-    Material->SetShadingModel(Settings.Shading == TEXT("Unlit") ? MSM_Unlit : MSM_DefaultLit);
+    Material->SetShadingModel(Settings.Shading == TEXT("Unlit") ? MSM_Unlit : Settings.Shading == TEXT("ClearCoat") ? MSM_ClearCoat : MSM_DefaultLit);
+    Material->RefractionMethod = Settings.RefractionMethod.Get(TEXT("None")) == TEXT("IndexOfRefraction") ? RM_IndexOfRefraction : RM_None;
+    // IsPropertyActive(MP_Refraction) uses this derived native flag before the
+    // graph exists. Match UMaterial::PostEditChangePropertyInternal's update;
+    // compiling the final graph later refreshes the remaining derived state.
+    Material->bUsesDistortion = Material->RefractionMethod != RM_None;
     for(const auto& Option:NodeForgeAssetDefinitions::MaterialOptions())
     {
         const auto Value=NodeForgeAssetDefinitions::MaterialOption(Settings,Option.Id,true);
@@ -186,7 +193,8 @@ FMaterialDefinition ActualSettings(UMaterial* Material)
     FMaterialDefinition Out;
     Out.Domain = Material->MaterialDomain == MD_Surface ? TEXT("Surface") : TEXT("unsupported");
     Out.Blend = Material->BlendMode == BLEND_Opaque ? TEXT("Opaque") : Material->BlendMode == BLEND_Masked ? TEXT("Masked") : Material->BlendMode == BLEND_Translucent ? TEXT("Translucent") : TEXT("unsupported");
-    Out.Shading = Material->GetShadingModels().IsUnlit() ? TEXT("Unlit") : Material->GetShadingModels().HasOnlyShadingModel(MSM_DefaultLit) ? TEXT("DefaultLit") : TEXT("unsupported");
+    Out.Shading = Material->GetShadingModels().IsUnlit() ? TEXT("Unlit") : Material->GetShadingModels().HasOnlyShadingModel(MSM_DefaultLit) ? TEXT("DefaultLit") : Material->GetShadingModels().HasOnlyShadingModel(MSM_ClearCoat) ? TEXT("ClearCoat") : TEXT("unsupported");
+    Out.RefractionMethod = Material->RefractionMethod == RM_None ? TEXT("None") : Material->RefractionMethod == RM_IndexOfRefraction ? TEXT("IndexOfRefraction") : TEXT("unsupported");
     for(const auto& Option:NodeForgeAssetDefinitions::MaterialOptions())
     {
         FProperty* Property=Material->GetClass()->FindPropertyByName(FName(*Option.NativeName));
@@ -232,7 +240,7 @@ struct FGraph
     FObject Layout;
 };
 
-bool Populate(UMaterial* Material, const FGraphDocument& Request, FGraph& Graph, FString& Error)
+bool Populate(UMaterial* Material, const FGraphDocument& Request, FGraph& Graph, FString& Error, bool ApplyLayout = true)
 {
     const auto* Asset = Request.Asset.TryGet<FMaterialDefinition>();
     const auto Capabilities = NodeForgeNodeDefinitions::Capabilities(Request.CatalogDigest);
@@ -314,6 +322,14 @@ bool Populate(UMaterial* Material, const FGraphDocument& Request, FGraph& Graph,
         FExpressionInput* Target = nullptr;
         if (ExactText(To,TEXT("Material")))
         {
+            const bool LayerScalar=Input==TEXT("ClearCoat") || Input==TEXT("ClearCoatRoughness") || Input==TEXT("Anisotropy") || Input==TEXT("Refraction");
+            if((LayerScalar || Input==TEXT("Tangent")) && Capabilities.MaterialRevision<8)
+                return Fail(Error,TEXT("layered material root unavailable in archived catalog: ")+Input);
+            const uint32 Type=Source->GetOutputType(Index);
+            if(LayerScalar && Type!=MCT_Float1 && Type!=MCT_Float)
+                return Fail(Error,TEXT("root requires a scalar output (select a texture channel explicitly): ")+Input);
+            if(Input==TEXT("Tangent") && Type!=MCT_Float3)
+                return Fail(Error,TEXT("Tangent requires float3 in tangent space (bTangentSpaceNormal=true)"));
             Target = MaterialInput(Material,Input); ++RootEdges;
             OutputSources.AddUnique(From);
         }
@@ -376,7 +392,9 @@ bool Populate(UMaterial* Material, const FGraphDocument& Request, FGraph& Graph,
             if (Required && !Inputs[I]->Expression) return Fail(Error,Entry.Key + TEXT(" missing required input: ") + Expression->GetInputName(I).ToString());
         }
     }
-    return NodeForgeGraphLayout::Material(Material,Request,Graph.Nodes,Graph.Layout,Error);
+    // Validation still uses real expressions/pins and the same connection rules.
+    // Coordinates are a construction concern, not a second semantic validator.
+    return !ApplyLayout || NodeForgeGraphLayout::Material(Material,Request,Graph.Nodes,Graph.Layout,Error);
 }
 
 UMaterial* NewMaterial(UPackage* Package, const FString& Name)
@@ -582,6 +600,13 @@ TSharedRef<FJsonObject> Catalog()
     TArray<TSharedPtr<FJsonValue>> Outputs;
     for (const auto& Pair : MaterialInputs()) Outputs.Add(MakeShared<FJsonValueString>(Pair.Key));
     Result->SetArrayField(TEXT("materialInputs"),Outputs);
+    auto Layered=MakeShared<FJsonObject>();
+    Layered->SetStringField(TEXT("scalarInputs"),TEXT("ClearCoat,ClearCoatRoughness,Anisotropy,Refraction"));
+    Layered->SetStringField(TEXT("clearCoat"),TEXT("MSM_ClearCoat; MP_CustomData0/1; independent from base Roughness; IsPropertyActive required"));
+    Layered->SetStringField(TEXT("tangent"),TEXT("float3 tangent space; bTangentSpaceNormal remains true; default (1,0,0) follows imported mesh tangent X / UV0 U; source tangent orientation must survive mesh import; world-space vectors require explicit transformation"));
+    Layered->SetStringField(TEXT("refraction"),TEXT("scalar IOR; refractionMethod=IndexOfRefraction; Translucent DefaultLit SurfaceForwardShading; source transmission/alpha do not map to UE opacity=1"));
+    Layered->SetNumberField(TEXT("minimumMaterialRevision"),8);
+    Result->SetObjectField(TEXT("layeredInputs"),Layered);
     Material->MarkAsGarbage();
     return Result;
 }
@@ -591,7 +616,7 @@ bool Validate(const FGraphDocument& Request, FString& Error)
     Error.Reset();
     UMaterial* Material = NewMaterial(GetTransientPackage(),TemporaryName());
     FGraph Graph;
-    const bool Valid = Material && Populate(Material,Request,Graph,Error);
+    const bool Valid = Material && Populate(Material,Request,Graph,Error,false);
     if (Material) Material->MarkAsGarbage();
     return Valid;
 }
@@ -626,7 +651,8 @@ bool Readback(UMaterial* Material, const FGraphDocument& Request, FObject& Evide
     Match &= ActualGraph.Nodes.Num() == ExpectedGraph.Nodes.Num() && Material->GetExpressions().Num() == ExpectedGraph.Nodes.Num();
     Match &= Material->MaterialDomain == Expected->MaterialDomain && Material->BlendMode == Expected->BlendMode
         && Material->GetShadingModels() == Expected->GetShadingModels() && Material->TwoSided == Expected->TwoSided
-        && Material->TranslucencyLightingMode == Expected->TranslucencyLightingMode;
+        && Material->TranslucencyLightingMode == Expected->TranslucencyLightingMode
+        && Material->RefractionMethod == Expected->RefractionMethod;
     for(const auto& Option:NodeForgeAssetDefinitions::MaterialOptions())
     {
         FProperty* Property=Material->GetClass()->FindPropertyByName(FName(*Option.NativeName));

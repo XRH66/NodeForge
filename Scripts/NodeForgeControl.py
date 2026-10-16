@@ -6,6 +6,7 @@ import json
 import math
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 from RunProcessGuard import (LiveProcessPending, observed_module, process_identity,
@@ -73,26 +74,54 @@ def command_arguments(text):
 
 
 def engine_processes():
-    # Fixed read-only query; user input is never interpolated into shell code.
-    script = "$ErrorActionPreference='Stop'; @(Get-CimInstance Win32_Process -Filter \"Name = 'UnrealEditor.exe' OR Name = 'UnrealEditor-Cmd.exe'\" | Select-Object ProcessId,CommandLine) | ConvertTo-Json -Compress"
+    # One native read-only worker bounds the entire discovery, independently of
+    # the UE operation timeout. All CLI/editor/MCP callers share this function.
+    started = time.monotonic()
+    diagnostic = {'method': 'Toolhelp32+winternl-x64', 'budgetSeconds': 4}
+    engine_processes.last_diagnostic = diagnostic
     try:
-        result = subprocess.run(['powershell.exe', '-NoProfile', '-NonInteractive', '-Command', script],
-                                capture_output=True, text=True, timeout=10,
+        result = subprocess.run([sys.executable, str(Path(__file__).with_name('NodeForgeWindowsProcesses.py'))],
+                                capture_output=True, text=True, encoding='utf-8', timeout=4,
                                 creationflags=subprocess.CREATE_NO_WINDOW)
-        if result.returncode:
-            raise ValueError('OS query failed')
-        data = json.loads(result.stdout) if result.stdout.strip() else []
-        return data if isinstance(data, list) else [data]
+        if len(result.stdout) > REPORT_LIMIT:
+            raise ValueError('Process snapshot exceeds report bound')
+        data = json.loads(result.stdout)
+        if not isinstance(data, dict):
+            raise ValueError('Invalid native process snapshot')
+        diagnostic.update(data)
+        if result.returncode or data.get('status') != 'succeeded':
+            raise ValueError(json.dumps(data.get('error', {'stage': 'worker', 'exitCode': result.returncode})))
+        items = data.get('processes')
+        if not isinstance(items, list) or any(not isinstance(x, dict) or type(x.get('ProcessId')) is not int
+                or not isinstance(x.get('CommandLine'), str) or not x['CommandLine'] for x in items):
+            raise ValueError('Incomplete UE process identity')
+        return items
     except (OSError, ValueError, subprocess.TimeoutExpired) as error:
-        raise ControlError('NFCLI_PROCESS_QUERY', 'Cannot establish exclusive project: ' + type(error).__name__, 'project', 3)
+        diagnostic.update(status='failed', reason=type(error).__name__ + ': ' + str(error))
+        raise ControlError('NFCLI_PROCESS_QUERY', 'Cannot establish exclusive project: ' + diagnostic['reason']
+                           + '; inspect processQuery; close no UE processes automatically', 'project', 3) from error
+    finally:
+        diagnostic['elapsedSeconds'] = time.monotonic() - started
 
 
 def process_uses_project(item, project):
     text = item.get('CommandLine')
     if not text:
         raise ControlError('NFCLI_PROCESS_QUERY', 'UE process command line unavailable', 'project', 3)
-    return any(arg.lower().endswith('.uproject') and Path(arg).resolve() == project
-               for arg in command_arguments(text))
+    paths = []
+    for arg in command_arguments(text)[1:]:
+        if arg.startswith('-') and not arg.lower().startswith('-project='):
+            continue  # Other option values (for example -log=...uproject) are not project arguments.
+        value = arg.split('=', 1)[1] if arg.lower().startswith('-project=') else arg
+        if value.lower().endswith('.uproject'):
+            path = Path(value)
+            if not path.is_absolute():
+                raise ControlError('NFCLI_PROCESS_QUERY', 'Cannot resolve relative uproject from another process: '
+                                   + value + '; use an absolute project argument', 'project', 3)
+            paths.append(path.resolve())
+    if len(set(paths)) > 1:
+        raise ControlError('NFCLI_PROCESS_QUERY', 'UE command line names conflicting projects', 'project', 3)
+    return project.resolve() in paths
 
 
 def assert_exclusive(project):
@@ -305,6 +334,7 @@ def parser():
         for name in ('session-file', 'project', 'plugin-directory', 'run-directory'):
             q.add_argument('--' + name, required=True)
         q.add_argument('--timeout-seconds', type=float, default=180)
+        q.add_argument('--mcp-client-info',help='Optional bounded initialize client metadata forwarded by the existing MCP bridge')
         if action != 'editor-describe': q.add_argument('--call-id', required=True)
         if action == 'editor-call':
             q.add_argument('--operation', required=True)
@@ -323,6 +353,9 @@ def main(argv=None):
             summary, code = status(args)
         elif args.action.startswith('editor-'):
             from NodeForgeEditorTransport import execute as editor_execute, TransportError
+            if args.mcp_client_info:
+                if len(args.mcp_client_info.encode('utf-8'))>1024:raise ControlError('NFCLI_CLIENT_IDENTITY','MCP client metadata exceeds bound')
+                args.mcp_client=json.loads(args.mcp_client_info)
             try:
                 code = editor_execute(args, summary, ROOT, digest, write_new, engine_processes, process_uses_project)
             except TransportError as error:
@@ -355,6 +388,8 @@ def main(argv=None):
         code = 5
         summary.update(executionState='unknown', errors=[{'code': 'NFCLI_GUARD_EVIDENCE', 'message': str(error)}])
     summary['cliExitCode'] = code
+    if hasattr(engine_processes, 'last_diagnostic'):
+        summary['processQuery'] = engine_processes.last_diagnostic
     if summary.pop('_publish', False):
         try: write_new(Path(summary['run']) / 'Summary.json', summary)
         except (OSError, ControlError) as error:

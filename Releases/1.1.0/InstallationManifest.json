@@ -1,0 +1,12 @@
+{
+  "product": "NodeForge",
+  "buildId": "1.1.0",
+  "engineVersion": "5.3.2",
+  "pluginDirectory": ".",
+  "installLayout": "portablePlugin",
+  "binarySha256": "30b25af9b46e5ab412f4a1572a92135f83619997d4b286558e745b176a512e74",
+  "moduleManifestSha256": "d1c55e9f14c242a934a85bf6a51a9dd6f77dfe29e10519491063062736095c36",
+  "pluginDescriptorSha256": "3d81b597c15f84b41e3f4782bbe3cfa2379863616cf30d12c74856752daab48d",
+  "installationSchemaVersion": 1,
+  "catalogSha256": "28a15b95339dfab7fd46f52513dbcf3fc9adb2b8a0f18b14384d2ca1f8c736a9"
+}

@@ -1,0 +1,593 @@
+{
+  "format": "NodeForgePluginPackage1",
+  "version": "1.1.0",
+  "buildId": "1.1.0",
+  "engineVersion": "5.3.2",
+  "platform": "Windows x64",
+  "installationSchemaVersion": 1,
+  "installLayout": "portablePlugin",
+  "binarySha256": "30b25af9b46e5ab412f4a1572a92135f83619997d4b286558e745b176a512e74",
+  "sdkIncluded": false,
+  "files": [
+    {
+      "path": "NodeForge/Binaries/Win64/UnrealEditor-NodeForgeEditor.dll",
+      "sha256": "30b25af9b46e5ab412f4a1572a92135f83619997d4b286558e745b176a512e74",
+      "bytes": 4060160
+    },
+    {
+      "path": "NodeForge/Binaries/Win64/UnrealEditor.modules",
+      "sha256": "d1c55e9f14c242a934a85bf6a51a9dd6f77dfe29e10519491063062736095c36",
+      "bytes": 108
+    },
+    {
+      "path": "NodeForge/Docs/AiInstallation.md",
+      "sha256": "1d14bdb0f7f54c237a564ebdac8d69145f023a09676b1f089baf907400296685",
+      "bytes": 5228
+    },
+    {
+      "path": "NodeForge/Docs/GettingStarted.md",
+      "sha256": "35fdd1160941447aa3b1899b4b35528411c492f75bb198bb6dfd36b819626791",
+      "bytes": 2135
+    },
+    {
+      "path": "NodeForge/Docs/Installation.md",
+      "sha256": "0b33259aec69adaa399b9b2e813abbcc0839d3087a7c881f6a1556809670fa34",
+      "bytes": 2894
+    },
+    {
+      "path": "NodeForge/Examples/CoatedRed.json",
+      "sha256": "e6e9b6bf8843013201332fffdae1d293b00e0da6d999ecfe1deddc806205ae4b",
+      "bytes": 2655
+    },
+    {
+      "path": "NodeForge/Examples/FirstMaterial.json",
+      "sha256": "1f1c0aade1d07179925da637449553b88395ea917ea957e719cf5e91759c8c67",
+      "bytes": 1148
+    },
+    {
+      "path": "NodeForge/InstallationManifest.json",
+      "sha256": "55c3360f9c7fe5da3299df93de01b909b79f13813a7cea0da7f2f8531532ab26",
+      "bytes": 551
+    },
+    {
+      "path": "NodeForge/Licenses/AutonomixMIT.txt",
+      "sha256": "0c536c6232c61ba9769d4ec1d102bf21d3e93fe60f658abc7b5af33dde927767",
+      "bytes": 1066
+    },
+    {
+      "path": "NodeForge/Licenses/ChiR24MIT.txt",
+      "sha256": "91f063055d75352a9c3796e86e85f162c3f564aa435551c51419090b74095318",
+      "bytes": 1094
+    },
+    {
+      "path": "NodeForge/Licenses/ZiggyMarMIT.txt",
+      "sha256": "bc5242aab9256d471304b97b404fcbed5154f3808aba5138b7032eef3d3a828e",
+      "bytes": 1063
+    },
+    {
+      "path": "NodeForge/Metadata/Catalog.json",
+      "sha256": "28a15b95339dfab7fd46f52513dbcf3fc9adb2b8a0f18b14384d2ca1f8c736a9",
+      "bytes": 1029122
+    },
+    {
+      "path": "NodeForge/Metadata/GraphRequestSchema.json",
+      "sha256": "fbc65e14176a380f572075ff1c2940576501fcbfa981865c096db9663473c196",
+      "bytes": 380674
+    },
+    {
+      "path": "NodeForge/Metadata/Operations.json",
+      "sha256": "62324cc6b9eac8c6cd89327c57173b78eb9ac6a5b7b8e6e03e6d6be56105c17d",
+      "bytes": 12907
+    },
+    {
+      "path": "NodeForge/NodeForge.uplugin",
+      "sha256": "3d81b597c15f84b41e3f4782bbe3cfa2379863616cf30d12c74856752daab48d",
+      "bytes": 484
+    },
+    {
+      "path": "NodeForge/Readme.md",
+      "sha256": "7d5cfab42dbf4fb2a199de2b7f224d4a65372ee170a53cca65907bf87c4a137a",
+      "bytes": 171
+    },
+    {
+      "path": "NodeForge/Resources/Ui/BrandIcon.png",
+      "sha256": "fde4eae93f46c5728a0b01d739957c949e5778b1cc675e6b07b82cb8c23d803e",
+      "bytes": 686891
+    },
+    {
+      "path": "NodeForge/Resources/Ui/Claude.png",
+      "sha256": "4004381309500f25e49a1ae639912ce307ea81da74cc383954a1ac8b9d343fe6",
+      "bytes": 1198
+    },
+    {
+      "path": "NodeForge/Resources/Ui/ClientSources.json",
+      "sha256": "5847246f236b5196ddb9fed420bbdbf315168d5b6de595631b61a0c90596fcd3",
+      "bytes": 722
+    },
+    {
+      "path": "NodeForge/Resources/Ui/CodexOpenAi.png",
+      "sha256": "8d5575ee667ff715cd3e3074d5296edc68d5aadd89720d203e13131b68b22a04",
+      "bytes": 1841
+    },
+    {
+      "path": "NodeForge/Resources/Ui/DeepSeek.png",
+      "sha256": "ab6e788ef49559814e73bc653f9d30194731661d031763dab95d303542985725",
+      "bytes": 1877
+    },
+    {
+      "path": "NodeForge/Resources/Ui/WordmarkDark.svg",
+      "sha256": "9eafe87abf15f4336bbe4a324b37d116cb43358ba5d6df209898e319a021520e",
+      "bytes": 15361
+    },
+    {
+      "path": "NodeForge/Resources/Ui/WordmarkLight.svg",
+      "sha256": "d38a22bd16c3b821dedacd1da52ff2405a3f887b190c3c90865a01f1ac249fb8",
+      "bytes": 15361
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/NodeForgeEditor.Build.cs",
+      "sha256": "78bbe5e5d72813efdc5e758316231f73ae3e246791c9d07c5bbe9853e63e6292",
+      "bytes": 1149
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeAssetDefinitions.cpp",
+      "sha256": "f2399abb4396f272f049bde9072e55a5f2ed05988b50da49d934eb0c1182003a",
+      "bytes": 61063
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeAssetDefinitions.h",
+      "sha256": "00f48d06949f944f1ee6cca201b9ddd53ecb65596d2d53090234166dfa084e9b",
+      "bytes": 4974
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeAssetReadChecks.cpp",
+      "sha256": "edd3ec0116d27150366b6df77ce0cf049d1bbc3e46344e2d078f79953081d02a",
+      "bytes": 22489
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeAssetReadUiChecks.cpp",
+      "sha256": "6ca446c2c84832deabcf5b1f949291f88294078747327637519b22ea241c0cd3",
+      "bytes": 12741
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeAutomation.cpp",
+      "sha256": "527c48e6a35de940f42bd096c009ba75f1b9466d67b51491d3da41bffa4b7015",
+      "bytes": 40503
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeBlueprintExportChecks.cpp",
+      "sha256": "b11f58fb024d1f2d6e4048eb4f7c7ba43980f00d81ec8b745369418e42810fb2",
+      "bytes": 11025
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeBlueprintGraph.cpp",
+      "sha256": "312320d6b4b349502cb17ac75c03d51780884d2622b312b016fe621770af2cc7",
+      "bytes": 96318
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeBlueprintGraph.h",
+      "sha256": "6d2362585c0f6b64d33036f10dedcdfec7e9f493d3495aa5b4ae49fd03513e59",
+      "bytes": 799
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeBlueprintSwitches.cpp",
+      "sha256": "e442b6e37a5e00e93b0d7755881a482d3f12186b40c8493080fd36d7f610dd21",
+      "bytes": 10132
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeBlueprintSwitches.h",
+      "sha256": "e2ca3c6c1b7572c34aa05ceead6044fde4e8d2601fe239e655c40c6cb7f95357",
+      "bytes": 691
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeCanonicalResourceChecks.cpp",
+      "sha256": "4a811d96b8149b8ed702aa10a8f75f6aacf1937e7db9c0917fe6e91073bb4084",
+      "bytes": 46262
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeClientIcons.cpp",
+      "sha256": "3cc11beee7b7670170526b2ff7cebe509df9bf4bc33732462816de7d59076f56",
+      "bytes": 3850
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeCommandlet.cpp",
+      "sha256": "313c8e051c303acbdde57c3a623eac46a96ca3602e300fdc465c8fcc41f489d1",
+      "bytes": 2025
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeCompactResultChecks.cpp",
+      "sha256": "cad8e011ebee4f3f8f9dabed8b3f96811847ad75564bd40d4279c83a5ff83d7d",
+      "bytes": 11619
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeControlOperations.cpp",
+      "sha256": "870959f444f7c76609113b8bc8e3c1a8bef235348eb75a9a4c8c9ae29acdc2c9",
+      "bytes": 23973
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeControlOperations.h",
+      "sha256": "55400b6f96f928b4a2f557411788b71ba7dc8a17c8ca4462080722d90bd87436",
+      "bytes": 1463
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeEditorBusinessGate.h",
+      "sha256": "d84d909a411691f651a51a0611ccdc68c097d7a1a48f9e281f87448b269b5a2e",
+      "bytes": 1037
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeEditorControlChannel.cpp",
+      "sha256": "383117ffd7774b11043b7cf3f34b74f617957b3acc72c6ea7f5d7b9db6c1a431",
+      "bytes": 66444
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeEditorControlChannel.h",
+      "sha256": "b615a69ec7f5c3945a4a992542cf19c37256c13fc0909ccfe71e56b578605fad",
+      "bytes": 1409
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeEditorControlChannelChecks.cpp",
+      "sha256": "16b66eb0acd342614ef015aac1b6ad584b8cd33e1a2faf9fd223fc3ff4d5947c",
+      "bytes": 74330
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeEditorControlProtocol.cpp",
+      "sha256": "1f564b99b32bc7089aa6164df2bbd93285475a4721defacf4775cfac049b33f0",
+      "bytes": 20479
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeEditorControlProtocol.h",
+      "sha256": "f2f1e0ff4af9ef54f135be0fc812e8aadbade0dc3307dcf284616273f5167713",
+      "bytes": 3520
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeEditorControlProtocolChecks.cpp",
+      "sha256": "44134a4f343c669ab29c76ff8e6617c3dd472e094cac989faa18f658ba52e3b4",
+      "bytes": 24242
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeEditorControlService.cpp",
+      "sha256": "178ceb53eb66a08e4d041933cce8af6306e4141a13a959381515c308ba32b51a",
+      "bytes": 73883
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeEditorControlService.h",
+      "sha256": "ea9ef97fa24a24cbebcb6f0551f9dcb49e309783fcd06715b58260a493db18a7",
+      "bytes": 6386
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeEditorControlServiceChecks.cpp",
+      "sha256": "c7a3ff649e32386af69c56abf496172b031515b9fadea0b22b0c3edcbbd45792",
+      "bytes": 13007
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeEditorControlUiChecks.cpp",
+      "sha256": "bc850e963e2cf918ae619181cf0dfb9fd554e402aeb8fb395945f63ce94ebb90",
+      "bytes": 25714
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeEditorModule.cpp",
+      "sha256": "3271732ab3fe6649ac3cb708f1e3cbb0a02c07685f843e35470e4de2618bb4b9",
+      "bytes": 8394
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeExportFixtureChecks.h",
+      "sha256": "2a5c1d89a8b533473f242fc49005a2cceb1d1a630f94a02ebcfbec880bee9751",
+      "bytes": 1915
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeGraphChecks.cpp",
+      "sha256": "1daded7fc83eb2d9b0bc63d6731c696a8d2ddd53dd5e0bda8b8f74880f4bc49d",
+      "bytes": 14446
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeGraphChecks.h",
+      "sha256": "0d12661f5807950b27f887781617932def11a3e6ddf49f5e56a96120a67daaae",
+      "bytes": 160
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeGraphCodec.cpp",
+      "sha256": "4ca05fd01fbc36d4bce120c27c9a06123d1338288239eacaee194fcd147a6302",
+      "bytes": 27746
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeGraphCodec.h",
+      "sha256": "ae0c743abe46a269f3166b2f40f0929c168ffbdd199e86bf59f3cd3fe0990004",
+      "bytes": 1059
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeGraphDiff.cpp",
+      "sha256": "4f0524344fcc2138e2df8dc84e49157c197d65032215b672e2bc80c7303eb48a",
+      "bytes": 7540
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeGraphDiff.h",
+      "sha256": "17b26386c37d7c51dcedf3bbe58ed11faac1d553ee19b26d2e45ea33ed1cabe4",
+      "bytes": 672
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeGraphDocument.cpp",
+      "sha256": "e9fca8cf93d7ae93748e0703f3b15202fabde612c9312e6117c0a9b6b02b0431",
+      "bytes": 527
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeGraphDocument.h",
+      "sha256": "8edc3fb97fb090a654ee6a1b022238147ce7e18bd69d019c3636493f36eaf61b",
+      "bytes": 2281
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeGraphLayout.cpp",
+      "sha256": "31f909ff28ffb7f0f58d923f083885946189c17d58da66de54522bf922536ad9",
+      "bytes": 16842
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeGraphLayout.h",
+      "sha256": "ac79d01f999a289d12d0fbd561198d2c3392e233564410ba71c346ad3da4080f",
+      "bytes": 628
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeInstallation.cpp",
+      "sha256": "6b84402caca979305643f1fe316cfb6160c169d0a6ecf0631b8c209d296d00aa",
+      "bytes": 24367
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeInstallation.h",
+      "sha256": "544271a96d5db2770c11e366cce06b4b5430198f22be6fb442735555a55c3a96",
+      "bytes": 1227
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeInstallationPanel.cpp",
+      "sha256": "4564f8d423ac4eb474c94052d8cff560606c1742c27f789c3cb06996b7c0535e",
+      "bytes": 4771
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeInstallationPanel.h",
+      "sha256": "32514684f5ebad6e4133937d51908274db7c9a3dd74e9c52883b59d247234c62",
+      "bytes": 169
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeInstallationUiChecks.cpp",
+      "sha256": "f3c7ebbeb79e1105a6edb21f8ae33b279f565e0c76c5aeb85d023256cffca5d9",
+      "bytes": 12492
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeLayoutChecks.cpp",
+      "sha256": "b0192479871fc152646239914e4daf09d36a876a77a70d13ce19014fac4dd6c6",
+      "bytes": 8949
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeLayoutChecks.h",
+      "sha256": "27e339e30acebe2d8e9449cf36c0f3d55696c59ff772515451326228108c2078",
+      "bytes": 146
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeMaterialExportChecks.cpp",
+      "sha256": "5d962044dfe2bb82eaed1d272c4eccf59f044ac417b27e9777f9bb350b353d8f",
+      "bytes": 8267
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeMaterialFunctions.cpp",
+      "sha256": "40742e1642bcbfedeb4abba4cb09ce16aba42b20ef60d32f099abfb461f966c1",
+      "bytes": 8311
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeMaterialFunctions.h",
+      "sha256": "205397cbd8658e9c179d5fb1d2c394e282893867f172c5c4a507a0b76fb2789e",
+      "bytes": 786
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeMaterialGraph.cpp",
+      "sha256": "790cef02c082d19f94c4bce0353a9f6e55badab517e42b29c21bc6e342b85dd4",
+      "bytes": 59034
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeMaterialGraph.h",
+      "sha256": "7baf211587009f1373336135450e8d66bf1c4c68762aeafcaf65f7eac544a868",
+      "bytes": 3266
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeMaterialInstances.cpp",
+      "sha256": "40702e3c65f2da8495cf0415d9867f3d3a9af12eea6696c02b5cafa6ebe3952e",
+      "bytes": 17083
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeMaterialInstances.h",
+      "sha256": "786ce1e08e01fb2fc75f1962e4d16e1c85208ef743c6b1644f619462b4d67d57",
+      "bytes": 713
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeNamingChecks.cpp",
+      "sha256": "fc4b43919ee8093cedebcd9523a7bd9d065053121ca91139beb8a98c43573f6d",
+      "bytes": 12613
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeNodeDefinitions.cpp",
+      "sha256": "5025db80d5368b17045008e374849bf931e4dee76da549fe2bb678ff7b40954b",
+      "bytes": 24592
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeNodeDefinitions.h",
+      "sha256": "e98f198d8c01753d1d1bc1dbf9f0d6cdc15fea3d1b91d443f8b7006ff83a0cf6",
+      "bytes": 2842
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeNumericChecks.cpp",
+      "sha256": "549f73af99e3db4843790e8c32e40f72a873cb36d8d3c9958724a4bd66affa57",
+      "bytes": 11110
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgePanel.cpp",
+      "sha256": "b1fe033f8bafd45a5ba0431883806c9c7e9700b3bdbd333851fe407c3417e449",
+      "bytes": 64967
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgePanel.h",
+      "sha256": "9e1460585754e9bf3a10e764060402892673630cf62fce1db7cbdd511cea9185",
+      "bytes": 1317
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgePanelInputChecks.cpp",
+      "sha256": "e89004452768767d0d15040fbdede81acf2c0dc852de06454db61f5450c07599",
+      "bytes": 11347
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgePanelPreferences.cpp",
+      "sha256": "b6a7bca2af0b5dad3400c8c1f673721b19dac0e118aec8947a99e174776101de",
+      "bytes": 6738
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgePanelPreferences.h",
+      "sha256": "8a3a7cebb583fd6aeb5736e520489d96ea3b1d71181a0e2bbfde9097fb3489d3",
+      "bytes": 876
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgePanelSelection.cpp",
+      "sha256": "738acc92d57a872802e556cf7f1df0bed65d83219b5f33e9bdaed5a62dc14263",
+      "bytes": 4061
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgePanelState.cpp",
+      "sha256": "d11c78c406043ae354999f51d8f1f568b024675d448d2cf095acb3d7593b8764",
+      "bytes": 6407
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgePanelState.h",
+      "sha256": "e08381f738eb35948cb3149c10d7211cac8f75c0bf9d6cb3995e24fa437a927a",
+      "bytes": 1539
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgePanelVisualChecks.cpp",
+      "sha256": "cc5a0fc91d04158c12d4fdb80443928cdc610e83862f5024dbac18a221df00f3",
+      "bytes": 18177
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeProductInfo.h",
+      "sha256": "72163f4f3e8e349d1f8ee4eb7a218236697e57a9cece0eea82cee78f873e0ba5",
+      "bytes": 837
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgePrototype.cpp",
+      "sha256": "e80efd2e1d475413fb7482418e44974942c87cb59d583e102775b6a4ee64efda",
+      "bytes": 92386
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgePrototype.h",
+      "sha256": "540f4d8a3354745b43ed1b1be69d76f8379104f6c611921bf69e8fa9dfb0169a",
+      "bytes": 1082
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeResourceChecks.cpp",
+      "sha256": "920155a526c09243f3a267a37d85abb4fc15573916bb233a268a1fa7dcc3c8c8",
+      "bytes": 10169
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeResourceSource.cpp",
+      "sha256": "8ea949c79bca3ee7ee9c9aa8c66d838ed80f0417786ae8fbd4a5f53ef4207660",
+      "bytes": 30838
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeResourceSource.h",
+      "sha256": "3fd3730d5f2a7d7c38a9893a2d3c66c225723d7b72761cf8be40579ca496f828",
+      "bytes": 2117
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeResultView.cpp",
+      "sha256": "277cf10bba21206dad1961375248533c0424f4332999791a75d37e6135766ffa",
+      "bytes": 18301
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeResultView.h",
+      "sha256": "dc1482a53a05ca21a17b9a096914ac7c1e67f0a67f623589ecb3ca7f4cb720f9",
+      "bytes": 478
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeResultViewChecks.cpp",
+      "sha256": "7dbf12ebaa8f1b6ac1c1dabe1604237f694421661ddebddcea6ba7f4f07b6f45",
+      "bytes": 5792
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeRotatorChecks.cpp",
+      "sha256": "32a0f8a34a4b8b16bc189cea7ef49a632cb8603ca46840402559c5f7b18275f3",
+      "bytes": 12298
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeRuleLifetimeChecks.cpp",
+      "sha256": "dc1ee2fd2cfa68ff599d159b92e02047264c9862cfd8c7bbd6deac31000348e9",
+      "bytes": 18134
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeSequenceChecks.cpp",
+      "sha256": "cf3c18cb4d2a7d50779fad298c849882d4f2452d37ac3134c93d6b42f77a2f30",
+      "bytes": 6093
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeStringChecks.cpp",
+      "sha256": "1ddd0006405c2cb2aa338ffbab3c158f8c24b45c05d4c6f27804325ba6cd1b4f",
+      "bytes": 18291
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeSwitchChecks.cpp",
+      "sha256": "00ddc582d5550798de27649697e04144607e3b13bbabc532d27f3d0d8a436a02",
+      "bytes": 11803
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeTaskRules.cpp",
+      "sha256": "3635821321a4d4f3b5b858e4dab74a8492b98e75df2c29ac9b2b510c69fec193",
+      "bytes": 5173
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeTaskRules.h",
+      "sha256": "2dbdecee617710886a3bf274844c5fa65359049df772705d527fe02a891b22d6",
+      "bytes": 358
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeUiIntegrationChecks.cpp",
+      "sha256": "d4f3d22c458fad2c4fd7fe507cd977cbe17d5b3583b02ba5c06e6fc281af8842",
+      "bytes": 28297
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeUiSettingsChecks.cpp",
+      "sha256": "c453de263306d9932783af46a145caceb077a5d5b77bca33cd03eb938a01c9d0",
+      "bytes": 3326
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeValidationChecks.cpp",
+      "sha256": "fda99b95b33461607922cf377091b1d8f69e9d50f6ee18bfb41ef507bea21850",
+      "bytes": 7052
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeValidationRuleChecks.cpp",
+      "sha256": "27151f7c60c624aa5cc2526286b43ecc3844d62339c8dc70145429e25748dd1d",
+      "bytes": 5154
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeVisualChecks.cpp",
+      "sha256": "f5375e7eedd5ead94c1235178ba84702a1b93311b44dd238bab4be2fe6d4a81e",
+      "bytes": 23137
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeVisualChecks.h",
+      "sha256": "4d6a532cbf6075f5065fb5bfa2110f1d4d623b5e9f51a01624886ed2ebd84fa9",
+      "bytes": 161
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Private/NodeForgeVisualGuardChecks.cpp",
+      "sha256": "611af52ee40e36190b6a3f84e91a15374fa9e85cce72c496f1f0a0a1d4ff8fc7",
+      "bytes": 7843
+    },
+    {
+      "path": "NodeForge/Source/NodeForgeEditor/Public/NodeForgeCommandlet.h",
+      "sha256": "7453142375dafaf4b44154d12a1b9bc0f262788eeae3515ed819b14cf702cfe4",
+      "bytes": 289
+    },
+    {
+      "path": "NodeForge/ThirdPartyNotices.md",
+      "sha256": "fbb5c8c32f1708c65616962890414ad41f27e8b4089245f4a4d449da76cebc82",
+      "bytes": 2525
+    },
+    {
+      "path": "Readme.md",
+      "sha256": "1b9c51dc452ceb58b8c950b81885d8aa9368dbc3a015b8021694569d9794fb6e",
+      "bytes": 342
+    }
+  ]
+}

@@ -116,6 +116,10 @@ def build_tool_contract(base, operations, metadata, bundle_id, bridge_version, m
     for name, help_row in metadata['tools'].items():
         operation = help_row['operation']
         original = next((t for t in base['tools'] if t['name']==name and t['operation']==operation), None)
+        if original is None and name == 'nodeforge_disconnect' and operation is None:
+            original = {'name': name, 'operation': None, 'inputSchema': {
+                'type': 'object', 'properties': {'handle': {'type': 'string', 'minLength': 1}},
+                'required': ['handle'], 'additionalProperties': False}}
         if original is None:
             if (name!='nodeforge_resources_query' or operation!='resources.query'
                     or native.get(operation,{}).get('dispatch')!='gameThread'
@@ -160,6 +164,10 @@ def build_tool_contract(base, operations, metadata, bundle_id, bridge_version, m
                 'reports':{'type':'array','items':{'type':'object','properties':{'reportId':{'type':'string'},
                     'sha256':{'type':'string'},'bytes':{'type':'integer'},'overallStatus':{'type':'string'}},'additionalProperties':True}}}}
         variants = {
+            'nodeforge_disconnect':('finished',{'released':{'type':'boolean'},'leaseReleased':{'type':'boolean'},
+                'handleInvalidated':{'type':'boolean'},'recordsPreserved':{'type':'boolean'},
+                'bridgePid':{'type':'integer'},'identity':{'type':'object'}},
+                ['released','leaseReleased','handleInvalidated','recordsPreserved','unresolvedCalls']),
             'nodeforge_connect':('connected',{'handle':{'type':'string'},'identity':{'type':'object'},'operations':{'type':'integer'},'docsStatus':{'type':'string'}},['handle','identity','operations','unresolvedCalls']),
             'nodeforge_docs_index':('passed',{'manifest':{'type':'object'},'totalPages':{'type':'integer'},'indexScope':{'type':'string'},'nodePagesListed':{'type':'boolean'},'docsManifestSha256':{'type':'string'}},['manifest','totalPages','docsManifestSha256','indexScope','nodePagesListed']),
             'nodeforge_docs_read':('passed',{'bundleId':{'type':'string'},'pageId':{'type':'string'},'text':{'type':'string'},'sha256':{'type':'string'},'docsManifestSha256':{'type':'string'}},['bundleId','pageId','text','sha256','docsManifestSha256']),
@@ -1303,7 +1311,7 @@ def publish_installation_edition(input_path):
     for name,value in [('Catalog.json',cat),('Operations.json',ops),('GraphRequestSchema.json',contract['graphRequestSchema']),('ToolContract.json',contract)]:save(output/name,dump(value))
     save(ROOT/'Releases'/version/'ToolContract.json',dump(contract))
     manifest=copy.deepcopy(base)
-    cli_names=['NodeForgeControl.py','NodeForgeEditorTransport.py','RunProcessGuard.py','PrepareNodeForgeInstallation.py']
+    cli_names=['NodeForgeControl.py','NodeForgeWindowsProcesses.py','NodeForgeEditorTransport.py','RunProcessGuard.py','PrepareNodeForgeInstallation.py']
     manifest.update(bundleId=contract['bundleId'],buildId=version,aiVersion=version,bridgeVersion=contract['bridgeVersion'],
         binarySha256=installation['binarySha256'],stage='.',reportNamespace='Reports/PluginControlStageTwo/NodeForge',
         publicationStatus='candidate',pages=pages,counts={k:len(cat['catalog'][k]['nodes']) for k in ('material','blueprint')},

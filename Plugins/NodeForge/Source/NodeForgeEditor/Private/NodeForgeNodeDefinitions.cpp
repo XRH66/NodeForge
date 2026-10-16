@@ -381,8 +381,8 @@ TArray<TSharedPtr<FJsonValue>> Exclusions(const FString& AssetType)
 }
 FCapabilities Capabilities(const FString& Digest, EContext Context)
 {
-    if (Context == EContext::NativeCatalogProbe) return {7,12,true,3,1};
-    if (!CurrentDigest.IsEmpty() && Exact(Digest, CurrentDigest)) return {7,12,true,3,1};
+    if (Context == EContext::NativeCatalogProbe) return {8,12,true,3,1};
+    if (!CurrentDigest.IsEmpty() && Exact(Digest, CurrentDigest)) return {8,12,true,3,1};
     for (const auto& Profile : Archives()) if (Exact(Digest, *Profile.Digest)) return {Profile.Material,Profile.Blueprint,Profile.Instance,Profile.MaximumGraphVersion};
     return {};
 }

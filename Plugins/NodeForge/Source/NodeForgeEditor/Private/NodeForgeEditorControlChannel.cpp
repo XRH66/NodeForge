@@ -24,6 +24,9 @@
 #include <bcrypt.h>
 #include "Windows/HideWindowsPlatformTypes.h"
 #include <atomic>
+#if WITH_DEV_AUTOMATION_TESTS
+#include "Misc/AutomationTest.h"
+#endif
 
 namespace NodeForgeControlWindows
 {
@@ -76,8 +79,8 @@ FString SidText(PSID Sid)
 struct FSecurity
 {
     TArray<uint8> User, Logon; FString UserText, LogonText;
-    PSECURITY_DESCRIPTOR FileSd = nullptr, PipeSd = nullptr;
-    ~FSecurity() { if (FileSd) LocalFree(FileSd); if (PipeSd) LocalFree(PipeSd); }
+    PSECURITY_DESCRIPTOR FileSd = nullptr, PipeSd = nullptr, ContainerSd = nullptr;
+    ~FSecurity() { if (FileSd) LocalFree(FileSd); if (PipeSd) LocalFree(PipeSd); if (ContainerSd) LocalFree(ContainerSd); }
     bool Initialize()
     {
         FHandle Token; if (!OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &Token.Value)) return false;
@@ -94,10 +97,14 @@ struct FSecurity
         // The client asks only READ_DATA|WRITE_DATA|SYNCHRONIZE; no same-logon adversary-resistance claim.
         const FString Files = TEXT("D:P(A;OICI;FA;;;SY)(A;OICI;FA;;;") + LogonText + TEXT(")");
         const FString Pipes = TEXT("D:P(A;;0x0012019f;;;SY)(A;;0x0012019f;;;") + LogonText + TEXT(")");
+        // The shared container has user lifetime and never grants inherited access
+        // to a credential child. Each child keeps its protected logon-only DACL.
+        const FString Container = TEXT("D:P(A;;FA;;;SY)(A;;FA;;;") + UserText + TEXT(")");
         return ConvertStringSecurityDescriptorToSecurityDescriptorW(*Files, SDDL_REVISION_1, &FileSd, nullptr)
-            && ConvertStringSecurityDescriptorToSecurityDescriptorW(*Pipes, SDDL_REVISION_1, &PipeSd, nullptr);
+            && ConvertStringSecurityDescriptorToSecurityDescriptorW(*Pipes, SDDL_REVISION_1, &PipeSd, nullptr)
+            && ConvertStringSecurityDescriptorToSecurityDescriptorW(*Container, SDDL_REVISION_1, &ContainerSd, nullptr);
     }
-    bool Inspect(HANDLE Handle, SE_OBJECT_TYPE Kind, DWORD ExpectedMask, TSharedRef<FJsonObject>& Evidence) const
+    bool Inspect(HANDLE Handle, SE_OBJECT_TYPE Kind, DWORD ExpectedMask, TSharedRef<FJsonObject>& Evidence, bool UserContainer = false) const
     {
         PSID Owner = nullptr; PACL Dacl = nullptr; PSECURITY_DESCRIPTOR Sd = nullptr;
         const DWORD Result = GetSecurityInfo(Handle, Kind, OWNER_SECURITY_INFORMATION | DACL_SECURITY_INFORMATION, &Owner, nullptr, &Dacl, nullptr, &Sd);
@@ -105,22 +112,80 @@ struct FSecurity
         SECURITY_DESCRIPTOR_CONTROL Control = 0; DWORD Revision = 0;
         bool Good = Owner && EqualSid(Owner, const_cast<uint8*>(User.GetData())) && Dacl && Dacl->AceCount == 2
             && GetSecurityDescriptorControl(Sd, &Control, &Revision) && (Control & SE_DACL_PROTECTED);
-        TArray<TSharedPtr<FJsonValue>> Aces;
+        const FString Principal = UserContainer ? UserText : LogonText;
+        TArray<TSharedPtr<FJsonValue>> Aces; TSet<FString> Principals;
         for (DWORD I = 0; Dacl && I < Dacl->AceCount; ++I)
         {
             PVOID Ace = nullptr; if (!GetAce(Dacl, I, &Ace)) { Good = false; continue; }
             const auto* Allowed = reinterpret_cast<ACCESS_ALLOWED_ACE*>(Ace);
             PSID Sid = const_cast<DWORD*>(&Allowed->SidStart); const FString Name = SidText(Sid);
             Good &= Allowed->Header.AceType == ACCESS_ALLOWED_ACE_TYPE && !(Allowed->Header.AceFlags & INHERITED_ACE)
-                && Allowed->Mask == ExpectedMask && (Name == LogonText || Name == TEXT("S-1-5-18"));
+                && Allowed->Mask == ExpectedMask && (Name == Principal || Name == TEXT("S-1-5-18"))
+                && (!UserContainer || Allowed->Header.AceFlags == 0);
+            Principals.Add(Name);
             auto Row = MakeShared<FJsonObject>(); Row->SetStringField(TEXT("sid"), Name); Row->SetNumberField(TEXT("mask"), Allowed->Mask);
             Row->SetNumberField(TEXT("flags"), Allowed->Header.AceFlags); Aces.Add(MakeShared<FJsonValueObject>(Row));
         }
+        Good &= Principals.Num() == 2 && Principals.Contains(Principal) && Principals.Contains(TEXT("S-1-5-18"));
+        Evidence->SetStringField(TEXT("scope"), UserContainer ? TEXT("userContainer") : TEXT("logonSession"));
         Evidence->SetStringField(TEXT("owner"), Owner ? SidText(Owner) : FString()); Evidence->SetStringField(TEXT("logonSid"), LogonText);
         Evidence->SetBoolField(TEXT("protectedDacl"), (Control & SE_DACL_PROTECTED) != 0); Evidence->SetArrayField(TEXT("aces"), Aces);
         Evidence->SetBoolField(TEXT("passed"), Good); LocalFree(Sd); return Good;
     }
     bool Directory(const FString& Path, TSharedRef<FJsonObject>& Evidence)
+    {
+        SECURITY_ATTRIBUTES Attributes = {sizeof(SECURITY_ATTRIBUTES), ContainerSd, 0};
+        if (!CreateDirectoryW(*Path, &Attributes) && GetLastError() != ERROR_ALREADY_EXISTS) return false;
+        auto Validate = [&]()
+        {
+            FHandle Dir(CreateFileW(*Path, READ_CONTROL | FILE_READ_ATTRIBUTES, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
+                nullptr, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OPEN_REPARSE_POINT, nullptr));
+            BY_HANDLE_FILE_INFORMATION Info;
+            return Dir.Valid() && GetFileInformationByHandle(Dir.Value, &Info)
+                && (Info.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && !(Info.dwFileAttributes & FILE_ATTRIBUTE_REPARSE_POINT)
+                && Inspect(Dir.Value, SE_FILE_OBJECT, FILE_ALL_ACCESS, Evidence, true);
+        };
+        if (Validate()) { Evidence->SetBoolField(TEXT("migratedLegacyParent"), false); return true; }
+        // A previous logon's DACL can deny FILE_READ_ATTRIBUTES even to the
+        // owner. Inspect its exact directory entry and named security metadata;
+        // never recurse, read old credentials, follow a reparse point or take ownership.
+        WIN32_FIND_DATAW Entry; HANDLE Find = FindFirstFileW(*Path, &Entry);
+        if (Find == INVALID_HANDLE_VALUE) return false;
+        FindClose(Find);
+        if (!(Entry.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) || (Entry.dwFileAttributes & FILE_ATTRIBUTE_REPARSE_POINT)) return false;
+        PSID Owner = nullptr; PACL Acl = nullptr; PSECURITY_DESCRIPTOR Sd = nullptr;
+        const DWORD ReadCode = GetNamedSecurityInfoW(*Path, SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION | DACL_SECURITY_INFORMATION,
+            &Owner, nullptr, &Acl, nullptr, &Sd);
+        if (ReadCode != ERROR_SUCCESS) { SetLastError(ReadCode); return false; }
+        SECURITY_DESCRIPTOR_CONTROL Control = 0; DWORD Revision = 0; TSet<FString> Names; FString OldLogon;
+        bool Legacy = Owner && EqualSid(Owner, User.GetData()) && Acl && Acl->AceCount == 2
+            && GetSecurityDescriptorControl(Sd, &Control, &Revision) && (Control & SE_DACL_PROTECTED);
+        for (DWORD I = 0; Legacy && I < Acl->AceCount; ++I)
+        {
+            PVOID Ace = nullptr;
+            if (!GetAce(Acl, I, &Ace)) { Legacy = false; break; }
+            const auto* Allowed = reinterpret_cast<ACCESS_ALLOWED_ACE*>(Ace);
+            PSID Sid = const_cast<DWORD*>(&Allowed->SidStart); const FString Name = SidText(Sid);
+            const bool LogonSid = IsWellKnownSid(Sid, WinLogonIdsSid) != 0;
+            Legacy &= Allowed->Header.AceType == ACCESS_ALLOWED_ACE_TYPE
+                && Allowed->Header.AceFlags == (OBJECT_INHERIT_ACE | CONTAINER_INHERIT_ACE)
+                && Allowed->Mask == FILE_ALL_ACCESS && (Name == TEXT("S-1-5-18") || LogonSid);
+            Names.Add(Name); if (LogonSid) OldLogon = Name;
+        }
+        Legacy &= Names.Num() == 2 && Names.Contains(TEXT("S-1-5-18")) && !OldLogon.IsEmpty();
+        LocalFree(Sd);
+        if (!Legacy) { SetLastError(ERROR_INVALID_SECURITY_DESCR); return false; }
+        BOOL Present = false, Defaulted = false; PACL NewAcl = nullptr;
+        if (!GetSecurityDescriptorDacl(ContainerSd, &Present, &NewAcl, &Defaulted) || !Present || !NewAcl) return false;
+        const DWORD WriteCode = SetNamedSecurityInfoW(const_cast<LPWSTR>(*Path), SE_FILE_OBJECT,
+            DACL_SECURITY_INFORMATION | PROTECTED_DACL_SECURITY_INFORMATION, nullptr, nullptr, NewAcl, nullptr);
+        if (WriteCode != ERROR_SUCCESS) { SetLastError(WriteCode); return false; }
+        const bool Good = Validate();
+        Evidence->SetBoolField(TEXT("migratedLegacyParent"), Good);
+        Evidence->SetStringField(TEXT("previousLogonSid"), OldLogon);
+        return Good;
+    }
+    bool SessionDirectory(const FString& Path, TSharedRef<FJsonObject>& Evidence)
     {
         SECURITY_ATTRIBUTES Attributes = {sizeof(SECURITY_ATTRIBUTES), FileSd, 0};
         if (!CreateDirectoryW(*Path, &Attributes) && GetLastError() != ERROR_ALREADY_EXISTS) return false;
@@ -365,6 +430,7 @@ struct FNodeForgeEditorControlChannel::FImpl
         | static_cast<uint8>(NodeForgeControlOperations::EEditorFeature::Graph);
     std::atomic<bool> bIoCompletionUnknown{false}; std::atomic<uint32> LastIoCode{0};
     bool bStarted = false, bStopped = false, bTransportStopped = false, bStopSignaled = false;
+    bool bLiveCodingStartupPending = false;
     double StopDeadline = 0;
     bool bDraining = false; // Explicit GT non-reentry, including nested native message dispatch.
 #if WITH_DEV_AUTOMATION_TESTS
@@ -505,6 +571,9 @@ bool FNodeForgeEditorControlChannel::Start(FString& Error)
     // by disabling patches for this explicitly AI-enabled session and monitoring it.
     ILiveCodingModule& LiveCoding = FModuleManager::LoadModuleChecked<ILiveCodingModule>(TEXT("LiveCoding"));
     if (LiveCoding.IsCompiling()) { Error = TEXT("controlLiveCodingBusy"); return false; }
+    // UE5.3.2 ignores disabling while its automatic startup is still pending.
+    // Pin that startup once it completes, without changing the user's settings.
+    Impl->bLiveCodingStartupPending = LiveCoding.IsEnabledByDefault() && !LiveCoding.HasStarted();
     LiveCoding.EnableForSession(false);
     if (LiveCoding.IsEnabledForSession()) { Error = TEXT("controlLiveCodingEnabled"); return false; }
     TSharedPtr<FJsonObject> Registration;
@@ -521,8 +590,11 @@ bool FNodeForgeEditorControlChannel::Start(FString& Error)
     Impl->Session = FGuid::NewGuid().ToString(EGuidFormats::Digits).ToLower(); Impl->SessionDirectory = Root / TEXT("Reports/PluginControlSessions") / Impl->Session;
     Impl->DescriptorPath = Impl->SessionDirectory / TEXT("Session.json");
     Impl->SecurityEvidence = MakeShared<FJsonObject>(); auto Parent = MakeShared<FJsonObject>(), Folder = MakeShared<FJsonObject>();
-    if (!SafePath(Impl->SessionDirectory, Root / TEXT("Reports"))
-        || !Impl->Security.Directory(Root / TEXT("Reports/PluginControlSessions"), Parent) || !Impl->Security.Directory(Impl->SessionDirectory, Folder)) return false;
+    if (!SafePath(Impl->SessionDirectory, Root / TEXT("Reports"))) { Error = TEXT("controlSessionPathRejected"); return false; }
+    if (!Impl->Security.Directory(Root / TEXT("Reports/PluginControlSessions"), Parent))
+    { Error = FString::Printf(TEXT("controlSessionContainerRejected:%u"), GetLastError()); return false; }
+    if (!Impl->Security.SessionDirectory(Impl->SessionDirectory, Folder))
+    { Error = FString::Printf(TEXT("controlSessionDirectoryRejected:%u"), GetLastError()); return false; }
     Impl->SecurityEvidence->SetObjectField(TEXT("parentDirectory"), Parent); Impl->SecurityEvidence->SetObjectField(TEXT("sessionDirectory"), Folder);
     uint8 Secret[32]; if (BCryptGenRandom(nullptr, Secret, sizeof(Secret), BCRYPT_USE_SYSTEM_PREFERRED_RNG) != 0) return false;
     Impl->Credential = BytesToHex(Secret, sizeof(Secret)).ToLower(); SecureZeroMemory(Secret, sizeof(Secret));
@@ -572,8 +644,20 @@ void FNodeForgeEditorControlChannel::SetBusinessGate(const TSharedRef<FNodeForge
 void FNodeForgeEditorControlChannel::Drain(FNodeForgeEditorControlService& Service)
 {
     check(IsInGameThread()); NodeForgeEditorControl::FRequest Request; FString Hash;
-    const auto* LiveCoding = FModuleManager::GetModulePtr<ILiveCodingModule>(TEXT("LiveCoding"));
-    if (LiveCoding && (LiveCoding->IsCompiling() || LiveCoding->IsEnabledForSession())) RequestStop();
+    auto* LiveCoding = FModuleManager::GetModulePtr<ILiveCodingModule>(TEXT("LiveCoding"));
+    if (LiveCoding)
+    {
+        if (LiveCoding->IsCompiling()) RequestStop();
+        else
+        {
+            if (Impl->bLiveCodingStartupPending && LiveCoding->HasStarted())
+            {
+                LiveCoding->EnableForSession(false);
+                Impl->bLiveCodingStartupPending = false;
+            }
+            if (LiveCoding->IsEnabledForSession()) RequestStop();
+        }
+    }
     if (Impl->bDraining) return;
     TGuardValue<bool> Draining(Impl->bDraining, true);
 #if WITH_DEV_AUTOMATION_TESTS
@@ -729,3 +813,83 @@ bool FNodeForgeEditorControlChannel::CheckRestrictedConnection(TSharedRef<FJsonO
     Evidence->SetBoolField(TEXT("reverted"), Reverted); Evidence->SetBoolField(TEXT("secondWindowsAccountTested"), false);
     return Code == ERROR_ACCESS_DENIED && Reverted;
 }
+
+#if WITH_DEV_AUTOMATION_TESTS
+namespace
+{
+bool SessionCheckDacl(const FString& Path, FString& Sddl)
+{
+    PSECURITY_DESCRIPTOR Sd = nullptr;
+    if (GetNamedSecurityInfoW(*Path, SE_FILE_OBJECT, DACL_SECURITY_INFORMATION,
+        nullptr, nullptr, nullptr, nullptr, &Sd) != ERROR_SUCCESS) return false;
+    LPWSTR Text = nullptr;
+    const bool Good = ConvertSecurityDescriptorToStringSecurityDescriptorW(Sd, SDDL_REVISION_1,
+        DACL_SECURITY_INFORMATION, &Text, nullptr) != 0;
+    if (Good) { Sddl = Text; LocalFree(Text); }
+    LocalFree(Sd); return Good;
+}
+bool SessionCheckSetDacl(const FString& Path, const FString& Sddl)
+{
+    PSECURITY_DESCRIPTOR Sd = nullptr;
+    if (!ConvertStringSecurityDescriptorToSecurityDescriptorW(*Sddl, SDDL_REVISION_1, &Sd, nullptr)) return false;
+    BOOL Present = false, Defaulted = false; PACL Acl = nullptr;
+    const bool Good = GetSecurityDescriptorDacl(Sd, &Present, &Acl, &Defaulted) && Present && Acl
+        && SetNamedSecurityInfoW(const_cast<LPWSTR>(*Path), SE_FILE_OBJECT,
+            DACL_SECURITY_INFORMATION | PROTECTED_DACL_SECURITY_INFORMATION, nullptr, nullptr, Acl, nullptr) == ERROR_SUCCESS;
+    LocalFree(Sd); return Good;
+}
+}
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FNodeForgeSessionContainerLifetimeTest, "NodeForge.Security.SessionContainerLifetime",
+    EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FNodeForgeSessionContainerLifetimeTest::RunTest(const FString&)
+{
+    using namespace NodeForgeControlWindows;
+    FSecurity Security;
+    if (!TestTrue(TEXT("Current token initialized"), Security.Initialize())) return false;
+    const FString Root = Full(FPaths::ProjectSavedDir() / TEXT("NodeForge/Reports/SessionContainerChecks")
+        / FGuid::NewGuid().ToString(EGuidFormats::Digits));
+    const FString Parent = Root / TEXT("Legacy"), Child = Parent / TEXT("OldSession"), Sentinel = Child / TEXT("Sentinel.txt");
+    const FString Legacy = TEXT("D:P(A;OICI;FA;;;SY)(A;OICI;FA;;;S-1-5-5-0-1)");
+    const FString Persistent = TEXT("D:P(A;;FA;;;SY)(A;;FA;;;") + Security.UserText + TEXT(")");
+    if (!TestTrue(TEXT("Owned fixture directory created"), IFileManager::Get().MakeDirectory(*Child, true))
+        || !TestTrue(TEXT("Noncredential sentinel created"), FFileHelper::SaveStringToFile(TEXT("test-only"), *Sentinel))
+        || !TestTrue(TEXT("Legacy child protected"), SessionCheckSetDacl(Sentinel, Legacy) && SessionCheckSetDacl(Child, Legacy))
+        || !TestTrue(TEXT("Legacy parent protected"), SessionCheckSetDacl(Parent, Legacy))) return false;
+    FString ChildBefore, FileBefore;
+    SessionCheckDacl(Child, ChildBefore); SessionCheckDacl(Sentinel, FileBefore);
+    auto Evidence = MakeShared<FJsonObject>();
+    const bool Migrated = Security.Directory(Parent, Evidence);
+    TestTrue(TEXT("Actual native startup directory admits a previous-logon container"), Migrated);
+    FString ParentAfter, ChildAfter, FileAfter;
+    SessionCheckDacl(Parent, ParentAfter); SessionCheckDacl(Child, ChildAfter); SessionCheckDacl(Sentinel, FileAfter);
+    // Windows may retain SE_DACL_AUTO_INHERITED on a protected object updated
+    // through SetNamedSecurityInfo. Compare the grants, not that bookkeeping bit.
+    TestEqual(TEXT("Parent is protected user container with no inherited grants"), ParentAfter.Replace(TEXT("D:PAI"), TEXT("D:P")), Persistent);
+    TestEqual(TEXT("Old session directory ACL unchanged"), ChildAfter, ChildBefore);
+    TestEqual(TEXT("Old session file ACL unchanged"), FileAfter, FileBefore);
+    FHandle ReadOld(CreateFileW(*Sentinel, FILE_READ_DATA, FILE_SHARE_READ, nullptr, OPEN_EXISTING, FILE_FLAG_OPEN_REPARSE_POINT, nullptr));
+    TestFalse(TEXT("Previous-logon file remains unreadable"), ReadOld.Valid());
+    if (!ReadOld.Valid()) TestEqual(TEXT("Old file denied by Windows"), GetLastError(), static_cast<DWORD>(ERROR_ACCESS_DENIED));
+    auto Again = MakeShared<FJsonObject>();
+    TestTrue(TEXT("Existing user container is idempotent"), Security.Directory(Parent, Again));
+    FString ParentAgain; SessionCheckDacl(Parent, ParentAgain);
+    TestEqual(TEXT("Repeated validation preserves parent ACL"), ParentAgain, ParentAfter);
+    const FString Fresh = Root / TEXT("Fresh"); auto NewEvidence = MakeShared<FJsonObject>();
+    TestTrue(TEXT("Fresh native parent created"), Security.Directory(Fresh, NewEvidence));
+    FString FreshAcl; SessionCheckDacl(Fresh, FreshAcl);
+    TestEqual(TEXT("Fresh parent has user lifetime"), FreshAcl, Persistent);
+    const FString Unknown = Root / TEXT("Unknown");
+    IFileManager::Get().MakeDirectory(*Unknown, true);
+    TestTrue(TEXT("Unknown ACL fixture prepared"), SessionCheckSetDacl(Unknown, TEXT("D:P(A;OICI;FA;;;SY)(A;OICI;FA;;;WD)")));
+    FString UnknownBefore, UnknownAfter; SessionCheckDacl(Unknown, UnknownBefore);
+    auto Rejected = MakeShared<FJsonObject>();
+    TestFalse(TEXT("Unknown ACL is rejected rather than repaired"), Security.Directory(Unknown, Rejected));
+    SessionCheckDacl(Unknown, UnknownAfter); TestEqual(TEXT("Rejected ACL unchanged"), UnknownAfter, UnknownBefore);
+    auto Report = MakeShared<FJsonObject>(); Report->SetStringField(TEXT("fixtureRoot"), Root);
+    Report->SetBoolField(TEXT("passed"), !HasAnyErrors()); Report->SetObjectField(TEXT("parentEvidence"), Evidence);
+    Report->SetStringField(TEXT("oldChildAclBefore"), ChildBefore); Report->SetStringField(TEXT("oldChildAclAfter"), ChildAfter);
+    Report->SetStringField(TEXT("oldFileAclBefore"), FileBefore); Report->SetStringField(TEXT("oldFileAclAfter"), FileAfter);
+    NodeForgePrototype::WriteJson(Report, Root / TEXT("Report.json"));
+    return !HasAnyErrors();
+}
+#endif

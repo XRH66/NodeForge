@@ -187,13 +187,14 @@ bool Decode(const FObject& Input, FGraphDocument& Output, FString& Error, EConte
         FMaterialDefinition Material; Material.Domain = Settings->GetStringField(TEXT("domain")); Material.Blend = Settings->GetStringField(TEXT("blend"));
         Material.Shading = Settings->GetStringField(TEXT("shading")); Material.TwoSided = Settings->GetBoolField(TEXT("twoSided"));
         if (Settings->HasField(TEXT("lighting"))) Material.Lighting = Settings->GetStringField(TEXT("lighting"));
+        if (Settings->HasField(TEXT("refractionMethod"))) Material.RefractionMethod = Settings->GetStringField(TEXT("refractionMethod"));
         for(const auto& Option:MaterialOptions()) if(Settings->HasField(Option.Name))
         {
             if(!Option.Required && Capabilities.MaterialRevision<7) return Fail(Error,TEXT("material setting unavailable in archived catalog: ")+Option.Name);
             SetMaterialOption(Material,Option.Id,Settings->TryGetField(Option.Name));
         }
         if(Material.Blend==TEXT("Masked") && Capabilities.MaterialRevision<7) return Fail(Error,TEXT("Masked unavailable in archived catalog"));
-        if (!MaterialSettingsValid(Material)) return Fail(Error, TEXT("unsupported material settings: Masked requires clip0..1; negative emissive requires Unlit"));
+        if (!MaterialSettingsValid(Material)) return Fail(Error, TEXT("unsupported material settings: Masked requires clip0..1; negative emissive requires Unlit; ClearCoat requires Opaque/Masked; IOR refraction requires Translucent DefaultLit with lighting"));
         Output.Asset.Set<FMaterialDefinition>(MoveTemp(Material));
     }
     else if (Exact(AssetType, TEXT("Blueprint")))

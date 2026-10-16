@@ -1,4 +1,4 @@
-"""Package NodeForge 0.1.0 using the existing compiled plugin and current documentation."""
+"""Package NodeForge using the existing compiled plugin and current documentation."""
 import argparse
 import hashlib
 import json
@@ -7,7 +7,7 @@ from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '0.1.0'
+VERSION = '1.1.0'
 
 
 def encoded(value):

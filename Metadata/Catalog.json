@@ -1,7 +1,7 @@
 {
   "engine": "5.3.2-29314046+++UE5+Release-5.3",
   "adapter": "NodeForge-UE532-Graph-3",
-  "catalogDigest": "be97bf57d226778102038c261c556b89b262197c78158fe16ca293de709d8847",
+  "catalogDigest": "5531e81860370f04bd0e79bd4363d766a483eee3e4e59944bee7c2c47b43bd00",
   "catalog": {
     "engine": "5.3.2-29314046+++UE5+Release-5.3",
     "adapter": "NodeForge-UE532-Graph-3",
@@ -3944,8 +3944,9 @@
       "settings": {
         "domain": "Surface",
         "blend": "Opaque|Translucent|Masked",
-        "shading": "Unlit|DefaultLit",
+        "shading": "Unlit|DefaultLit|ClearCoat",
         "lighting": "SurfaceForwardShading",
+        "refractionMethod": "None|IndexOfRefraction",
         "schema": {
           "type": "object",
           "properties": {
@@ -3967,13 +3968,21 @@
               "type": "string",
               "enum": [
                 "Unlit",
-                "DefaultLit"
+                "DefaultLit",
+                "ClearCoat"
               ]
             },
             "lighting": {
               "type": "string",
               "enum": [
                 "SurfaceForwardShading"
+              ]
+            },
+            "refractionMethod": {
+              "type": "string",
+              "enum": [
+                "None",
+                "IndexOfRefraction"
               ]
             },
             "twoSided": {
@@ -4050,9 +4059,50 @@
                   }
                 }
               }
+            },
+            {
+              "if": {
+                "properties": {
+                  "refractionMethod": {
+                    "const": "IndexOfRefraction"
+                  }
+                },
+                "required": [
+                  "refractionMethod"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "blend": {
+                    "const": "Translucent"
+                  },
+                  "shading": {
+                    "const": "DefaultLit"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "shading": {
+                    "const": "ClearCoat"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "blend": {
+                    "enum": [
+                      "Opaque",
+                      "Masked"
+                    ]
+                  }
+                }
+              }
             }
           ],
-          "description": "Surface only. Inactive clip/dither values are stored; no visual/TAA/LOD claim. Root connections must pass native IsPropertyActive."
+          "description": "Surface only. ClearCoat requires Opaque/Masked; IndexOfRefraction requires Translucent DefaultLit and lighting. Omitted refractionMethod is None. Inactive clip/dither values are stored; no visual/TAA/LOD claim. Root connections must pass native IsPropertyActive."
         },
         "activePolicy": "IsPropertyActive controls root connections; inactive clip/dither values remain stored. Masked requires clip0..1; negative emissive true only Unlit. No visual/TAA/LOD acceptance from setting values."
       },
@@ -4065,8 +4115,20 @@
         "OpacityMask",
         "Roughness",
         "Specular",
-        "WorldPositionOffset"
-      ]
+        "WorldPositionOffset",
+        "ClearCoat",
+        "ClearCoatRoughness",
+        "Anisotropy",
+        "Tangent",
+        "Refraction"
+      ],
+      "layeredInputs": {
+        "scalarInputs": "ClearCoat,ClearCoatRoughness,Anisotropy,Refraction",
+        "clearCoat": "MSM_ClearCoat; MP_CustomData0/1; independent from base Roughness; IsPropertyActive required",
+        "tangent": "float3 tangent space; bTangentSpaceNormal remains true; default (1,0,0) follows imported mesh tangent X / UV0 U; source tangent orientation must survive mesh import; world-space vectors require explicit transformation",
+        "refraction": "scalar IOR; refractionMethod=IndexOfRefraction; Translucent DefaultLit SurfaceForwardShading; source transmission/alpha do not map to UE opacity=1",
+        "minimumMaterialRevision": 8
+      }
     },
     "blueprint": {
       "assetType": "Blueprint",
@@ -27208,7 +27270,8 @@
             "required": true,
             "enum": [
               "Unlit",
-              "DefaultLit"
+              "DefaultLit",
+              "ClearCoat"
             ]
           },
           {
@@ -27217,6 +27280,15 @@
             "required": false,
             "enum": [
               "SurfaceForwardShading"
+            ]
+          },
+          {
+            "name": "refractionMethod",
+            "type": "string",
+            "required": false,
+            "enum": [
+              "None",
+              "IndexOfRefraction"
             ]
           },
           {
@@ -27660,13 +27732,21 @@
             "type": "string",
             "enum": [
               "Unlit",
-              "DefaultLit"
+              "DefaultLit",
+              "ClearCoat"
             ]
           },
           "lighting": {
             "type": "string",
             "enum": [
               "SurfaceForwardShading"
+            ]
+          },
+          "refractionMethod": {
+            "type": "string",
+            "enum": [
+              "None",
+              "IndexOfRefraction"
             ]
           },
           "twoSided": {
@@ -27743,9 +27823,50 @@
                 }
               }
             }
+          },
+          {
+            "if": {
+              "properties": {
+                "refractionMethod": {
+                  "const": "IndexOfRefraction"
+                }
+              },
+              "required": [
+                "refractionMethod"
+              ]
+            },
+            "then": {
+              "properties": {
+                "blend": {
+                  "const": "Translucent"
+                },
+                "shading": {
+                  "const": "DefaultLit"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "shading": {
+                  "const": "ClearCoat"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "blend": {
+                  "enum": [
+                    "Opaque",
+                    "Masked"
+                  ]
+                }
+              }
+            }
           }
         ],
-        "description": "Surface only. Inactive clip/dither values are stored; no visual/TAA/LOD claim. Root connections must pass native IsPropertyActive."
+        "description": "Surface only. ClearCoat requires Opaque/Masked; IndexOfRefraction requires Translucent DefaultLit and lighting. Omitted refractionMethod is None. Inactive clip/dither values are stored; no visual/TAA/LOD claim. Root connections must pass native IsPropertyActive."
       },
       "memberAttributesSchema": {
         "type": "object",
@@ -28137,6 +28258,5 @@
       "maxDepth": 32
     }
   },
-  "binarySha256": "2453cf2fb843021aee347b2c1403680a8787579f189751b6e69bdd42159ce05b",
-  "qualification": "actualNativeCoreCapturedRepair6"
+  "binarySha256": "30b25af9b46e5ab412f4a1572a92135f83619997d4b286558e745b176a512e74"
 }

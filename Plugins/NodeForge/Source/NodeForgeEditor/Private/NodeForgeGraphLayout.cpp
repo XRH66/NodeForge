@@ -27,7 +27,6 @@
 #include "EdGraph/EdGraphNode.h"
 #include "EdGraph/EdGraphPin.h"
 #include "EdGraphSchema_K2.h"
-#include "MaterialEditingLibrary.h"
 #include "Materials/Material.h"
 #include "Materials/MaterialExpression.h"
 #include "Misc/DefaultValueHelper.h"
@@ -46,7 +45,7 @@ struct FItem
     FVector2D Size = FVector2D(320, 180);
     bool bExplicit = false;
     int32 Layer = 0;
-    int32 NativeDepth = 0;
+    int32 OutputDepth = 0;
     int32 InDegree = 0;
     TArray<int32> Children;
     TArray<FParent> Parents;
@@ -210,16 +209,18 @@ bool Run(UMaterial* Asset, const FGraphDocument& Request, const TMap<FString, UE
     if (Order.Num() != Items.Num()) { Error = TEXT("Layout dependency cycle; no coordinates changed"); return false; }
     if (Asset)
     {
-        // Native operation only changes coordinates. The request has already
-        // passed semantic preflight; the defensive topology check precedes it.
-        UMaterialEditingLibrary::LayoutMaterialExpressions(Asset);
+        // Reuse the validated Kahn order. UE 5.3.2's native material layout
+        // revisits shared inputs for every path, which can grow exponentially.
+        // Reverse longest-path depth gives the same output-relative columns
+        // without walking shared subgraphs again or changing temporary positions.
         int32 MaxDepth = 0;
-        for (FItem& Item : Items)
+        for (int32 I = Order.Num() - 1; I >= 0; --I)
         {
-            Item.NativeDepth = FMath::Max(0, static_cast<int32>(FMath::RoundToInt(-Item.Expression->MaterialExpressionEditorX / 260.0)) - 1);
-            MaxDepth = FMath::Max(MaxDepth, Item.NativeDepth);
+            FItem& Item = Items[Order[I]];
+            for (int32 Child : Item.Children) Item.OutputDepth = FMath::Max(Item.OutputDepth, Items[Child].OutputDepth + 1);
+            MaxDepth = FMath::Max(MaxDepth, Item.OutputDepth);
         }
-        for (FItem& Item : Items) Item.Layer = MaxDepth - Item.NativeDepth;
+        for (FItem& Item : Items) Item.Layer = MaxDepth - Item.OutputDepth;
     }
     int32 MaxLayer = 0;
     for (const FItem& Item : Items) MaxLayer = FMath::Max(MaxLayer, Item.Layer);
@@ -282,7 +283,7 @@ bool Run(UMaterial* Asset, const FGraphDocument& Request, const TMap<FString, UE
         }
     }
     Evidence = MakeShared<FJsonObject>();
-    Evidence->SetStringField(TEXT("algorithm"), Asset ? TEXT("nativeMaterialDepth-stableWeightedLayers-anchors-v1") : TEXT("AutonomixKahn-allDependencies-stableWeightedLayers-anchors-v1"));
+    Evidence->SetStringField(TEXT("algorithm"), Asset ? TEXT("AutonomixKahn-reverseMaterialDepth-stableWeightedLayers-anchors-v2") : TEXT("AutonomixKahn-allDependencies-stableWeightedLayers-anchors-v1"));
     Evidence->SetStringField(TEXT("sizePolicy"), Asset ? TEXT("Conservative native/title/pin/default estimates; not measured Slate bounds; 48 unit collision margin")
         : TEXT("Stable native binding/pin/canonical-default estimates v2; not measured Slate bounds; 48 unit collision margin"));
     TArray<TSharedPtr<FJsonValue>> Nodes;

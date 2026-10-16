@@ -15,7 +15,7 @@ import time
 from types import SimpleNamespace
 from pathlib import Path
 from jsonschema import Draft202012Validator
-from NodeForgeEditorTransport import Windows, Session, strict_json, TransportError
+from NodeForgeEditorTransport import Windows, Session, strict_json, TransportError, INVALID
 from RunProcessGuard import validate_isolated_project, process_identity, load_installation_binding, state_directory, load_ai_installation, installation_user_directory, discover_editor_sessions, installation_path, installation_product
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -23,7 +23,7 @@ HOME = ROOT / 'Tools/NodeForgeMcp'
 REPORTS = ROOT / 'Reports/PluginControlStageTwo/McpDocs1'
 CONTROL_REPORTS = ROOT / 'Reports/PluginControlStageTwo'
 CLIENT_CONFIG = REPORTS / 'Client/Config.json'
-VERSION = '0.4.1'
+VERSION = '0.4.3'
 MAX_REPORT = 1048576
 MAX_SELECTED = 32768
 MAX_GRAPH = 65536
@@ -226,6 +226,9 @@ class Bridge:
         self.discovery = isinstance(config, dict) and config.get('format') == 'NodeForgeAiInstallation1'
         self.contexts = {}
         self.client_peer = None
+        self.presence_slot = None
+        self.presence_lock = threading.Lock()
+        self.cli_active = 0
         self.client_disconnected = False
         self.presence_discovery_state = None
         if self.discovery:
@@ -354,13 +357,17 @@ class Bridge:
 
     def has_unresolved(self):
         if self.discovery: return any(context.has_unresolved() for context in self.contexts.values())
-        if self.pending_cli or self.unknown:
-            return True
+        return bool(self.pending_cli or self.unresolved_calls())
+
+    def unresolved_calls(self):
+        if self.discovery:
+            return sorted({call for context in self.contexts.values() for call in context.unresolved_calls()})
+        unresolved = set(self.unknown)
         for path in (self.run_root / 'Calls').glob('*.json'):
             row = strict_json(safe_read(path, MAX_REPORT, roots=(self.run_root,)))
             if row.get('state') not in ('finished', 'failed', 'rejected', 'cancelled') or row.get('requiresReview'):
-                return True
-        return False
+                unresolved.add(row['callId'])
+        return sorted(unresolved)
 
     def retained_query(self, name, params):
         """Only a recorded old call/report may bypass a pending config rebind."""
@@ -600,22 +607,75 @@ class Bridge:
                 self.config = current
             return self.manifest, self.config['docsManifestSha256']
 
-    def close(self):
+    def _close_presence(self):
+        # Caller owns presence_lock. Slot ownership is an OS handle, so a crashed
+        # MCP process cannot leave a stale lease that requires manual cleanup.
         if self.client_peer is not None:
             self.client_peer.close(); self.client_peer = None
+        if self.presence_slot is not None:
+            win, handle = self.presence_slot
+            win.k.CloseHandle(handle); self.presence_slot = None
+
+    def _admit_presence(self):
+        if self.presence_slot is not None: return True
+        win = Windows()
+        # All MCP contexts for this editor share report_root. Keep two of the
+        # native four connections available for CLI work, across MCP processes.
+        count = min(2, max(0, self.identity['limits']['connections'] - 2))
+        for index in range(count):
+            path = self.report_root / ('PresenceSlot' + str(index + 1) + '.lock')
+            win.no_reparse(path)
+            handle = win.k.CreateFileW(str(path), 0xc0000000, 0, None, 4, 0x00200000, None)
+            if handle == INVALID:
+                if ctypes.get_last_error() == 32: continue  # Another live presence owns this slot.
+                raise TransportError('NFEDITOR_PRESENCE_SLOT', 3)
+            final = ctypes.create_unicode_buffer(32768)
+            length = win.k.GetFinalPathNameByHandleW(handle, final, len(final), 0)
+            if not length or length >= len(final) or Path(final.value.removeprefix('\\\\?\\')).resolve() != path.resolve():
+                win.k.CloseHandle(handle)
+                raise TransportError('NFEDITOR_PRESENCE_SLOT_PATH', 3)
+            self.presence_slot = (win, handle)
+            return True
+        return False  # Presence capacity is not a disconnected business session.
+
+    def close(self):
         if self.discovery:
-            for context in self.contexts.values(): context.close()
-            return
+            values = [context.close() for context in tuple(self.contexts.values())]
+            return result('finished' if all(value['released'] for value in values) else 'environmentBlocked',
+                released=all(value['released'] for value in values), connections=values,
+                unresolvedCalls=self.unresolved_calls())
         # A live timed-out CLI or unclosed business retains its lease/checkpoint.
-        if not self.connection_lock.acquire(blocking=False): return
+        def blocked(code, status='environmentBlocked'):
+            return result(status, released=False, leaseReleased=False, handleInvalidated=False,
+                errors=[{'code': code}], unresolvedCalls=self.unresolved_calls(), recordsPreserved=True)
+        if not self.connection_lock.acquire(blocking=False): return blocked('NFMCP_BUSY')
         try:
-            if not self.business_lock.acquire(blocking=False): return
+            if not self.business_lock.acquire(blocking=False): return blocked('NFMCP_BUSY')
             try:
-                if not self.owns_lease or self.has_unresolved(): return
-                if self.lease_path.is_file() and strict_json(safe_read(self.lease_path, 65536, roots=(self.run_root,))) == self.lease:
+                if self.has_unresolved(): return blocked('NFMCP_UNRESOLVED_CALL', 'unknown')
+                if not self.owns_lease:
+                    # An observer still owns its presence socket/slot, never the
+                    # other client's business lease. Lifecycle cleanup stays normal.
+                    with self.presence_lock: self._close_presence()
+                    return blocked('NFMCP_NOT_LEASE_OWNER')
+                if self.lease.get('pid') != os.getpid():
+                    return blocked('NFMCP_NOT_LEASE_OWNER')
+                if (not self.lease_path.is_file() or strict_json(
+                        safe_read(self.lease_path, 65536, roots=(self.run_root,))) != self.lease):
+                    return blocked('NFMCP_LEASE_CHANGED')
+                if not self.presence_lock.acquire(blocking=False): return blocked('NFMCP_BUSY')
+                try:
+                    if self.cli_active: return blocked('NFMCP_BUSY')
+                    identity = self.identity
+                    self._close_presence()
                     self.lease_path.unlink()
-                self.owns_lease = False
-                self.identity = None; self.handle = None; self.reports.clear()
+                    self.owns_lease = False
+                    self.identity = None; self.handle = None; self.reports.clear()
+                    self.client_disconnected = True
+                finally:
+                    self.presence_lock.release()
+                return result('finished', released=True, leaseReleased=True, handleInvalidated=True,
+                    identity=identity, bridgePid=os.getpid(), recordsPreserved=True, unresolvedCalls=[])
             finally:
                 self.business_lock.release()
         finally:
@@ -751,6 +811,12 @@ class Bridge:
             args_file = self.run_root / 'Arguments' / ('Args' + uuid.uuid4().hex + '.json')
             write_new(args_file, arguments); command += ['--arguments-file', str(args_file)]
         if not self.connections.acquire(blocking=False): raise BridgeError('NFMCP_CONNECTION_BUSY')
+        with self.presence_lock:
+            if action != 'editor-describe' and self.handle is None:
+                self.connections.release()
+                raise BridgeError('NFMCP_HANDLE', 'environmentBlocked')
+            self.cli_active += 1
+            self._close_presence()
         try:
             process = subprocess.Popen(command, cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                 creationflags=subprocess.CREATE_NO_WINDOW)
@@ -780,7 +846,9 @@ class Bridge:
             return {'cliExitCode': 5, 'executionState': 'unknown', 'callId': call_id,
                     'operation': operation, 'run': str(run), 'controlSessionId': identity['controlSessionId'],
                     'errors': [{'code': 'NFMCP_CLI_UNCONFIRMED'}]}
-        finally: self.connections.release()
+        finally:
+            with self.presence_lock: self.cli_active -= 1
+            self.connections.release()
 
     def client_presence_tick(self, client):
         """Authenticated original transport; cache-only presence, never UE business."""
@@ -799,8 +867,11 @@ class Bridge:
             for context in tuple(self.contexts.values()): context.client_presence_tick(client)
             return
         if self.handle is None or self.identity is None or self.client_disconnected: return
+        if not self.presence_lock.acquire(blocking=False): return
         started=time.monotonic()
         try:
+            if self.cli_active or self.pending_cli: return
+            if not self._admit_presence(): return
             if self.client_peer is None:
                 args=SimpleNamespace(timeout_seconds=5,project=str(self.project),plugin_directory=str(self.stage),
                     session_file=self.identity['sessionFile'],mcp_client=client)
@@ -811,9 +882,10 @@ class Bridge:
         except (TransportError,OSError,ValueError) as error:
             print(json.dumps({'event':'NodeForgeClientPresenceFailure','code':getattr(error,'code',type(error).__name__),
                 'elapsedSeconds':round(time.monotonic()-started,3)}),file=sys.stderr,flush=True)
-            if self.client_peer is not None:self.client_peer.close();self.client_peer=None
+            self._close_presence()
             self.client_disconnected=True
             # Original handles/call ledgers remain available for calls.get/report recovery.
+        finally: self.presence_lock.release()
 
     def select_connection(self, params, *, for_presence=False):
         self._documents()
@@ -939,14 +1011,13 @@ class Bridge:
                     or sidecar.get('nativeReport') != reference):
                 raise BridgeError('NFMCP_GRAPH_INPUT_BINDING', 'unknown')
             safe_read(Path(payload['inputSnapshot']), 65536, payload['inputDigest'], (self.report_root,))
-            # Preflight can reject during parsing, before a validated FRequest
-            # publishes its inputDigest. The exact report and input bytes are
-            # already bound by the authenticated call's immutable sidecar.
-            # Only this explicit read-only, not-written terminal rejection may
-            # omit the native digest; wrong digests and generation stay strict.
-            early_preflight_rejection = (
-                call['operation'] == 'graphs.preflight'
-                and call.get('state') == 'rejected'
+            # All graph operations share ReadRequest. A validation rejection
+            # can precede a valid FRequest/inputDigest, including Generate.
+            # The authenticated immutable sidecar already binds the exact bytes
+            # and report. Admit only a proven not-built/not-written rejection;
+            # any supplied wrong digest or evidence of construction stays unknown.
+            early_validation_rejection = (
+                call.get('state') == 'rejected'
                 and payload.get('cliExitCode') == 2
                 and native.get('overallStatus') == 'rejected'
                 and native.get('phase') == 'finished'
@@ -960,7 +1031,7 @@ class Bridge:
                 and all(native.get('checks', {}).get(stage, {}).get('status') == 'notRun'
                         for stage in ('build', 'initialReadback', 'compile', 'finalReadback', 'publish', 'save', 'persistence'))
                 and 'inputDigest' not in native)
-            if not early_preflight_rejection and native.get('inputDigest') != payload.get('inputDigest'):
+            if not early_validation_rejection and native.get('inputDigest') != payload.get('inputDigest'):
                 raise BridgeError('NFMCP_GRAPH_INPUT_BINDING', 'unknown')
             if call['operation'] in ('draft.prepareCopy', 'graphs.preview'):
                 draft = payload.get('draft', {})
@@ -1108,14 +1179,26 @@ class Bridge:
         try:
             if name not in self.tools: raise BridgeError('NFMCP_TOOL_UNAVAILABLE')
             tool = self.tools[name]
-            if self.client_disconnected and name not in ('nodeforge_connect','nodeforge_docs_index','nodeforge_docs_read','nodeforge_report_read') and tool['operation']!='calls.get':
+            if self.client_disconnected and name not in ('nodeforge_connect','nodeforge_disconnect','nodeforge_docs_index','nodeforge_docs_read','nodeforge_report_read') and tool['operation']!='calls.get':
                 return result('notConnected',reason='clientDisconnected',unresolvedCalls=sorted(self.unknown))
             Draft202012Validator(tool['inputSchema']).validate(params)
             if len(encoded(params)) > 524288: raise BridgeError('NFMCP_ARGUMENT_BYTES')
             strict_json(encoded(params))
             if retained_recovery and not self.retained_query(name, params):
                 raise BridgeError('NFMCP_RETAINED_QUERY_UNAVAILABLE', 'environmentBlocked')
-            if self.discovery and (tool['operation'] is not None or name == 'nodeforge_report_read'):
+            if self.discovery and (tool['operation'] is not None or name in ('nodeforge_report_read', 'nodeforge_disconnect')):
+                if name == 'nodeforge_disconnect':
+                    if not self.connection_lock.acquire(blocking=False): raise BridgeError('NFMCP_BUSY', 'environmentBlocked')
+                    try:
+                        context = self.contexts.get(params.get('handle'))
+                        if context is None: raise BridgeError('NFMCP_HANDLE', 'environmentBlocked')
+                        value = context.call(name, params, retained_recovery=retained_recovery)
+                        if value.get('released'):
+                            del self.contexts[params['handle']]
+                        self.unknown = set(self.unresolved_calls())
+                        return value
+                    finally:
+                        self.connection_lock.release()
                 context = self.contexts.get(params.get('handle'))
                 if context is None: raise BridgeError('NFMCP_HANDLE', 'environmentBlocked')
                 self.unknown = set().union(*(c.unknown for c in self.contexts.values()))
@@ -1126,6 +1209,9 @@ class Bridge:
                 return value
             if name == 'nodeforge_connect' and self.discovery: return self.select_connection(params)
             if tool['operation'] is not None: return self.business(tool, params, retained_recovery)
+            if name == 'nodeforge_disconnect':
+                self._bound(params['handle'], retained_recovery)
+                return self.close()
             if name == 'nodeforge_connect':
                 if ('project' in params and installation_path(params['project']) != self.project
                         or 'controlSessionId' in params and params['controlSessionId'] != self._public()['controlSessionId']):

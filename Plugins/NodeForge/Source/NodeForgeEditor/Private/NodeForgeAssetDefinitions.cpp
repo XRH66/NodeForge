@@ -85,8 +85,9 @@ const TArray<FFieldDefinition>& Fields(EFields Group)
             TArray<FFieldDefinition> Result = {
                 {TEXT("domain"), EFieldType::String, true, {TEXT("Surface")}},
                 {TEXT("blend"), EFieldType::String, true, {TEXT("Opaque"),TEXT("Translucent"),TEXT("Masked")}},
-                {TEXT("shading"), EFieldType::String, true, {TEXT("Unlit"),TEXT("DefaultLit")}},
-                {TEXT("lighting"), EFieldType::String, false, {TEXT("SurfaceForwardShading")}}
+                {TEXT("shading"), EFieldType::String, true, {TEXT("Unlit"),TEXT("DefaultLit"),TEXT("ClearCoat")}},
+                {TEXT("lighting"), EFieldType::String, false, {TEXT("SurfaceForwardShading")}},
+                {TEXT("refractionMethod"), EFieldType::String, false, {TEXT("None"),TEXT("IndexOfRefraction")}}
             };
             for (const auto& Option : MaterialOptions()) Result.Add({Option.Name,Option.Type,Option.Required});
             return Result;
@@ -730,6 +731,7 @@ TSharedRef<FJsonObject> EncodeMaterialSettings(const FMaterialDefinition& Materi
     Result->SetStringField(TEXT("domain"),Material.Domain); Result->SetStringField(TEXT("blend"),Material.Blend);
     Result->SetStringField(TEXT("shading"),Material.Shading);
     if(Material.Lighting.IsSet()) Result->SetStringField(TEXT("lighting"),Material.Lighting.GetValue());
+    if(Material.RefractionMethod.IsSet()) Result->SetStringField(TEXT("refractionMethod"),Material.RefractionMethod.GetValue());
     for(const auto& Option:MaterialOptions()) if(auto V=MaterialOption(Material,Option.Id)) Result->SetField(Option.Name,V);
     return Result;
 }
@@ -772,6 +774,9 @@ bool MaterialSettingsValid(const FMaterialDefinition& Material)
     };
     return Registered(TEXT("domain"),Material.Domain) && Registered(TEXT("blend"),Material.Blend) && Registered(TEXT("shading"),Material.Shading)
         && (!Material.Lighting.IsSet() || Registered(TEXT("lighting"),Material.Lighting.GetValue()))
+        && (!Material.RefractionMethod.IsSet() || Registered(TEXT("refractionMethod"),Material.RefractionMethod.GetValue()))
+        && (!Material.RefractionMethod.IsSet() || Material.RefractionMethod.GetValue()!=TEXT("IndexOfRefraction") || (ExactText(Material.Blend,TEXT("Translucent")) && ExactText(Material.Shading,TEXT("DefaultLit"))))
+        && (!ExactText(Material.Shading,TEXT("ClearCoat")) || !ExactText(Material.Blend,TEXT("Translucent")))
         && (!ExactText(Material.Blend, TEXT("Translucent")) || Material.Lighting.IsSet())
         && (!ExactText(Material.Blend,TEXT("Masked")) || Material.OpacityMaskClipValue.IsSet())
         && (!Material.OpacityMaskClipValue.IsSet() || (FMath::IsFinite(Material.OpacityMaskClipValue.GetValue()) && Material.OpacityMaskClipValue.GetValue()>=0 && Material.OpacityMaskClipValue.GetValue()<=1))
@@ -982,7 +987,12 @@ TSharedRef<FJsonObject> MaterialSettingsSchema()
     auto Negative=MakeShared<FJsonObject>(),NegIf=MakeShared<FJsonObject>(),NegProps=MakeShared<FJsonObject>(),NegBool=MakeShared<FJsonObject>(),NegThen=MakeShared<FJsonObject>(),ShadingProps=MakeShared<FJsonObject>(),Shading=MakeShared<FJsonObject>();
     NegBool->SetBoolField(TEXT("const"),true);NegProps->SetObjectField(TEXT("allowNegativeEmissiveColor"),NegBool);NegIf->SetObjectField(TEXT("properties"),NegProps);NegIf->SetArrayField(TEXT("required"),{MakeShared<FJsonValueString>(TEXT("allowNegativeEmissiveColor"))});
     Shading->SetStringField(TEXT("const"),TEXT("Unlit"));ShadingProps->SetObjectField(TEXT("shading"),Shading);NegThen->SetObjectField(TEXT("properties"),ShadingProps);Negative->SetObjectField(TEXT("if"),NegIf);Negative->SetObjectField(TEXT("then"),NegThen);All.Add(MakeShared<FJsonValueObject>(Negative));
-    Result->SetArrayField(TEXT("allOf"),All);Result->SetStringField(TEXT("description"),TEXT("Surface only. Inactive clip/dither values are stored; no visual/TAA/LOD claim. Root connections must pass native IsPropertyActive."));return Result;
+    auto Ior=MakeShared<FJsonObject>(),IorIf=MakeShared<FJsonObject>(),IorProps=MakeShared<FJsonObject>(),IorValue=MakeShared<FJsonObject>(),IorThen=MakeShared<FJsonObject>(),IorSettings=MakeShared<FJsonObject>(),IorBlend=MakeShared<FJsonObject>(),IorShading=MakeShared<FJsonObject>();
+    IorValue->SetStringField(TEXT("const"),TEXT("IndexOfRefraction"));IorProps->SetObjectField(TEXT("refractionMethod"),IorValue);IorIf->SetObjectField(TEXT("properties"),IorProps);IorIf->SetArrayField(TEXT("required"),{MakeShared<FJsonValueString>(TEXT("refractionMethod"))});
+    IorBlend->SetStringField(TEXT("const"),TEXT("Translucent"));IorShading->SetStringField(TEXT("const"),TEXT("DefaultLit"));IorSettings->SetObjectField(TEXT("blend"),IorBlend);IorSettings->SetObjectField(TEXT("shading"),IorShading);IorThen->SetObjectField(TEXT("properties"),IorSettings);Ior->SetObjectField(TEXT("if"),IorIf);Ior->SetObjectField(TEXT("then"),IorThen);All.Add(MakeShared<FJsonValueObject>(Ior));
+    auto Coat=MakeShared<FJsonObject>(),CoatIf=MakeShared<FJsonObject>(),CoatProps=MakeShared<FJsonObject>(),CoatValue=MakeShared<FJsonObject>(),CoatThen=MakeShared<FJsonObject>(),CoatSettings=MakeShared<FJsonObject>(),CoatBlend=MakeShared<FJsonObject>();
+    CoatValue->SetStringField(TEXT("const"),TEXT("ClearCoat"));CoatProps->SetObjectField(TEXT("shading"),CoatValue);CoatIf->SetObjectField(TEXT("properties"),CoatProps);CoatBlend->SetArrayField(TEXT("enum"),{MakeShared<FJsonValueString>(TEXT("Opaque")),MakeShared<FJsonValueString>(TEXT("Masked"))});CoatSettings->SetObjectField(TEXT("blend"),CoatBlend);CoatThen->SetObjectField(TEXT("properties"),CoatSettings);Coat->SetObjectField(TEXT("if"),CoatIf);Coat->SetObjectField(TEXT("then"),CoatThen);All.Add(MakeShared<FJsonValueObject>(Coat));
+    Result->SetArrayField(TEXT("allOf"),All);Result->SetStringField(TEXT("description"),TEXT("Surface only. ClearCoat requires Opaque/Masked; IndexOfRefraction requires Translucent DefaultLit and lighting. Omitted refractionMethod is None. Inactive clip/dither values are stored; no visual/TAA/LOD claim. Root connections must pass native IsPropertyActive."));return Result;
 }
 TSharedRef<FJsonObject> Metadata()
 {

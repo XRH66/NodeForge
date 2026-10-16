@@ -51,12 +51,13 @@ FString Compact(const TSharedRef<FJsonObject>& Report)
     const bool Conflict=!FailedCheck.IsEmpty() && (Overall==TEXT("succeeded") || Overall==TEXT("waitingPersistence") || Operation==TEXT("passed"));
     const bool Failed=Conflict || !String(Report,TEXT("failedStage")).IsEmpty() || Overall==TEXT("rejected") || Overall==TEXT("failed") || Overall==TEXT("cleanupRequired") || Operation==TEXT("failed") || Operation==TEXT("rejected");
     if(Conflict)Text+=TEXT("报告状态字段矛盾，不能确认成功；请核对完整报告。\n");
+    else if(Overall==TEXT("unknown"))Text+=TEXT("本次操作结果暂不可确认；请查看完整报告中的来源、环境或证据诊断。\n");
     else if(Overall==TEXT("cleanupRequired"))Text+=TEXT("生成未成功，需要检查残留（cleanupRequired）。\n");
     else if(Failed)Text+=TEXT("本次操作未通过（")+Clip(Overall.IsEmpty()?Operation:Overall,48)+TEXT("）。\n");
     else if(Overall==TEXT("waitingPersistence"))Text+=TEXT("资产已保存，尚待独立重开核验（waitingPersistence）。\n");
     else if(Mode==TEXT("PrepareNewCopy") && Operation==TEXT("passed"))Text+=TEXT("新副本输入已准备；尚未生成资产。\n");
     else if(Mode==TEXT("GraphPreview") && Operation==TEXT("passed"))Text+=TEXT("差异预览完成；未生成或修改资产。\n");
-    else if(Mode==TEXT("GraphPreflight") && Operation==TEXT("passed"))Text+=TEXT("输入检查通过；尚未生成，目标未预留。\n");
+    else if(Mode==TEXT("GraphPreflight") && Operation==TEXT("passed") && Overall==TEXT("succeeded") && Report->HasTypedField<EJson::Object>(TEXT("preflightSummary")))Text+=TEXT("输入检查通过；尚未生成，目标未预留。\n");
     else if(Overall==TEXT("succeeded"))Text+=TEXT("本次操作已完成；运行和画面以各自验证结果为准。\n");
     else if(Operation==TEXT("passed"))Text+=TEXT("读取完成；尚未生成资产。\n");
     else Text+=TEXT("报告未提供可识别的通过状态；不能确认成功。\n");

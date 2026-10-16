@@ -127,7 +127,8 @@ class ServerRuntime:
                         write_new(self.bridge.run_root/'PresenceStarted.json',{'clientName':self.client_info['name'],'bridgePid':os.getpid()})
                         self.presence_started=True
                     await anyio.to_thread.run_sync(self.bridge.client_presence_tick,self.client_info)
-                except (BridgeError,TransportError,OSError,ValueError,KeyError) as error:
+                except (BridgeError,TransportError,self.application.BridgeError,
+                        self.application.TransportError,OSError,ValueError,KeyError) as error:
                     # A missing/ambiguous editor is an accurate offline state;
                     # presence never replays business or replaces its receipts.
                     print(json.dumps({'event':'NodeForgeClientPresenceUnavailable','code':getattr(error,'code',type(error).__name__)}),file=sys.stderr,flush=True)

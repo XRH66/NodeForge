@@ -10,8 +10,8 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '0.1.0'
-DOCS = 'Docs/Versions/v0.1.0'
+VERSION = '1.1.0'
+DOCS = 'Docs/Versions/v1.1.0'
 EMBED_SHA = '15fea3c9367653a85086fe37216b4d1a1c78688fa5e1587e1db0b0f658856564'
 
 
@@ -81,7 +81,7 @@ def assemble(out, embed, plugin, plugin_asset_id, version=VERSION):
                 if path.is_dir():
                     path.rmdir()
             generated.rmdir()
-    for name in ['NodeForgeControl.py', 'NodeForgeEditorTransport.py', 'RunProcessGuard.py',
+    for name in ['NodeForgeControl.py', 'NodeForgeWindowsProcesses.py', 'NodeForgeEditorTransport.py', 'RunProcessGuard.py',
                  'PrepareNodeForgeInstallation.py', 'NodeForgeMcp.py', 'NodeForgeMcpBridge.py',
                  'NodeForgeAiInstall.py', 'NodeForgeAiCheck.py', 'NodeForgeAiLaunch.py', 'InstallNodeForgeAi.ps1']:
         destination = out / 'Scripts' / name
@@ -120,9 +120,9 @@ def assemble(out, embed, plugin, plugin_asset_id, version=VERSION):
         fullUsagePackageComplete=True, validationOnly=False, pages=pages, artifacts=artifacts,
         authoringSources=[], htmlArtifacts=[], developerKnowledgeComplete=True,
         cliFiles={str(p.relative_to(out)).replace('\\', '/'): sha(p) for p in (out / 'Scripts').glob('*.py')
-            if p.name in ['NodeForgeControl.py', 'NodeForgeEditorTransport.py', 'RunProcessGuard.py', 'PrepareNodeForgeInstallation.py']},
+            if p.name in ['NodeForgeControl.py', 'NodeForgeWindowsProcesses.py', 'NodeForgeEditorTransport.py', 'RunProcessGuard.py', 'PrepareNodeForgeInstallation.py']},
         bindings=[ref(out, p) for p in (out / 'Scripts').glob('*.py')
-            if p.name not in ['NodeForgeControl.py', 'NodeForgeEditorTransport.py', 'RunProcessGuard.py', 'PrepareNodeForgeInstallation.py']]
+            if p.name not in ['NodeForgeControl.py', 'NodeForgeWindowsProcesses.py', 'NodeForgeEditorTransport.py', 'RunProcessGuard.py', 'PrepareNodeForgeInstallation.py']]
             + [ref(out, out / 'Tools/NodeForgeMcp' / n) for n in ['DependencyManifest.json', 'Requirements.lock', 'ThirdPartyNotices.md']])
     save(new_root / 'Manifest.json', manifest)
     runtime_manifest = {'format': 'NodeForgeFixedRuntime1', 'pythonVersion': '3.12.4', 'platform': 'Windows x64',

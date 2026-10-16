@@ -1,8 +1,6 @@
 # MCP 接口
 
-NodeForge 的 AI 接入通过本地 stdio MCP 服务调用插件。v1.0.0 的 AI 接入包包含固定 Python 环境、MCP SDK 和连接工具；桥 0.4.1、SDK 2.3.0、ABI1。一次安装后正常打开已启用插件的工程连接，步骤见[连接 AI](../Docs/AiInstallation.md)。
-
-服务提供 20 个工具，其中 16 个对应编辑器业务操作，另外 4 个用于连接、文档和报告读取。精确参数与返回结构见[ToolContract.json](../Releases/1.0.0/ToolContract.json)，逐个工具的说明见[API 参考](../Docs/Versions/v1.0.0/Ai/ApiReference.md)。
+服务提供 21 个工具，其中 16 个对应编辑器业务操作，另外 5 个用于连接、文档和报告读取。精确参数与返回结构见[ToolContract.json](../Releases/1.1.0/ToolContract.json)，逐个工具的说明见[API 参考](../Docs/Versions/v1.1.0/Ai/ApiReference.md)。
 
 ## 工具与调用顺序
 
@@ -89,3 +87,6 @@ report_read 使用 RFC6901 JSON Pointer，空字符串选择根对象。工具�
 Python、SDK 或应用 ABI 不兼容时需要重新加载服务。`NFMCP_RUNTIME_RESTART_REQUIRED`、`NFMCP_SDK_RESTART_REQUIRED`、`NFMCP_APPLICATION_INCOMPATIBLE` 会指出相应条件；不能仅修改版本文字宣称运行进程已经升级。
 
 旧业务进程退出后的锁恢复，需要检查原 PID 确已消失、当前会话有效，并逐个查询磁盘记录中的原调用终态。活动所有者、未知身份、未决调用或文件竞争都会停止恢复。原报告和调用文件保留，不通过清锁掩盖未完成操作。
+
+
+`nodeforge_disconnect` 正常释放当前客户端自己的连接；未完成调用会阻止释放。用法见[连接交接](../Docs/Versions/v1.1.0/Reference/SessionHandoff.md)。

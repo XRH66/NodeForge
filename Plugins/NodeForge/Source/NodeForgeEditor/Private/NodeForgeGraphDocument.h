@@ -27,6 +27,8 @@ struct FMaterialDefinition
     FString Domain, Blend, Shading;
     bool TwoSided = false;
     TOptional<FString> Lighting;
+    // Omitted refraction keeps UE5.3's RM_None default, including old PBR inputs.
+    TOptional<FString> RefractionMethod;
     TOptional<double> OpacityMaskClipValue;
     TOptional<bool> DitherOpacityMask, DitheredLodTransition, AllowNegativeEmissiveColor;
 };

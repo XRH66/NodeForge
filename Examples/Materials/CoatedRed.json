@@ -1,0 +1,103 @@
+{
+  "format": "NodeForgeGraph",
+  "version": 3,
+  "requestId": "WTDevRedCoatV001",
+  "catalogDigest": "5531e81860370f04bd0e79bd4363d766a483eee3e4e59944bee7c2c47b43bd00",
+  "target": {
+    "assetPath": "/Game/NodeForgeTests/Examples/MCoatedRed"
+  },
+  "asset": {
+    "type": "Material",
+    "settings": {
+      "domain": "Surface",
+      "blend": "Opaque",
+      "shading": "ClearCoat",
+      "twoSided": false
+    }
+  },
+  "graphs": [
+    {
+      "id": "MaterialGraph",
+      "kind": "Material",
+      "nodes": [
+        {
+          "id": "Red",
+          "class": "/Script/Engine.MaterialExpressionVectorParameter",
+          "properties": {
+            "ParameterName": "Red",
+            "DefaultValue": [
+              0.35,
+              0.008,
+              0.006,
+              1
+            ]
+          }
+        },
+        {
+          "id": "BaseRoughness",
+          "class": "/Script/Engine.MaterialExpressionScalarParameter",
+          "properties": {
+            "ParameterName": "BaseRoughness",
+            "DefaultValue": 0.34
+          }
+        },
+        {
+          "id": "Specular",
+          "class": "/Script/Engine.MaterialExpressionScalarParameter",
+          "properties": {
+            "ParameterName": "Specular",
+            "DefaultValue": 0.5
+          }
+        },
+        {
+          "id": "ClearCoatWeight",
+          "class": "/Script/Engine.MaterialExpressionScalarParameter",
+          "properties": {
+            "ParameterName": "ClearCoatWeight",
+            "DefaultValue": 1.0
+          }
+        },
+        {
+          "id": "ClearCoatRoughness",
+          "class": "/Script/Engine.MaterialExpressionScalarParameter",
+          "properties": {
+            "ParameterName": "ClearCoatRoughness",
+            "DefaultValue": 0.1599999964237213
+          }
+        }
+      ],
+      "edges": [
+        {
+          "from": "Red",
+          "output": "0",
+          "to": "Material",
+          "input": "BaseColor"
+        },
+        {
+          "from": "BaseRoughness",
+          "output": "0",
+          "to": "Material",
+          "input": "Roughness"
+        },
+        {
+          "from": "Specular",
+          "output": "0",
+          "to": "Material",
+          "input": "Specular"
+        },
+        {
+          "from": "ClearCoatWeight",
+          "output": "0",
+          "to": "Material",
+          "input": "ClearCoat"
+        },
+        {
+          "from": "ClearCoatRoughness",
+          "output": "0",
+          "to": "Material",
+          "input": "ClearCoatRoughness"
+        }
+      ]
+    }
+  ]
+}

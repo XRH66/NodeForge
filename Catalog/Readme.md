@@ -2,14 +2,14 @@
 
 NodeForge 使用节点目录说明当前插件接受的节点、参数、引脚和连接规则。编写 JSON 时，应使用与已安装插件相同版本的目录。
 
-## v0.1.0 的入口
+## v1.1.0 的入口
 
-- [完整目录 JSON](../Docs/Versions/v0.1.0/Catalog.json)
-- [材质节点索引](../Docs/Versions/v0.1.0/Reference/MaterialNodeIndex.md)
-- [蓝图节点索引](../Docs/Versions/v0.1.0/Reference/BlueprintNodeIndex.md)
+- [完整目录 JSON](../Docs/Versions/v1.1.0/Catalog.json)
+- [材质节点索引](../Docs/Versions/v1.1.0/Reference/MaterialNodeIndex.md)
+- [蓝图节点索引](../Docs/Versions/v1.1.0/Reference/BlueprintNodeIndex.md)
 - [节点数量与限制](NodeSupportStatus.md)
 
-也可以在 UE 面板点击 **导出全部节点规则**，或通过 AI 的目录查询工具读取当前运行插件的规则。查询方法见 [查找可用节点](../Docs/Versions/v0.1.0/User/NodeCoverage.md)。
+也可以在 UE 面板点击 **导出全部节点规则**，或通过 AI 的目录查询工具读取当前运行插件的规则。查询方法见 [查找可用节点](../Docs/Versions/v1.1.0/User/NodeCoverage.md)。
 
 ## 怎样读取目录文件
 
@@ -29,9 +29,9 @@ NodeForge 使用节点目录说明当前插件接受的节点、参数、引脚�
 
 ## 本目录其他 JSON 的用途
 
-`Catalog` 下的其他 `UE532*.json` 是开发时保留的目录样本，用于查看某类节点的结构或配合测试。它们可能只包含部分功能，摘要也可能与 v0.1.0 不同。它们不是供用户选择的其他发行版本。
+`Catalog` 下的其他 `UE532*.json` 是开发时保留的目录样本，用于查看某类节点的结构或配合测试。它们可能只包含部分功能，摘要也可能与 v1.1.0 不同。它们不是供用户选择的其他发行版本。
 
-新任务使用上面的 v0.1.0 目录，或从当前安装的插件重新导出。不要从多个目录样本拼接节点，再只替换一个摘要。
+新任务使用上面的 v1.1.0 目录，或从当前安装的插件重新导出。不要从多个目录样本拼接节点，再只替换一个摘要。
 
 ## 状态怎样理解
 

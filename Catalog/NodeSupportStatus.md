@@ -1,6 +1,6 @@
-# v0.1.0 节点支持范围
+# v1.1.0 节点支持范围
 
-本页依据 [v0.1.0 节点目录](../Docs/Versions/v0.1.0/Catalog.json)，适用于 Windows 64 位和官方 UE 5.3.2。精确的类名、属性和引脚以目录为准。
+本页依据 [v1.1.0 节点目录](../Docs/Versions/v1.1.0/Catalog.json)，适用于 Windows 64 位和官方 UE 5.3.2。精确的类名、属性和引脚以目录为准。
 
 ## 数量
 
@@ -44,4 +44,4 @@ JSON 最多 65,536 字节、深度最多 32 层；文件大小限制可能先于
 
 新资产只能写入 `/Game/NodeForgeTests/`，已有资产不会被覆盖。输入检查通过后仍需生成和编译；保存成功后还需在自己的场景中查看行为或画面。
 
-[材质节点](../Docs/Versions/v0.1.0/Reference/MaterialNodeIndex.md) · [蓝图节点](../Docs/Versions/v0.1.0/Reference/BlueprintNodeIndex.md) · [已知限制](../Docs/Versions/v0.1.0/Version/KnownIssues.md)
+[材质节点](../Docs/Versions/v1.1.0/Reference/MaterialNodeIndex.md) · [蓝图节点](../Docs/Versions/v1.1.0/Reference/BlueprintNodeIndex.md) · [已知限制](../Docs/Versions/v1.1.0/Version/KnownIssues.md)

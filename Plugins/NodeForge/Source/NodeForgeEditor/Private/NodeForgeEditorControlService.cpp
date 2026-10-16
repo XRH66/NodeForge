@@ -357,8 +357,16 @@ bool FNodeForgeEditorControlService::ValidateQueryReport(const FString& Mode, in
             || !(*Payload)->TryGetNumberField(TEXT("inputVersion"), InputVersion) || InputVersion != 3
             || !(*Payload)->TryGetStringField(TEXT("catalogDigest"), BundleDigest) || BundleDigest != Digest
             || !(*Payload)->TryGetNumberField(TEXT("matchedNodeCount"), Count) || !FMath::IsFinite(Count)
-            || Count < 1 || FMath::FloorToDouble(Count) != Count
+            || Count < 0 || FMath::FloorToDouble(Count) != Count
             || !(*Payload)->HasTypedField<EJson::Object>(TEXT("capabilities"))) return false;
+        if (Count == 0)
+        {
+            bool AssetFieldMatch = false; FString AssetKind;
+            if (!(*Payload)->TryGetBoolField(TEXT("assetFieldMatch"), AssetFieldMatch) || !AssetFieldMatch
+                || !(*Payload)->TryGetStringField(TEXT("assetKind"), AssetKind) || AssetKind != TEXT("Material")
+                || !(*Payload)->GetObjectField(TEXT("capabilities"))->HasTypedField<EJson::Object>(TEXT("settings"))
+                || !(*Payload)->GetObjectField(TEXT("capabilities"))->HasTypedField<EJson::Array>(TEXT("materialInputs"))) return false;
+        }
         const TArray<TSharedPtr<FJsonValue>>* Nodes = nullptr;
         if (!(*Payload)->GetObjectField(TEXT("capabilities"))->TryGetArrayField(TEXT("nodes"), Nodes)
             || !Nodes || Nodes->Num() != Count) return false;
@@ -639,7 +647,7 @@ TSharedRef<FJsonObject> FNodeForgeEditorControlService::ExecuteQueryCall(const F
                     Sidecar->SetNumberField(TEXT("pid"), FPlatformProcess::GetCurrentProcessId());
                     Sidecar->SetStringField(TEXT("processStart"), LexToString((uint64(Created.dwHighDateTime) << 32) | Created.dwLowDateTime));
                     Sidecar->SetStringField(TEXT("project"), FPaths::ConvertRelativePathToFull(FPaths::GetProjectFilePath()));
-                    const FString Module = FModuleManager::Get().GetModuleFilename(TEXT("NodeForgeEditor"));
+                    const FString Module = FPaths::ConvertRelativePathToFull(FModuleManager::Get().GetModuleFilename(TEXT("NodeForgeEditor")));
                     const FString ModuleHash = NodeForgePrototype::FileSha256(Module);
                     Sidecar->SetStringField(TEXT("module"), Module); Sidecar->SetStringField(TEXT("binarySha256"), ModuleHash);
                     Sidecar->SetObjectField(TEXT("nativeReport"), Reference);
@@ -765,9 +773,13 @@ int32 FNodeForgeEditorControlService::PreflightSnapshot(const FString& Input, co
         TSharedPtr<FJsonObject> Report;
         if(ReadCurrentReport(Report))
         {
-            FString Status;Report->TryGetStringField(TEXT("operationStatus"),Status);
-            Current.ResultNotice=Code==0 && Status==TEXT("passed") && Report->HasTypedField<EJson::Object>(TEXT("preflightSummary"))
-                ?TEXT("输入检查通过，尚未生成或预留目标。可继续生成新资产。"):TEXT("输入检查未通过或报告不完整；请按报告修订输入。");
+            FString Status,Overall;Report->TryGetStringField(TEXT("operationStatus"),Status);Report->TryGetStringField(TEXT("overallStatus"),Overall);
+            const bool Complete=Status==TEXT("passed") && Overall==TEXT("succeeded") && Report->HasTypedField<EJson::Object>(TEXT("preflightSummary"));
+            if(Code==0 && Complete)Current.ResultNotice=TEXT("输入检查通过，尚未生成或预留目标。可继续生成新资产。");
+            else if(Code==5 || Code==0 || Overall==TEXT("unknown"))
+                Current.ResultNotice=TEXT("检查结果暂不可确认；请查看本次报告及环境或来源诊断，不能据此判定JSON无效。");
+            else Current.ResultNotice=TEXT("检查未通过；请查看本次具体诊断，目标或请求占用时请先新建副本。");
+            return Code==0 && !Complete?5:Code;
         }
         else return 5;
         return Code;

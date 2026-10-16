@@ -175,7 +175,7 @@ class Windows:
             attributes=self.k.GetFileAttributesW(str(item))
             if attributes!=0xffffffff and attributes & 0x400: raise TransportError('NFEDITOR_REPARSE',2)
 
-    def security(self,handle,kind,mask):
+    def security(self,handle,kind,mask,user_container=False):
         owner=ctypes.c_void_p();acl=ctypes.c_void_p();sd=ctypes.c_void_p()
         if self.a.GetSecurityInfo(handle,kind,5,ctypes.byref(owner),None,ctypes.byref(acl),None,ctypes.byref(sd)):
             raise TransportError('NFEDITOR_DACL')
@@ -191,18 +191,23 @@ class Windows:
                 if not self.a.GetAce(acl,index,ctypes.byref(ace)):raise TransportError('NFEDITOR_DACL')
                 raw=ctypes.string_at(ace,8);kind_ace,flags,_,rights=struct.unpack('<BBHI',raw)
                 sid=self.sid_text(ctypes.c_void_p(ace.value+8))
-                if kind_ace!=0 or flags & 0x10 or rights!=mask:raise TransportError('NFEDITOR_DACL')
+                if (kind_ace!=0 or flags & 0x10 or rights!=mask
+                        or (user_container and flags!=0)):raise TransportError('NFEDITOR_DACL')
                 actual.append(sid)
-            if set(actual)!={self.logon,'S-1-5-18'}:raise TransportError('NFEDITOR_DACL')
-            return {'owner':self.user,'logonSid':self.logon,'protectedDacl':True,'mask':mask,'aces':actual}
+            principal=self.user if user_container else self.logon
+            if set(actual)!={principal,'S-1-5-18'}:raise TransportError('NFEDITOR_DACL')
+            return {'owner':self.user,'logonSid':self.logon,'protectedDacl':True,'mask':mask,'aces':actual,
+                    'scope':'userContainer' if user_container else 'logonSession'}
         finally:self.k.LocalFree(sd)
 
     def descriptor(self,path):
         self.no_reparse(path)
-        for directory in (path.parent,path.parent.parent):
+        # The persistent container survives logons; only its session child and
+        # credential retain the current-logon DACL. Neither permits inherited ACEs.
+        for directory,user_container in ((path.parent,False),(path.parent.parent,True)):
             handle=self.k.CreateFileW(str(directory),0x20080,7,None,3,0x02200000,None)
             if handle==INVALID:raise TransportError('NFEDITOR_SESSION_DIRECTORY')
-            try:self.security(handle,1,0x1f01ff)
+            try:self.security(handle,1,0x1f01ff,user_container=user_container)
             finally:self.k.CloseHandle(handle)
         handle=self.k.CreateFileW(str(path),0x120081,1,None,3,0x00200000,None)
         if handle==INVALID:raise TransportError('NFEDITOR_DESCRIPTOR')
