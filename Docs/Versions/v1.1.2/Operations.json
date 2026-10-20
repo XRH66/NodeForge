@@ -1,0 +1,507 @@
+{
+  "host": "activeEditor",
+  "editorApiVersion": "1.0",
+  "profile": "nodeforge.editor.v1",
+  "operations": [
+    {
+      "name": "operations.describe",
+      "implementationStatus": "implemented",
+      "resultKind": "capabilityDescription",
+      "sideEffect": "reportOnly",
+      "expectedDraftRevisionRequired": false,
+      "dispatch": "readOnlyCache",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "session.hello",
+      "implementationStatus": "implemented",
+      "resultKind": "sessionIdentity",
+      "sideEffect": "bindConnection",
+      "expectedDraftRevisionRequired": false,
+      "dispatch": "handshake",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "editorApiVersion": {
+            "type": "string"
+          },
+          "profile": {
+            "type": "string"
+          },
+          "controlSessionId": {
+            "type": "string"
+          },
+          "expectedProject": {
+            "type": "string"
+          },
+          "expectedProcessStart": {
+            "type": "string"
+          },
+          "expectedBinarySha256": {
+            "type": "string"
+          },
+          "credential": {
+            "type": "string"
+          },
+          "expectedPid": {
+            "type": "integer"
+          },
+          "clientId": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{32}$"
+          },
+          "clientName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "clientVersion": {
+            "type": "string",
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "editorApiVersion",
+          "profile",
+          "controlSessionId",
+          "expectedProject",
+          "expectedProcessStart",
+          "expectedBinarySha256",
+          "credential",
+          "expectedPid"
+        ]
+      }
+    },
+    {
+      "name": "editor.getState",
+      "implementationStatus": "implemented",
+      "resultKind": "publishedState",
+      "sideEffect": "none",
+      "expectedDraftRevisionRequired": false,
+      "dispatch": "readOnlyCache",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "draft.get",
+      "implementationStatus": "implemented",
+      "resultKind": "publishedDraft",
+      "sideEffect": "none",
+      "expectedDraftRevisionRequired": false,
+      "dispatch": "readOnlyCache",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "draft.loadFile",
+      "implementationStatus": "implemented",
+      "resultKind": "draftReceipt",
+      "sideEffect": "replaceDraft",
+      "expectedDraftRevisionRequired": true,
+      "dispatch": "gameThread",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "exportReportPath": {
+            "type": "string"
+          },
+          "exportReportSha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "dependentRequired": {
+          "exportReportPath": [
+            "exportReportSha256"
+          ],
+          "exportReportSha256": [
+            "exportReportPath"
+          ]
+        }
+      }
+    },
+    {
+      "name": "draft.replace",
+      "implementationStatus": "implemented",
+      "resultKind": "draftReceipt",
+      "sideEffect": "replaceDraft",
+      "expectedDraftRevisionRequired": true,
+      "dispatch": "gameThread",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "exportReportPath": {
+            "type": "string"
+          },
+          "exportReportSha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "retainExportOrigin": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "dependentRequired": {
+          "exportReportPath": [
+            "exportReportSha256"
+          ],
+          "exportReportSha256": [
+            "exportReportPath"
+          ]
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "retainExportOrigin": {
+                  "const": true
+                }
+              },
+              "required": [
+                "retainExportOrigin"
+              ]
+            },
+            "then": {
+              "not": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "exportReportPath"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "exportReportSha256"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "draft.restore",
+      "implementationStatus": "implemented",
+      "resultKind": "draftReceipt",
+      "sideEffect": "restoreDraft",
+      "expectedDraftRevisionRequired": true,
+      "dispatch": "gameThread",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "draft.prepareCopy",
+      "implementationStatus": "implemented",
+      "resultKind": "copyPreparationReceipt",
+      "sideEffect": "prepareInputReportAndReplaceDraftWithoutReservation",
+      "expectedDraftRevisionRequired": true,
+      "dispatch": "gameThread",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "graphs.preview",
+      "implementationStatus": "implemented",
+      "resultKind": "graphPreviewReceipt",
+      "sideEffect": "reportAndDisplayOnly",
+      "expectedDraftRevisionRequired": true,
+      "dispatch": "gameThread",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "graphs.preflight",
+      "implementationStatus": "implemented",
+      "resultKind": "preflightReceipt",
+      "sideEffect": "reportOnly",
+      "expectedDraftRevisionRequired": true,
+      "dispatch": "gameThread",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "graphs.generate",
+      "implementationStatus": "implemented",
+      "resultKind": "generationReceipt",
+      "sideEffect": "createNewAssetAndRequestReceipt",
+      "expectedDraftRevisionRequired": true,
+      "dispatch": "gameThread",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "rules.query",
+      "implementationStatus": "implemented",
+      "resultKind": "rulesReceipt",
+      "sideEffect": "queryReportAndDisplayOnly",
+      "expectedDraftRevisionRequired": true,
+      "dispatch": "gameThread",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "assetKind": {
+            "type": "string",
+            "enum": [
+              "Material",
+              "Blueprint"
+            ]
+          },
+          "query": {
+            "type": "string",
+            "maxLength": 256,
+            "x-maxWhitespaceTerms": 8
+          }
+        },
+        "required": [
+          "assetKind",
+          "query"
+        ]
+      }
+    },
+    {
+      "name": "catalog.get",
+      "implementationStatus": "implemented",
+      "resultKind": "catalogReceipt",
+      "sideEffect": "queryReportAndDisplayOnly",
+      "expectedDraftRevisionRequired": true,
+      "dispatch": "gameThread",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "resources.inspect",
+      "implementationStatus": "implemented",
+      "resultKind": "resourceReceipt",
+      "sideEffect": "queryReportAndDisplayOnly",
+      "expectedDraftRevisionRequired": true,
+      "dispatch": "gameThread",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "MaterialParameters",
+              "MaterialFunction",
+              "Texture2D"
+            ]
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "source"
+        ]
+      }
+    },
+    {
+      "name": "resources.query",
+      "implementationStatus": "implemented",
+      "resultKind": "resourceQueryReceipt",
+      "sideEffect": "metadataQueryReportOnly",
+      "expectedDraftRevisionRequired": true,
+      "dispatch": "gameThread",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "Texture2D",
+              "MaterialFunction",
+              "Material"
+            ]
+          },
+          "directory": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "nameContains": {
+            "type": "string",
+            "maxLength": 128,
+            "default": ""
+          },
+          "recursive": {
+            "type": "boolean",
+            "default": false
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 200,
+            "default": 50
+          },
+          "after": {
+            "type": "string",
+            "maxLength": 512,
+            "default": ""
+          }
+        },
+        "required": [
+          "kind",
+          "directory"
+        ]
+      }
+    },
+    {
+      "name": "graphs.export",
+      "implementationStatus": "implemented",
+      "resultKind": "exportReceipt",
+      "sideEffect": "queryReportAndDisplayOnly",
+      "expectedDraftRevisionRequired": true,
+      "dispatch": "gameThread",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "assetKind": {
+            "type": "string",
+            "enum": [
+              "Material",
+              "Blueprint"
+            ]
+          },
+          "source": {
+            "type": "string"
+          },
+          "requestId": {
+            "type": "string"
+          },
+          "assetPath": {
+            "type": "string"
+          },
+          "formatVersion": {
+            "type": "integer",
+            "enum": [
+              2,
+              3
+            ],
+            "default": 2
+          }
+        },
+        "required": [
+          "assetKind",
+          "source",
+          "requestId",
+          "assetPath"
+        ]
+      }
+    },
+    {
+      "name": "calls.releaseCompleted",
+      "implementationStatus": "implemented",
+      "resultKind": "callCleanupReceipt",
+      "sideEffect": "archiveCompletedCallsKeepEvidence",
+      "expectedDraftRevisionRequired": false,
+      "dispatch": "management",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "maxCount": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 128
+          }
+        },
+        "required": [
+          "maxCount"
+        ]
+      }
+    },
+    {
+      "name": "calls.get",
+      "implementationStatus": "implemented",
+      "resultKind": "callRecord",
+      "sideEffect": "none",
+      "expectedDraftRevisionRequired": false,
+      "dispatch": "readOnlyCache",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "callId"
+        ]
+      }
+    },
+    {
+      "name": "control.disable",
+      "implementationStatus": "implemented",
+      "resultKind": "stoppingRequested",
+      "sideEffect": "stopChannel",
+      "expectedDraftRevisionRequired": false,
+      "dispatch": "management",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      }
+    }
+  ]
+}

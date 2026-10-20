@@ -10,8 +10,8 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '1.1.1'
-DOCS = 'Docs/Versions/v1.1.1'
+VERSION = '1.1.2'
+DOCS = 'Docs/Versions/v1.1.2'
 EMBED_SHA = '15fea3c9367653a85086fe37216b4d1a1c78688fa5e1587e1db0b0f658856564'
 
 
@@ -94,6 +94,9 @@ def assemble(out, embed, plugin, plugin_asset_id, version=VERSION):
     source = load(ROOT / docs / 'Manifest.json')
     new_root = out / docs
     new_root.mkdir(parents=True)
+    # Keep the manual's third-party license links usable offline.
+    if (ROOT / docs / 'Assets').is_dir():
+        shutil.copytree(ROOT / docs / 'Assets', new_root / 'Assets')
     pages = []
     for page in source['pages']:
         original = ROOT / page['path']

@@ -425,6 +425,9 @@ struct FNodeForgeEditorControlChannel::FImpl
     };
     FCriticalSection RegistryLock; TMap<FString, FCall> Calls;
     FCriticalSection ClientLock;
+    static constexpr int32 AutomaticCleanupBatch = 50;
+    int32 AutomaticCleanupBatches = 0;
+    FString AutomaticCleanupState = TEXT("idle"), AutomaticCleanupCallId, AutomaticCleanupCode;
     FString PendingCall, ActiveCall;
     std::atomic<bool> bStopping{false}, bStopRequested{false};
     std::atomic<uint32> ManagementReplies{0};
@@ -484,6 +487,11 @@ struct FNodeForgeEditorControlChannel::FImpl
         Value->SetNumberField(TEXT("available"), NodeForgeEditorControl::MaxBusinessCalls - Calls.Num());
         Value->SetNumberField(TEXT("capacity"), NodeForgeEditorControl::MaxBusinessCalls);
         Value->SetNumberField(TEXT("reclaimable"), Eligible);
+        auto Automatic = MakeShared<FJsonObject>(); Automatic->SetBoolField(TEXT("enabled"), true);
+        Automatic->SetNumberField(TEXT("threshold"), AutomaticCleanupBatch); Automatic->SetNumberField(TEXT("batchSize"), AutomaticCleanupBatch);
+        Automatic->SetNumberField(TEXT("completedBatches"), AutomaticCleanupBatches);
+        Automatic->SetStringField(TEXT("status"), AutomaticCleanupState); Automatic->SetStringField(TEXT("lastCallId"), AutomaticCleanupCallId);
+        Automatic->SetStringField(TEXT("code"), AutomaticCleanupCode); Value->SetObjectField(TEXT("autoCleanup"), Automatic);
         return Value;
     }
     bool ReadHistory(const FString& Id, TSharedPtr<FJsonObject>& Row, bool& Exists) const
@@ -622,6 +630,38 @@ struct FNodeForgeEditorControlChannel::FImpl
         if (!Saved) { bStopping.store(true); Gate->EndControl(); } // Kept ID/unknown record; no execution or later automatic writes.
         Response = Queued; return true;
     }
+    void ReleaseCompletedAutomatically()
+    {
+        // Called only on the existing GT completion/idle path. No timer, caller counter or second cleanup implementation.
+        {
+            FScopeLock Lock(&RegistryLock);
+            if (Calls.Num() < AutomaticCleanupBatch) return;
+            if (bStopping.load()) { if (AutomaticCleanupState != TEXT("unknown")) AutomaticCleanupState = TEXT("blockedStopping"); return; }
+            AutomaticCleanupCallId.Empty(); AutomaticCleanupCode.Empty();
+            if (!PendingCall.IsEmpty() || !ActiveCall.IsEmpty() || Gate->IsBusy())
+            { AutomaticCleanupState = TEXT("deferredBusy"); return; }
+            for (const auto& Pair : Calls) if (!Reclaimable(Pair.Value))
+            { AutomaticCleanupState = TEXT("blockedUnresolved"); return; }
+        }
+        NodeForgeEditorControl::FRequest Maintenance;
+        Maintenance.Id = TEXT("AutoCleanup-") + FGuid::NewGuid().ToString(EGuidFormats::Digits);
+        Maintenance.Method = TEXT("calls.releaseCompleted");
+        Maintenance.Definition = NodeForgeControlOperations::Find(Maintenance.Method, NodeForgeControlOperations::EHost::ActiveEditor);
+        Maintenance.Context = MakeShared<FJsonObject>(); Maintenance.Context->SetStringField(TEXT("controlSessionId"), Session);
+        Maintenance.Arguments = MakeShared<FJsonObject>(); Maintenance.Arguments->SetNumberField(TEXT("maxCount"), AutomaticCleanupBatch);
+        TSharedPtr<FJsonObject> Receipt; NodeForgeEditorControl::FProtocolError Error;
+        const bool Released = ReleaseCompleted(Maintenance, Receipt, Error);
+        FScopeLock Lock(&RegistryLock);
+        AutomaticCleanupCallId = Receipt.IsValid() ? Maintenance.Id : FString();
+        if (Released) { AutomaticCleanupState = TEXT("completed"); ++AutomaticCleanupBatches; }
+        else
+        {
+            AutomaticCleanupCode = Error.Code;
+            AutomaticCleanupState = bStopping.load() ? TEXT("unknown")
+                : Error.Code == TEXT("busy") ? TEXT("deferredBusy") : TEXT("blockedUnresolved");
+        }
+    }
+
     void FinishCall(const NodeForgeEditorControl::FRequest& Request, const FString& Hash, const TSharedRef<FJsonObject>& Result)
     {
         if (Result->GetNumberField(TEXT("cliExitCode")) == 5) bStopping.store(true); // Unknown writes require read-only reconciliation, never another automatic business call.
@@ -632,6 +672,7 @@ struct FNodeForgeEditorControlChannel::FImpl
         const FString Cached = NodeForgeControlWindows::JsonText(Finished);
         { FScopeLock Lock(&RegistryLock); Calls.FindChecked(Request.Id).Cache = Cached; ActiveCall.Empty(); }
         Gate->EndControl();
+        ReleaseCompletedAutomatically();
     }
 };
 
@@ -785,6 +826,7 @@ void FNodeForgeEditorControlChannel::Drain(FNodeForgeEditorControlService& Servi
     }
     if (Impl->bDraining) return;
     TGuardValue<bool> Draining(Impl->bDraining, true);
+    Impl->ReleaseCompletedAutomatically(); // Idle retry only after the real shared gate becomes free.
 #if WITH_DEV_AUTOMATION_TESTS
     bool HasPending = false;
     { FScopeLock Lock(&Impl->RegistryLock); HasPending = !Impl->PendingCall.IsEmpty(); }
@@ -1020,3 +1062,5 @@ bool FNodeForgeSessionContainerLifetimeTest::RunTest(const FString&)
 #endif
 
 #include "NodeForgeCallCapacityChecks.inl"
+
+#include "NodeForgeAutoCallCapacityChecks.inl"

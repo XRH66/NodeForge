@@ -16,6 +16,14 @@ bool FNodeForgeCallCapacityTest::RunTest(const FString&)
         if (Method == TEXT("calls.releaseCompleted")) R.Arguments->SetNumberField(TEXT("maxCount"), 50);
         return R;
     };
+    // Seed the terminal registry for explicit-maintenance boundary tests; automatic FinishCall is covered separately.
+    auto SeedTerminal = [&](const FRequest& R, const FString& Hash, const TSharedRef<FJsonObject>& Result)
+    {
+        auto Finished = Core.Record(R, Hash, *Result->GetStringField(TEXT("state")));
+        Finished->SetObjectField(TEXT("result"), Result); Finished->SetNumberField(TEXT("cliExitCode"), Result->GetNumberField(TEXT("cliExitCode")));
+        TestTrue(TEXT("Durable maintenance fixture"), NodeForgePrototype::WriteJson(Finished, Core.PublicDirectory / TEXT("Calls") / (R.Id + TEXT("Finished.json"))));
+        Core.Calls.FindChecked(R.Id).Cache = NodeForgeControlWindows::JsonText(Finished); Core.ActiveCall.Empty(); Core.Gate->EndControl();
+    };
     FProtocolError Error; TSharedPtr<FJsonObject> Row; TMap<FString,FString> OriginalHashes;
     for (int32 I = 0; I < 128; ++I)
     {
@@ -23,7 +31,7 @@ bool FNodeForgeCallCapacityTest::RunTest(const FString&)
         TestTrue(TEXT("Actual Call admission"), Core.Call(R, Row, Error));
         Core.PendingCall.Empty(); TestTrue(TEXT("Actual control gate"), Core.Gate->BeginControl());
         auto Result = MakeShared<FJsonObject>(); Result->SetStringField(TEXT("state"), TEXT("completed")); Result->SetNumberField(TEXT("cliExitCode"), 0);
-        Core.FinishCall(R, Fingerprint(R), Result);
+        SeedTerminal(R, Fingerprint(R), Result);
         for (const TCHAR* Suffix : {TEXT("Accepted.json"), TEXT("Finished.json")})
         { const FString Path = Core.PublicDirectory / TEXT("Calls") / (R.Id + Suffix); OriginalHashes.Add(Path, NodeForgePrototype::FileSha256(Path)); }
     }
@@ -51,7 +59,7 @@ bool FNodeForgeCallCapacityTest::RunTest(const FString&)
     Core.PendingCall.Empty(); Core.Gate->BeginControl();
     TestFalse(TEXT("Running business rejects cleanup"), Core.ReleaseCompleted(More, Row, Error));
     auto Done = MakeShared<FJsonObject>(); Done->SetStringField(TEXT("state"), TEXT("completed")); Done->SetNumberField(TEXT("cliExitCode"), 0);
-    Core.FinishCall(Next, Fingerprint(Next), Done);
+    SeedTerminal(Next, Fingerprint(Next), Done);
     auto& Held = Core.Calls.FindChecked(TEXT("AfterFull")); const FString Good = Held.Cache;
     Held.bPublishing = true; TestFalse(TEXT("Publishing refuses cleanup"), Core.ReleaseCompleted(More, Row, Error)); Held.bPublishing = false;
     for (const TCHAR* State : {TEXT("queued"), TEXT("running"), TEXT("pending"), TEXT("unknown"), TEXT("failed")})

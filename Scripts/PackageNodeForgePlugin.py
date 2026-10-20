@@ -7,7 +7,7 @@ from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '1.1.1'
+VERSION = '1.1.2'
 
 
 def encoded(value):

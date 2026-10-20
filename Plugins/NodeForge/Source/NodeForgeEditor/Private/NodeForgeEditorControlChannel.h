@@ -28,6 +28,7 @@ public:
 #endif
 private:
     friend class FNodeForgeCallCapacityTest;
+    friend class FNodeForgeAutoCallCapacityTest;
     struct FImpl;
     TUniquePtr<FImpl> Impl;
 };
