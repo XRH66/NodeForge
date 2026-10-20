@@ -1,4 +1,4 @@
-# 生成第一个材质
+# 先试用附带案例
 
 先按 [安装插件](Installation.md) 启用 NodeForge。普通插件无需 AI 或 Python。
 
@@ -26,9 +26,18 @@
 
 已有目标或已使用的请求编号会被拒绝。点击 **新建副本** 准备新名称，再检查并生成；准备本身不会创建资产或提前占用名称。**恢复输入**只恢复前一份可恢复的文本，不撤销生成。
 
-需要 AI 编写 JSON 时，先用 **导出规则 → 复制内容** 提供本版规则；也可 [连接 AI](AiInstallation.md) 直接调用插件。
-
 错误或结果不明确时打开原 **报告**，保留输入并查清原任务；不要换名重复提交未知生成。
+
+## 5. 生成自己的蓝图或材质
+
+附带案例跑通后，换成自己的需求：
+
+1. 下载一份规则文档：[材质编写规则](Versions/v1.1.2/Reference/MaterialRules.md) 或 [蓝图编写规则](Versions/v1.1.2/Reference/BlueprintRules.md)。
+2. 把这份 Markdown 和你想要的效果一起发给 AI，让它输出完整 JSON。规则里已经写清字段、限制和节点目录，不必再让 AI 去插件里查询。
+3. 把返回的 JSON 粘贴或载入面板，检查通过后生成。
+4. 在 UE 中打开资产，运行蓝图或查看材质效果，再按实际结果继续调整。
+
+熟悉 JSON 的用户也可以直接修改附带案例的 JSON；面板内的 **导出规则 → 复制内容** 仍是可选辅助。要让 AI 自己操作插件，另见 [连接 AI](AiInstallation.md)。
 
 [手动操作](Versions/v1.1.2/User/ManualWorkflows.md) · [界面与按钮](Versions/v1.1.2/User/InterfaceGuide.md) · [支持范围](Versions/v1.1.2/Reference/FeatureMap.md)
 

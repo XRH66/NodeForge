@@ -4,6 +4,8 @@ AI 接入让支持 MCP 的客户端查询 NodeForge 规则、读取资源和生�
 
 **配置一次，之后正常打开工程即可使用。** 不需要每次运行安装工具、填写启动参数或重新下载环境。
 
+本文用于让 AI 直接操作插件。只让 AI 写 JSON 时不需要接入包：先下载两份规则中的对应一份（[材质编写规则](Versions/v1.1.2/Reference/MaterialRules.md)、[蓝图编写规则](Versions/v1.1.2/Reference/BlueprintRules.md)），按[让 AI 写出自己的 JSON](Versions/v1.1.2/User/ManualWorkflows.md#让-ai-写出自己的-json) 的步骤做即可。
+
 ## 1. 下载接入包
 
 从 [v1.1.2 Release](https://github.com/XRH66/NodeForge/releases/tag/v1.1.2) 下载 **NodeForge-AI-1.1.2-Windows.zip**，解压到临时文件夹。已装同版普通插件可以补装；尚未安装时，工具可取得同版普通包并安装到引擎目录。

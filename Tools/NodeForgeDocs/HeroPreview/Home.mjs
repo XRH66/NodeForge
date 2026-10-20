@@ -6,7 +6,7 @@ export function renderHome({config, asset, destination, icon, escape, body, bran
   if(!appearance||appearance.glassTransparency!==100||!Number.isFinite(appearance.motionSeconds)||appearance.motionSeconds<15)throw Error('Invalid fixed hero appearance');
   const route = (id) => escape(destination(id) || '#');
   const cards = home.routes.filter(item => destination(item.pageId)).map((item, index) => `
-    <a class="route-card" href="${route(item.pageId)}">
+    <a class="route-card" href="${route(item.pageId)}${item.anchor ? escape(item.anchor) : ''}">
       <span class="route-top"><span class="route-number">0${index + 1}</span>${icon(item.icon)}</span>
       <h3>${escape(item.title)}</h3><p>${escape(item.description)}</p>
       <span class="route-bottom">${escape(item.action)}${icon('arrow')}</span>
@@ -31,6 +31,6 @@ export function renderHome({config, asset, destination, icon, escape, body, bran
     <section class="home-paths" aria-labelledby="home-paths-title"><div class="home-section-heading"><div><p class="section-kicker">01 / EXPLORE THE DOCS</p><h2 id="home-paths-title">找到你的起点</h2></div><p>第一次使用，交给 AI，或继续开发。</p></div><div class="route-grid">${cards}</div></section>
     <section class="home-reference" aria-labelledby="home-reference-title"><div class="reference-intro"><p class="section-kicker">02 / REFERENCE</p><h2 id="home-reference-title">想知道能做什么？</h2><p>先看支持范围，再查节点与使用条件。<br>把每一次构建，放在明确的边界内。</p></div><div class="reference-list">${references}</div></section>
     <details class="release-details"><summary><span>当前版本与使用说明</span><small>环境要求、安装包与支持范围</small>${icon('chevron')}</summary><div class="article-content">${body}</div></details>
-    <footer class="home-footer"><div>${brand}</div><nav aria-label="页脚导航">${link('UserReadme','使用手册')}${link('FeatureMap','功能与限制')}${link('VersionKnownIssues','已知限制')}${link('SourcesAndLicenses','来源与许可')}</nav><p class="footer-edition">${escape(edition)}<br><span>本地文档 / 离线可读</span></p></footer>
+    <footer class="home-footer"><div>${brand}</div><nav aria-label="页脚导航">${link('UserReadme','使用手册')}${link('FeatureMap','功能与限制')}${link('VersionKnownIssues','已知限制')}${link('VersionReadme','版本信息')}${link('VersionReleaseNotes','更新日志')}${link('SourcesAndLicenses','来源与许可')}</nav><p class="footer-edition">${escape(edition)}<br><span>NodeForge Library</span></p></footer>
     </div></main></div>`;
 }
